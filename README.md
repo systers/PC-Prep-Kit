@@ -20,7 +20,7 @@ All stages will be locked in starting point , and as user progresses new stages 
 
 --PC Policy : No activities/games , only policies of PC . 
 
-Each stage thus has three levels . As the user unlocks a stage , his progress in reported in form of fraction . For example , if a user completes one activity of the Introduction stage - It must display 1/3 for Introduction . As user progresses , stages will be unlocked .
+Each stage thus has three levels . As the user unlocks a stage , his progress is reported in form of fraction . For example , if a user completes one activity of the Introduction stage - It must display 1/3 for Introduction (Use creativity). As user progresses , stages will be unlocked .
 
 There is a Info-Kit section (i) at the bottom right , which will act as a repository of Knowledge/data relating to malaria .
 (One can include his/her creativity on what all can be included in it )
