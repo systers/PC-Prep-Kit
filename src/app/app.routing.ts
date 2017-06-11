@@ -1,0 +1,40 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { LoggedInGuard } from './guards/logged-in.guard';
+import { UnauthenticatedGuard } from './guards/unauthenticated.guard';
+import { LoginComponent } from './authentication/login.component';
+import { ForgotPasswordComponent } from './authentication/forgot-password.component';
+import { ResetPasswordComponent } from './authentication/reset-password.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+export const routes: Routes = [
+    {
+        path: 'login',
+        component: LoginComponent,
+        canActivate: [UnauthenticatedGuard]   
+    },
+    {
+        path: 'home',
+        component: DashboardComponent,
+        canActivate: [LoggedInGuard],
+    },
+    {
+        path: 'forgot',
+        component: ForgotPasswordComponent,
+        canActivate: [UnauthenticatedGuard]      
+    },  
+    {
+        path: 'reset/:token',
+        component: ResetPasswordComponent,
+        canActivate: [UnauthenticatedGuard]      
+    }  
+];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+export class AppRoutingModule {
+}
+

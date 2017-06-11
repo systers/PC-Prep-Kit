@@ -1,0 +1,45 @@
+<div class="text-center">
+    <h1><span class="header-1">PC Prep </span><span class="header-2"> Kit </span> </h1>
+    <h2 class="sub-heading-1">Be a prepared volunteer.</h2>    
+    <p class="desc">Build your knowledge of personal malaria <br> prevention for when you are out in the field.</p>    
+    <img class="pcprepkitlogo" [src]="pcprepkitlogo"/>
+    <p class="desc">Built by Peace Corps Volunteers for <br> Peace Corps Volunteers.</p>        
+</div>
+<div class="col-lg-4 col-lg-offset-4">
+
+    <!-- show any messages that come back with authentication -->
+    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+
+    <!-- LOGIN FORM -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+        <div class="form-group input-group" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['email'].dirty}">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>        
+            <input type="text" class="form-control" name="email" placeholder="Email" [formControl]="loginForm.controls['email']">
+        </div>        
+        <div class="form-control-feedback">
+            <p *ngIf="loginForm.controls['email'].hasError('required') && (loginForm.controls['email'].dirty)">Email is required</p>
+            <p *ngIf="loginForm.controls['email'].hasError('pattern') && (loginForm.controls['email'].dirty)">The email address is invalid</p>
+        </div>
+        <div class="form-group input-group" [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].dirty}">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>        
+            <input type="password" class="form-control" name="password" placeholder="Password" [formControl]="loginForm.controls['password']">
+        </div>        
+        <div class="form-control-feedback">
+            <p *ngIf="loginForm.controls['password'].hasError('required') && (loginForm.controls['password'].dirty)">Password is required</p>
+            <p *ngIf="loginForm.controls['password'].hasError('minlength') && (loginForm.controls['password'].dirty)">Your password should contain at least 8 characters</p>        
+        </div>     
+        <div class="form-group">
+            <button type="submit" [disabled]="!loginForm.valid" class="form-control btn btn-primary btn-lg">Login</button>
+        </div>
+    </form>
+    <div class="form-group">
+        <a href="/auth/google" class="form-control btn btn-danger"><span class="fa fa-google-plus"></span> Sign in with Google</a>
+    </div>
+    <div class="text-center">        
+        <p><a href="/forgot">Forgot password?</a></p>
+        <p>Need an account? <a href="/signup">Signup</a></p>
+    </div>  
+
+</div>
+
+
