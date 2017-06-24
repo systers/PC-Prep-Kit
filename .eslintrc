@@ -1,0 +1,37 @@
+{
+    "globals": {
+        // Put things like jQuery, etc
+        "$": true
+    },
+
+    "env": {
+        // I write for browser
+        "browser": true,
+        // in CommonJS
+        "node": true
+    },
+
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
+
+    "extends": "eslint:recommended",
+
+    // To give you an idea how to override rule options:
+    "rules": {
+        // Tons of rules you can use, for example...
+        "quotes": ["error", "single"],
+        "eqeqeq": ["error", "smart"],
+        "indent": ["error", 4],
+        "no-var": "error",
+        "quote-props": ["error", "as-needed", { "keywords": false }],
+        "eol-last": ["error", "always"],
+        "no-trailing-spaces": "error",
+        "prefer-template": "error",
+        "comma-spacing": ["error", { "before": false, "after": true }],
+        "space-before-function-paren": ["error", "never"],
+        "no-lonely-if": "error",
+        "arrow-spacing": "error"
+    }
+}
+
