@@ -16,12 +16,15 @@ import { ResetPasswordComponent } from './authentication/reset-password.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ActivityintroComponent } from './activityintro/activityintro.component';
+import { HeaderComponent } from './header/header.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
 import { APIService } from './services/api.service';
 import { RegService } from './services/reg.service';
-
+import { NavbarService } from './services/navbar.service';
 
 @NgModule({
     declarations: [
@@ -31,7 +34,10 @@ import { RegService } from './services/reg.service';
         ForgotPasswordComponent,
         ResetPasswordComponent,
         SplashscreenComponent,
-        RegisterComponent
+        RegisterComponent,
+        NavbarComponent,
+        ActivityintroComponent,
+        HeaderComponent
     ],
     imports: [
         AppRoutingModule,
@@ -41,7 +47,7 @@ import { RegService } from './services/reg.service';
         BrowserModule,
         BrowserAnimationsModule
     ],
-    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService],
+    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

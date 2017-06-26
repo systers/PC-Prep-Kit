@@ -9,6 +9,8 @@ import { ResetPasswordComponent } from './authentication/reset-password.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ActivityintroComponent } from './activityintro/activityintro.component';
 
 export const routes: Routes = [
     {
@@ -36,7 +38,11 @@ export const routes: Routes = [
         component: ForgotPasswordComponent,
         canActivate: [UnauthenticatedGuard]
     },
-
+    {
+        path: 'intro',
+        component: ActivityintroComponent,
+        canActivate: [LoggedInGuard]
+    },
     {
         path: 'reset/:token',
         component: ResetPasswordComponent,
