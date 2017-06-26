@@ -15,7 +15,7 @@ export class UnauthenticatedGuard implements CanActivate {
                             if (!result.authenticated) {
                                 return true;
                             } else {
-                                this._router.navigate(['/home']);
+                                this._router.navigate(['/']);
                                 return false;
                             }
                         })
