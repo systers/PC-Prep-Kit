@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="sidebar"  [@togglenav]="state">
+    <div class="sidebarheader">
+      <button type="button" class="btn btn-default btn-lg togglebutton" aria-label="Left Align" (click)="toggle()">
+        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+    </button>
+  </div>
+
+      <ul class="nav ">
+        <div class="profile">
+          <img  src="assets/img/profilepic.png" class="profilepic img-circle">
+          <p> {{username}} </p>
+        </div>
+        <li><a routerLink="/intro" >Introduction</a></li>
+        <li><a routerLink="/malaria101" >Malaria 101</a></li>
+        <li><a routerLink="/medicationlabels" >Medication and Labels</a></li>
+        <li><a routerLink="/pcpolicy" >Peace Corps Policy</a></li>
+        <li><a routerLink="/infokit" >InfoKit</a></li>
+      </ul>
+    </div>
+</div>

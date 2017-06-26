@@ -24,7 +24,7 @@ module.exports = {
         if (req.isAuthenticated()) {
             return next();
         }
-        res.status(401).json({authenticated: false});
+        res.json({authenticated: false});
     },
     isNotAuth(req, res, next) {
         // check if user is authenticated or not

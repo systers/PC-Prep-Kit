@@ -1,0 +1,20 @@
+<div class="header">
+	<app-header (togglenavbar)="nav.toggle()"> </app-header>
+</div>
+<div class="container-fluid">
+	<app-navbar #nav (toggleposition)="toggle()"> </app-navbar>
+	<div class="row">
+	<div [className]="position">
+			<H1> Introduction </H1>
+
+			<p class="lead"> So this is Kinda important.<Br> Lets make sure you have it on hand.</p>
+			<p class="lead text-primary"><strong>Email the official Peace Corps policy to Yourself.</strong></p>
+			<div class="mailpolicy">
+			<img src="assets/img/mailpolicy.PNG" class="mailpolicyimage">
+			</div>
+			<button type="button" class="btn btn-primary btn-lg" (click)="mail()">Email to Self</button>
+			<p>Email will be sent to {{email}}</p>
+	</div>
+
+	</div>
+</div>

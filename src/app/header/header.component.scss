@@ -1,0 +1,62 @@
+$header-background: #466bc1;
+$button-hover-color: #3859a5;
+$zeropx: 0px;
+
+.headerbar{
+	background: $header-background;
+	margin-top: $zeropx;
+	margin-bottom: $zeropx;
+}
+
+.togglebutton{
+	background-color: $header-background;
+	border-width: $zeropx;
+}
+
+.togglebutton:hover {
+  background-color: $button-hover-color;
+  border-width: $zeropx;
+}
+
+.togglebutton:active {
+  background-color: $header-background;
+  border-width: $zeropx;
+}
+
+.header-1 {
+	color : white;
+	font-weight: 900;
+	font-size: 200%;
+	text-align: center;
+}
+
+.header-2 {
+	color : #FF2C06;
+	font-weight: 900;
+	font-size: 200%;
+	text-align: center;
+}
+
+.logoutbutton{
+	background-color: $header-background;
+	border-width: $zeropx;
+	float: right;
+	color: white;
+	padding:12px
+}
+
+.logoutbutton:hover {
+  background-color: $button-hover-color;
+  border-width: $zeropx;
+  float: right;
+  color: white;
+  padding: 12px;
+}
+
+.logoutbutton:active {
+  background-color: $header-background;
+  border-width: $zeropx;
+  float: right;
+  color: white;
+  padding: 12px;
+}

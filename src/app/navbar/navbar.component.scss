@@ -1,0 +1,54 @@
+$header-background: #466bc1;
+$button-hover-color: #3859a5;
+$font-black: black;
+
+.profilepic{
+		height:100%;
+		width: 100%;
+		padding: 15px;
+
+}
+
+.sidebarheader{
+    background: $header-background;
+    padding: 4px;
+
+}
+
+.profile{
+		text-align: -webkit-center;
+		font-size: 20px;
+}
+
+.sidebar{
+    background: white;
+    color:$font-black;
+    box-shadow: 0px 0px 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    overflow: hidden;
+    display: block;
+    z-index: 1000;
+}
+
+.sidebar a{
+    color: $font-black;
+}
+
+.togglebutton{
+    background-color: $header-background;
+    border-width: 0px;
+}
+
+.togglebutton:hover {
+  	background-color: $button-hover-color;
+  	border-width: 0px;
+}
+
+.togglebutton:active {
+  	background-color: $header-background;
+  	border-width: 0px;
+}
