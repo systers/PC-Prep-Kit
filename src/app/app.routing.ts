@@ -11,6 +11,7 @@ import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './activityintro/activityintro.component';
+import { PcpolicyComponent } from './pcpolicy/pcpolicy.component';
 
 export const routes: Routes = [
     {
@@ -41,6 +42,11 @@ export const routes: Routes = [
     {
         path: 'intro',
         component: ActivityintroComponent,
+        canActivate: [LoggedInGuard]
+    },
+    {
+        path: 'pcpolicy',
+        component: PcpolicyComponent,
         canActivate: [LoggedInGuard]
     },
     {

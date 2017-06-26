@@ -19,6 +19,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './activityintro/activityintro.component';
 import { HeaderComponent } from './header/header.component';
+import { PcpolicyComponent } from './pcpolicy/pcpolicy.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
@@ -37,7 +38,8 @@ import { NavbarService } from './services/navbar.service';
         RegisterComponent,
         NavbarComponent,
         ActivityintroComponent,
-        HeaderComponent
+        HeaderComponent,
+        PcpolicyComponent
     ],
     imports: [
         AppRoutingModule,
