@@ -11,22 +11,21 @@ import { RegService } from '../services/reg.service';
 })
 
 
-export class RegisterComponent{
-
-  regForm : FormGroup;
+export class RegisterComponent {
+  regForm: FormGroup;
 
   constructor(private _regService: RegService, private _router: Router, fb: FormBuilder) {
     this.regForm = fb.group({
-        'fname':[null,Validators.compose([Validators.required])],
-        'lname':[null,Validators.compose([Validators.required])],
-        'email' : [null, Validators.compose([Validators.required, Validators.pattern("[^ @]*@[^ @]*")])],
-        'password' : [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')])],
+        'fname': [null, Validators.compose([Validators.required])],
+        'lname': [null, Validators.compose([Validators.required])],
+        'email' : [null, Validators.compose([Validators.required, Validators.pattern('[^ @]*@[^ @]*')])],
+        'password' : [null, Validators.compose([Validators.required,
+          Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')])],
         'confirmpassword' : [null, Validators.compose([Validators.required])]
       });
   }
 
-  onSubmit=function(form: any){
-
+  onSubmit= function(form: any){
     this._regService.registerUser(form).subscribe((successful: boolean): void => {
         if (successful) {
             this._router.navigateByUrl('/login');

@@ -1,7 +1,5 @@
 <div class="container">
-	<div class="col-xs-2">
-	</div>
-	<div class="col-xs-8 registrationbox">
+	<div class="col-xs-8 col-xs-2 registrationbox">
 
         <h1><span class="header-1">PC Prep </span><span class="header-2"> Kit </span> </h1>
 
@@ -17,7 +15,7 @@
             </div>
 						<div class="form-group input-group" [ngClass]="{'has-error':!regForm.controls['email'].valid && regForm.controls['email'].dirty}">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input type="text" class="form-control" name="email" placeholder="Email" [formControl]="regForm.controls['email']">
+              <input type="email" class="form-control" name="email" placeholder="Email" [formControl]="regForm.controls['email']">
             </div>
             <div>
               <p *ngIf="regForm.controls['email'].hasError('required') && (regForm.controls['email'].dirty)" class="alert alert-danger" role="alert">Email is required</p>
@@ -40,8 +38,4 @@
             </div>
           </form>
      </div>
-
-     <div class="col-xs-2">
-	</div>
-
 </div>

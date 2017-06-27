@@ -12,7 +12,7 @@ import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
     {
-        path:'splash',
+        path: 'splash',
         component: SplashscreenComponent,
         canActivate: [UnauthenticatedGuard]
     },
@@ -22,7 +22,7 @@ export const routes: Routes = [
         canActivate: [UnauthenticatedGuard]
     },
     {
-        path:'register',
+        path: 'register',
         component: RegisterComponent,
         canActivate: [UnauthenticatedGuard]
     },
@@ -36,14 +36,13 @@ export const routes: Routes = [
         component: ForgotPasswordComponent,
         canActivate: [UnauthenticatedGuard]
     },
-
     {
         path: 'reset/:token',
         component: ResetPasswordComponent,
         canActivate: [UnauthenticatedGuard]
     },
     {
-        path:'',
+        path: '',
         component: SplashscreenComponent
     }
 ];

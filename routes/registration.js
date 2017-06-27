@@ -3,15 +3,11 @@ const router = express.Router();
 
 const mail = require('./mailService');
 const models = require('../database/models');
-let randomStr=require('./randomstring');
+const functions = require('./utilityfunctions');
 
 const localUser = models.user_account;
-
-function validateEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
+const validateEmail=functions.validateEmail;
+const randomStr=functions.randomString;
 // Receiving HTTP Post
 router.post('/', function(req, res){
     if(!req.body.email || !validateEmail(req.body.email)) {
@@ -27,6 +23,7 @@ router.post('/', function(req, res){
         verificationCode: rString,
         provider:1 })
         .then(task => {
+            functions.sendEmail();
             mail.mailOptions.to=req.body.email;
             mail.mailOptions.subject='PC PrepKit Email Verification';
             mail.mailOptions.html="<b>Click on the link to complete the verification</b> <a href='http://localhost:3000/verification?token=" + rString + "&user=" + req.body.email +"'>Verify</a>";

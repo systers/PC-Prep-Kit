@@ -19,7 +19,6 @@ export class RegService {
 
         return this._apiservice.post(this._regApi, body)
                             .map((res: Response) => {
-                                console.log(res.json());
                                 return res.json();
                             });
     }

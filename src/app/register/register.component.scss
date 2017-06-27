@@ -1,18 +1,17 @@
-$header-font-weight: 900;
-$header-font-size: 200%;
+@import “../variables”;
 
 .registrationbox{
-	text-align: center;
+  text-align: center;
 }
 
 .header-1 {
-	color : #04529D;
-	font-weight: $header-font-weight;
-	font-size: $header-font-size;
+  color : #04529D;
+  font-weight: $header-font-weight;
+  font-size: $header-font-size;
 }
 
 .header-2 {
-	color : #FF2C06;
-	font-weight: $header-font-weight;
-	font-size: $header-font-size;
+  color : #FF2C06;
+  font-weight: $header-font-weight;
+  font-size: $header-font-size;
 }

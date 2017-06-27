@@ -1,23 +1,22 @@
-$header-font-weight: 900;
-$header-font-size: 200%;
+@import “../variables”;
 
 .logo{
-	height: 200px;
+  height: 200px;
 }
 
 .titleleft{
-	color : #04529D;
-	font-weight: $header-font-weight;
-	font-size: $header-font-size;
+  color : #04529D;
+  font-weight: $header-font-weight;
+  font-size: $header-font-size;
 }
 
 .titleright{
-	color : #FF2C06;
-	font-weight: $header-font-weight;
-	font-size: $header-font-size;
+  color : #FF2C06;
+  font-weight: $header-font-weight;
+  font-size: $header-font-size;
 }
 
 .statement{
-	color : #9C9999;
-	font-size: 150%;
+  color : #9C9999;
+  font-size: 150%;
 }

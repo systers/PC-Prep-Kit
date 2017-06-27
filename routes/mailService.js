@@ -1,4 +1,4 @@
-let nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 const config = require('../config/settings');
 
 // create reusable transport method (opens pool of SMTP connections)

@@ -1,6 +1,4 @@
-$header-font-weight: 900;
-$error-message-color: #ED4337;
-$header-font-size: 200%;
+@import “../variables”;
 
 .header-1 {
     color : #04529D;
@@ -11,17 +9,17 @@ $header-font-size: 200%;
 .header-2 {
     color : #FF2C06;
     font-weight: $header-font-weight;
-    font-size: $header-font-size;   
+    font-size: $header-font-size;
 }
 
 .sub-heading-1 {
     color : #4A4A49;
-    font-weight: $header-font-weight;   
+    font-weight: $header-font-weight;
 }
 
 .desc {
     color : #9C9999;
-    font-size: 150%;    
+    font-size: 150%;
 }
 
 .pcprepkitlogo {
@@ -32,4 +30,3 @@ $header-font-size: 200%;
 .form-control-feedback {
     color: $error-message-color;
 }
-
