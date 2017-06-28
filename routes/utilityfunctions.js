@@ -9,7 +9,19 @@ function validateEmail(email) {
     return re.test(email);
 }
 
+function validateName(name) {
+    const re = /^[A-Za-z\s]+$/;
+    return re.test(name);
+}
+
+function validatePassword(password) {
+    const re = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}/;
+    return re.test(password);
+}
+
 module.exports={
     validateEmail : validateEmail,
-    randomString : randomString
+    randomString : randomString,
+    validateName : validateName,
+    validatePassword : validatePassword
 }
