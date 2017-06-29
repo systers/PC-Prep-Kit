@@ -3,13 +3,13 @@ const router = express.Router();
 
 const mail = require('./mailService');
 const models = require('../database/models');
-const utilityfunctions = require('./utilityfunctions');
+const utilityFunctions = require('./utilityfunctions');
 
 const localUser = models.user_account;
-const validateEmail = utilityfunctions.validateEmail;
-const validateName = utilityfunctions.validateName;
-const validatePassword = utilityfunctions.validatePassword;
-const randomStr = utilityfunctions.randomString;
+const validateEmail = utilityFunctions.validateEmail;
+const validateName = utilityFunctions.validateName;
+const validatePassword = utilityFunctions.validatePassword;
+const randomStr = utilityFunctions.randomString;
 // Receiving HTTP Post
 router.post('/', function(req, res){
     if(!req.body.email || !validateEmail(req.body.email)) {

@@ -16,12 +16,12 @@ export class RegisterComponent {
 
   constructor(private _regService: RegService, private _router: Router, fb: FormBuilder) {
     this.regForm = fb.group({
-        'fname': [null, Validators.compose([Validators.required])],
-        'lname': [null, Validators.compose([Validators.required])],
-        'email' : [null, Validators.compose([Validators.required, Validators.pattern('[^ @]*@[^ @]*')])],
-        'password' : [null, Validators.compose([Validators.required,
+        fname : [null, Validators.compose([Validators.required])],
+        lname : [null, Validators.compose([Validators.required])],
+        email : [null, Validators.compose([Validators.required, Validators.pattern('[^ @]*@[^ @]*')])],
+        password : [null, Validators.compose([Validators.required,
           Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')])],
-        'confirmpassword' : [null, Validators.compose([Validators.required])]
+        confirmpassword : [null, Validators.compose([Validators.required])]
       });
   }
 
