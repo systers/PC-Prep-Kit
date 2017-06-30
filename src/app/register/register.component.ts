@@ -25,7 +25,7 @@ export class RegisterComponent {
         });
     }
 
-    onSubmit= function(form: any){
+    onSubmit = function(form: any) {
         this._regService.registerUser(form).subscribe((successful: boolean): void => {
             if (successful) {
                 this._router.navigateByUrl('/login');
@@ -35,5 +35,5 @@ export class RegisterComponent {
         }, err => {
             this.errorMessage = err.info;
         });
-    }
+    };
 }

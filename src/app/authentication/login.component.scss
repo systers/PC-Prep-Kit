@@ -1,13 +1,13 @@
 @import “../variables”;
 
 .header-1 {
-    color : #04529D;
+    color : $header-left-color;
     font-weight: $header-font-weight;
     font-size: $header-font-size;
 }
 
 .header-2 {
-    color : #FF2C06;
+    color : $header-right-color;
     font-weight: $header-font-weight;
     font-size: $header-font-size;
 }

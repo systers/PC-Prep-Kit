@@ -15,7 +15,7 @@ export class RegService {
     constructor(private _apiservice: APIService) {
     }
 
-    public registerUser (body: Object): Observable<any> {
+    public registerUser(body: Object): Observable<any> {
 
         return this._apiservice.post(this._regApi, body)
                             .map((res: Response) => {

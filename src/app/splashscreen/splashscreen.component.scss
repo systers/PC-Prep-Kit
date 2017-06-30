@@ -1,22 +1,22 @@
 @import “../variables”;
 
-.logo{
+.logo {
   max-width: 20%;
 }
 
-.titleleft{
+.header-1 {
   color: $header-left-color;
   font-weight: $header-font-weight;
   font-size: $header-font-size;
 }
 
-.titleright{
+.header-2 {
   color: $header-right-color;
   font-weight: $header-font-weight;
   font-size: $header-font-size;
 }
 
-.statement{
+.statement {
   color : #9C9999;
   font-size: 150%;
 }
