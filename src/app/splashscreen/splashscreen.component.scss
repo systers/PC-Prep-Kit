@@ -1,22 +1,5 @@
-@import “../variables”;
+@import "../styles/components/headings";
 
 .logo {
-  max-width: 20%;
-}
-
-.header-1 {
-  color: $header-left-color;
-  font-weight: $header-font-weight;
-  font-size: $header-font-size;
-}
-
-.header-2 {
-  color: $header-right-color;
-  font-weight: $header-font-weight;
-  font-size: $header-font-size;
-}
-
-.statement {
-  color : #9C9999;
-  font-size: 150%;
+    max-width: 25%;
 }

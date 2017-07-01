@@ -1,21 +1,5 @@
-@import “../variables”;
-
-.header-1 {
-    color : $header-left-color;
-    font-weight: $header-font-weight;
-    font-size: $header-font-size;
-}
-
-.header-2 {
-    color : $header-right-color;
-    font-weight: $header-font-weight;
-    font-size: $header-font-size;
-}
-
-.sub-heading-1 {
-    color : #4A4A49;
-    font-weight: $header-font-weight;
-}
+@import "../styles/components/_headings";
+@import "../styles/base/_errors";
 
 .desc {
     color : #9C9999;
