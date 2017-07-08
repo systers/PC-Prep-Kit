@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
 import { APIService } from './services/api.service';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { APIService } from './services/api.service';
         DashboardComponent,
         LoginComponent,
         ForgotPasswordComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        MenuComponent
     ],
     imports: [
         AppRoutingModule,

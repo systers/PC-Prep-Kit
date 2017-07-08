@@ -9,6 +9,7 @@ import 'rxjs/Rx';
 export class DashboardService {
 
     private _getUserInfo = environment.baseURL + environment.apiEndpoint + 'getUserInfo';
+    private _getProgressStatus = environment.baseURL + environment.apiEndpoint + 'getProgressStatus';
 
     constructor(private _http: Http, private _apiservice: APIService) { }
 
@@ -17,4 +18,11 @@ export class DashboardService {
         return this._apiservice.get(this._getUserInfo)
                     .map(res => res.json());
     }
+
+   // Get progress status
+    getProgressStatus(): Observable<any> {
+        return this._apiservice.get(this._getProgressStatus)
+                    .map(res => res.json());
+    }
+
 }

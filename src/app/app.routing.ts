@@ -7,6 +7,7 @@ import { LoginComponent } from './authentication/login.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MenuComponent } from './menu/menu.component';
 
 export const routes: Routes = [
     {
@@ -17,7 +18,7 @@ export const routes: Routes = [
     {
         path: 'home',
         component: DashboardComponent,
-        canActivate: [LoggedInGuard],
+        canActivate: [LoggedInGuard]
     },
     {
         path: 'forgot',
@@ -28,6 +29,17 @@ export const routes: Routes = [
         path: 'reset/:token',
         component: ResetPasswordComponent,
         canActivate: [UnauthenticatedGuard]
+    },
+    {
+        path: 'menu',
+        component: MenuComponent,
+        canActivate: [LoggedInGuard]
+    },
+    {
+        path: '',
+        redirectTo: '/menu',
+        pathMatch : 'full',
+        canActivate: [LoggedInGuard]
     }
 ];
 
