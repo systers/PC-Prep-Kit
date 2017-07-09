@@ -35,6 +35,8 @@ models.sequelize.sync().then(function() {
     winston.error(err, 'Something went wrong with the Database Update!')
 });
 
+const associations = require('./database/associations')(models);
+
 const app = express();
 
 // Get our API routes

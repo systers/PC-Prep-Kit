@@ -16,11 +16,13 @@ import { ResetPasswordComponent } from './authentication/reset-password.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { RegisterComponent } from './register/register.component';
+import { MenuComponent } from './menu/menu.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
 import { APIService } from './services/api.service';
 import { RegService } from './services/reg.service';
+
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { RegService } from './services/reg.service';
         ForgotPasswordComponent,
         ResetPasswordComponent,
         SplashscreenComponent,
-        RegisterComponent
+        RegisterComponent,
+        MenuComponent
     ],
     imports: [
         AppRoutingModule,

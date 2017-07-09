@@ -31,7 +31,8 @@
         "comma-spacing": ["error", { "before": false, "after": true }],
         "space-before-function-paren": ["error", "never"],
         "no-lonely-if": "error",
-        "arrow-spacing": "error"
+        "arrow-spacing": "error",
+        "key-spacing": ["error", { "beforeColon": false }]
     }
 }
 

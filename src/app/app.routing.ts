@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { RegisterComponent } from './register/register.component';
 
+
 export const routes: Routes = [
     {
         path: 'splash',
@@ -29,7 +30,7 @@ export const routes: Routes = [
     {
         path: 'home',
         component: DashboardComponent,
-        canActivate: [LoggedInGuard],
+        canActivate: [LoggedInGuard]
     },
     {
         path: 'forgot',
@@ -42,8 +43,15 @@ export const routes: Routes = [
         canActivate: [UnauthenticatedGuard]
     },
     {
+        path: 'menu',
+        component: MenuComponent,
+        canActivate: [LoggedInGuard]
+    },
+    {
         path: '',
-        component: SplashscreenComponent
+        redirectTo: '/menu',
+        pathMatch : 'full',
+        canActivate: [LoggedInGuard]
     }
 ];
 
