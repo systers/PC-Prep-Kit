@@ -1,10 +1,7 @@
 module.exports = function(sequelize, Sequelize) {
 
     const User = sequelize.define('user_account', {
-        fname: {
-            type: Sequelize.STRING
-        },
-        lname: {
+        name: {
             type: Sequelize.STRING
         },
         email: {
@@ -13,13 +10,6 @@ module.exports = function(sequelize, Sequelize) {
         },
         password: {
             type: Sequelize.STRING
-        },
-        verificationCode: {
-            type: Sequelize.STRING
-        },
-        verificationStatus: {
-            type: Sequelize.BOOLEAN,
-            defaultValue: false
         },
         resetPasswordToken: {
             type: Sequelize.STRING

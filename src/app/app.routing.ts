@@ -7,24 +7,12 @@ import { LoginComponent } from './authentication/login.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SplashscreenComponent } from './splashscreen/splashscreen.component';
-import { RegisterComponent } from './register/register.component';
-
+import { MenuComponent } from './menu/menu.component';
 
 export const routes: Routes = [
     {
-        path: 'splash',
-        component: SplashscreenComponent,
-        canActivate: [UnauthenticatedGuard]
-    },
-    {
         path: 'login',
         component: LoginComponent,
-        canActivate: [UnauthenticatedGuard]
-    },
-    {
-        path: 'register',
-        component: RegisterComponent,
         canActivate: [UnauthenticatedGuard]
     },
     {
@@ -61,3 +49,4 @@ export const routes: Routes = [
 })
 export class AppRoutingModule {
 }
+
