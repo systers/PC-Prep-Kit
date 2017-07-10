@@ -5,16 +5,14 @@ const config = require('../config/settings');
 const _      = require('lodash');
 const jwt    = require('jsonwebtoken');
 const authenticationHelpers = require('./authenticationHelpers');
+const utilityFunctions = require('./utilityfunctions');
 
 // create reset password token
 function createToken(user) {
     return jwt.sign(_.omit(user, 'password'), config.secretKey, { expiresIn: 60*60*5 });
 }
 
-function validateEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
+const validateEmail = utilityFunctions.validateEmail;
 
 function sendEmail(recipient, subject, content, user, nodemailer, done) {
     const transport = nodemailer.createTransport(smtpTransport({
