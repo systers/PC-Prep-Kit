@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -13,10 +14,16 @@ import { LoginComponent } from './authentication/login.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ActivityintroComponent } from './activityintro/activityintro.component';
+import { HeaderComponent } from './header/header.component';
+
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
 import { APIService } from './services/api.service';
+import { NavbarService } from './services/navbar.service';
+
 
 @NgModule({
     declarations: [
@@ -24,16 +31,20 @@ import { APIService } from './services/api.service';
         DashboardComponent,
         LoginComponent,
         ForgotPasswordComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        NavbarComponent,
+        ActivityintroComponent,
+        HeaderComponent
     ],
     imports: [
         AppRoutingModule,
         FormsModule,
         HttpModule,
         ReactiveFormsModule,
-        BrowserModule
+        BrowserModule,
+        BrowserAnimationsModule
     ],
-    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService],
+    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, NavbarService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

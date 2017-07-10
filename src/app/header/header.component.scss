@@ -1,0 +1,13 @@
+@import "../styles/components/_buttons";
+@import "../styles/components/_headings";
+@import "../styles/base/_variables";
+
+.header-bar {
+    background: $header-background;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.header-1 {
+    color: $headerbar-header-left-color;
+}
