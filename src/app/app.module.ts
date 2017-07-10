@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -14,16 +13,11 @@ import { LoginComponent } from './authentication/login.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SplashscreenComponent } from './splashscreen/splashscreen.component';
-import { RegisterComponent } from './register/register.component';
-import { MenuComponent } from './menu/menu.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
 import { APIService } from './services/api.service';
-import { RegService } from './services/reg.service';
-
-
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
     declarations: [
@@ -32,8 +26,6 @@ import { RegService } from './services/reg.service';
         LoginComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
-        SplashscreenComponent,
-        RegisterComponent,
         MenuComponent
     ],
     imports: [
@@ -41,10 +33,9 @@ import { RegService } from './services/reg.service';
         FormsModule,
         HttpModule,
         ReactiveFormsModule,
-        BrowserModule,
-        BrowserAnimationsModule
+        BrowserModule
     ],
-    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService],
+    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
