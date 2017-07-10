@@ -59,8 +59,8 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
     router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
     router.get('/google/callback',
-        passport.authenticate('google', { successRedirect: '/home',
-            failureRedirect: '/' }));
+        passport.authenticate('google', { successRedirect: '/',
+            failureRedirect: '/login' }));
 
     router.get('/logout', authenticationHelpers.isAuthOrRedirect, function(req, res) {
         req.logout();

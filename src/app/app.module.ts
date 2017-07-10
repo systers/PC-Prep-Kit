@@ -17,13 +17,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './activityintro/activityintro.component';
 import { HeaderComponent } from './header/header.component';
-
+import { MenuComponent } from './menu/menu.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
 import { APIService } from './services/api.service';
 import { NavbarService } from './services/navbar.service';
-
 
 @NgModule({
     declarations: [
@@ -34,7 +33,8 @@ import { NavbarService } from './services/navbar.service';
         ResetPasswordComponent,
         NavbarComponent,
         ActivityintroComponent,
-        HeaderComponent
+        HeaderComponent,
+        MenuComponent
     ],
     imports: [
         AppRoutingModule,
