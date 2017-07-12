@@ -5,6 +5,7 @@ const configAuth = require('./settings');
 module.exports = function(passport, models) {
 
     const localUser = models.user_account;
+    const progress = models.progress;
 
     passport.serializeUser(function(user, done) {
         done(null, user);
@@ -36,8 +37,20 @@ module.exports = function(passport, models) {
                     if(!created && !user) {
                         return done(null, false, {info: 'User with that email already exists'});
                     }
-                    const response = {email: user.email, name: user.name};
-                    return done(null, response);
+                    progress.findOrCreate({where: {
+                        user_id: user.id
+                    }, defaults: {
+                            user_id: user.id,
+                            stage: 0,
+                            activity: 0
+                        }})
+                        .spread((status, created) => {
+                            const response = {email: user.email, name: user.name};
+                            return done(null, response);
+                        })
+                        .catch(function(err) {
+                            return done(err);
+                        })
                 })
                 .catch(function(err) {
                     return done(err);

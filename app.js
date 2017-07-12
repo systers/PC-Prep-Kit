@@ -35,6 +35,8 @@ models.sequelize.sync().then(function() {
     winston.error(err, 'Something went wrong with the Database Update!')
 });
 
+const associations = require('./database/associations')(models);
+
 const app = express();
 
 // Get our API routes
@@ -42,6 +44,9 @@ const api = require('./routes/api');
 
 // test api route
 const test=require('./routes/test');
+// route for verification and registration
+const verification=require('./routes/verification');
+const registration=require('./routes/registration');
 
 // uncomment after placing your favicon in /public
 //const favicon = require('serve-favicon');
@@ -71,7 +76,8 @@ app.use('/test', test);
 
 // Set api routes
 app.use('/api', api);
-
+app.use('/registration', registration);
+app.use('/verification', verification);
 // Set authentication routes
 const auth = express.Router();
 require('./routes/auth.js')(auth, passport, async, nodemailer, crypto, models);
@@ -88,21 +94,5 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
-/**
- * Get port from environment and store in Express.
- */
-const port = process.env.PORT || '3000';
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-server.listen(port, () => winston.info(`API running on localhost:${port}`));
 
 module.exports = app;

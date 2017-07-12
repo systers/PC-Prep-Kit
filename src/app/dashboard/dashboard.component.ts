@@ -21,6 +21,8 @@ export class DashboardComponent implements OnInit {
         this._dashboardService.getUserInfo().subscribe(response => {
             this.user = response;
             this.email = response.user.email;
+        }, err => {
+            this._router.navigate(['/login']);
         });
     }
 

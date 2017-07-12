@@ -4,4 +4,3 @@ module.exports = function(router, passport, path) {
         res.sendFile(path.join(__dirname, '../dist/index.html'));
     });
 }
-

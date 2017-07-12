@@ -29,7 +29,7 @@ export class LoginComponent {
     onSubmit(form: any): void {
         this._authService.loginUser(form).subscribe((successful: boolean): void => {
             if (successful) {
-                this._router.navigateByUrl('/home');
+                this._router.navigateByUrl('/');
             } else {
                 this.errorMessage = 'Incorrect username and password, please try again';
             }

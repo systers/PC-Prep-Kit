@@ -7,17 +7,33 @@ import { LoginComponent } from './authentication/login.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SplashscreenComponent } from './splashscreen/splashscreen.component';
+import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ActivityintroComponent } from './activityintro/activityintro.component';
+import { MenuComponent } from './menu/menu.component';
+
 
 export const routes: Routes = [
+    {
+        path: 'splash',
+        component: SplashscreenComponent,
+        canActivate: [UnauthenticatedGuard]
+    },
     {
         path: 'login',
         component: LoginComponent,
         canActivate: [UnauthenticatedGuard]
     },
     {
+        path: 'register',
+        component: RegisterComponent,
+        canActivate: [UnauthenticatedGuard]
+    },
+    {
         path: 'home',
         component: DashboardComponent,
-        canActivate: [LoggedInGuard],
+        canActivate: [LoggedInGuard]
     },
     {
         path: 'forgot',
@@ -25,9 +41,25 @@ export const routes: Routes = [
         canActivate: [UnauthenticatedGuard]
     },
     {
+        path: 'intro',
+        component: ActivityintroComponent,
+        canActivate: [LoggedInGuard]
+    },
+    {
         path: 'reset/:token',
         component: ResetPasswordComponent,
         canActivate: [UnauthenticatedGuard]
+    },
+    {
+        path: 'menu',
+        component: MenuComponent,
+        canActivate: [LoggedInGuard]
+    },
+    {
+        path: '',
+        redirectTo: '/menu',
+        pathMatch : 'full',
+        canActivate: [LoggedInGuard]
     }
 ];
 
@@ -37,4 +69,3 @@ export const routes: Routes = [
 })
 export class AppRoutingModule {
 }
-
