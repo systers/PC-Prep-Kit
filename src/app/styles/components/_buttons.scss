@@ -1,0 +1,23 @@
+@import "_variables";
+
+%button {
+    background-color: $headerbar-background;
+    border-width: 0;
+    &:hover {
+        background-color: $button-hover-color;
+    }
+    &:active {
+        background-color: $headerbar-background;
+    }
+}
+
+.toggle-button {
+    @extend %button;
+}
+
+.logout-button {
+    @extend %button;
+    float: right;
+    color: $logout-button-color;
+    padding: $button-padding;
+}

@@ -20,11 +20,11 @@ module.exports = {
         res.redirect('/');
     },
     isAuth(req, res, next) {
-        // check if user is authenticated else return 401 status if not authenticated
+        // check if user is authenticated else return authenticated:false if not authenticated
         if (req.isAuthenticated()) {
             return next();
         }
-        res.status(401).json({authenticated: false});
+        res.json({authenticated: false});
     },
     isNotAuth(req, res, next) {
         // check if user is authenticated or not
