@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="col-xs-8 col-xs-offset-2 text-center">
+    <h1><span class="header-1">PC Prep </span><span class="header-2"> Kit </span> </h1>
+    <h3 class="form-signin-heading">Sign up </h3>
+    <form [formGroup]="regForm" (ngSubmit)="onSubmit(regForm.value)">
+      <div class="form-group input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input type="text" class="form-control" name="fname"  placeholder="First Name" [formControl]="regForm.controls['fname']">
+      </div>
+      <div class="form-group input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input type="text" class="form-control" name="lname" placeholder="Last Name" [formControl]="regForm.controls['lname']">
+      </div>
+      <div class="form-group input-group" [ngClass]="{'has-error':!regForm.controls['email'].valid && regForm.controls['email'].dirty}">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input type="email" class="form-control" name="email" placeholder="Email" [formControl]="regForm.controls['email']">
+      </div>
+      <div>
+        <p *ngIf="regForm.controls['email'].hasError('required') && (regForm.controls['email'].dirty)" class="alert alert-danger" role="alert">Email is required</p>
+        <p *ngIf="regForm.controls['email'].hasError('pattern') && (regForm.controls['email'].dirty)" class="alert alert-danger" role="alert">The email address is invalid</p>
+      </div>
+      <div class="form-group input-group" [ngClass]="{'has-error':!regForm.controls['password'].valid && regForm.controls['password'].dirty}">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <input type="password" class="form-control" name="password" placeholder="Password" [formControl]="regForm.controls['password']">
+      </div>
+      <div class="form-group input-group" [ngClass]="{'has-error':!regForm.controls['confirmpassword'].valid && regForm.controls['confirmpassword'].dirty}">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <input type="password" class="form-control" name="confirmpassword" placeholder="Confrim Password" [formControl]="regForm.controls['confirmpassword']">
+      </div>
+      <div>
+        <p *ngIf="regForm.controls['password'].hasError('required') && (regForm.controls['password'].dirty)" class="alert alert-danger" role="alert">Password is required</p>
+        <p *ngIf="regForm.controls['confirmpassword'].value!=regForm.controls['password'].value && (regForm.controls['confirmpassword'].dirty)" class="alert alert-danger" role="alert">Passwords Should Match</p>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="!(regForm.valid && regForm.controls['confirmpassword'].value==regForm.controls['password'].value)" class="btn btn-primary btn-lg">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
