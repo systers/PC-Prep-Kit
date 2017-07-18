@@ -88,7 +88,7 @@ export const routes: Routes = [
             {
                 path: 'activity-3',
                 component: PicturePuzzleComponent
-            }
+            }            
         ]
     },
     {

@@ -57,6 +57,7 @@ export class DashboardService {
         return this._apiservice.post(this._uploadCamPic, camData)
                     .map(files => camData);
     }
+
     /**
      * Upload and camera pic to server and save as profile picture
      * @param  {Object}          body Request body
@@ -69,5 +70,15 @@ export class DashboardService {
 
     getToken() {
         return localStorage.getItem(this._localStorageKey);
+    }
+
+    /**
+     * Make update progress status request to server
+     * @param  {Object}          body Request body
+     * @return {Observable<any>}      Return response
+     */
+    updateProgressStatus(body: Object): Observable<any> {
+        return this._apiservice.put(this._updateProgressStatus, body)
+                    .map(res => res.json());
     }
 }

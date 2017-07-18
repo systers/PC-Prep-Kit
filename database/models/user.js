@@ -1,5 +1,5 @@
 module.exports = function(sequelize, Sequelize) {
-
+    // Define user account table
     const User = sequelize.define('user_account', {
         fname: {
             type: Sequelize.STRING

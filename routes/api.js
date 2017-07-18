@@ -32,7 +32,6 @@ router.use(function(req, res, next) {
     } else {
         token = req.headers['x-access-token'];
     }
-
     // decode token
     if(token) {
         // Removing quotes in the token
@@ -59,11 +58,22 @@ router.use(function(req, res, next) {
     }
 });
 
-/* GET api listing. */
+/**
+ * GET user information API
+ * @param  {String} '/getUserInfo'                            URI of the resource
+ * @param  {Function} authenticationHelpers.isAuthOrRedirect  Check if user is authenticated else redirect him back to login
+ * @param  {Object} (req, res)                                Anonymous function to handle request and response
+ */
 router.get('/getUserInfo', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     res.status(200).json({user: req.user});
 });
 
+/**
+ * GET username API
+ * @param  {String} '/username'                               URI of the resource
+ * @param  {Function} authenticationHelpers.isAuthOrRedirect  Check if user is authenticated else redirect him back to login
+ * @param  {Function} (req, res)                              Anonymous function to handle request and response
+ */
 router.get('/username', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     const email = req.user.email;
     localUser.findAll({
@@ -79,7 +89,13 @@ router.get('/username', authenticationHelpers.isAuthOrRedirect, (req, res) => {
         });
 });
 
-router.get('/getProgressStatus', (req, res) => {
+/**
+ * GET progress status API
+ * @param  {String} '/getProgressStatus'                              URI of the resource
+ * @param  {Function} authenticationHelpers.isAuthOrRedirect          Check if user is authenticated else redirect him back to login
+ * @param  {Function} (req, res)                                      Anonymous function to handle request and response
+ */
+router.get('/getProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     if(!req.user.email) {
         return res.status(400).json({error: 'Email not provided'});
     }
@@ -109,6 +125,12 @@ router.get('/getProgressStatus', (req, res) => {
         });
 });
 
+/**
+ * GET mail policy API
+ * @param  {String} '/mailpcpolicy'                                   URI of the resource
+ * @param  {Function} authenticationHelpers.isAuthOrRedirect          Check if user is authenticated else redirect him back to login
+ * @param  {Function} (req, res)                                      Anonymous function to handle request and response
+ */
 router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     const email = req.user.email;
     mail.mailOptions.to = email;
@@ -117,6 +139,46 @@ router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) =
     mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
         error ? res.status(500).json({error: 'Something Went Wrong! Try again later.'}) : res.json({message: 'Mail Sent Succesfully.'});
     })
+
+/**
+ * UPDATE progress status API
+ * @param  {String} '/updateProgressStatus'                           URI of the resource
+ * @param  {Function} authenticationHelpers.isAuthOrRedirect          Check if user is authenticated else redirect him back to login
+ * @param  {Function} (req, res)                                      Anonymous function to handle request and response
+ */
+router.put('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    if(req.body && req.body.stage && req.body.activity) {
+        localUser.find({
+            where: {
+                email: req.user.email
+            },
+            include: [progress]
+        }, {raw: true})
+            .then(data => {
+                if((req.body.stage===data.progress.stage || (req.body.stage-data.progress.stage)===1) && ((req.body.activity-data.progress.activity)===1)){
+                    progress.update({
+                        stage: req.body.stage,
+                        activity: req.body.activity
+                    }, {
+                        where: {
+                            id: data.progress.id
+                        }
+                    })
+                        .then(response => {
+                            return res.status(200).json({info: 'success'});
+                        })
+                } else if((req.body.stage-data.progress.stage)>1 && (req.body.activity-data.progress.activity)>1) {
+                    return res.status(200).json({info: 'Illegal operation'});
+                } else if((req.body.stage-data.progress.stage)<1 && (req.body.activity-data.progress.activity)<1) {
+                    return res.status(200).json({info: 'success'});
+                }
+            })
+            .catch(function(err) {
+                return res.status(500).json({error: 'Something went wrong while updating progress status'});
+            });
+    } else {
+        return res.status(400).json({error: 'No data recieved'});
+    }
 });
 
 router.get('/infokitactive', authenticationHelpers.isAuthOrRedirect, (req, res) => {

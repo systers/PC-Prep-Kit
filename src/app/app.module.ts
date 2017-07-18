@@ -62,8 +62,12 @@ import { SharedDataService } from './services/shared.data.service';
         MedsNLabelsComponent,
         MemoryGameComponent
         IntroductionComponent,
+<<<<<<< HEAD
         HighlightActivityComponent,
         PicturePuzzleComponent
+=======
+        HighlightActivityComponent
+>>>>>>> Introduction-Highlight-Activity
     ],
     imports: [
         AppRoutingModule,

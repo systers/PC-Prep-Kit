@@ -1,3 +1,7 @@
 <!--The whole content below can be removed with the new code.-->
+<div class="header" [hidden]='!loggedIn'>
+	<app-header (toggleNavbar)="nav.toggle()"> </app-header>
+</div>
+<app-navbar #nav (togglePosition)="toggle()" [hidden]='!loggedIn'> </app-navbar>
 <router-outlet></router-outlet>
 
