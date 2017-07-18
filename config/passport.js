@@ -84,7 +84,7 @@ module.exports = function(passport, models) {
         passReqToCallback: true
     },
     /**
-     * [description]
+     * Handle local login
      * @param  {Object}   req      Request object
      * @param  {String}   email    User email
      * @param  {String}   password User password
