@@ -168,7 +168,7 @@ router.put('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req
                         })
                 } else if((currStage-progressStage)>1 && (currActivity-progressActivity)>1) {
                     return res.status(200).json({info: 'Illegal operation'});
-                } else if((req.body.stage-data.progress.stage)<1 && (req.body.activity-data.progress.activity)<1) {
+                } else if((currStage-progressStage)<1 && (currActivity-progressActivity)<1) {
                     return res.status(200).json({info: 'success'});
                 }
             })
