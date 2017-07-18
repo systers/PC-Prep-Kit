@@ -4,6 +4,7 @@ const config = require('../config/settings');
 const authenticationHelpers = require('./authenticationHelpers');
 const router = express.Router();
 const models = require('../database/models');
+const mail = require('./mailService');
 
 const localUser = models.user_account;
 const progress = models.progress;
@@ -55,14 +56,14 @@ router.get('/getUserInfo', authenticationHelpers.isAuthOrRedirect, (req, res) =>
 router.get('/username', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     const email = req.user.email;
     localUser.findAll({
-        where:{
+        where: {
             email: email
         }}).then(data => {
             const username = `${data[0].fname} ${data[0].lname}`;
-            res.status(200).json({username:username});
+            res.status(200).json({username: username});
         }).catch(error => {
             if(error){
-                res.status(500).json({error:'Something went wrong'});
+                res.status(500).json({error: 'Something went wrong'});
             }
         });
 });
@@ -95,6 +96,16 @@ router.get('/getProgressStatus', (req, res) => {
         .catch(function(err) {
             return res.status(500).json({error: 'Something went wrong while fetching user data'});
         });
+});
+
+router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    const email = req.user.email;
+    mail.mailOptions.to = email;
+    mail.mailOptions.subject = 'Peace Corps Policy';
+    mail.mailOptions.html = '<H2> Peace Corps Policy </H2>';
+    mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
+        error ? res.status(500).json({error: 'Something Went Wrong! Try again later.'}) : res.json({message: 'Mail Sent Succesfully.'});
+    })
 });
 
 module.exports = router;

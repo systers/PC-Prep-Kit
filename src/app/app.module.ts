@@ -14,6 +14,7 @@ import { LoginComponent } from './authentication/login.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PcpolicyComponent } from './pcpolicy/pcpolicy.component';
 import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -34,6 +35,7 @@ import { NavbarService } from './services/navbar.service';
         LoginComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
+        PcpolicyComponent,
         SplashscreenComponent,
         RegisterComponent,
         NavbarComponent,

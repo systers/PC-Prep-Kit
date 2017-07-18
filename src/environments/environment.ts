@@ -9,5 +9,6 @@ export const environment = {
 	/* API constants */
 	baseURL: 'http://localhost:3000/',
 	apiEndpoint: 'api/',
-	authEndpoint: 'auth/'
+	authEndpoint: 'auth/',
+	regEndPoint: 'registration/'
 };
