@@ -1,0 +1,16 @@
+@import "../styles/components/_headings";
+@import "../styles/base/_errors";
+
+.desc {
+    color : #9C9999;
+    font-size: 150%;
+}
+
+.pcprepkitlogo {
+    width:25%;
+    height: auto;
+}
+
+.form-control-feedback {
+    color: $error-message-color;
+}

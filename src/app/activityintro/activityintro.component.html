@@ -1,0 +1,14 @@
+<div class="header">
+	<app-header (toggleNavbar)="nav.toggle()"> </app-header>
+</div>
+<div class="container-fluid">
+	<app-navbar #nav (togglePosition)="toggle()"> </app-navbar>
+	<div class="row">
+		<div [className]="position + ' introbody text-center'">
+			<H1> Introduction </H1>
+			<H2> Welcome </H2>
+			<p class="lead"> The next few activites will help us get started with learning about malaria, your responsibilities as a Peace Corps Volunteer, and the way you can protect yourself.</p>
+			<button type="button" class="btn btn-primary btn-lg">Cool, next</button>
+		</div>
+	</div>
+</div>
