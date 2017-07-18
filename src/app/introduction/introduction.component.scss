@@ -1,0 +1,133 @@
+$selection-yellow-background: #FBF38F;
+$blue: #04529D;
+$font-bold: 900;
+$black: #000000;
+$white: #FFFFFF;
+
+::selection {
+    background: $selection-yellow-background; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+    background: $selection-yellow-background; /* Gecko Browsers */
+}
+h3 {
+    text-align: center;
+    font-weight: $font-bold;
+    color: $blue;
+}
+h2 {
+    font-weight: $font-bold;
+}
+
+.mosquito {
+  width:80px;
+  height: auto;
+}
+
+.lead-title {
+    font-weight: $font-bold;
+    font-size: 2.5em;
+    color: $black;
+}
+
+.lead-sub-heading {
+    color: grey;
+    font-weight: $font-bold;
+    font-size: 1.5em;
+}
+
+.rectangle-speech-border {
+    position: relative;
+    padding: 50px;
+    width: 100%;
+    margin: 1em 0 3em;
+    border: 2px solid $black;
+    color: #333;
+    background: $white;
+    /* css3 */
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+}
+
+/* creates larger curve */
+.rectangle-speech-border:before {
+    content: "";
+    position: absolute;
+    z-index: 10;
+    bottom: -30px;
+    left: 50px;
+    width: 50px;
+    height: 30px;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    border-color: $black;
+    background: transparent;
+    /* css3 */
+    -webkit-border-bottom-right-radius: 80px 50px;
+    -moz-border-radius-bottomright: 80px 50px;
+    border-bottom-right-radius: 80px 50px;
+    /* reduce the damage in FF3.0 */
+    display: block;
+}
+
+/* creates smaller curve */
+.rectangle-speech-border:after {
+    content: "";
+    position: absolute;
+    z-index: 10;
+    bottom: -30px;
+    left: 55px;
+    width: 20px;
+    height: 30px;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    border-color: $black;
+    background: transparent;
+    /* css3 */
+    -webkit-border-bottom-right-radius: 40px 50px;
+    -moz-border-radius-bottomright: 40px 50px;
+    border-bottom-right-radius: 40px 50px;
+    /* reduce the damage in FF3.0 */
+    display: block;
+}
+
+/* creates a white rectangle to cover part of the oval border*/
+.rectangle-speech-border > :first-child:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 76px;
+    width: 24px;
+    height: 15px;
+    background: $white;
+}
+
+.arrow {
+    width: 75px;
+    line-height: 75px;
+    text-align: center;
+    opacity: 1;
+    background: green;
+    border: none;
+    color: $white;
+    border-radius: 50%;
+}
+.bounce {
+    -moz-animation: bounce 2s infinite;
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+

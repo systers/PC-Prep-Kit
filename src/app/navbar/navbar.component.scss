@@ -18,7 +18,7 @@
 
 .sidebar{
     background: $sidebar-background;
-    color:$font-black;
+    color: black;
     box-shadow: 0px 0px 10px;
     position: fixed;
     top: 0;
@@ -29,6 +29,6 @@
     display: block;
     z-index: 1000;
     a{
-        color: $font-black;
+        color: black;
     }
 }

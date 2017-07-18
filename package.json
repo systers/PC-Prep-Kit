@@ -45,6 +45,7 @@
     "rxjs": "^5.1.0",
     "sequelize": "^4.1.0",
     "serve-favicon": "~2.4.2",
+    "sweetalert2": "^6.6.6",
     "winston": "^2.3.1",
     "zone.js": "^0.8.4"
   },

@@ -13,7 +13,8 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './activityintro/activityintro.component';
 import { MenuComponent } from './menu/menu.component';
-
+import { IntroductionComponent } from './introduction/introduction.component'
+import { HighlightActivityComponent } from './introduction/highlight-activity.component'
 
 export const routes: Routes = [
     {
@@ -69,8 +70,24 @@ export const routes: Routes = [
     {
         path: '',
         redirectTo: '/menu',
-        pathMatch : 'full',
+        pathMatch: 'full',
         canActivate: [LoggedInGuard]
+    },
+    {
+        path: 'introduction',
+        component: IntroductionComponent,
+        canActivate: [LoggedInGuard],
+        children: [
+            {
+                path: '',
+                redirectTo: 'activity-1',
+                pathMatch: 'full'
+            },
+            {
+                path: 'activity-1',
+                component: HighlightActivityComponent
+            }
+        ]
     }
 ];
 
