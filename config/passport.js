@@ -36,7 +36,7 @@ module.exports = function(passport, models) {
             const nameArr = profile.displayName.split(' ');
             if(nameArr.length >= 2){
                 fname = nameArr[0];
-                lname = nameArr[1];
+                lname = nameArr[nameArr.length-1];
             } else {
                 fname = profile.displayName;
                 lname = '';
