@@ -1,8 +1,4 @@
-$selection-yellow-background: #FBF38F;
-$blue: #04529D;
-$font-bold: 900;
-$black: #000000;
-$white: #FFFFFF;
+@import "../styles/components/_variables";
 
 ::selection {
     background: $selection-yellow-background; /* WebKit/Blink Browsers */
@@ -20,7 +16,7 @@ h2 {
 }
 
 .mosquito {
-  width:80px;
+  width: 80px;
   height: auto;
 }
 
@@ -113,13 +109,33 @@ h2 {
     color: $white;
     border-radius: 50%;
 }
-.bounce {
-    -moz-animation: bounce 2s infinite;
-    -webkit-animation: bounce 2s infinite;
-    animation: bounce 2s infinite;
+
+@mixin animation($animate) {
+    -moz-animation: $animate;
+    -webkit-animation: $animate;
+    animation: $animate;
 }
 
-@keyframes bounce {
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+.bounce {
+    @include animation(bounce 2s infinite)
+}
+
+@include keyframes(bounce) {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
     }

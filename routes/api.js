@@ -143,6 +143,8 @@ router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) =
  */
 router.put('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     if(req.body && req.body.stage && req.body.activity) {
+        const currStage = req.body.stage;
+        const currActivity = req.body.activity;
         localUser.find({
             where: {
                 email: req.user.email
@@ -150,10 +152,12 @@ router.put('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req
             include: [progress]
         }, {raw: true})
             .then(data => {
-                if((req.body.stage===data.progress.stage || (req.body.stage-data.progress.stage)===1) && ((req.body.activity-data.progress.activity)===1)){
+                const progressStage = data.progress.stage;
+                const progressActivity = data.progress.activity;
+                if((currStage===progressStage || (currStage-progressStage)===1) && ((currActivity-progressActivity)===1)){
                     progress.update({
-                        stage: req.body.stage,
-                        activity: req.body.activity
+                        stage: currStage,
+                        activity: currActivity
                     }, {
                         where: {
                             id: data.progress.id
@@ -162,7 +166,7 @@ router.put('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req
                         .then(response => {
                             return res.status(200).json({info: 'success'});
                         })
-                } else if((req.body.stage-data.progress.stage)>1 && (req.body.activity-data.progress.activity)>1) {
+                } else if((currStage-progressStage)>1 && (currActivity-progressActivity)>1) {
                     return res.status(200).json({info: 'Illegal operation'});
                 } else if((req.body.stage-data.progress.stage)<1 && (req.body.activity-data.progress.activity)<1) {
                     return res.status(200).json({info: 'success'});

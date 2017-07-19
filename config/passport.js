@@ -33,10 +33,10 @@ module.exports = function(passport, models) {
      */
     function(req, accessToken, refreshToken, profile, done) {
         process.nextTick(function() {
-
-            if(profile.displayName.split(' ').length >= 2){
-                fname = profile.displayName.split(' ')[0];
-                lname = profile.displayName.split(' ')[1];
+            const nameArr = profile.displayName.split(' ');
+            if(nameArr.length >= 2){
+                fname = nameArr[0];
+                lname = nameArr[1];
             } else {
                 fname = profile.displayName;
                 lname = '';
