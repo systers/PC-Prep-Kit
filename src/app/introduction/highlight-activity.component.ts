@@ -21,7 +21,7 @@ export class HighlightActivityComponent implements OnInit {
     constructor(private _dashboardService: DashboardService) { }
 
     /**
-     * Handle activity setup (Displaying activity information, checking user's progress and checking completing of activity) 
+     * Handle activity setup (Displaying activity information, checking user's progress and checking completing of activity)
      */
     ngOnInit() {
         swal({
@@ -30,7 +30,7 @@ export class HighlightActivityComponent implements OnInit {
         });
         this.checkProgress();
         this._obs = Observable.interval(500)
-                       .do(i => this.select() );
+                       .do(i => this.select());
         this._subscription = this._obs.subscribe();
     }
 
@@ -39,17 +39,17 @@ export class HighlightActivityComponent implements OnInit {
      */
     select() {
         let text = '';
-        const content = 'An intermittent and remittent fever caused by a protozoan parasite that invades the red blood cells.The parasite is transmitted by mosquitoes in many tropical and subtropical regions.';
+        const content = 'An intermittent and remittent fever caused by a protozoan parasite that invades the red blood cells. The parasite is transmitted by mosquitoes in many tropical and subtropical regions.';
         if (window.getSelection) {
             text = window.getSelection().toString();
         }
         this._selectedText = text;
         this._status = {stage: 1, activity: 1};
         if (this._selectedText === content) {
-            if (window.getSelection().removeAllRanges) {
-                window.getSelection().removeAllRanges();
-            } else if (window.getSelection().empty) {
-                window.getSelection().empty();
+            const selection = window.getSelection();
+            if (selection) {
+                selection.removeAllRanges();
+                selection.empty();
             }
             if (this.activityComplete) {
                 swal({
@@ -58,7 +58,6 @@ export class HighlightActivityComponent implements OnInit {
                 });
             } else {
                 this._dashboardService.updateProgressStatus(this._status).subscribe(response => {
-                    console.log(response);
                 });
                 swal(
                     'Good job!',

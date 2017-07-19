@@ -14,13 +14,10 @@ export class AppComponent {
     public loggedIn = false;
     constructor(private _router: Router, private _sharedData: SharedDataService) {
         this._router.events.pairwise().subscribe((e) => {
-            if (e && localStorage.getItem(AppComponent._localStorageKey)) {
-                this.loggedIn = true;
-            } else {
-                this.loggedIn = false;
-            }
+            this.loggedIn = (e && localStorage.getItem(AppComponent._localStorageKey)) ? true : false;
         });
     }
+
     /**
      * Call toggle function in shared data service
      */
