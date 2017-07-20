@@ -160,7 +160,9 @@ router.put('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req
             .then(data => {
                 const progressStage = data.progress.stage;
                 const progressActivity = data.progress.activity;
-                if((currStage===progressStage || (currStage-progressStage)===1) && ((currActivity-progressActivity)===1)){
+                const stageDiff = currStage-progressStage;
+                const activityDiff = currActivity-progressActivity;
+                if((currStage===progressStage || stageDiff===1) && (activityDiff===1)){
                     progress.update({
                         stage: currStage,
                         activity: currActivity
@@ -172,9 +174,9 @@ router.put('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req
                         .then(response => {
                             return res.status(200).json({info: 'success'});
                         })
-                } else if((currStage-progressStage)>1 && (currActivity-progressActivity)>1) {
+                } else if(stageDiff>1 && activityDiff>1) {
                     return res.status(200).json({info: 'Illegal operation'});
-                } else if((currStage-progressStage)<1 && (currActivity-progressActivity)<1) {
+                } else if(stageDiff<1 && activityDiff<1) {
                     return res.status(200).json({info: 'success'});
                 }
             })
