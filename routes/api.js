@@ -9,6 +9,19 @@ const mail = require('./mailService');
 const localUser = models.user_account;
 const progress = models.progress;
 
+<<<<<<< HEAD
+=======
+const fs = require('fs');
+const multer = require('multer');
+const winston = require('winston');
+
+/**
+ * Check if the request is authenticated
+ * @param  {Object} req   Request object
+ * @param  {Object} res   Response object
+ * @param  {Function} next  Callback to the next function to be executed
+ */
+>>>>>>> 1d1ddd5... Picture-puzzle activity
 router.use(function(req, res, next) {
 
     // check header or url parameters or post parameters for token
@@ -106,6 +119,46 @@ router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) =
     mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
         error ? res.status(500).json({error: 'Something Went Wrong! Try again later.'}) : res.json({message: 'Mail Sent Succesfully.'});
     })
+});
+
+/**
+ * [destination description]
+ * @param  {Object} req       Request object
+ * @param  {Object} file      File object
+ * @param  {Function} cb      Callback function
+ */
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+/**
+ * Function to upload browsed image
+ * @param  {Object} req  Request object
+ * @param  {Object} res  Response object
+ */
+router.post('/upload', upload.array('uploads[]', 12), function(req, res) {
+    winston.log('files', req.files);
+    res.send(req.files);
+});
+
+/**
+ * Function to upload webcam/camera image
+ * @param  {Object} req  Request object
+ * @param  {Object} res  Response object
+ */
+router.post('/uploadCam', function(req, res) {
+    const base64Data = req.body.base64.replace(/^data:image\/jpeg;base64,/, '');
+    fs.writeFile('./uploads/out.jpeg', base64Data, 'base64', function(err) {
+        winston.log(err);
+    });
+    res.send(req.files);
 });
 
 module.exports = router;
