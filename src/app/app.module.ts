@@ -27,6 +27,10 @@ import { AuthService } from './services/auth.service';
 import { APIService } from './services/api.service';
 import { RegService } from './services/reg.service';
 import { NavbarService } from './services/navbar.service';
+import { SharedDataService } from './services/shared.data.service';
+import { IntroductionComponent } from './introduction/introduction.component'
+import { HighlightActivityComponent } from './introduction/highlight-activity.component'
+import { PicturePuzzleComponent } from './introduction/picture-puzzle.component'
 
 @NgModule({
     declarations: [
@@ -41,7 +45,10 @@ import { NavbarService } from './services/navbar.service';
         NavbarComponent,
         ActivityintroComponent,
         HeaderComponent,
-        MenuComponent
+        MenuComponent,
+        IntroductionComponent,
+        HighlightActivityComponent,
+        PicturePuzzleComponent
     ],
     imports: [
         AppRoutingModule,
@@ -51,7 +58,7 @@ import { NavbarService } from './services/navbar.service';
         BrowserModule,
         BrowserAnimationsModule
     ],
-    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService],
+    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService, SharedDataService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

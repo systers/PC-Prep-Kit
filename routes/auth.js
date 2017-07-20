@@ -7,13 +7,25 @@ const jwt    = require('jsonwebtoken');
 const authenticationHelpers = require('./authenticationHelpers');
 const utilityFunctions = require('./utilityfunctions');
 
-// create reset password token
+/**
+ * create authentication token
+ * @param  {Object} user Create authentication token using user data
+ */
 function createToken(user) {
     return jwt.sign(_.omit(user, 'password'), config.secretKey, { expiresIn: 60*60*5 });
 }
 
 const validateEmail = utilityFunctions.validateEmail;
 
+/**
+ * utility function to send email using nodemailer
+ * @param  {String}   recipient  recipient of mail
+ * @param  {String}   subject    Subject of mail
+ * @param  {String}   content    Content of mail
+ * @param  {Object}   user       User object
+ * @param  {Object}   nodemailer Module instance to send mail
+ * @param  {Function} done       Callback function
+ */
 function sendEmail(recipient, subject, content, user, nodemailer, done) {
     const transport = nodemailer.createTransport(smtpTransport({
         service: config.nodeMailer.PROVIDER,
@@ -36,7 +48,12 @@ function sendEmail(recipient, subject, content, user, nodemailer, done) {
 module.exports = function(router, passport, async, nodemailer, crypto, models) {
 
     const localUser = models.user_account;
-
+    /**
+     * Handle local login
+     * @param  {Object} req   Request object
+     * @param  {Object} res   Response object
+     * @param  {Object} next  Callback to the next function to be executed
+     */
     router.post('/login', function(req, res, next) {
         passport.authenticate('local-login', function(err, user, info) {
             if (err) {
@@ -54,22 +71,38 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
         })(req, res, next);
     });
 
+    // Handle Google login
     router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
+    // Handle callback after Google login
     router.get('/google/callback',
         passport.authenticate('google', { successRedirect: '/',
             failureRedirect: '/login' }));
 
+    /**
+     * Handle logout
+     * @param  {Object} req  Request object
+     * @param  {Object} res  Response object
+     */
     router.get('/logout', authenticationHelpers.isAuthOrRedirect, function(req, res) {
         req.logout();
         res.json({loggedOut: req.isAuthenticated()});
     });
 
+    /**
+     * Create and send authentication token to client
+     * @param  {Object} req  Request object
+     * @param  {Object} res  Response object
+     */
     router.get('/authenticated', authenticationHelpers.isAuth, function(req, res) {
         res.json({authenticated: true, token: createToken(req.user)});
     });
 
-    // Forgot password and generate token
+    /**
+     * Handle forgot password and generate reset password token
+     * @param  {Object} req  Request object
+     * @param  {Object} res  Response object
+     */
     router.post('/forgot', function(req, res) {
         if(!req.body.email || !validateEmail(req.body.email)) {
             return res.status(400).json({error: 'Email is invalid'});
@@ -124,6 +157,11 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
         });
     });
 
+    /**
+     * Check validity of reset password token
+     * @param  {Object} req  Request object
+     * @param  {Object} res  Response object
+     */
     router.get('/reset/:token', function(req, res) {
         if(!req.params.token) {
             return res.status(400).json({error: 'Password reset token is invalid or has expired'});
@@ -145,7 +183,11 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
             });
     });
 
-    // Reset Password
+    /**
+     * Handle resetting the password
+     * @param  {Object} req  Request object
+     * @param  {Object} res  Response object
+     */
     router.put('/reset/:token', function(req, res) {
         async.waterfall([
             function(done) {

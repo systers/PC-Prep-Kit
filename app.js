@@ -11,7 +11,7 @@ const session = require('express-session');
 const async = require('async');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-const winston = require('winston')
+const winston = require('winston');
 
 // Logger configuration
 winston.add(
@@ -25,10 +25,10 @@ winston.add(
 );
 
 // Database configuration
-//Models
+// Models
 const models = require('./database/models');
 
-//Sync Database
+// Sync Database
 models.sequelize.sync().then(function() {
     winston.info('Nice! Database looks fine')
 }).catch(function(err) {
@@ -58,7 +58,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(session({
-    secret : 'PC Prep Kit Secret',
+    secret: 'PC Prep Kit Secret',
     saveUninitialized: true,
     resave: true
 }));
@@ -94,5 +94,21 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
+/**
+ * Get port from environment and store in Express.
+ */
+const port = process.env.PORT || '3000';
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port, () => winston.log(`API running on localhost:${port}`));
 
 module.exports = app;

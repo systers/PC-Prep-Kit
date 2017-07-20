@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedDataService } from '../services/shared.data.service';
 
 @Component({
   selector: 'app-activityintro',
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 
 
 export class ActivityintroComponent {
-    public position = 'col-md-10 col-md-offset-2';
-    constructor() { }
-    toggle() {
-        this.position = (this.position === 'col-md-10 col-md-offset-2') ? 'col-md-12' : 'col-md-10 col-md-offset-2';
+    public position: string;
+    constructor(private _sharedData: SharedDataService) {
+        this._sharedData.position.subscribe(
+            value => {
+                this.position = value;
+            }
+        );
     }
 }
+

@@ -9,6 +9,16 @@ const mail = require('./mailService');
 const localUser = models.user_account;
 const progress = models.progress;
 
+const fs = require('fs');
+const multer = require('multer');
+const winston = require('winston');
+
+/**
+ * Check if the request is authenticated
+ * @param  {Object} req   Request object
+ * @param  {Object} res   Response object
+ * @param  {Function} next  Callback to the next function to be executed
+ */
 router.use(function(req, res, next) {
 
     // check header or url parameters or post parameters for token
@@ -21,7 +31,6 @@ router.use(function(req, res, next) {
     } else {
         token = req.headers['x-access-token'];
     }
-
     // decode token
     if(token) {
         // Removing quotes in the token
@@ -48,11 +57,22 @@ router.use(function(req, res, next) {
     }
 });
 
-/* GET api listing. */
+/**
+ * GET user information API
+ * @param  {String} '/getUserInfo'                            URI of the resource
+ * @param  {Function} authenticationHelpers.isAuthOrRedirect  Check if user is authenticated else redirect him back to login
+ * @param  {Object} (req, res)                                Anonymous function to handle request and response
+ */
 router.get('/getUserInfo', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     res.status(200).json({user: req.user});
 });
 
+/**
+ * GET username API
+ * @param  {String} '/username'                               URI of the resource
+ * @param  {Function} authenticationHelpers.isAuthOrRedirect  Check if user is authenticated else redirect him back to login
+ * @param  {Function} (req, res)                              Anonymous function to handle request and response
+ */
 router.get('/username', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     const email = req.user.email;
     localUser.findAll({
@@ -68,7 +88,13 @@ router.get('/username', authenticationHelpers.isAuthOrRedirect, (req, res) => {
         });
 });
 
-router.get('/getProgressStatus', (req, res) => {
+/**
+ * GET progress status API
+ * @param  {String} '/getProgressStatus'                              URI of the resource
+ * @param  {Function} authenticationHelpers.isAuthOrRedirect          Check if user is authenticated else redirect him back to login
+ * @param  {Function} (req, res)                                      Anonymous function to handle request and response
+ */
+router.get('/getProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     if(!req.user.email) {
         return res.status(400).json({error: 'Email not provided'});
     }
@@ -98,6 +124,12 @@ router.get('/getProgressStatus', (req, res) => {
         });
 });
 
+/**
+ * GET mail policy API
+ * @param  {String} '/mailpcpolicy'                                   URI of the resource
+ * @param  {Function} authenticationHelpers.isAuthOrRedirect          Check if user is authenticated else redirect him back to login
+ * @param  {Function} (req, res)                                      Anonymous function to handle request and response
+ */
 router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     const email = req.user.email;
     mail.mailOptions.to = email;
@@ -105,7 +137,93 @@ router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) =
     mail.mailOptions.html = '<H2> Peace Corps Policy </H2>';
     mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
         error ? res.status(500).json({error: 'Something Went Wrong! Try again later.'}) : res.json({message: 'Mail Sent Succesfully.'});
-    })
+    });
+});
+
+/**
+ * UPDATE progress status API
+ * @param  {String} '/updateProgressStatus'                           URI of the resource
+ * @param  {Function} authenticationHelpers.isAuthOrRedirect          Check if user is authenticated else redirect him back to login
+ * @param  {Function} (req, res)                                      Anonymous function to handle request and response
+ */
+router.put('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    if(req.body && req.body.stage && req.body.activity) {
+        const currStage = req.body.stage;
+        const currActivity = req.body.activity;
+        localUser.find({
+            where: {
+                email: req.user.email
+            },
+            include: [progress]
+        }, {raw: true})
+            .then(data => {
+                const progressStage = data.progress.stage;
+                const progressActivity = data.progress.activity;
+                if((currStage===progressStage || (currStage-progressStage)===1) && ((currActivity-progressActivity)===1)){
+                    progress.update({
+                        stage: currStage,
+                        activity: currActivity
+                    }, {
+                        where: {
+                            id: data.progress.id
+                        }
+                    })
+                        .then(response => {
+                            return res.status(200).json({info: 'success'});
+                        })
+                } else if((currStage-progressStage)>1 && (currActivity-progressActivity)>1) {
+                    return res.status(200).json({info: 'Illegal operation'});
+                } else if((currStage-progressStage)<1 && (currActivity-progressActivity)<1) {
+                    return res.status(200).json({info: 'success'});
+                }
+            })
+            .catch(function(err) {
+                return res.status(500).json({error: 'Something went wrong while updating progress status'});
+            });
+    } else {
+        return res.status(400).json({error: 'No data recieved'});
+    }
+});
+
+/**
+ * [destination description]
+ * @param  {Object} req       Request object
+ * @param  {Object} file      File object
+ * @param  {Function} cb      Callback function
+ */
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+/**
+ * Function to upload browsed image
+ * @param  {Object} req  Request object
+ * @param  {Object} res  Response object
+ */
+router.post('/upload', upload.array('uploads[]', 12), function(req, res) {
+    winston.log('files', req.files);
+    res.send(req.files);
+});
+
+/**
+ * Function to upload webcam/camera image
+ * @param  {Object} req  Request object
+ * @param  {Object} res  Response object
+ */
+router.post('/uploadCam', function(req, res) {
+    const base64Data = req.body.base64.replace(/^data:image\/jpeg;base64,/, '');
+    fs.writeFile('./uploads/out.jpeg', base64Data, 'base64', function(err) {
+        winston.log(err);
+    });
+    res.send(req.files);
 });
 
 module.exports = router;
+
