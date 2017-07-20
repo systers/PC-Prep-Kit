@@ -68,12 +68,6 @@ export const routes: Routes = [
         canActivate: [LoggedInGuard]
     },
     {
-        path: '',
-        redirectTo: '/menu',
-        pathMatch: 'full',
-        canActivate: [LoggedInGuard]
-    },
-    {
         path: 'introduction',
         component: IntroductionComponent,
         canActivate: [LoggedInGuard],

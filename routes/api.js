@@ -133,7 +133,8 @@ router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) =
     mail.mailOptions.html = '<H2> Peace Corps Policy </H2>';
     mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
         error ? res.status(500).json({error: 'Something Went Wrong! Try again later.'}) : res.json({message: 'Mail Sent Succesfully.'});
-    })
+    });
+});
 
 /**
  * UPDATE progress status API
@@ -181,3 +182,4 @@ router.put('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req
 });
 
 module.exports = router;
+
