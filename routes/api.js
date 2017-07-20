@@ -9,6 +9,10 @@ const mail = require('./mailService');
 const localUser = models.user_account;
 const progress = models.progress;
 
+const fs = require('fs');
+const multer = require('multer');
+const winston = require('winston');
+
 /**
  * Check if the request is authenticated
  * @param  {Object} req   Request object
@@ -179,6 +183,46 @@ router.put('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req
     } else {
         return res.status(400).json({error: 'No data recieved'});
     }
+});
+
+/**
+ * [destination description]
+ * @param  {Object} req       Request object
+ * @param  {Object} file      File object
+ * @param  {Function} cb      Callback function
+ */
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+/**
+ * Function to upload browsed image
+ * @param  {Object} req  Request object
+ * @param  {Object} res  Response object
+ */
+router.post('/upload', upload.array('uploads[]', 12), function(req, res) {
+    winston.log('files', req.files);
+    res.send(req.files);
+});
+
+/**
+ * Function to upload webcam/camera image
+ * @param  {Object} req  Request object
+ * @param  {Object} res  Response object
+ */
+router.post('/uploadCam', function(req, res) {
+    const base64Data = req.body.base64.replace(/^data:image\/jpeg;base64,/, '');
+    fs.writeFile('./uploads/out.jpeg', base64Data, 'base64', function(err) {
+        winston.log(err);
+    });
+    res.send(req.files);
 });
 
 module.exports = router;

@@ -15,6 +15,7 @@ import { ActivityintroComponent } from './activityintro/activityintro.component'
 import { MenuComponent } from './menu/menu.component';
 import { IntroductionComponent } from './introduction/introduction.component'
 import { HighlightActivityComponent } from './introduction/highlight-activity.component'
+import { PicturePuzzleComponent } from './introduction/picture-puzzle.component'
 
 export const routes: Routes = [
     {
@@ -80,6 +81,10 @@ export const routes: Routes = [
             {
                 path: 'activity-1',
                 component: HighlightActivityComponent
+            },
+            {
+                path: 'activity-3',
+                component: PicturePuzzleComponent
             }
         ]
     }

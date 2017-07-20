@@ -104,10 +104,19 @@ h2 {
     line-height: 75px;
     text-align: center;
     opacity: 1;
-    background: green;
     border: none;
     color: $white;
     border-radius: 50%;
+}
+
+.arrow-red {
+    @extend .arrow;
+    background: #d9534f;
+}
+
+.arrow-green {
+    @extend .arrow;
+    background: green;    
 }
 
 @mixin animation($animate) {
@@ -145,5 +154,9 @@ h2 {
     60% {
         transform: translateY(-15px);
     }
+}
+
+#file {
+    display: none;
 }
 

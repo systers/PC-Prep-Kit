@@ -30,6 +30,7 @@ import { NavbarService } from './services/navbar.service';
 import { SharedDataService } from './services/shared.data.service';
 import { IntroductionComponent } from './introduction/introduction.component'
 import { HighlightActivityComponent } from './introduction/highlight-activity.component'
+import { PicturePuzzleComponent } from './introduction/picture-puzzle.component'
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { HighlightActivityComponent } from './introduction/highlight-activity.co
         HeaderComponent,
         MenuComponent,
         IntroductionComponent,
-        HighlightActivityComponent
+        HighlightActivityComponent,
+        PicturePuzzleComponent
     ],
     imports: [
         AppRoutingModule,

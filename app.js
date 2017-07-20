@@ -11,7 +11,7 @@ const session = require('express-session');
 const async = require('async');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-const winston = require('winston')
+const winston = require('winston');
 
 // Logger configuration
 winston.add(
