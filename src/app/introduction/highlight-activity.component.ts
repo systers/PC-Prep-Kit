@@ -4,9 +4,9 @@ import swal from 'sweetalert2';
 import { DashboardService } from '../services/dashboard.service';
 
 @Component({
-  selector: 'app-highlight',
-  templateUrl: './highlight-activity.component.html',
-  styleUrls: ['./introduction.component.scss']
+    selector: 'app-highlight',
+    templateUrl: './highlight-activity.component.html',
+    styleUrls: ['./introduction.component.scss']
 })
 export class HighlightActivityComponent implements OnInit {
 
