@@ -48,11 +48,8 @@
     "rxjs": "^5.1.0",
     "sequelize": "^4.1.0",
     "serve-favicon": "~2.4.2",
-<<<<<<< HEAD
-=======
     "sweetalert2": "^6.6.6",
     "webrtc-adapter": "^4.2.1",
->>>>>>> 1d1ddd5... Picture-puzzle activity
     "winston": "^2.3.1",
     "zone.js": "^0.8.4"
   },

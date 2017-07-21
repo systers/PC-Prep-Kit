@@ -9,8 +9,6 @@ const mail = require('./mailService');
 const localUser = models.user_account;
 const progress = models.progress;
 
-<<<<<<< HEAD
-=======
 const fs = require('fs');
 const multer = require('multer');
 const winston = require('winston');
@@ -21,7 +19,6 @@ const winston = require('winston');
  * @param  {Object} res   Response object
  * @param  {Function} next  Callback to the next function to be executed
  */
->>>>>>> 1d1ddd5... Picture-puzzle activity
 router.use(function(req, res, next) {
 
     // check header or url parameters or post parameters for token
