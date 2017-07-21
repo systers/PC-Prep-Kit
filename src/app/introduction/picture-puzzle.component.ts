@@ -90,6 +90,11 @@ export class PicturePuzzleComponent implements OnInit {
         this.setCanvas();
         this._stage.drawImage(this._video, 0, 0, this._width, this._height);
         this.activityComplete = true;
+        swal(
+            'Good job!',
+            'You completed this activity!',
+            'success'
+        );
     }
 
     ngOnInit() {
