@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DndModule } from 'ng2-dnd';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -21,12 +23,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './activityintro/activityintro.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
+import { DragdropComponent } from './dragdrop/dragdrop.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
 import { APIService } from './services/api.service';
 import { RegService } from './services/reg.service';
 import { NavbarService } from './services/navbar.service';
+
 
 @NgModule({
     declarations: [
@@ -41,7 +45,8 @@ import { NavbarService } from './services/navbar.service';
         NavbarComponent,
         ActivityintroComponent,
         HeaderComponent,
-        MenuComponent
+        MenuComponent,
+        DragdropComponent
     ],
     imports: [
         AppRoutingModule,
@@ -49,7 +54,8 @@ import { NavbarService } from './services/navbar.service';
         HttpModule,
         ReactiveFormsModule,
         BrowserModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,  DndModule.forRoot(),
+        ToastModule.forRoot()
     ],
     providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService],
     bootstrap: [AppComponent]
