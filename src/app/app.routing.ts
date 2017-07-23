@@ -13,7 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './activityintro/activityintro.component';
 import { MenuComponent } from './menu/menu.component';
-
+import { DragdropComponent} from './dragdrop/dragdrop.component';
 
 export const routes: Routes = [
     {
@@ -54,6 +54,11 @@ export const routes: Routes = [
     {
         path: 'intro',
         component: ActivityintroComponent,
+        canActivate: [LoggedInGuard]
+    },
+    {
+        path: 'dragdrop',
+        component: DragdropComponent,
         canActivate: [LoggedInGuard]
     },
     {
