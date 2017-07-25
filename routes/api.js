@@ -147,7 +147,7 @@ router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) =
  * @param  {Function} authenticationHelpers.isAuthOrRedirect          Check if user is authenticated else redirect him back to login
  * @param  {Function} (req, res)                                      Anonymous function to handle request and response
  */
-router.put('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     if(req.body && req.body.stage && req.body.activity) {
         const currStage = req.body.stage;
         const currActivity = req.body.activity;

@@ -78,7 +78,7 @@ export class DashboardService {
      * @return {Observable<any>}      Return response
      */
     updateProgressStatus(body: Object): Observable<any> {
-        return this._apiservice.put(this._updateProgressStatus, body)
+        return this._apiservice.patch(this._updateProgressStatus, body)
                     .map(res => res.json());
     }
 }
