@@ -14,6 +14,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './activityintro/activityintro.component';
 import { MenuComponent } from './menu/menu.component';
 import { DragdropComponent} from './dragdrop/dragdrop.component';
+import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
+import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
+
+>>>>>>> Memory game activity
 
 export const routes: Routes = [
     {
@@ -76,6 +80,17 @@ export const routes: Routes = [
         redirectTo: '/menu',
         pathMatch : 'full',
         canActivate: [LoggedInGuard]
+    },
+    {
+        path: 'meds-n-labels',
+        component: MedsNLabelsComponent,
+        canActivate: [LoggedInGuard],
+        children: [
+            {
+                path: 'activity-2',
+                component: MemoryGameComponent
+            }
+        ]
     }
 ];
 

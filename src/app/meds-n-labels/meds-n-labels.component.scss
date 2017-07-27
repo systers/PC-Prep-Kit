@@ -1,0 +1,26 @@
+h3{
+    margin-left: 25%; 
+    font-weight: 900;
+    color: #04529D;
+}
+
+img {
+    height: 30%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.image-table {
+    border: 0px solid rgba(0, 0, 0, 0);
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+
+.image-table td {
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 0 1px #999;
+    box-shadow: 0 0 1px #999;
+}
+

@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-lg-5 col-md-offset-4">
+        <table class="image-table">
+            <tbody>
+                <tr *ngFor="let imgRows of createRange(4); let outerIdx=index">
+                    <td *ngFor="let imgs of createRange(4); let innerIdx=index" (click)="choose(4*outerIdx+innerIdx)">
+                        <img src="{{backcard}}"/>
+                    </td>
+                </tr>  
+            </tbody>
+        </table>
+    </div>
+</div>
