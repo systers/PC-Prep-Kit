@@ -5,17 +5,17 @@
 </div>
 <div class="row">
     <div class="col-md-3 col-md-offset-3">
-        <video #video width="480" height="360" autoplay [hidden]='webcamState!=webcamStates.OPENED'></video>
-        <canvas width="480" height="360" [hidden]='webcamState===webcamStates.OPENED' id="canvas"></canvas>
+        <video #video width="480" height="360" autoplay [hidden]='webcamState !== webcamStates.OPENED'></video>
+        <canvas width="480" height="360" [hidden]='webcamState === webcamStates.OPENED' id="canvas"></canvas>
     </div>
     <div class="col-md-3 col-md-offset-3">
         <input type="file" name="file" id="file" accept="image/*" (change)="handleInputChange($event)">
-        <button class="btn btn-block btn-danger btn-lg" *ngIf='webcamState===webcamStates.PAGE_LOAD' (click)="openWebcam()">{{webcamButtonText}}</button>
-        <button class="btn btn-block btn-danger btn-lg" *ngIf='webcamState===webcamStates.CAPTURED' (click)="openWebcam()">{{webcamButtonText}}</button>            
-        <button class="btn btn-block btn-danger btn-lg" *ngIf='webcamState===webcamStates.OPENED' (click)="snapshot()">{{webcamButtonText}}</button>
+        <button class="btn btn-block btn-danger btn-lg" *ngIf='webcamState === webcamStates.PAGE_LOAD' (click)="openWebcam()">{{webcamButtonText}}</button>
+        <button class="btn btn-block btn-danger btn-lg" *ngIf='webcamState === webcamStates.CAPTURED' (click)="openWebcam()">{{webcamButtonText}}</button>
+        <button class="btn btn-block btn-danger btn-lg" *ngIf='webcamState === webcamStates.OPENED' (click)="snapshot()">{{webcamButtonText}}</button>
         <button class="btn btn-block btn-primary btn-lg" (click)="fireFileButtonClick()">Choose Existing</button>
         <button class="btn btn-block btn-primary btn-lg" [disabled]='!imageLoaded' (click)="shufflePuzzle()">{{puzzleState}}</button>   
-        <button class="btn btn-block btn-success btn-lg" [disabled]='!(webcamState===webcamStates.CAPTURED || imageLoaded)' (click)="upload()">Set as profile picture</button>  
+        <button class="btn btn-block btn-success btn-lg" [disabled]='!(webcamState === webcamStates.CAPTURED || imageLoaded)' (click)="upload()">Set as profile picture</button>
     </div>
 </div>
 <div class="row">
