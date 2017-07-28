@@ -100,7 +100,7 @@ export class MemoryGameComponent implements OnInit {
                 this._secondchoice = card;
                 document.images[card].src = this._baseImgPath + this._faces[card];
                 this._obs = Observable.interval(500)
-                        .do(i => this.check() );
+                        .do(i => this.check());
                 this._subscription = this._obs.subscribe();
             }
         }
