@@ -35,7 +35,7 @@ router.use(function(req, res, next) {
     // decode token
     if(token) {
         // Removing quotes in the token
-        token = token.substring(1, token.length-1);
+        token = token.substring(1, token.length - 1);
 
         // verifies secret and checks exp
         jwt.verify(token, config.secretKey, function(err, decoded) {
@@ -160,9 +160,9 @@ router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (r
             .then(data => {
                 const progressStage = data.progress.stage;
                 const progressActivity = data.progress.activity;
-                const stageDiff = currStage-progressStage;
-                const activityDiff = currActivity-progressActivity;
-                if((currStage===progressStage || stageDiff===1) && (activityDiff===1)){
+                const stageDiff = currStage - progressStage;
+                const activityDiff = currActivity - progressActivity;
+                if((currStage === progressStage || stageDiff === 1) && (activityDiff === 1)) {
                     progress.update({
                         stage: currStage,
                         activity: currActivity
@@ -174,9 +174,9 @@ router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (r
                         .then(response => {
                             return res.status(200).json({info: 'success'});
                         })
-                } else if(stageDiff>1 && activityDiff>1) {
+                } else if(stageDiff > 1 && activityDiff > 1) {
                     return res.status(200).json({info: 'Illegal operation'});
-                } else if(stageDiff<1 && activityDiff<1) {
+                } else if(stageDiff < 1 && activityDiff < 1) {
                     return res.status(200).json({info: 'success'});
                 }
             })
