@@ -3,23 +3,23 @@ import { InfokitService } from '../services/infokit.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
-  selector: 'app-dragdrop',
-  templateUrl: './dragdrop.component.html',
-  styleUrls: ['./dragdrop.component.css']
+    selector: 'app-dragdrop',
+    templateUrl: './dragdrop.component.html',
+    styleUrls: ['./dragdrop.component.css']
 })
 export class DragdropComponent {
     public position= 'col-md-10 col-md-offset-2 introbody';
     dosAndDonts: { description: String, value: String }[] = [
-      { 'description': 'Contaminated water around should be disposed.', 'value': 'do' },
-      { 'description': 'Play outdoors in shorts and half/without sleeves clothes.', 'value': 'dont' },
-      { 'description': 'Use mosquito repellent', 'value': 'do' },
-      { 'description': 'Body should be covered as much as possible', 'value': 'do' },
-      { 'description': 'travel to malaria spread region during pregnancy.', 'value': 'dont' },
-      { 'description': 'eat digestible and light foods during malaria fever.', 'value': 'do' },
-      { 'description': 'Ensure hygiene', 'value': 'do' },
-      { 'description': 'unscreened doors and windows Open.', 'value': 'dont' },
-      { 'description': 'Herbal fumigation', 'value': 'do' },
-      { 'description': 'contaminated blood transfusion', 'value': 'dont' }
+      { description: 'Contaminated water around should be disposed.', value: 'do' },
+      { description: 'Play outdoors in shorts and half/without sleeves clothes.', value: 'dont' },
+      { description: 'Use mosquito repellent', value: 'do' },
+      { description: 'Body should be covered as much as possible', value: 'do' },
+      { description: 'travel to malaria spread region during pregnancy.', value: 'dont' },
+      { description: 'eat digestible and light foods during malaria fever.', value: 'do' },
+      { description: 'Ensure hygiene', value: 'do' },
+      { description: 'unscreened doors and windows Open.', value: 'dont' },
+      { description: 'Herbal fumigation', value: 'do' },
+      { description: 'contaminated blood transfusion', value: 'dont' }
     ];
     do: { description: String, value: String }[]  = [];
     dont: { description: String, value: String }[]  = [];
