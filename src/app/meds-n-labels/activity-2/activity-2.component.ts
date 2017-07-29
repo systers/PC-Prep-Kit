@@ -3,6 +3,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { Observable } from 'rxjs/Rx';
 import swal from 'sweetalert2';
 import { MEDS } from './meds-detail';
+import { SharedDataService } from '../../services/shared.data.service';
 
 @Component({
     selector: 'app-activity-2',
@@ -20,8 +21,10 @@ export class MemoryGameComponent implements OnInit {
     private _status: Object;
     private _activity: number;
     private _stage: number;
-    private _baseImgPath = '../../assets/img/';
+    private _baseImgPath = '../../assets/img/Memory-game/';
 
+    public position: string;
+    public isMatchArr: boolean[] = [];
     public backcard = this._baseImgPath + 'logo.png'; // shows back of card when turned over
     public activityComplete = false;
 
@@ -44,11 +47,18 @@ export class MemoryGameComponent implements OnInit {
                 'primaquine.png',
             ];
 
-    constructor(private _dashboardService: DashboardService) { }
+    constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService) {
+            this._sharedData.position.subscribe(
+            value => {
+                this.position = value;
+            }
+        );
+    }
 
     ngOnInit() {
-        this.shuffle(this._faces);
         this.checkProgress();
+        this.shuffle(this._faces);
+        this.createBoolArr();
     }
 
     /**
@@ -61,6 +71,16 @@ export class MemoryGameComponent implements OnInit {
             items.push(i);
         }
         return items;
+    }
+
+    /**
+     * Utility function to create a boolean array that prevents clicking on a card that was already matched
+     */
+    createBoolArr() {
+        for (let i = 1; i <= 16; i++) {
+            this.isMatchArr.push(true);
+        }
+        return this.isMatchArr;
     }
 
     /**
@@ -83,6 +103,10 @@ export class MemoryGameComponent implements OnInit {
         return array;
     }
 
+    getImgElement(card) {
+        return document.getElementById(card).getElementsByTagName('img')[0];
+    }
+
     /**
      * Flip card on click
      * @param {Number} card The index of the clicked element
@@ -90,18 +114,18 @@ export class MemoryGameComponent implements OnInit {
     choose(card) {
             if (this._clicks === 2) {
                 return;
-            }
-            if (this._clicks === 0) {
-                this._firstchoice = card;
-                document.images[card].src = this._baseImgPath + this._faces[card];
-                this._clicks = 1;
-            } else if (this._firstchoice !== card) {
-                this._clicks = 2;
-                this._secondchoice = card;
-                document.images[card].src = this._baseImgPath + this._faces[card];
-                this._obs = Observable.interval(500)
-                        .do(i => this.check());
-                this._subscription = this._obs.subscribe();
+            } else {
+                this.getImgElement(card).src = this._baseImgPath + this._faces[card];
+                if (this._clicks === 0) {
+                    this._firstchoice = card;
+                    this._clicks = 1;
+                } else if (this._firstchoice !== card) {
+                    this._clicks = 2;
+                    this._secondchoice = card;
+                    this._obs = Observable.interval(500)
+                            .do(i => this.check());
+                    this._subscription = this._obs.subscribe();
+                }
             }
         }
 
@@ -117,6 +141,8 @@ export class MemoryGameComponent implements OnInit {
             for (let i = 0; i < MEDS.length; i++) {
                 if (MEDS[i].name === med) {
                     this.successMatchAlert(MEDS[i].name, MEDS[i].desc);
+                    this.isMatchArr[this._secondchoice] = false;
+                    this.isMatchArr[this._firstchoice] = false;
                     break;
                 }
             }
@@ -125,10 +151,11 @@ export class MemoryGameComponent implements OnInit {
                 this.successAlert();
                 this._status = {stage: 3, activity: 2};
                 this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
+                this.activityComplete = true;
             }
         } else {
-            document.images[this._firstchoice].src = this.backcard;
-            document.images[this._secondchoice].src = this.backcard;
+            this.getImgElement(this._firstchoice).src = this.backcard;
+            this.getImgElement(this._secondchoice).src = this.backcard;
             return;
         }
     }

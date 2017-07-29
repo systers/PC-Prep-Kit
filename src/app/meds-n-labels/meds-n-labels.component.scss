@@ -1,3 +1,5 @@
+@import "../styles/components/_variables";
+
 .stage-header{
     margin-left: 25%; 
     font-weight: 900;
@@ -22,5 +24,25 @@ img {
     box-sizing: border-box;
     -webkit-box-shadow: 0 0 1px #999;
     box-shadow: 0 0 1px #999;
+}
+
+.arrow {
+    width: 75px;
+    line-height: 75px;
+    text-align: center;
+    opacity: 1;
+    border: none;
+    color: $white;
+    border-radius: 50%;
+}
+
+.arrow-red {
+    @extend .arrow;
+    background: #d9534f;
+}
+
+.arrow-green {
+    @extend .arrow;
+    background: green;    
 }
 
