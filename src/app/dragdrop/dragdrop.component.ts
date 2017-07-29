@@ -1,14 +1,23 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { InfokitService } from '../services/infokit.service';
+// import { InfokitService } from '../services/infokit.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'app-dragdrop',
     templateUrl: './dragdrop.component.html',
-    styleUrls: ['./dragdrop.component.css']
+    styleUrls: ['./dragdrop.component.scss']
 })
+
 export class DragdropComponent {
+    /**
+     * To change the postion of contents along with Body
+     */
     public position= 'col-md-10 col-md-offset-2 introbody';
+
+    /**
+     * dosAndDonts description with the values,the same order will be displayed
+     * The objects which are dragged and dropped into Dos or Don'ts Boxes will be deleted from the list
+     */
     dosAndDonts: { description: String, value: String }[] = [
       { description: 'Contaminated water around should be disposed.', value: 'do' },
       { description: 'Play outdoors in shorts and half/without sleeves clothes.', value: 'dont' },
@@ -21,46 +30,54 @@ export class DragdropComponent {
       { description: 'Herbal fumigation', value: 'do' },
       { description: 'contaminated blood transfusion', value: 'dont' }
     ];
+
+    /**
+     *Empty Array of Objects which populates as the descriptions are dorpped into the Dos/ Donts Box
+     */
     do: { description: String, value: String }[]  = [];
     dont: { description: String, value: String }[]  = [];
-    box1Integer = 'do';
-    box2Integer = 'dont';
 
-    box1Items: { description: String, value: String }[] = [];
-    box2Items: { description: String, value: String }[] = [];
+    box1 = 'do';
+    box2 = 'dont';
 
+    /**
+     * The Function Checks if the Value of description is same as the box in which the item is being dropped
+     * @param  {String} value the value of the object being dropped in the box, it can be either do or dont
+     * @return {any}          true if the object is being dropped in the same box, flase otherwise
+     */
     allowDropFunction(value: String): any {
         return (dragData: any) => dragData.value === value;
     }
 
-    addTobox1Items($event: any) {
-        this.box1Items.push($event.dragData);
+    /**
+     * Remove the Object from dosAndDonts Array and fill it in either do or dont array, Check if the dosAndDonts Array is empty
+     * @param  {any}    $event Event Object when any Statement object is dragged and dropped
+     * @param  {String} $box   The box where the object is supposed to be dropped
+     */
+    addTobox($event: any, $box: String) {
+        $box === 'do' ? this.do.push($event.dragData) : this.dont.push($event.dragData);
         this.dosAndDonts.splice(this.dosAndDonts.indexOf($event.dragData), 1);
         if (!this.dosAndDonts.length) {
             this.onComplete();
         }
     }
 
-    addTobox2Items($event: any) {
-        this.box2Items.push($event.dragData);
-        this.dosAndDonts.splice(this.dosAndDonts.indexOf($event.dragData), 1);
-        if (!this.dosAndDonts.length) {
-            this.onComplete();
-        }
-    }
-
-
-
+    /**
+     * Change the Size of the content when Sidebar is toggled
+     */
     toggle() {
         this.position = (this.position === 'col-md-10 col-md-offset-2') ? 'col-md-12' : 'col-md-10 col-md-offset-2';
     }
 
+    /**
+     * Display the completion Message and Activate Infokit for the activity.
+     */
     onComplete() {
         this.toastr.success('Complete ! ', 'Success!');
-        this._infokitService.activateinfokit('do_dont').subscribe(res => {});
+      //  this._infokitService.activateinfokit('do_dont').subscribe(res => {});
     }
 
-    constructor(private _infokitService: InfokitService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    constructor(/*private _infokitService: InfokitService,*/ public toastr: ToastsManager, vcr: ViewContainerRef) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
