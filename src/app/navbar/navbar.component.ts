@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { NavbarService } from '../services/navbar.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
     selector: 'app-navbar',
@@ -23,14 +24,18 @@ import { NavbarService } from '../services/navbar.service';
 
 export class NavbarComponent implements OnInit {
     username: String;
-
+    language: any;
     @Output() togglePosition = new EventEmitter<any>();
     public state= 'out';
-    constructor(private _navbarService: NavbarService) { }
+    constructor(private _navbarService: NavbarService, private _langService: LanguageService) { }
 
     ngOnInit() {
         this._navbarService.getUserName().subscribe(response => {
             this.username = response.username;
+        });
+
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.navbar;
         });
     }
 

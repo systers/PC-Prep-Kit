@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-// import { InfokitService } from '../services/infokit.service';
+import { InfokitService } from '../services/infokit.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { LanguageService } from '../services/language.service';
 
 @Component({
     selector: 'app-dragdrop',
@@ -8,7 +9,9 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
     styleUrls: ['./dragdrop.component.scss']
 })
 
-export class DragdropComponent {
+export class DragdropComponent implements OnInit {
+
+    language: any;
     /**
      * To change the postion of contents along with Body
      */
@@ -40,6 +43,11 @@ export class DragdropComponent {
     box1 = 'do';
     box2 = 'dont';
 
+    ngOnInit() {
+      this._langService.loadLanguage().subscribe(response => {
+          this.language = response.pcprepkit.dragdrop;
+      });
+    }
     /**
      * The Function Checks if the Value of description is same as the box in which the item is being dropped
      * @param  {String} value the value of the object being dropped in the box, it can be either do or dont
@@ -77,7 +85,8 @@ export class DragdropComponent {
       //  this._infokitService.activateinfokit('do_dont').subscribe(res => {});
     }
 
-    constructor(/*private _infokitService: InfokitService,*/ public toastr: ToastsManager, vcr: ViewContainerRef) {
+    constructor(private _infokitService: InfokitService, public toastr: ToastsManager, vcr: ViewContainerRef,
+      private _langService: LanguageService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 

@@ -19,47 +19,47 @@ export const routes: Routes = [
     {
         path: 'splash',
         component: SplashscreenComponent,
-        canActivate: [UnauthenticatedGuard]
+        //canActivate: [UnauthenticatedGuard]
     },
     {
         path: '',
         component: SplashscreenComponent,
-        canActivate: [UnauthenticatedGuard]
+        //canActivate: [UnauthenticatedGuard]
     },
     {
         path: 'login',
         component: LoginComponent,
-        canActivate: [UnauthenticatedGuard]
+        //canActivate: [UnauthenticatedGuard]
     },
     {
         path: 'register',
         component: RegisterComponent,
-        canActivate: [UnauthenticatedGuard]
+        //canActivate: [UnauthenticatedGuard]
     },
     {
         path: 'home',
         component: DashboardComponent,
-        canActivate: [LoggedInGuard]
+        //canActivate: [LoggedInGuard]
     },
     {
         path: 'forgot',
         component: ForgotPasswordComponent,
-        canActivate: [UnauthenticatedGuard]
+        //canActivate: [UnauthenticatedGuard]
     },
     {
         path: 'pcpolicy',
         component: PcpolicyComponent,
-        canActivate: [LoggedInGuard]
+        //canActivate: [LoggedInGuard]
     },
     {
         path: 'intro',
         component: ActivityintroComponent,
-        canActivate: [LoggedInGuard]
+        //canActivate: [LoggedInGuard]
     },
     {
         path: 'dragdrop',
         component: DragdropComponent,
-        canActivate: [LoggedInGuard]
+        //canActivate: [LoggedInGuard]
     },
     {
         path: 'reset/:token',

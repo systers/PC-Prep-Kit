@@ -30,7 +30,7 @@ import { AuthService } from './services/auth.service';
 import { APIService } from './services/api.service';
 import { RegService } from './services/reg.service';
 import { NavbarService } from './services/navbar.service';
-
+import { LanguageService } from './services/language.service';
 
 @NgModule({
     declarations: [
@@ -57,7 +57,7 @@ import { NavbarService } from './services/navbar.service';
         BrowserAnimationsModule,  DndModule.forRoot(),
         ToastModule.forRoot()
     ],
-    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService],
+    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService, LanguageService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

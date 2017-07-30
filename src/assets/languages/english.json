@@ -1,0 +1,87 @@
+{
+  "pcprepkit": {
+    "registration": {
+      "headings": {
+        "titleLeft": "PC Prep",
+        "titleRight": "Kit"
+      },
+      "messages": {
+        "heading": "Sign Up",
+        "buttonMessage": "Sign Up"
+      },
+      "errors": {
+        "emailReq": "Email is Required",
+        "emailInvalid": "The Email is Invalid",
+        "passwordReq": "Password is Required",
+        "passwordMatch": "Passwords should match"
+      },
+      "placeHolders": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password"
+      }
+    },
+    "navbar": {
+      "links": {
+        "introduction": "Introduction",
+        "malaria101": "Malaria 101",
+        "medsAndLabels": "Medication And Labels",
+        "pcpolicy": "Peace Corps Policy",
+        "infokit": "Infokit"
+      }
+    },
+    "header": {
+      "headings": {
+        "titleLeft": "PC Prep",
+        "titleRight": "Kit"
+      },
+      "messages": {
+        "logoutButton": "Logout"
+      }
+    },
+    "activityintro": {
+      "headings": {
+        "introduction": "Introduction",
+        "welcome": "Welcome"
+      },
+      "descriptions": {
+        "bodyContent": "The next few activites will help us get started with learning about malaria, your responsibilities as a Peace Corps Volunteer, and the way you can protect yourself."
+      },
+      "messages": {
+        "nextButton": "Cool, next"
+      }
+    },
+    "pcpolicy": {
+      "headings": {
+        "introduction": "Introduction"
+      },
+      "descriptions": {
+        "bodyContent1": "So this is Kinda important.",
+        "bodyContent2": "Lets make sure you have it on hand.",
+        "bodyContent3": "Email the official Peace Corps policy to Yourself.",
+        "bodyContent4": "Email will be sent to"
+      },
+      "messages": {
+        "mailButton": "Email to Self"
+      }
+    },
+    "splashscreen": {
+      "headings": {
+        "titleLeft": "PC Prep",
+        "titleRight": "Kit"
+      },
+      "descriptions": {
+        "bodyContent": "Brought to you by"
+      }
+    },
+    "dragdrop": {
+      "descriptions": {
+        "boxIndicatorDo": "Dos",
+        "boxIndicatorDont": "Don'ts",
+        "boxIndicatorAvailable": "Available to drag" 
+      }
+    }
+  }
+}
