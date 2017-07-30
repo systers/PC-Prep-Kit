@@ -54,7 +54,8 @@ import { LanguageService } from './services/language.service';
         HttpModule,
         ReactiveFormsModule,
         BrowserModule,
-        BrowserAnimationsModule,  DndModule.forRoot(),
+        BrowserAnimationsModule,
+        DndModule.forRoot(),
         ToastModule.forRoot()
     ],
     providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService, LanguageService],
