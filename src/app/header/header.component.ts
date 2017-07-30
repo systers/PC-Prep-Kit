@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
         this._langService.loadLanguage().subscribe(response => {
-            this.language = response.pcprepkit.header;
+            this.language = response.pcprepkit.common.header;
         });
      }
     logout() {

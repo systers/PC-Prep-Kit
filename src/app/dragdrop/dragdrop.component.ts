@@ -45,7 +45,7 @@ export class DragdropComponent implements OnInit {
 
     ngOnInit() {
       this._langService.loadLanguage().subscribe(response => {
-          this.language = response.pcprepkit.dragdrop;
+          this.language = response.pcprepkit.stages.malaria101.dragdrop;
       });
     }
     /**

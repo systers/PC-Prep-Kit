@@ -22,7 +22,7 @@ export class PcpolicyComponent implements OnInit {
         });
 
         this._langService.loadLanguage().subscribe(response => {
-            this.language = response.pcprepkit.pcpolicy;
+            this.language = response.pcprepkit.stages.introduction.pcpolicy;
         });
     }
 

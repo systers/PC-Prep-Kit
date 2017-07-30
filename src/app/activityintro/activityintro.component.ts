@@ -16,7 +16,7 @@ export class ActivityintroComponent implements OnInit {
 
     ngOnInit() {
       this._langService.loadLanguage().subscribe(response => {
-          this.language = response.pcprepkit.dragdrop;
+          this.language = response.pcprepkit.stages.introduction.activityintro;
       });
     }
 

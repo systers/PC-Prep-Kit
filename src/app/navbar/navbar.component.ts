@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
         });
 
         this._langService.loadLanguage().subscribe(response => {
-            this.language = response.pcprepkit.navbar;
+            this.language = response.pcprepkit.common.navbar;
         });
     }
 
