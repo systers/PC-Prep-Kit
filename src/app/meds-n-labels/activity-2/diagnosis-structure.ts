@@ -1,4 +1,4 @@
-export class Med {
+export class Diagnosis {
   name: string;
   desc: string;
 }

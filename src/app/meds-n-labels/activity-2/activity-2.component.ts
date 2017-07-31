@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { Observable } from 'rxjs/Rx';
 import swal from 'sweetalert2';
-import { MEDS } from './meds-detail';
+import { DIAGNOSIS } from './diagnosis-detail';
 import { SharedDataService } from '../../services/shared.data.service';
 
 @Component({
@@ -29,22 +29,22 @@ export class MemoryGameComponent implements OnInit {
     public activityComplete = false;
 
     private _faces = [
-                'chloroquine.png',
-                'coartem.png',
-                'quinidine.png',
-                'coartem.png',
-                'quinine.png',
-                'malarone.png',
-                'quinidine.png',
-                'doxycycline.png',
-                'malarone.png',
-                'melfoquine.png',
-                'melfoquine.png',
-                'quinine.png',
-                'chloroquine.png',
-                'primaquine.png',
-                'doxycycline.png',
-                'primaquine.png',
+                'area-1.png',
+                'blood-test.png',
+                'enlarged-liver-1.png',
+                'blood-test.png',
+                'enlarged-spleen-1.png',
+                'other-tests.png',
+                'enlarged-liver-1.png',
+                'rapid-diagnostic-test-1.png',
+                'other-tests.png',
+                'symptoms-1.png',
+                'symptoms-1.png',
+                'enlarged-spleen-1.png',
+                'area-1.png',
+                'virus-1.png',
+                'rapid-diagnostic-test-1.png',
+                'virus-1.png',
             ];
 
     constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService) {
@@ -138,9 +138,9 @@ export class MemoryGameComponent implements OnInit {
         if (this._faces[this._secondchoice] === this._faces[this._firstchoice]) {
             const medName = this._faces[this._secondchoice]; // or this.faces[this._firstchoice]
             const med = medName.substr(0, medName.lastIndexOf('.'));
-            for (let i = 0; i < MEDS.length; i++) {
-                if (MEDS[i].name === med) {
-                    this.successMatchAlert(MEDS[i].name, MEDS[i].desc);
+            for (let i = 0; i < DIAGNOSIS.length; i++) {
+                if (DIAGNOSIS[i].name === med) {
+                    this.successMatchAlert(DIAGNOSIS[i].desc);
                     this.isMatchArr[this._secondchoice] = false;
                     this.isMatchArr[this._firstchoice] = false;
                     break;
@@ -165,9 +165,9 @@ export class MemoryGameComponent implements OnInit {
      * @param {String} medName The name of the medication
      * @param {String} msg     The side effect message to be displayed
      */
-    successMatchAlert(medName, msg) {
+    successMatchAlert(msg) {
         swal(
-            'Congratulations!<br>You matched a pair of ' + medName,
+            'Congratulations!<br>You matched a pair',
             msg,
             'success'
         );
