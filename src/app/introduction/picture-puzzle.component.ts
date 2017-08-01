@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, Renderer } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import swal from 'sweetalert2';
 import { DashboardService } from '../services/dashboard.service';
 import 'webrtc-adapter';
 import { webcamEnum } from './webcamEnum';
@@ -91,21 +90,21 @@ export class PicturePuzzleComponent implements OnInit {
 
     ngOnInit() {
         this.changeWebcamState(this.webcamStates.PAGE_LOAD, 'Take Photo');
-        this.checkProgress();
+        this.activityComplete = this._sharedData.checkProgress(1, 3);
     }
 
     upload() {
         if (this.webcamState === this.webcamStates.CAPTURED) {
             const camData = {base64: this._canvas.toDataURL('image/jpeg')}
             this._dashboardService.uploadCamPic(camData).subscribe(response => {
-                this.customAlert('Success!', 'Profile picture updated successfully!', 'success');
+                this._sharedData.customAlert('Success!', 'Profile picture updated successfully!', 'success');
             });
         } else {
             const formData: any = new FormData();
             const files: Array<File> = this.filesToUpload;
             formData.append('uploads[]', files, 'profile_picture');
             this._dashboardService.uploadPic(formData).subscribe(response => {
-                this.customAlert('Success!', 'Profile picture updated successfully!', 'success');
+                this._sharedData.customAlert('Success!', 'Profile picture updated successfully!', 'success');
             });
         }
     }
@@ -128,7 +127,7 @@ export class PicturePuzzleComponent implements OnInit {
         const reader = new FileReader();
 
         if (!file.type.match(pattern)) {
-            this.customAlert('Oops...', 'Invalid format!', 'error');
+            this._sharedData.customAlert('Oops...', 'Invalid format!', 'error');
             return;
         }
 
@@ -184,42 +183,41 @@ export class PicturePuzzleComponent implements OnInit {
     buildPieces() {
         let i;
         let piece;
-        let xPos = 0;
-        let yPos = 0;
+        let posn = {x: 0, y: 0};
         for (i = 0; i < this.PUZZLE_DIFFICULTY * this.PUZZLE_DIFFICULTY; i++) {
             piece = {};
-            piece.sx = xPos;
-            piece.sy = yPos;
+            piece.sx = posn.x;
+            piece.sy = posn.y;
             this._pieces.push(piece);
-            xPos += this._pieceWidth;
-            if (xPos >= this._puzzleWidth) {
-                xPos = 0;
-                yPos += this._pieceHeight;
-            }
+            posn = this.getPiecePosition(posn);
         }
     }
 
     shufflePuzzle() {
         let i;
         let piece;
-        let xPos = 0;
-        let yPos = 0;
+        let posn = {x: 0, y: 0};
         this.puzzleState = 'Shuffle';
         this._pieces = this.shuffleArray(this._pieces);
         this._stage.clearRect(0, 0, this._puzzleWidth, this._puzzleHeight);
         for (i = 0;  i < this._pieces.length; i++) {
             piece = this._pieces[i];
-            piece.xPos = xPos;
-            piece.yPos = yPos;
+            piece.xPos = posn.x;
+            piece.yPos = posn.y;
             this._stage.drawImage(this._newImg, piece.sx, piece.sy, this._pieceWidth, this._pieceHeight, xPos, yPos, this._pieceWidth, this._pieceHeight);
             this._stage.strokeRect(xPos, yPos, this._pieceWidth, this._pieceHeight);
-            xPos += this._pieceWidth;
-            if (xPos >= this._puzzleWidth) {
-                xPos = 0;
-                yPos += this._pieceHeight;
-            }
+            posn = this.getPiecePosition(posn);
         }
         this._mousedownListener = this._renderer.listen(this._canvas, 'mousedown', (event) => this.onPuzzleClick(event));
+    }
+
+    getPiecePosition(posn) {
+        posn.x += this._pieceWidth;
+        if (posn.x >= this._puzzleWidth) {
+            posn.x = 0;
+            posn.y += this._pieceHeight;
+        }
+        return posn;
     }
 
     shuffleArray(array) {
@@ -255,7 +253,9 @@ export class PicturePuzzleComponent implements OnInit {
             this._stage.clearRect(this._currentPiece.xPos, this._currentPiece.yPos, this._pieceWidth, this._pieceHeight);
             this._stage.save();
             this._stage.globalAlpha = .9;
-            this._stage.drawImage(this._newImg, this._currentPiece.sx, this._currentPiece.sy, this._pieceWidth, this._pieceHeight, this._mouse.x - (this._pieceWidth / 2), this._mouse.y - (this._pieceHeight / 2), this._pieceWidth, this._pieceHeight);
+            const mouseXPos = this._mouse.x - (this._pieceWidth / 2);
+            const mouseYPos = this._mouse.y - (this._pieceHeight / 2);
+            this._stage.drawImage(this._newImg, this._currentPiece.sx, this._currentPiece.sy, this._pieceWidth, this._pieceHeight, mouseXPos, mouseYPos, this._pieceWidth, this._pieceHeight);
             this._stage.restore();
             this._mousemoveListener = this._renderer.listen(this._canvas, 'mousemove', (event) => this.updatePuzzle(event));
             this._mouseupListener = this._renderer.listen(this._canvas, 'mouseup', (event) => this.pieceDropped(event));
@@ -302,15 +302,17 @@ export class PicturePuzzleComponent implements OnInit {
         }
         this._stage.save();
         this._stage.globalAlpha = .6;
-        this._stage.drawImage(this._newImg, this._currentPiece.sx, this._currentPiece.sy, this._pieceWidth, this._pieceHeight, this._mouse.x - (this._pieceWidth / 2), this._mouse.y - (this._pieceHeight / 2), this._pieceWidth, this._pieceHeight);
+        const mouseXPos = this._mouse.x - (this._pieceWidth / 2);
+        const mouseYPos = this._mouse.y - (this._pieceHeight / 2);
+        this._stage.drawImage(this._newImg, this._currentPiece.sx, this._currentPiece.sy, this._pieceWidth, this._pieceHeight, mouseXPos, mouseYPos, this._pieceWidth, this._pieceHeight);
         this._stage.restore();
-        this._stage.strokeRect( this._mouse.x - (this._pieceWidth / 2), this._mouse.y - (this._pieceHeight / 2), this._pieceWidth, this._pieceHeight);
+        this._stage.strokeRect(mouseXPos, mouseYPos, this._pieceWidth, this._pieceHeight);
     }
 
     pieceDropped(e) {
         this._mousemoveListener();
         this._mouseupListener();
-        if (this._currentDropPiece != null) {
+        if (this._currentDropPiece !== null) {
             const tmp = {xPos: this._currentPiece.xPos, yPos: this._currentPiece.yPos};
             this._currentPiece.xPos = this._currentDropPiece.xPos;
             this._currentPiece.yPos = this._currentDropPiece.yPos;
@@ -339,32 +341,11 @@ export class PicturePuzzleComponent implements OnInit {
 
     gameOver() {
         this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
-        this.customAlert('Good job!', 'You completed this activity!', 'success');
+        this._sharedData.customAlert('Good job!', 'You completed this activity!', 'success');
         this._mousedownListener();
         this._mousemoveListener();
         this._mouseupListener();
         this.initPuzzle();
         this.activityComplete = true;
-    }
-
-    /**
-     * Check progress of user (If the user has already completed the activity or not)
-     */
-    checkProgress() {
-        this._dashboardService.getProgressStatus().subscribe(response => {
-            this._activity = response.activity;
-            this._stage = response.stage;
-            if (this._stage >= 1 && this._activity >= 3) {
-                this.activityComplete = true;
-            }
-        });
-    }
-
-    customAlert(title, msg, type) {
-        swal(
-            title,
-            msg,
-            type
-        );
     }
 }

@@ -10,8 +10,7 @@
     </div>
     <div class="col-md-3 col-md-offset-3">
         <input type="file" name="file" id="file" accept="image/*" (change)="handleInputChange($event)">
-        <button class="btn btn-block btn-danger btn-lg" *ngIf='webcamState === webcamStates.PAGE_LOAD' (click)="openWebcam()">{{webcamButtonText}}</button>
-        <button class="btn btn-block btn-danger btn-lg" *ngIf='webcamState === webcamStates.CAPTURED' (click)="openWebcam()">{{webcamButtonText}}</button>
+        <button class="btn btn-block btn-danger btn-lg" *ngIf='webcamState!==webcamStates.OPENED' (click)="openWebcam()">{{webcamButtonText}}</button>
         <button class="btn btn-block btn-danger btn-lg" *ngIf='webcamState === webcamStates.OPENED' (click)="snapshot()">{{webcamButtonText}}</button>
         <button class="btn btn-block btn-primary btn-lg" (click)="fireFileButtonClick()">Choose Existing</button>
         <button class="btn btn-block btn-primary btn-lg" [disabled]='!imageLoaded' (click)="shufflePuzzle()">{{puzzleState}}</button>   

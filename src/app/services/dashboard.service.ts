@@ -10,12 +10,14 @@ export class DashboardService {
 
     private _localStorageKey = environment.localStorageKey;
 
-    private _getUserInfo = environment.baseURL + environment.apiEndpoint + 'getUserInfo';
-    private _mailPcPolicyInfo = environment.baseURL + environment.apiEndpoint + 'mailpcpolicy';
-    private _getProgressStatus = environment.baseURL + environment.apiEndpoint + 'getProgressStatus';
-    private _updateProgressStatus = environment.baseURL + environment.apiEndpoint + 'updateProgressStatus';
-    private _uploadCamPic = environment.baseURL + environment.apiEndpoint + 'uploadCam';
-    private _uploadPic = environment.baseURL + environment.apiEndpoint + 'upload';
+    private _baseAPIUrl = environment.baseURL + environment.apiEndpoint;
+
+    private _getUserInfo = this._baseAPIUrl + 'getUserInfo';
+    private _mailPcPolicyInfo = this._baseAPIUrl + 'mailpcpolicy';
+    private _getProgressStatus = this._baseAPIUrl + 'getProgressStatus';
+    private _updateProgressStatus = this._baseAPIUrl + 'updateProgressStatus';
+    private _uploadCamPic = this._baseAPIUrl + 'uploadCam';
+    private _uploadPic = this._baseAPIUrl + 'upload';
 
     constructor(private _http: Http, private _apiservice: APIService) { }
 
