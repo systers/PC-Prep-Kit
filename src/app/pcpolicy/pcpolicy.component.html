@@ -5,12 +5,12 @@
   <app-navbar #nav (toggleposition)="toggle()"></app-navbar>
   <div class="row">
     <div [className]="position + ' pc-policy-body text-center'">
-      <H1> Introduction </H1>
-      <p class="lead"> So this is Kinda important.<Br> Lets make sure you have it on hand.</p>
-      <p class="lead text-primary"><strong>Email the official Peace Corps policy to Yourself.</strong></p>
+      <H1> {{language?.headings.introduction}} </H1>
+      <p class="lead"> {{language?.descriptions.bodyContent1}} <Br> {{language?.descriptions.bodyContent2}}</p>
+      <p class="lead text-primary"><strong> {{language?.descriptions.bodyContent3}} </strong></p>
       <img src="assets/img/mailpolicy.PNG" class="img-responsive center-block mail-policy-image">
-      <button type="button" class="btn btn-primary btn-lg" (click)="mail()">Email to Self</button>
-      <p>Email will be sent to {{email}}</p>
+      <button type="button" class="btn btn-primary btn-lg" (click)="mail()"> {{language?.messages.mailButton}} </button>
+      <p>{{language?.descriptions.bodyContent4 +' '+ email}}</p>
     </div>
   </div>
 </div>

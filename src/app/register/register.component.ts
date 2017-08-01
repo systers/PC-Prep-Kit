@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { RegService } from '../services/reg.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
     selector: 'app-register',
@@ -11,10 +12,11 @@ import { RegService } from '../services/reg.service';
 })
 
 
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
     regForm: FormGroup;
+    language: any;
 
-    constructor(private _regService: RegService, private _router: Router, fb: FormBuilder) {
+    constructor(private _regService: RegService, private _router: Router, fb: FormBuilder, private _langService: LanguageService) {
         this.regForm = fb.group({
             fname : [null, Validators.compose([Validators.required])],
             lname : [null, Validators.compose([Validators.required])],
@@ -24,6 +26,12 @@ export class RegisterComponent {
             confirmpassword : [null, Validators.compose([Validators.required])]
         });
     }
+
+    ngOnInit() {
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.registration;
+        });
+     }
 
     onSubmit = function(form: any) {
         this._regService.registerUser(form).subscribe((successful: boolean): void => {
