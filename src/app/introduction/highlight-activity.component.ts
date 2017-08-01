@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {Observable} from 'rxjs/Rx';
-import swal from 'sweetalert2';
+import { Observable } from 'rxjs/Rx';
 import { DashboardService } from '../services/dashboard.service';
 
 @Component({
@@ -18,17 +17,14 @@ export class HighlightActivityComponent implements OnInit {
     private _stage: number;
     public activityComplete = false;
 
-    constructor(private _dashboardService: DashboardService) { }
+    constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService) { }
 
     /**
      * Handle activity setup (Displaying activity information, checking user's progress and checking completing of activity)
      */
     ngOnInit() {
-        swal({
-            title: 'Highlight the definition of malaria to complete this activity',
-            type: 'warning'
-        });
-        this.checkProgress();
+        this._sharedData.customAlert('Highlight the definition of malaria to complete this activity', '', 'warning');
+        this.activityComplete = this._sharedData.checkProgress(1, 1);
         this._obs = Observable.interval(500)
                        .do(i => this.select());
         this._subscription = this._obs.subscribe();
@@ -52,34 +48,14 @@ export class HighlightActivityComponent implements OnInit {
                 selection.empty();
             }
             if (this.activityComplete) {
-                swal({
-                    title: 'You have already completed this activity!',
-                    type: 'warning'
-                });
+                this._sharedData.customAlert('You have already completed this activity!', '', 'warning');
             } else {
                 this._dashboardService.updateProgressStatus(this._status).subscribe(response => {
                 });
-                swal(
-                    'Good job!',
-                    'You completed this activity!',
-                    'success'
-                );
+                this._sharedData.customAlert('Good job!', 'You completed this activity!', 'success');
                 this.activityComplete = true;
             }
         }
-    }
-
-    /**
-     * Check progress of user (If the user has already completed the activity or not)
-     */
-    checkProgress() {
-        this._dashboardService.getProgressStatus().subscribe(response => {
-            this._activity = response.activity;
-            this._stage = response.stage;
-            if (this._stage >= 1 && this._activity >= 1) {
-                this.activityComplete = true;
-            }
-        });
     }
 }
 
