@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { Observable } from 'rxjs/Rx';
-import swal from 'sweetalert2';
 import { DIAGNOSIS } from './diagnosis-detail';
 import { SharedDataService } from '../../services/shared.data.service';
 
@@ -56,7 +55,7 @@ export class MemoryGameComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.checkProgress();
+        this.activityComplete = this._sharedData.checkProgress(3, 2);
         this.shuffle(this._faces);
         this.createBoolArr();
     }
@@ -140,7 +139,7 @@ export class MemoryGameComponent implements OnInit {
             const med = medName.substr(0, medName.lastIndexOf('.'));
             for (let i = 0; i < DIAGNOSIS.length; i++) {
                 if (DIAGNOSIS[i].name === med) {
-                    this.successMatchAlert(DIAGNOSIS[i].desc);
+                    this._sharedData.customAlert('Congratulations!<br>You matched a pair', DIAGNOSIS[i].desc, 'success');
                     this.isMatchArr[this._secondchoice] = false;
                     this.isMatchArr[this._firstchoice] = false;
                     break;
@@ -148,7 +147,7 @@ export class MemoryGameComponent implements OnInit {
             }
             this._matches++;
             if (this._matches === 8) {
-                this.successAlert();
+                this._sharedData.customAlert('Good job!', 'You completed this activity!', 'success');
                 this._status = {stage: 3, activity: 2};
                 this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
                 this.activityComplete = true;
@@ -158,39 +157,5 @@ export class MemoryGameComponent implements OnInit {
             this.getImgElement(this._secondchoice).src = this.backcard;
             return;
         }
-    }
-
-    /**
-     * Alert message on a successful match
-     * @param {String} medName The name of the medication
-     * @param {String} msg     The side effect message to be displayed
-     */
-    successMatchAlert(msg) {
-        swal(
-            'Congratulations!<br>You matched a pair',
-            msg,
-            'success'
-        );
-    }
-
-    /**
-     * Alert on completing the activity
-     */
-    successAlert() {
-        swal(
-            'Good job!',
-            'You completed this activity!',
-            'success'
-        );
-    }
-
-    checkProgress() {
-        this._dashboardService.getProgressStatus().subscribe(response => {
-            this._activity = response.activity;
-            this._stage = response.stage;
-            if (this._stage >= 3 && this._activity >= 2) {
-                this.activityComplete = true;
-            }
-        });
     }
 }
