@@ -95,20 +95,4 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-/**
- * Get port from environment and store in Express.
- */
-const port = process.env.PORT || '3000';
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-server.listen(port, () => winston.log(`API running on localhost:${port}`));
-
 module.exports = app;
