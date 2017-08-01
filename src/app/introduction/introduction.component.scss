@@ -32,55 +32,61 @@ h2 {
     font-size: 1.5em;
 }
 
-@mixin border-radius($radius1, $radius2) {
-    -webkit-border-bottom-right-radius: $radius1 $radius2;
-    -moz-border-radius-bottomright: $radius1 $radius1;
-    border-bottom-right-radius: $radius1 $radius1;
+@mixin border-bottom-right-radius($radius...) {
+    -webkit-border-bottom-right-radius: $radius;
+    -moz-border-radius-bottomright: $radius;
+    border-bottom-right-radius: $radius;
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius; 
+    border-radius: $radius; 
 }
 
 .rectangle-speech-border {
-  position: relative;
-  padding: 50px;
-  width: 100%;
-  margin: 1em 0 3em;
-  border: 2px solid black;
-  color: #333;
-  background: $white;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-  &:before,
-  &:after {
-    content: "";
-    position: absolute;
-    z-index: 10;
-    bottom: -30px;
-    height: 30px;
-    border-style: solid;
-    border-width: 0 2px 2px 0;
-    border-color: $black;
-    background: transparent;
-    display: block;
-  }
-  &:before {
-    left: 50px;
-    width: 50px;
-    @include border-radius(80px, 50px);
-  }
-  &:after {
-    left: 55px;
-    width: 20px;
-    @include border-radius(40px, 50px);
-  }
-  > :first-child:after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 76px;
-    width: 24px;
-    height: 15px;
+    position: relative;
+    padding: 50px;
+    width: 100%;
+    margin: 1em 0 3em;
+    border: 2px solid black;
+    color: #333;
     background: $white;
-  }
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: 10;
+        bottom: -30px;
+        height: 30px;
+        border-style: solid;
+        border-width: 0 2px 2px 0;
+        border-color: $black;
+        background: transparent;
+        display: block;
+    }
+    &:before {
+        left: 50px;
+        width: 50px;
+        @include border-bottom-right-radius(80px 50px);
+    }
+    &:after {
+        left: 55px;
+        width: 20px;
+        @include border-bottom-right-radius(40px 50px);
+    }
+    > :first-child:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 76px;
+        width: 24px;
+        height: 15px;
+        background: $white;
+    }
 }
 
 .arrow {
@@ -90,12 +96,12 @@ h2 {
     opacity: 1;
     border: none;
     color: $white;
-    border-radius: 50%;
+    @include border-radius(50%);
 }
 
 .arrow-red {
     @extend .arrow;
-    background: #d9534f;
+    background: $red;
 }
 
 .arrow-green {
@@ -138,8 +144,4 @@ h2 {
     60% {
         transform: translateY(-15px);
     }
-}
-
-#file {
-    display: none;
 }
