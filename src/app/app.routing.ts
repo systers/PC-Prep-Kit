@@ -17,8 +17,6 @@ import { DragdropComponent} from './dragdrop/dragdrop.component';
 import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
 import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
 
->>>>>>> Memory game activity
-
 export const routes: Routes = [
     {
         path: 'splash',

@@ -152,10 +152,8 @@ export class MemoryGameComponent implements OnInit {
                 this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
                 this.activityComplete = true;
             }
-        } else {
-            this.getImgElement(this._firstchoice).src = this.backcard;
-            this.getImgElement(this._secondchoice).src = this.backcard;
-            return;
         }
+        this.getImgElement(this._firstchoice).src = this.backcard;
+        this.getImgElement(this._secondchoice).src = this.backcard;
     }
 }
