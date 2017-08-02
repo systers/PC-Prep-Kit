@@ -113,18 +113,17 @@ export class MemoryGameComponent implements OnInit {
     choose(card) {
             if (this._clicks === 2) {
                 return;
-            } else {
-                this.getImgElement(card).src = this._baseImgPath + this._faces[card];
-                if (this._clicks === 0) {
-                    this._firstchoice = card;
-                    this._clicks = 1;
-                } else if (this._firstchoice !== card) {
-                    this._clicks = 2;
-                    this._secondchoice = card;
-                    this._obs = Observable.interval(500)
+            }
+            this.getImgElement(card).src = this._baseImgPath + this._faces[card];
+            if (this._clicks === 0) {
+                this._firstchoice = card;
+                this._clicks = 1;
+            } else if (this._firstchoice !== card) {
+                this._clicks = 2;
+                this._secondchoice = card;
+                this._obs = Observable.interval(500)
                             .do(i => this.check());
-                    this._subscription = this._obs.subscribe();
-                }
+                this._subscription = this._obs.subscribe();
             }
         }
 
