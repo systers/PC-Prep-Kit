@@ -29,16 +29,15 @@ export class SharedDataService {
      * Check progress of user (If the user has already completed the activity or not)
      */
     checkProgress(currStage, currActivity): any {
+        let activityCompleted = false;
         this._dashboardService.getProgressStatus().subscribe(response => {
             const activity = response.activity;
             const stage = response.stage;
             if (stage >= currStage && activity >= currActivity) {
-                return true;
-            } else {
-                return false;
+                activityCompleted = true;
             }
-            return false;
         });
+        return activityCompleted;
     }
 
     customAlert(title, msg, type) {
