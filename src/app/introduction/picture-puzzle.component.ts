@@ -253,13 +253,19 @@ export class PicturePuzzleComponent implements OnInit {
             this._stage.clearRect(this._currentPiece.xPos, this._currentPiece.yPos, this._pieceWidth, this._pieceHeight);
             this._stage.save();
             this._stage.globalAlpha = .9;
-            const mouseXPos = this._mouse.x - (this._pieceWidth / 2);
-            const mouseYPos = this._mouse.y - (this._pieceHeight / 2);
-            this._stage.drawImage(this._newImg, this._currentPiece.sx, this._currentPiece.sy, this._pieceWidth, this._pieceHeight, mouseXPos, mouseYPos, this._pieceWidth, this._pieceHeight);
+            let mousePos = {x: 0, y: 0};
+            mousePos = getMousePosition(mousePos);
+            this._stage.drawImage(this._newImg, this._currentPiece.sx, this._currentPiece.sy, this._pieceWidth, this._pieceHeight, mousePos.x, mousePos.y, this._pieceWidth, this._pieceHeight);
             this._stage.restore();
             this._mousemoveListener = this._renderer.listen(this._canvas, 'mousemove', (event) => this.updatePuzzle(event));
             this._mouseupListener = this._renderer.listen(this._canvas, 'mouseup', (event) => this.pieceDropped(event));
         }
+    }
+
+    getMousePosition(mousePos) {
+        mousePos.x = this._mouse.x - (this._pieceWidth / 2);
+        mousePos.y = this._mouse.y - (this._pieceHeight / 2);
+        return mousePos;
     }
 
     checkPieceClicked() {
@@ -302,9 +308,9 @@ export class PicturePuzzleComponent implements OnInit {
         }
         this._stage.save();
         this._stage.globalAlpha = .6;
-        const mouseXPos = this._mouse.x - (this._pieceWidth / 2);
-        const mouseYPos = this._mouse.y - (this._pieceHeight / 2);
-        this._stage.drawImage(this._newImg, this._currentPiece.sx, this._currentPiece.sy, this._pieceWidth, this._pieceHeight, mouseXPos, mouseYPos, this._pieceWidth, this._pieceHeight);
+        let mousePos = {x: 0, y: 0};
+        mousePos = getMousePosition(mousePos);
+        this._stage.drawImage(this._newImg, this._currentPiece.sx, this._currentPiece.sy, this._pieceWidth, this._pieceHeight, mousePos.x, mousePos.y, this._pieceWidth, this._pieceHeight);
         this._stage.restore();
         this._stage.strokeRect(mouseXPos, mouseYPos, this._pieceWidth, this._pieceHeight);
     }
