@@ -31,6 +31,8 @@ import { APIService } from './services/api.service';
 import { RegService } from './services/reg.service';
 import { NavbarService } from './services/navbar.service';
 import { LanguageService } from './services/language.service';
+import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
+import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +48,9 @@ import { LanguageService } from './services/language.service';
         ActivityintroComponent,
         HeaderComponent,
         MenuComponent,
-        DragdropComponent
+        DragdropComponent,
+        MedsNLabelsComponent,
+        MemoryGameComponent
     ],
     imports: [
         AppRoutingModule,
