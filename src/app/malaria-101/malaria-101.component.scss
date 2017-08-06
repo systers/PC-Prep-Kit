@@ -1,0 +1,218 @@
+.stage-header{
+    margin-left: 25%; 
+    font-weight: 900;
+    color: #04529D;
+}
+
+video{
+    border: 3px solid #ECECEC;
+    background-color: black !important;
+}
+
+.pieces {
+    height: 125px;
+    width: 115px;
+    border-radius: 25px;
+}
+
+.mosquitoes {
+    height: 120px;
+    width:80px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+
+@mixin text($topPos, $leftPos) {
+    position: absolute;
+    width: 15%;
+    top: $topPos;
+    left: $leftPos;
+}
+
+@mixin rotate($rotation) {
+    -moz-transform:rotate($rotation);
+    /* Safari and Chrome */
+    -webkit-transform:rotate($rotation);
+    /* Opera */
+    -o-transform:rotate($rotation);
+    /* IE9 */
+    -ms-transform:rotate($rotation);    
+}
+
+@mixin arrow($topPos, $leftPos, $rotation) {
+    width: 1.5%;
+    height: auto;
+    position: absolute;
+    top: $topPos;
+    left: $leftPos;
+    @include rotate($rotation);    
+}
+
+@mixin drag-drop($topPos, $leftPos) {
+    border-radius: 25px;
+    border:2px solid black;
+    width:9%;
+    height:19%;
+    position: absolute;
+    top: $topPos;     
+    left: $leftPos; 
+}
+
+.text-1 {
+    @include text(80%, 30%);
+    text-align: right;
+}
+
+.text-2 {
+    @include text(60%, 19%);
+    text-align: right;
+}
+
+.text-3 {
+    @include text(37%, 18%);
+    text-align: right;
+}
+
+.text-4 {
+    @include text(22%, 34%); 
+    text-align: right;    
+}
+
+.text-5 {
+    @include text(37%, 75%);
+}
+
+.text-6 {
+    @include text(60%, 75%);
+}
+
+.arrow-1 {
+    @include arrow(50%, 69%, 180deg);
+}
+
+.arrow-2 {
+    @include arrow(50%, 39%, 0deg);
+}
+
+.arrow-3 {
+    @include arrow(30%, 47%, 45deg);
+}
+
+.arrow-4 {
+    @include arrow(30%, 62%, 135deg);
+}
+
+.arrow-5 {
+    @include arrow(70%, 47%, -45deg);
+}
+
+.drop-1 {
+    @include drag-drop(20%, 50%);
+}
+
+.drop-2 {
+    @include drag-drop(30%, 35%);
+}
+
+.drop-3 {
+    @include drag-drop(30%, 65%);
+}
+
+.drop-4 {
+    @include drag-drop(55%, 35%);
+}
+
+.drop-5 {
+    @include drag-drop(55%, 65%);
+}
+
+.drop-6 {
+    @include drag-drop(70%, 50%);
+}
+
+.drag-1 {
+    @include drag-drop(95%, 35%);
+}
+
+.drag-2 {
+    @include drag-drop(95%, 50%);
+}
+
+.drag-3 {
+    @include drag-drop(95%, 65%);
+}
+
+.drag-4 {
+    @include drag-drop(125%, 35%);
+}
+
+.drag-5 {
+    @include drag-drop(125%, 50%);
+}
+
+.drag-6 {
+    @include drag-drop(125%, 65%);
+}
+
+.arrow {
+    width: 75px;
+    line-height: 75px;
+    text-align: center;
+    opacity: 1;
+    border: none;
+    color: $white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -50%;
+}
+
+.arrow-red {
+    @extend .arrow;
+    background: #d9534f;
+}
+
+.arrow-green {
+    @extend .arrow;
+    background: green;    
+}
+
+@mixin animation($animate) {
+    -moz-animation: $animate;
+    -webkit-animation: $animate;
+    animation: $animate;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+.bounce {
+    @include animation(bounce 2s infinite)
+}
+
+@include keyframes(bounce) {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
