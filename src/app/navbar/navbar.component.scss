@@ -1,34 +1,17 @@
-@import "../styles/base/_variables";
-@import "../styles/components/_buttons";
+@import "../styles/main";
 
-.profile-pic{
-    height: $profile-pic-height;
-    width: $profile-pic-width;
+.profile-pic {
+    max-height: $profile-pic-height;
+    max-width: $profile-pic-width;
     padding: $profile-pic-padding;
 }
 
-.sidebar-header{
-    background: $header-background;
-    padding: $side-bar-header-padding;
+.profile {
+    font-size: $font-size-small;
 }
 
-.profile{
-    font-size: 20px;
-}
-
-.sidebar{
-    background: $sidebar-background;
-    color:$font-black;
-    box-shadow: 0px 0px 10px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: $sidebar-width;
-    overflow: hidden;
-    display: block;
-    z-index: 1000;
-    a{
-        color: $font-black;
+.nav {
+    a {
+        cursor: pointer;
     }
 }

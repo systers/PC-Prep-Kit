@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../services/dashboard.service';
+import { InfokitService } from '../services/infokit.service';
+import { LanguageService } from '../services/language.service';
+
 
 @Component({
   selector: 'app-pcpolicy',
@@ -8,14 +11,21 @@ import { DashboardService } from '../services/dashboard.service';
 })
 
 export class PcpolicyComponent implements OnInit {
+    language: any;
     email: String;
     public position = 'col-md-10 col-md-offset-2';
 
-    constructor(private _dashboardService: DashboardService) { }
+    constructor(private _dashboardService: DashboardService, private _langService: LanguageService,
+      private _infokitService: InfokitService) { }
+
 
     ngOnInit() {
         this._dashboardService.getUserInfo().subscribe(response => {
             this.email = response.user.email;
+        });
+
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.stages.introduction.pcpolicy;
         });
     }
 
@@ -26,6 +36,8 @@ export class PcpolicyComponent implements OnInit {
     mail() {
         this._dashboardService.mailpcpolicy().subscribe(response => {
             // initiate pop up
+            this._infokitService.activateinfokit('pc_policy').subscribe(res => {
+            });
         });
     }
 }

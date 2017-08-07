@@ -10,11 +10,11 @@
         <img  src="assets/img/profilepic.png" class="profile-pic img-circle">
         <p> {{username}} </p>
       </div>
-      <li><a routerLink="/intro" >Introduction</a></li>
-      <li><a routerLink="/malaria101" >Malaria 101</a></li>
-      <li><a routerLink="/medicationlabels" >Medication and Labels</a></li>
-      <li><a routerLink="/pcpolicy" >Peace Corps Policy</a></li>
-      <li><a routerLink="/infokit" >InfoKit</a></li>
+      <li><a routerLink="/intro">{{language?.links.introduction}}</a></li>
+      <li><a routerLink="/malaria101">{{language?.links.malaria101}}</a></li>
+      <li><a routerLink="/medicationlabels">{{language?.links.medsAndLabels}}</a></li>
+      <li><a routerLink="/pcpolicy">{{language?.links.pcpolicy}}</a></li>
+      <li><a routerLink="/infokit">{{language?.links.infokit}}</a></li>
     </ul>
   </div>
 </div>

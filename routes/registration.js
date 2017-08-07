@@ -4,12 +4,28 @@ const router = express.Router();
 const mail = require('./mailService');
 const models = require('../database/models');
 const utilityFunctions = require('./utilityfunctions');
+const config = require('../config/settings');
 
 const localUser = models.user_account;
+const infokit = models.info_kit;
+const progress = models.progress;
 const validateEmail = utilityFunctions.validateEmail;
 const validateName = utilityFunctions.validateName;
 const validatePassword = utilityFunctions.validatePassword;
 const randomStr = utilityFunctions.randomString;
+
+function verificationMail(req, res, rString) {
+    mail.mailOptions.to = req.body.email;
+    mail.mailOptions.subject = 'PC PrepKit Email Verification';
+    mail.mailOptions.html = `<b>Click on the link to complete the verification</b> <a href='${config.basePath}verification?token=${rString}&user=${req.body.email}'>Verify</a>`;
+    mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
+        if(error) {
+            res.status(500).json({error: 'Something Went Wrong! Try again later.'});
+        }else {
+            res.json('Verification Mail Sent, Please check your mail.');
+        }
+    });
+}
 // Receiving HTTP Post
 router.post('/', function(req, res) {
     if(!req.body.email || !validateEmail(req.body.email)) {
@@ -34,25 +50,22 @@ router.post('/', function(req, res) {
         email: req.body.email,
         password: req.body.password,
         verificationCode: rString,
-        provider: 1 })
-        .then(task => {
-            utilityFunctions.sendEmail();
-            mail.mailOptions.to=req.body.email;
-            mail.mailOptions.subject='PC PrepKit Email Verification';
-            mail.mailOptions.html=`<b>Click on the link to complete the verification</b> <a href='http://localhost:3000/verification?token=${rString}&user=${req.body.email}'>Verify</a>`;
-            mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
+        provider: 1
+    }).then(task => {
+        infokit.create({
+            user_id: task.dataValues.id
+        }).then(task => {
+            progress.create({
+                user_id: task.dataValues.user_id
+            }).then(task => {
+                verificationMail(req, res, rString);
+            }).catch(error => {
                 if(error) {
-                    res.status(500).json({error: 'Something Went Wrong! Try again later.'});
-                }else {
-                    res.json('Verification Mail Sent, Please check your mail.');
+                    res.status(500).json({error: 'Something went wrong'});
                 }
-            }
-        )
-        }).catch(error => {
-            if(error) {
-                res.status(500).json({error: 'Something went wrong'});
-            }
-        });
+            });
+        })
+    })
 });
 
 module.exports = router;

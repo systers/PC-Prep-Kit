@@ -8,7 +8,18 @@ const mail = require('./mailService');
 
 const localUser = models.user_account;
 const progress = models.progress;
+const infokit = models.info_kit;
 
+const fs = require('fs');
+const multer = require('multer');
+const winston = require('winston');
+
+/**
+ * Check if the request is authenticated
+ * @param  {Object} req   Request object
+ * @param  {Object} res   Response object
+ * @param  {Function} next  Callback to the next function to be executed
+ */
 router.use(function(req, res, next) {
 
     // check header or url parameters or post parameters for token
@@ -106,6 +117,106 @@ router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) =
     mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
         error ? res.status(500).json({error: 'Something Went Wrong! Try again later.'}) : res.json({message: 'Mail Sent Succesfully.'});
     })
+});
+
+router.get('/infokitactive', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    if(!req.user.email) {
+        return res.status(400).json({error: 'Email not provided'});
+    }
+    localUser.find({where: {
+        email: req.user.email
+    }}, {raw: true})
+        .then(data => {
+            if(!data) {
+                return res.status(200).json({info: 'This account does not exist'});
+            }
+            infokit.find({where: {
+                user_id: data.id
+            }}, {raw: true})
+                .then( infokitData => {
+                    if(!infokitData) {
+                        return res.status(200).json({info: 'No data found'});
+                    }
+                    return res.status(200).json({infokitactive: infokitData});
+                })
+                .catch(function(err) {
+                    return res.status(500).json({error: 'Something went wrong while fetching user progress data'});
+                });
+        })
+        .catch(function(err) {
+            return res.status(500).json({error: 'Something went wrong while fetching user data'});
+        });
+});
+
+router.get('/activateinfokit', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    const email = req.user.email;
+    const activate = req.query.activate;
+    const updateobj = {};
+    updateobj[activate] = true;
+
+    if(!req.user.email) {
+        return res.status(400).json({error: 'Email not provided'});
+    }
+    localUser.find({where: {
+        email: req.user.email
+    }}, {raw: true})
+        .then(data => {
+            if(!data) {
+                return res.status(200).json({info: 'This account does not exist'});
+            }
+            infokit.update( updateobj, {
+                where: {
+                    email: email
+                }
+            }).then(function(data) {
+                return res.json({message: 'Activity Added to Infokit'});
+            }).catch(function(err) {
+                return res.status(500).json({error: 'Something went wrong'});
+            });
+        })
+        .catch(function(err) {
+            return res.status(500).json({error: 'Something went wrong while fetching user data'});
+        });
+});
+/**
+ * [destination description]
+ * @param  {Object} req       Request object
+ * @param  {Object} file      File object
+ * @param  {Function} cb      Callback function
+ */
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+/**
+ * Function to upload browsed image
+ * @param  {Object} req  Request object
+ * @param  {Object} res  Response object
+ */
+router.post('/upload', upload.array('uploads[]', 12), function(req, res) {
+    winston.log('files', req.files);
+    res.send(req.files);
+});
+
+/**
+ * Function to upload webcam/camera image
+ * @param  {Object} req  Request object
+ * @param  {Object} res  Response object
+ */
+router.post('/uploadCam', function(req, res) {
+    const base64Data = req.body.base64.replace(/^data:image\/jpeg;base64,/, '');
+    fs.writeFile('./uploads/out.jpeg', base64Data, 'base64', function(err) {
+        winston.log(err);
+    });
+    res.send(req.files);
+
 });
 
 module.exports = router;

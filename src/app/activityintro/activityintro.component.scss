@@ -1,9 +1,11 @@
+@import "../styles/main";
+
 .introbody {
-    h1,h2,p{
-        padding: 20px;
+    h1,h2,p {
+        padding: $padding-large;
     }
 
-    h1{
-        font-weight: 800;
+    h1 {
+        font-weight: $bold;
     }
 }

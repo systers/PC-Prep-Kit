@@ -13,16 +13,16 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './activityintro/activityintro.component';
 import { MenuComponent } from './menu/menu.component';
-
+import { DragdropComponent} from './dragdrop/dragdrop.component';
+import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
+import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
+import { IntroductionComponent } from './introduction/introduction.component';
+import { HighlightActivityComponent } from './introduction/highlight-activity.component';
+import { PicturePuzzleComponent } from './introduction/picture-puzzle.component';
 
 export const routes: Routes = [
     {
         path: 'splash',
-        component: SplashscreenComponent,
-        canActivate: [UnauthenticatedGuard]
-    },
-    {
-        path: '',
         component: SplashscreenComponent,
         canActivate: [UnauthenticatedGuard]
     },
@@ -57,6 +57,11 @@ export const routes: Routes = [
         canActivate: [LoggedInGuard]
     },
     {
+        path: 'dragdrop',
+        component: DragdropComponent,
+        canActivate: [LoggedInGuard]
+    },
+    {
         path: 'reset/:token',
         component: ResetPasswordComponent,
         canActivate: [UnauthenticatedGuard]
@@ -67,10 +72,35 @@ export const routes: Routes = [
         canActivate: [LoggedInGuard]
     },
     {
-        path: '',
-        redirectTo: '/menu',
-        pathMatch : 'full',
-        canActivate: [LoggedInGuard]
+        path: 'introduction',
+        component: IntroductionComponent,
+        canActivate: [LoggedInGuard],
+        children: [
+            {
+                path: '',
+                redirectTo: 'activity-1',
+                pathMatch: 'full'
+            },
+            {
+                path: 'activity-1',
+                component: HighlightActivityComponent
+            },
+            {
+                path: 'activity-3',
+                component: PicturePuzzleComponent
+            }
+        ]
+    },
+    {
+        path: 'meds-n-labels',
+        component: MedsNLabelsComponent,
+        canActivate: [LoggedInGuard],
+        children: [
+            {
+                path: 'activity-2',
+                component: MemoryGameComponent
+            }
+        ]
     }
 ];
 
