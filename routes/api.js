@@ -178,6 +178,7 @@ router.get('/activateinfokit', authenticationHelpers.isAuthOrRedirect, (req, res
             return res.status(500).json({error: 'Something went wrong while fetching user data'});
         });
 });
+
 /**
  * [destination description]
  * @param  {Object} req       Request object
@@ -216,7 +217,6 @@ router.post('/uploadCam', function(req, res) {
         winston.log(err);
     });
     res.send(req.files);
-
 });
 
 module.exports = router;
