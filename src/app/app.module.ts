@@ -33,6 +33,10 @@ import { NavbarService } from './services/navbar.service';
 import { LanguageService } from './services/language.service';
 import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
 import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
+import { SharedDataService } from './services/shared.data.service';
+import { IntroductionComponent } from './introduction/introduction.component';
+import { HighlightActivityComponent } from './introduction/highlight-activity.component';
+import { PicturePuzzleComponent } from './introduction/picture-puzzle.component';
 
 @NgModule({
     declarations: [
@@ -51,6 +55,9 @@ import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.compo
         DragdropComponent,
         MedsNLabelsComponent,
         MemoryGameComponent
+        IntroductionComponent,
+        HighlightActivityComponent,
+        PicturePuzzleComponent
     ],
     imports: [
         AppRoutingModule,
@@ -62,7 +69,7 @@ import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.compo
         DndModule.forRoot(),
         ToastModule.forRoot()
     ],
-    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService, LanguageService],
+    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService, SharedDataService, LanguageService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
