@@ -15,7 +15,7 @@ export class AppComponent {
     
     constructor(private _router: Router, private _sharedData: SharedDataService) {
         this._router.events.pairwise().subscribe((e) => {
-            this.loggedIn = (e && localStorage.getItem(AppComponent._localStorageKey)) ? true : false;
+            this.loggedIn = e && localStorage.getItem(AppComponent._localStorageKey);
         });
     }
 
