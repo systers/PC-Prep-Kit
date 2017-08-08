@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { SharedDataService } from '../../services/shared.data.service';
@@ -28,6 +28,7 @@ export class MalariaLifeCycleComponent implements OnInit {
                        'Second infected person']
 
     constructor(private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+        this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
