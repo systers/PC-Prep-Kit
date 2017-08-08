@@ -56,6 +56,13 @@ export class MalariaLifeCycleComponent implements OnInit {
         }
     }
 
+    isInRange(elementId) {
+        if (elementId > 0 && elementId <= 6) {
+            return true;
+        }
+        return false;
+    }
+
     drop(ev) {
         ev.preventDefault();
         const data = document.getElementById(ev.dataTransfer.getData('text'));
@@ -63,13 +70,13 @@ export class MalariaLifeCycleComponent implements OnInit {
         const tgt = ev.currentTarget.firstElementChild;
 
         if (tgt) {
-            ev.currentTarget.replaceChild (data, tgt);
+            ev.currentTarget.replaceChild(data, tgt);
             srcParent.appendChild (tgt);
             let firstSrc = ev.currentTarget.firstElementChild.src;
             let secondSrc = tgt.src;
             firstSrc = firstSrc.substr(firstSrc.lastIndexOf('/') + 1);
             secondSrc = secondSrc.substr(secondSrc.lastIndexOf('/') + 1);
-            if (ev.currentTarget.id > 0 && ev.currentTarget.id <= 6 && tgt.parentNode.id > 0 && tgt.parentNode.id <= 6) {
+            if (this.isInRange(ev.currentTarget.id) && this.isInRange(tgt.parentNode.id)) {
                 this.currArrState[Number(ev.currentTarget.id)] = firstSrc;
                 this.currArrState[Number(tgt.parentNode.id)] = secondSrc;
             }
@@ -83,18 +90,18 @@ export class MalariaLifeCycleComponent implements OnInit {
             }
         }
 
-        let f = false;
+        let isWrongPos = false;
         let arrLength = 0;
         for (let i = 0; i < this.solnArr.length; i++) {
             if (this.currArrState[i + 1] !== undefined) {
                 arrLength++;
             }
             if (this.currArrState[i + 1] !== this.solnArr[i]) {
-                f = true;
+                isWrongPos = true;
             }
         }
 
-        if (!f && arrLength === 6) {
+        if (!isWrongPos && arrLength === 6) {
             this.activityComplete = true;
             this._sharedData.customAlert('Good job!', 'You completed this activity!', 'success');
         } else if (arrLength === 6) {
