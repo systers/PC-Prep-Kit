@@ -28,7 +28,7 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.DATE
         },
         provider: {
-            type:   Sequelize.ENUM,
+            type: Sequelize.ENUM,
             values: ['local', 'google']
         },
         google_id: {

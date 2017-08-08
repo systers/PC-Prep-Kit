@@ -1,6 +1,9 @@
+@import "../styles/main";
+
 .pc-policy-body {
   h1 {
-    padding: 20px;
+    padding: $padding-large;
+    font-weight: $bold;
   }
 }
 

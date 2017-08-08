@@ -1,0 +1,36 @@
+@import "../modules/all";
+
+// Font Weights
+$bold: 900;
+
+//Spacing
+$padding-relative-large: 15%;
+$padding-relative-med: 10%;
+$padding-relative-small: 5%;
+$padding-large: 15px;
+$padding-med: 10px;
+$padding-small: 5px;
+//Z-Index
+$z-index-top: 2000;
+$z-index-middle: 1000;
+$z-index-bottom: 0;
+
+$profile-pic-height: 185px;
+$profile-pic-width: 200px;
+$profile-pic-padding: $padding-large;
+
+//sidebar
+$header-background: $blue;
+$side-bar-header-padding: $padding-small;
+$sidebar-background: $white;
+$sidebar-font-color: $black;
+$sidebar-width: 200px;
+
+//Headings
+$header-left-color: $blue;
+$header-right-color: $red;
+$header-font-size: $font-size-large-relative;
+$desc-font-size: $font-size-med-relative;
+
+//Border-radius
+$border-radius: 10px;

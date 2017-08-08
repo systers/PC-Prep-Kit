@@ -1,0 +1,10 @@
+@mixin button($button-color, $button-hover-color, $button-active-color) {
+    background-color: $button-color;
+    border-width: 0;
+    &:hover {
+        background-color: $button-hover-color;
+    }
+    &:active {
+        background-color: $button-active-color;
+    }
+}

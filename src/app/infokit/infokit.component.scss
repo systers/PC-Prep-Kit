@@ -1,0 +1,48 @@
+@import "../styles/main";
+
+.infokit-background {
+    position: fixed;
+    z-index: $z-index-top;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $grey-background-alpha;
+    padding: $padding-relative-med;
+}
+
+.infokit-body {
+    background-color: $white;
+    border-radius: $border-radius;
+}
+
+.infokit-header {
+    border-radius: 10px 10px 0 0;
+    border-style: solid;
+    border-width: 0;
+    border-bottom-width: 1px;
+    background: $blue;
+    color: $white;
+    h2 {
+        font-weight: $bold;
+    }
+}
+
+.container {
+    max-width: 500px;
+}
+
+.infokit-footer {
+    font-size: $font-size-med;
+    background: $blue;
+    color: $white;
+    border-radius: 0 0 10px 10px;
+}
+
+.infokit-components {
+    padding: $padding-large;
+}
+
+.close-button {
+    margin-top: 20px;
+}

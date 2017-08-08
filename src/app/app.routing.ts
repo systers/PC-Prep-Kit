@@ -27,11 +27,6 @@ export const routes: Routes = [
         canActivate: [UnauthenticatedGuard]
     },
     {
-        path: '',
-        component: SplashscreenComponent,
-        canActivate: [UnauthenticatedGuard]
-    },
-    {
         path: 'login',
         component: LoginComponent,
         canActivate: [UnauthenticatedGuard]

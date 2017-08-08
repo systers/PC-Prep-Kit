@@ -23,20 +23,24 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './activityintro/activityintro.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
+import { InfokitComponent } from './infokit/infokit.component';
 import { DragdropComponent } from './dragdrop/dragdrop.component';
+import { IntroductionComponent } from './introduction/introduction.component';
+import { HighlightActivityComponent } from './introduction/highlight-activity.component';
+import { PicturePuzzleComponent } from './introduction/picture-puzzle.component';
+import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
+import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
 import { APIService } from './services/api.service';
 import { RegService } from './services/reg.service';
 import { NavbarService } from './services/navbar.service';
+import { InfokitService } from './services/infokit.service';
+import { InfokitPipe } from './infokit/infokit.pipe';
 import { LanguageService } from './services/language.service';
-import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
-import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
 import { SharedDataService } from './services/shared.data.service';
-import { IntroductionComponent } from './introduction/introduction.component';
-import { HighlightActivityComponent } from './introduction/highlight-activity.component';
-import { PicturePuzzleComponent } from './introduction/picture-puzzle.component';
+
 
 @NgModule({
     declarations: [
@@ -52,6 +56,8 @@ import { PicturePuzzleComponent } from './introduction/picture-puzzle.component'
         ActivityintroComponent,
         HeaderComponent,
         MenuComponent,
+        InfokitComponent,
+        InfokitPipe,
         DragdropComponent,
         MedsNLabelsComponent,
         MemoryGameComponent
@@ -69,7 +75,8 @@ import { PicturePuzzleComponent } from './introduction/picture-puzzle.component'
         DndModule.forRoot(),
         ToastModule.forRoot()
     ],
-    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService, SharedDataService, LanguageService],
+    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,
+      SharedDataService, InfokitService, LanguageService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

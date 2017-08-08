@@ -1,0 +1,16 @@
+@import "../modules/all";
+
+.toggle-button {
+    @include button($transparent, $hover-blue, $hover-blue);
+}
+
+.logout-button {
+    @include button($transparent, $hover-blue, $hover-blue);
+    color: $white;
+    float: right;
+}
+
+.info-button {
+    white-space: normal;
+    height: 100px;
+}

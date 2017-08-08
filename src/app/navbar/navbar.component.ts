@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
     username: String;
     language: any;
     @Output() togglePosition = new EventEmitter<any>();
+    @Output() infoPop = new EventEmitter<any>();
     public state= 'out';
     constructor(private _navbarService: NavbarService, private _langService: LanguageService) { }
 
@@ -42,5 +43,9 @@ export class NavbarComponent implements OnInit {
     toggle() {
         this.state = (this.state === 'out') ? 'in' : 'out';
         this.togglePosition.emit();
+    }
+
+    toggleInfokit() {
+        this.infoPop.emit();
     }
 }
