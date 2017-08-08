@@ -1,8 +1,8 @@
 @import "../styles/main";
 
 video{
-    border: 3px solid #ECECEC;
-    background-color: black !important;
+    border: 3px solid $dark-grey;
+    background-color: $black !important;
 }
 
 .pieces {
@@ -50,7 +50,7 @@ img {
 
 @mixin drag-drop($topPos, $leftPos) {
     border-radius: 25px;
-    border:2px solid black;
+    border:2px solid $black;
     width:9%;
     height:19%;
     position: absolute;
@@ -162,13 +162,27 @@ img {
     border: none;
     color: $white;
     border-radius: 50%;
+}
+
+.arrow-dnd {
+    @extend .arrow;
     position: absolute;
     bottom: -50%;
 }
 
+.arrow-dnd-red {
+    @extend .arrow-dnd;
+    background: $light-red;
+}
+
+.arrow-dnd-green {
+    @extend .arrow-dnd;
+    background: green;
+}
+
 .arrow-red {
     @extend .arrow;
-    background: #d9534f;
+    background: $light-red;
 }
 
 .arrow-green {

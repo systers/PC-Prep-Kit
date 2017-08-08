@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { SharedDataService } from '../../services/shared.data.service';
 
 @Component({
@@ -103,9 +104,9 @@ export class MalariaLifeCycleComponent implements OnInit {
 
         if (!isWrongPos && arrLength === 6) {
             this.activityComplete = true;
-            this._sharedData.customAlert('Good job!', 'You completed this activity!', 'success');
+            this.toastr.success('Complete ! ', 'Success!');
         } else if (arrLength === 6) {
-            this._sharedData.customAlert('Sorry!', 'Try Again!', 'error');
+            this.toastr.error('The life cycle is incorrect! ', 'Sorry!');
         }
     }
 }
