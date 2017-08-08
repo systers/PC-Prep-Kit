@@ -27,7 +27,7 @@ export class MalariaLifeCycleComponent implements OnInit {
                        'Second infected mosquito',
                        'Second infected person']
 
-    constructor(private _sharedData: SharedDataService) {
+    constructor(private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
     }
 
     ngOnInit() {
