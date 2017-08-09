@@ -1,6 +1,6 @@
 @import "../styles/main";
 
-video{
+video {
     border: 3px solid $dark-grey;
     background-color: $black !important;
 }
@@ -9,11 +9,6 @@ video{
     height: 125px;
     width: 115px;
     border-radius: 25px;
-}
-
-.mosquitoes {
-    height: 120px;
-    width:80px;
 }
 
 img {
@@ -30,13 +25,10 @@ img {
 }
 
 @mixin rotate($rotation) {
-    -moz-transform:rotate($rotation);
-    /* Safari and Chrome */
-    -webkit-transform:rotate($rotation);
-    /* Opera */
-    -o-transform:rotate($rotation);
-    /* IE9 */
-    -ms-transform:rotate($rotation);    
+    -moz-transform: rotate($rotation);
+    -webkit-transform: rotate($rotation);
+    -o-transform: rotate($rotation);
+    -ms-transform: rotate($rotation);
 }
 
 @mixin arrow($topPos, $leftPos, $rotation) {
@@ -50,9 +42,9 @@ img {
 
 @mixin drag-drop($topPos, $leftPos) {
     border-radius: 25px;
-    border:2px solid $black;
-    width:9%;
-    height:19%;
+    border: 2px solid $black;
+    width: 9%;
+    height: 19%;
     position: absolute;
     top: $topPos;     
     left: $leftPos; 

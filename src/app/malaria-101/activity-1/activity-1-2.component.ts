@@ -53,16 +53,13 @@ export class MalariaLifeCycleComponent implements OnInit {
 
     drag(ev) {
         ev.dataTransfer.setData('text', ev.target.id);
-        if (ev.target.parentNode.id > 0 && ev.target.parentNode.id <= 6) {
+        if (this.isInRange(ev.target.parentNode.id)) {
             delete this.currArrState[Number(ev.target.parentNode.id)];
         }
     }
 
     isInRange(elementId) {
-        if (elementId > 0 && elementId <= 6) {
-            return true;
-        }
-        return false;
+        return elementId > 0 && elementId <= 6;
     }
 
     drop(ev) {
@@ -87,7 +84,7 @@ export class MalariaLifeCycleComponent implements OnInit {
             ev.currentTarget.appendChild(data);
             let firstSrc = ev.currentTarget.firstElementChild.src;
             firstSrc = firstSrc.substr(firstSrc.lastIndexOf('/') + 1);
-            if (ev.currentTarget.id > 0 && ev.currentTarget.id <= 6) {
+            if (this.isInRange(ev.currentTarget.id)) {
                 this.currArrState[Number(ev.currentTarget.id)] = firstSrc;
             }
         }
@@ -105,7 +102,7 @@ export class MalariaLifeCycleComponent implements OnInit {
 
         if (!isWrongPos && arrLength === 6) {
             this.activityComplete = true;
-            this.toastr.success('Complete ! ', 'Success!');
+            this.toastr.success('Complete!', 'Success!');
         } else if (arrLength === 6) {
             this.toastr.error('The life cycle is incorrect! ', 'Sorry!');
         }
