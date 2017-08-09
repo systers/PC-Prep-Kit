@@ -12,10 +12,10 @@ export class AppComponent {
     title = 'PC Prep Kit';
     public position = 'col-md-10 col-md-offset-2';
     public loggedIn = false;
-    
+
     constructor(private _router: Router, private _sharedData: SharedDataService) {
         this._router.events.pairwise().subscribe((e) => {
-            this.loggedIn = e && localStorage.getItem(AppComponent._localStorageKey);
+            this.loggedIn = (e && localStorage.getItem(AppComponent._localStorageKey)) ? true : false;
         });
     }
 

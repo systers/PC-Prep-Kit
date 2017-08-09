@@ -204,8 +204,8 @@ export class PicturePuzzleComponent implements OnInit {
             piece = this._pieces[i];
             piece.xPos = posn.x;
             piece.yPos = posn.y;
-            this._stage.drawImage(this._newImg, piece.sx, piece.sy, this._pieceWidth, this._pieceHeight, xPos, yPos, this._pieceWidth, this._pieceHeight);
-            this._stage.strokeRect(xPos, yPos, this._pieceWidth, this._pieceHeight);
+            this._stage.drawImage(this._newImg, piece.sx, piece.sy, this._pieceWidth, this._pieceHeight, posn.x, posn.y, this._pieceWidth, this._pieceHeight);
+            this._stage.strokeRect(posn.x, posn.y, this._pieceWidth, this._pieceHeight);
             posn = this.getPiecePosition(posn);
         }
         this._mousedownListener = this._renderer.listen(this._canvas, 'mousedown', (event) => this.onPuzzleClick(event));
@@ -254,7 +254,7 @@ export class PicturePuzzleComponent implements OnInit {
             this._stage.save();
             this._stage.globalAlpha = .9;
             let mousePos = {x: 0, y: 0};
-            mousePos = getMousePosition(mousePos);
+            mousePos = this.getMousePosition(mousePos);
             this._stage.drawImage(this._newImg, this._currentPiece.sx, this._currentPiece.sy, this._pieceWidth, this._pieceHeight, mousePos.x, mousePos.y, this._pieceWidth, this._pieceHeight);
             this._stage.restore();
             this._mousemoveListener = this._renderer.listen(this._canvas, 'mousemove', (event) => this.updatePuzzle(event));
@@ -309,10 +309,10 @@ export class PicturePuzzleComponent implements OnInit {
         this._stage.save();
         this._stage.globalAlpha = .6;
         let mousePos = {x: 0, y: 0};
-        mousePos = getMousePosition(mousePos);
+        mousePos = this.getMousePosition(mousePos);
         this._stage.drawImage(this._newImg, this._currentPiece.sx, this._currentPiece.sy, this._pieceWidth, this._pieceHeight, mousePos.x, mousePos.y, this._pieceWidth, this._pieceHeight);
         this._stage.restore();
-        this._stage.strokeRect(mouseXPos, mouseYPos, this._pieceWidth, this._pieceHeight);
+        this._stage.strokeRect(mousePos.x, mousePos.y, this._pieceWidth, this._pieceHeight);
     }
 
     pieceDropped(e) {
