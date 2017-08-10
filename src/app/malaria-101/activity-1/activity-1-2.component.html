@@ -1,20 +1,20 @@
+<div class="game-container">
+    <img class="lifecycle-imgs" *ngFor="let cards of createRange(5); let idx = index" class="arrow-{{idx+1}}" src="../../../../assets/img/red-up-arrow.png">
 
-<img *ngFor="let cards of createRange(5); let idx = index" class="arrow-{{idx+1}}" src="../../../../assets/img/red-up-arrow.png">
-
-<div *ngFor="let cards of createRange(6); let idx = index" [id]="idx + 1" class="drop-{{idx+1}}" (drop)="drop($event)" (dragover)="allowDrop($event)">
+    <div *ngFor="let cards of createRange(6); let idx = index" [id]="idx + 1" class="drop-{{idx+1}}" (drop)="drop($event)" (dragover)="allowDrop($event)">
+    </div>
+    <div *ngFor="let card of labelsArr; let idx = index" class="text-{{idx+1}}">
+        <p>{{card}}</p>
+    </div>
+    <div *ngFor="let card of solnArr; let idx = index" class="drag-{{idx+1}}" (drop)="drop($event)" (dragover)="allowDrop($event)">
+        <img class="lifecycle-imgs pieces" src="../../../../assets/img/{{card}}" draggable="true" (dragstart)="drag($event)" id="drag{{idx+1}}">
+    </div>
 </div>
-<div *ngFor="let card of labelsArr; let idx = index" class="text-{{idx+1}}">
-    <p>{{card}}</p>
-</div>
-<div *ngFor="let card of solnArr; let idx = index" class="drag-{{idx+1}}" (drop)="drop($event)" (dragover)="allowDrop($event)">
-    <img class="pieces" src="../../../../assets/img/{{card}}" draggable="true" (dragstart)="drag($event)" id="drag{{idx+1}}">    
-</div>
-
-<div class="row">
-    <button class="arrow-dnd-red col-lg-5 col-md-offset-2">
+<div class="prog-btns">
+    <button prev class="dnd-red">
         Prev
     </button>
-    <button [hidden]="!activityComplete" class="arrow-dnd-green col-lg-5 col-md-offset-10">
+    <button next [hidden]="!activityComplete" class="dnd-green bounce">
         Next
     </button>    
 </div>

@@ -44,6 +44,9 @@ import { InfokitPipe } from './infokit/infokit.pipe';
 import { LanguageService } from './services/language.service';
 import { SharedDataService } from './services/shared.data.service';
 
+import { NextActivityDirective } from './directives/next.directive.component';
+import { PrevActivityDirective } from './directives/prev.directive.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -68,7 +71,9 @@ import { SharedDataService } from './services/shared.data.service';
         PicturePuzzleComponent,
         Malaria101Component,
         AnimatedVideoComponent,
-        MalariaLifeCycleComponent
+        MalariaLifeCycleComponent,
+        NextActivityDirective,
+        PrevActivityDirective
     ],
     imports: [
         AppRoutingModule,

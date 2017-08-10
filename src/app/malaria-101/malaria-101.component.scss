@@ -11,7 +11,13 @@ video {
     border-radius: 25px;
 }
 
-img {
+.game-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.lifecycle-imgs {
     max-width: 100%;
     max-height: 100%;
     margin: auto;
@@ -25,6 +31,7 @@ img {
 }
 
 @mixin rotate($rotation) {
+    transform: rotate($rotation);
     -moz-transform: rotate($rotation);
     -webkit-transform: rotate($rotation);
     -o-transform: rotate($rotation);
@@ -51,135 +58,114 @@ img {
 }
 
 .text-1 {
-    @include text(80%, 30%);
+    @include text(65%, 20%);
     text-align: right;
 }
 
 .text-2 {
-    @include text(60%, 19%);
+    @include text(45%, 9%);
     text-align: right;
 }
 
 .text-3 {
-    @include text(37%, 18%);
+    @include text(22%, 8%);
     text-align: right;
 }
 
 .text-4 {
-    @include text(22%, 34%); 
-    text-align: right;    
+    @include text(25%, 35%);
+    text-align: right;
 }
 
 .text-5 {
-    @include text(37%, 75%);
+    @include text(22%, 65%);
 }
 
 .text-6 {
-    @include text(60%, 75%);
+    @include text(45%, 65%);
 }
 
 .arrow-1 {
-    @include arrow(50%, 69%, 180deg);
+    @include arrow(35%, 59%, 180deg);
 }
 
 .arrow-2 {
-    @include arrow(50%, 39%, 0deg);
+    @include arrow(35%, 29%, 0deg);
 }
 
 .arrow-3 {
-    @include arrow(30%, 47%, 45deg);
+    @include arrow(15%, 37%, 45deg);
 }
 
 .arrow-4 {
-    @include arrow(30%, 62%, 135deg);
+    @include arrow(15%, 52%, 135deg);
 }
 
 .arrow-5 {
-    @include arrow(70%, 47%, -45deg);
+    @include arrow(55%, 37%, -45deg);
 }
 
 .drop-1 {
-    @include drag-drop(20%, 50%);
+    @include drag-drop(5%, 40%);
 }
 
 .drop-2 {
-    @include drag-drop(30%, 35%);
+    @include drag-drop(15%, 25%);
 }
 
 .drop-3 {
-    @include drag-drop(30%, 65%);
+    @include drag-drop(15%, 55%);
 }
 
 .drop-4 {
-    @include drag-drop(55%, 35%);
+    @include drag-drop(40%, 25%);
 }
 
 .drop-5 {
-    @include drag-drop(55%, 65%);
+    @include drag-drop(40%, 55%);
 }
 
 .drop-6 {
-    @include drag-drop(70%, 50%);
+    @include drag-drop(55%, 40%);
 }
 
 .drag-1 {
-    @include drag-drop(95%, 35%);
+    @include drag-drop(80%, 25%);
 }
 
 .drag-2 {
-    @include drag-drop(95%, 50%);
+    @include drag-drop(80%, 40%);
 }
 
 .drag-3 {
-    @include drag-drop(95%, 65%);
+    @include drag-drop(80%, 55%);
 }
 
 .drag-4 {
-    @include drag-drop(125%, 35%);
+    @include drag-drop(110%, 25%);
 }
 
 .drag-5 {
-    @include drag-drop(125%, 50%);
+    @include drag-drop(110%, 40%);
 }
 
 .drag-6 {
-    @include drag-drop(125%, 65%);
+    @include drag-drop(110%, 55%);
 }
 
-.arrow {
-    width: 75px;
-    line-height: 75px;
-    text-align: center;
-    opacity: 1;
-    border: none;
-    color: $white;
-    border-radius: 50%;
-}
-
-.arrow-dnd {
-    @extend .arrow;
+.dnd {
     position: absolute;
     bottom: -50%;
 }
 
-.arrow-dnd-red {
-    @extend .arrow-dnd;
-    background: $light-red;
+.dnd-red {
+    @extend .dnd;
+    left: 20%;
 }
 
-.arrow-dnd-green {
-    @extend .arrow-dnd;
-    background: green;
-}
-
-.arrow-red {
-    @extend .arrow;
-    background: $light-red;
-}
-
-.arrow-green {
-    @extend .arrow;
-    background: green;    
+.dnd-green {
+    @extend .dnd;
+    left: 75%;
 }
 
 @mixin animation($animate) {

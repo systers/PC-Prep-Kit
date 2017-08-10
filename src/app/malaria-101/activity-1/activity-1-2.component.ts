@@ -70,7 +70,7 @@ export class MalariaLifeCycleComponent implements OnInit {
 
         if (tgt) {
             ev.currentTarget.replaceChild(data, tgt);
-            srcParent.appendChild (tgt);
+            srcParent.appendChild(tgt);
             let firstSrc = ev.currentTarget.firstElementChild.src;
             let secondSrc = tgt.src;
             firstSrc = firstSrc.substr(firstSrc.lastIndexOf('/') + 1);
