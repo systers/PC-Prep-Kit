@@ -60,7 +60,7 @@ import { SharedDataService } from './services/shared.data.service';
         InfokitPipe,
         DragdropComponent,
         MedsNLabelsComponent,
-        MemoryGameComponent
+        MemoryGameComponent,
         IntroductionComponent,
         HighlightActivityComponent,
         PicturePuzzleComponent

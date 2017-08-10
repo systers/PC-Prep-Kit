@@ -25,10 +25,10 @@ winston.add(
 );
 
 // Database configuration
-//Models
+// Models
 const models = require('./database/models');
 
-//Sync Database
+// Sync Database
 models.sequelize.sync().then(function() {
     winston.info('Nice! Database looks fine')
 }).catch(function(err) {
@@ -58,7 +58,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(session({
-    secret : 'PC Prep Kit Secret',
+    secret: 'PC Prep Kit Secret',
     saveUninitialized: true,
     resave: true
 }));

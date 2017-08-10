@@ -32,7 +32,8 @@
         "space-before-function-paren": ["error", "never"],
         "no-lonely-if": "error",
         "arrow-spacing": "error",
-        "key-spacing": ["error", { "beforeColon": false }]
+        "key-spacing": ["error", { "beforeColon": false }],
+        "space-infix-ops": "error"
     }
 }
 

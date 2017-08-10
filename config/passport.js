@@ -6,6 +6,7 @@ module.exports = function(passport, models) {
 
     const localUser = models.user_account;
     const progress = models.progress;
+    let fname, lname;
 
     passport.serializeUser(function(user, done) {
         done(null, user);
@@ -15,14 +16,31 @@ module.exports = function(passport, models) {
         done(null, user);
     });
 
+    // Pass Google authentication configuration details
     passport.use(new GoogleStrategy({
         clientID: configAuth.googleAuth.clientID,
         clientSecret: configAuth.googleAuth.clientSecret,
         callbackURL: configAuth.googleAuth.callbackURL,
         access_type: configAuth.googleAuth.access_type
     },
+    /**
+     * Handle Google login using passport package
+     * @param  {Object}   req          Request object
+     * @param  {String}   accessToken  Google access token
+     * @param  {String}   refreshToken Google refresh token
+     * @param  {Object}   profile      Google profile data
+     * @param  {Function} done         Callback function
+     */
     function(req, accessToken, refreshToken, profile, done) {
         process.nextTick(function() {
+            const nameArr = profile.displayName.split(' ');
+            if(nameArr.length >= 2){
+                fname = nameArr[0];
+                lname = nameArr[nameArr.length-1];
+            } else {
+                fname = profile.displayName;
+                lname = '';
+            }
             localUser.findOrCreate({where: {
                 email: profile.emails[0].value,
                 provider: 'google'
@@ -31,7 +49,8 @@ module.exports = function(passport, models) {
                     provider: 'google',
                     google_token: accessToken,
                     google_id: profile.id,
-                    name: profile.displayName
+                    fname: fname,
+                    lname: lname
                 }})
                 .spread((user, created) => {
                     if(!created && !user) {
@@ -64,6 +83,13 @@ module.exports = function(passport, models) {
         passwordField: 'password',
         passReqToCallback: true
     },
+    /**
+     * Handle local login
+     * @param  {Object}   req      Request object
+     * @param  {String}   email    User email
+     * @param  {String}   password User password
+     * @param  {Function} done     Callback function
+     */
     function(req, email, password, done) {
         process.nextTick(function() {
             localUser.find({where: {

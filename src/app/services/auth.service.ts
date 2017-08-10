@@ -30,6 +30,11 @@ export class AuthService {
         }
     }
 
+    /**
+     * Make user login request to server
+     * @param  {Object}          body Request body
+     * @return {Observable<any>}      Return response
+     */
     public loginUser (body: Object): Observable<any> {
         this.logout();
 
@@ -54,6 +59,11 @@ export class AuthService {
                     });
     }
 
+    /**
+     * Make reset password request to server
+     * @param  {Object}          body Request body
+     * @return {Observable<any>}      Return response
+     */
     public resetPassword (body: Object): Observable<any> {
 
         return this._apiservice.post(this._forgotPasswordApi, body)
@@ -62,6 +72,12 @@ export class AuthService {
                             });
     }
 
+    /**
+     * Make password update to server
+     * @param  {Object}          body  [description]
+     * @param  {[type]}          token [description]
+     * @return {Observable<any>}       [description]
+     */
     public updatePassword (body: Object, token): Observable<any> {
 
         return this._apiservice.put(this._resetPasswordApi + token, body)
@@ -70,6 +86,9 @@ export class AuthService {
                         });
     }
 
+    /**
+     * Get authentication token
+     */
     public authenticated() {
         return this._apiservice.get(this._authenticatedApi)
                     .map((res: Response) => {
@@ -84,7 +103,9 @@ export class AuthService {
                     });
     }
 
-
+    /**
+     * Perform logout (Clear session)
+     */
     public logout() {
         localStorage.removeItem(AuthService._localStorageKey);
         this._user = null;

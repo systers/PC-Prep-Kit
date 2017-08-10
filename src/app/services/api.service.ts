@@ -73,6 +73,18 @@ export class APIService {
     }
 
     /**
+     * Perform PATCH request
+     * @param  {string}          url  URL of the API
+     * @param  {Object}          body Request body
+     * @return {Observable<any>}      Return response
+     */
+    public patch(url: string, body: Object): Observable<any> {
+        this._setHeaders();
+        return this._http.patch(url, body, { headers: this._headers })
+                    .catch(this._handleError);
+    }
+
+    /**
      * Generic error handle
      * @param {Response} error Response object
      */
