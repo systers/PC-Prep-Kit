@@ -11,7 +11,7 @@
     </div>
 </div>
 <div class="prog-btns">
-    <button prev class="dnd-red">
+    <button prev [className]="position + ' dnd-red'">
         Prev
     </button>
     <button next [hidden]="!activityComplete" class="dnd-green bounce">
