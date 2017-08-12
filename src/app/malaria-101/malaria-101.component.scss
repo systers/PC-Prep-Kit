@@ -152,3 +152,27 @@ video {
 .drag-6 {
     @include drag-drop(110%, 60%);
 }
+
+.quiz-container {
+    margin-top: 7%;
+}
+
+.option {
+    display: table;
+    margin: 8px;
+    padding: 8px;
+    background: #FAE3BB;
+    color: #4C3000;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    height: 50px;
+    &:hover {
+        background: #EBBB67;
+    }
+    &>span {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+
