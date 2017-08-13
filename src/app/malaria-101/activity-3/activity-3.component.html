@@ -4,22 +4,22 @@
     </div>
     <div class="row col-md-offset-3" [hidden]="activityComplete">
         <div class="col-lg-5">
-            <div id= "1" class="option" (click)="optionSelected($event)"><span>{{this.opt[0]}}</span></div>
-            <div id= "2" class="option" (click)="optionSelected($event)"><span>{{this.opt[1]}}</span></div>
+            <div class="option" (click)="optionSelected($event)"><span id= "1">{{this.opt[0]}}</span></div>
+            <div class="option" (click)="optionSelected($event)"><span id= "2">{{this.opt[1]}}</span></div>
         </div>
         <div class="col-lg-5">
-            <div id= "3" class="option" (click)="optionSelected($event)"><span>{{this.opt[2]}}</span></div>
-            <div id= "4" class="option" (click)="optionSelected($event)"><span>{{this.opt[3]}}</span></div>
+            <div class="option" (click)="optionSelected($event)"><span id= "3">{{this.opt[2]}}</span></div>
+            <div class="option" (click)="optionSelected($event)"><span id= "4">{{this.opt[3]}}</span></div>
         </div>
     </div>
-    <div class="row pad" [hidden]="!activityComplete">
+    <div class="row col-lg-6 col-lg-offset-3 text-center" [hidden]="!activityComplete">
         <div class="swal2-icon swal2-info">i</div>
         <div>
             <h2 class="swal2-title text-center" id="swal2-title">Score!<br>You got {{this.score}} out of 5 questions right.</h2>
         </div>
-        <div class="swal2-title txt-center">
+        <div class="swal2-title text-center">
             <button class="btn btn-primary btn-lg" (click)="reload()">Reset</button>
         </div>
     </div>
 </div>
-
+<button-nav [complete]="activityComplete" prevurl="/malaria-101/activity-2" nexturl="/meds-n-labels/activity-1"></button-nav>

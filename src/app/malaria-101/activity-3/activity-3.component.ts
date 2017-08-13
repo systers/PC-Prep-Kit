@@ -17,6 +17,7 @@ export class OddOneOutComponent implements OnInit {
     private _obs;
     private _subscription;
     private _data;
+    private _status: object = {stage: 2, activity: 3};
 
     public activityComplete;
     public questionText;
@@ -38,6 +39,9 @@ export class OddOneOutComponent implements OnInit {
         this._questionNumber = 0;
         this._questionLock = false;
         this.opt = [];
+        this._dashboardService.getProgressStatus().subscribe(response => {
+            this.activityComplete = this._sharedData.checkProgress(2, 3, response);
+        });
         this._dashboardService.getJSONData('quiz.json').subscribe(response => {
             this._data = JSON.parse(response.data);
             this.shuffle(this._data.quizlist);
@@ -105,6 +109,7 @@ export class OddOneOutComponent implements OnInit {
         if (this._questionNumber === 5) {
             this.activityComplete = true;
             this.showNext = true;
+            this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
             return;
         }
         this._questionLock = false;
