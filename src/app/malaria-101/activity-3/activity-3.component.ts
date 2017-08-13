@@ -61,18 +61,19 @@ export class OddOneOutComponent implements OnInit {
      * @param {Object} event Use click event to get the attributes of the current DOM
      */
     optionSelected(event) {
-        if (this._questionLock === false) {
-            this._questionLock = true;
-            if (this._data.quizlist[this._questionNumber].answer === event.target.id) {
-                this.score++;
-                this.toastr.success('Correct!', 'Success!');
-            } else {
-                this.toastr.error('Incorrect! ', 'Sorry!');
-            }
-            this._obs = Observable.interval(1000)
-                        .do(i => this.changeQuestion() );
-            this._subscription = this._obs.subscribe();
+        if (this._questionLock) {
+            return;
         }
+        this._questionLock = true;
+        if (this._data.quizlist[this._questionNumber].answer === event.target.id) {
+            this.score++;
+            this.toastr.success('Correct!', 'Success!');
+        } else {
+            this.toastr.error('Incorrect! ', 'Sorry!');
+        }
+        this._obs = Observable.interval(1000)
+                    .do(i => this.changeQuestion() );
+        this._subscription = this._obs.subscribe();
     }
 
     /**
