@@ -58,97 +58,97 @@ video {
 }
 
 .text-1 {
-    @include text(65%, 20%);
+    @include text(65%, 25%);
     text-align: right;
 }
 
 .text-2 {
-    @include text(45%, 9%);
+    @include text(45%, 14%);
     text-align: right;
 }
 
 .text-3 {
-    @include text(22%, 8%);
+    @include text(22%, 13%);
     text-align: right;
 }
 
 .text-4 {
-    @include text(25%, 35%);
+    @include text(25%, 40%);
     text-align: right;
 }
 
 .text-5 {
-    @include text(22%, 65%);
+    @include text(22%, 70%);
 }
 
 .text-6 {
-    @include text(45%, 65%);
+    @include text(45%, 70%);
 }
 
 .arrow-1 {
-    @include arrow(35%, 59%, 180deg);
+    @include arrow(35%, 64%, 180deg);
 }
 
 .arrow-2 {
-    @include arrow(35%, 29%, 0deg);
+    @include arrow(35%, 34%, 0deg);
 }
 
 .arrow-3 {
-    @include arrow(15%, 37%, 45deg);
+    @include arrow(15%, 42%, 45deg);
 }
 
 .arrow-4 {
-    @include arrow(15%, 52%, 135deg);
+    @include arrow(15%, 57%, 135deg);
 }
 
 .arrow-5 {
-    @include arrow(55%, 37%, -45deg);
+    @include arrow(55%, 42%, -45deg);
 }
 
 .drop-1 {
-    @include drag-drop(5%, 40%);
+    @include drag-drop(5%, 45%);
 }
 
 .drop-2 {
-    @include drag-drop(15%, 25%);
+    @include drag-drop(15%, 30%);
 }
 
 .drop-3 {
-    @include drag-drop(15%, 55%);
+    @include drag-drop(15%, 60%);
 }
 
 .drop-4 {
-    @include drag-drop(40%, 25%);
+    @include drag-drop(40%, 30%);
 }
 
 .drop-5 {
-    @include drag-drop(40%, 55%);
+    @include drag-drop(40%, 60%);
 }
 
 .drop-6 {
-    @include drag-drop(55%, 40%);
+    @include drag-drop(55%, 45%);
 }
 
 .drag-1 {
-    @include drag-drop(80%, 25%);
+    @include drag-drop(80%, 30%);
 }
 
 .drag-2 {
-    @include drag-drop(80%, 40%);
+    @include drag-drop(80%, 45%);
 }
 
 .drag-3 {
-    @include drag-drop(80%, 55%);
+    @include drag-drop(80%, 60%);
 }
 
 .drag-4 {
-    @include drag-drop(110%, 25%);
+    @include drag-drop(110%, 30%);
 }
 
 .drag-5 {
-    @include drag-drop(110%, 40%);
+    @include drag-drop(110%, 45%);
 }
 
 .drag-6 {
-    @include drag-drop(110%, 55%);
+    @include drag-drop(110%, 60%);
 }
