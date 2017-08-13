@@ -12,8 +12,10 @@ export class MalariaLifeCycleComponent implements OnInit {
 
     private obs;
     private subscription;
-    public activityComplete = false;
+    private _status: object = {stage: 2, activity: 1};
     private currArrState = [];
+
+    public activityComplete = false;
     public solnArr = ['red-blood-cells.png',
                        'character-1.png',
                        'mosquito.png',
@@ -28,6 +30,9 @@ export class MalariaLifeCycleComponent implements OnInit {
                        'Second infected person']
 
     constructor(private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+        this._dashboardService.getProgressStatus().subscribe(response => {
+            this.activityComplete = this._sharedData.checkProgress(2, 1, response);
+        });
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -103,6 +108,7 @@ export class MalariaLifeCycleComponent implements OnInit {
         if (!isWrongPos && arrLength === 6) {
             this.activityComplete = true;
             this.toastr.success('Complete!', 'Success!');
+            this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
         } else if (arrLength === 6) {
             this.toastr.error('The life cycle is incorrect! ', 'Sorry!');
         }
