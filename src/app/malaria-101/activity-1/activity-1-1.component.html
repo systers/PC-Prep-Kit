@@ -3,11 +3,4 @@
 		<video id="video" width="640" height="480" src="../../assets/videos/malaria.mp4" controls autoplay></video>
 	</div>
 </div>
-<div class="row">
-    <button prev class="col-lg-5 col-md-offset-2">
-        Prev
-    </button>
-    <button next class="col-lg-5 col-md-offset-7" (click)="nextActivity()">
-        Next
-    </button>    
-</div>
+<button-nav nexturl="/malaria/activity-1-2" prevurl="/introduction/activity-3" [complete]="activityComplete"></button-nav>
