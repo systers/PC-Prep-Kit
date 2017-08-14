@@ -161,14 +161,14 @@ video {
     display: table;
     margin: 8px;
     padding: 8px;
-    background: #FAE3BB;
-    color: #4C3000;
+    background: $orange;
+    color: $black;
     width: 100%;
     cursor: pointer;
     text-align: center;
     height: 50px;
     &:hover {
-        background: #EBBB67;
+        background: $dark-orange;
     }
     &>span {
         display: table-cell;
