@@ -32,6 +32,8 @@ import { PicturePuzzleComponent } from './introduction/picture-puzzle.component'
 import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
 import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
 import { Malaria101Component } from './malaria-101/malaria-101.component';
+import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.component';
+import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
@@ -42,7 +44,6 @@ import { InfokitService } from './services/infokit.service';
 import { InfokitPipe } from './infokit/infokit.pipe';
 import { LanguageService } from './services/language.service';
 import { SharedDataService } from './services/shared.data.service';
-
 
 @NgModule({
     declarations: [
@@ -67,7 +68,9 @@ import { SharedDataService } from './services/shared.data.service';
         IntroductionComponent,
         HighlightActivityComponent,
         PicturePuzzleComponent,
-        Malaria101Component
+        Malaria101Component,
+        AnimatedVideoComponent,
+        MalariaLifeCycleComponent
     ],
     imports: [
         AppRoutingModule,
