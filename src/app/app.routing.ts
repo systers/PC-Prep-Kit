@@ -19,6 +19,9 @@ import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.compo
 import { IntroductionComponent } from './introduction/introduction.component';
 import { HighlightActivityComponent } from './introduction/highlight-activity.component';
 import { PicturePuzzleComponent } from './introduction/picture-puzzle.component';
+import { Malaria101Component } from './malaria-101/malaria-101.component';
+import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.component';
+import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
 
 export const routes: Routes = [
     {
@@ -88,6 +91,26 @@ export const routes: Routes = [
             {
                 path: 'activity-3',
                 component: PicturePuzzleComponent
+            }
+        ]
+    },
+    {
+        path: 'malaria-101',
+        component: Malaria101Component,
+        canActivate: [LoggedInGuard],
+        children: [
+            {
+                path: '',
+                redirectTo: 'activity-1-1',
+                pathMatch: 'full'
+            },
+            {
+                path: 'activity-1-1',
+                component: AnimatedVideoComponent
+            },
+            {
+                path: 'activity-1-2',
+                component: MalariaLifeCycleComponent
             }
         ]
     },
