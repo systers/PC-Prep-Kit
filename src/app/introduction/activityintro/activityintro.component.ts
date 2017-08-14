@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedDataService } from '../services/shared.data.service';
-
-import { LanguageService } from '../services/language.service';
+import { SharedDataService } from '../../services/shared.data.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-activityintro',
@@ -26,4 +25,3 @@ export class ActivityintroComponent implements OnInit {
       });
     }
 }
-

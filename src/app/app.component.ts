@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { SharedDataService } from './services/shared.data.service'
 
 @Component({
     selector: 'app-root',
@@ -13,16 +12,17 @@ export class AppComponent {
     public position = 'col-md-10 col-md-offset-2';
     public loggedIn = false;
 
-    constructor(private _router: Router, private _sharedData: SharedDataService) {
+    constructor(private _router: Router) {
         this._router.events.pairwise().subscribe((e) => {
             this.loggedIn = (e && localStorage.getItem(AppComponent._localStorageKey)) ? true : false;
+            this.position = (this.loggedIn === true) ? 'col-md-10 col-md-offset-2' : 'col-md-12';
         });
     }
 
     /**
-     * Call toggle function in shared data service
+     * Call toggle function
      */
-    toggle() {
-        this._sharedData.toggle();
-    }
+     toggle() {
+         this.position = (this.position === 'col-md-10 col-md-offset-2') ? 'col-md-12' : 'col-md-10 col-md-offset-2';
+     }
 }

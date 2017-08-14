@@ -1,0 +1,6 @@
+@mixin indicator-style($background) {
+    background: $background;
+    height: 25px;
+    border-style: ridge;
+    border-width: thick;
+}

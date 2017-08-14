@@ -1,12 +1,6 @@
-<div class="header">
-  <app-header (toggleNavbar)="nav.toggle()"> </app-header>
-</div>
 <div class="container-fluid">
-  <app-navbar #nav (togglePosition)="toggle()" (infoPop)="info.pop()"> </app-navbar>
-  <app-infokit #info > </app-infokit>
   <div class="row">
-    <div [className]="position + ' pc-policy-body text-center'">
-      <H1> {{language?.headings.introduction}} </H1>
+    <div class="pc-policy-body text-center">
       <p class="lead"> {{language?.descriptions.bodyContent1}} <Br> {{language?.descriptions.bodyContent2}}</p>
       <p class="lead text-primary"><strong> {{language?.descriptions.bodyContent3}} </strong></p>
       <img src="assets/img/mailpolicy.PNG" class="img-responsive center-block mail-policy-image">

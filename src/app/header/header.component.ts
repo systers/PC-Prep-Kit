@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
         this._authService.logout().subscribe(
             data => {
                 if (!data.loggedOut) {
-                    this._router.navigate(['/login']);
+                   this._router.navigate(['/login']);
                 }
             });
     }

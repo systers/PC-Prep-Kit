@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { InfokitService } from '../services/infokit.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { LanguageService } from '../services/language.service';
+import { InfokitService } from '../../services/infokit.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
     selector: 'app-dragdrop',

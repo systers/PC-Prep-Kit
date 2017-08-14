@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div class="row">
+    <div [className]="position">
+    </div>
+    <div class="col-xs-6">
+      <div *ngFor="let item of indicatorClass" class="col-xs-4 indicator">
+        <div [className]="item">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

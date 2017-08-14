@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { DashboardService } from '../services/dashboard.service';
+import { SharedDataService } from '../services/shared.data.service';
 
 @Component({
     selector: 'app-highlight',
@@ -58,4 +59,3 @@ export class HighlightActivityComponent implements OnInit {
         }
     }
 }
-

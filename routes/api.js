@@ -1,10 +1,10 @@
 const express = require('express');
 const jwt    = require('jsonwebtoken');
 const config = require('../config/settings');
-const authenticationHelpers = require('./authenticationHelpers');
 const router = express.Router();
 const models = require('../database/models');
 const mail = require('./mailService');
+const authenticationHelpers = require('./authenticationHelpers');
 
 const localUser = models.user_account;
 const progress = models.progress;

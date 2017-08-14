@@ -34,7 +34,7 @@ export class MenuComponent implements OnInit {
     }
 
     /**
-     * Check if user is logged in or not before loading the menu page 
+     * Check if user is logged in or not before loading the menu page
      */
     ngOnInit() {
         this._dashboardService.getProgressStatus().subscribe(response => {

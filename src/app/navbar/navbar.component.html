@@ -14,7 +14,7 @@
       <li><a routerLink="/malaria101">{{language?.links.malaria101}}</a></li>
       <li><a routerLink="/medicationlabels">{{language?.links.medsAndLabels}}</a></li>
       <li><a routerLink="/pcpolicy">{{language?.links.pcpolicy}}</a></li>
-      <li><a routerLink="/infokit">{{language?.links.infokit}}</a></li>
+      <li><a (click)="toggleInfokit()">{{language?.links.infokit}}</a></li>
     </ul>
   </div>
 </div>
