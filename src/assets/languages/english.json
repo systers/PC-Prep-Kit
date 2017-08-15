@@ -56,9 +56,9 @@
 
     "stages": {
       "introduction": {
+        "heading": "Introduction",
         "activityintro": {
           "headings": {
-            "introduction": "Introduction",
             "welcome": "Welcome"
           },
           "descriptions": {
@@ -69,9 +69,6 @@
           }
         },
         "pcpolicy": {
-          "headings": {
-            "introduction": "Introduction"
-          },
           "descriptions": {
             "bodyContent1": "So this is Kinda important.",
             "bodyContent2": "Lets make sure you have it on hand.",
@@ -84,6 +81,7 @@
         }
       },
       "malaria101": {
+        "heading": "Malaria 101",
         "dragdrop": {
           "descriptions": {
             "boxIndicatorDo": "Dos",

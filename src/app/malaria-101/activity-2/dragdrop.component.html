@@ -1,11 +1,6 @@
-<div class="header">
-  <app-header (togglenavbar)="nav.toggle()"> </app-header>
-</div>
 <div class="container-fluid">
-  <app-navbar #nav (toggleposition)="toggle()" (infopop)="info.pop()"> </app-navbar>
-  <app-infokit #info > </app-infokit>
   <div class="row">
-    <div [className]="position">
+    <div>
       <div class="content">
         <div class="row">
           <div class="col-xs-4 col-xs-offset-2">

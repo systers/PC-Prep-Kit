@@ -7,13 +7,13 @@ import { LoginComponent } from './authentication/login.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PcpolicyComponent } from './pcpolicy/pcpolicy.component';
+import { PcpolicyComponent } from './introduction/activity-2/pcpolicy.component';
 import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ActivityintroComponent } from './activityintro/activityintro.component';
+import { ActivityintroComponent } from './introduction/activityintro/activityintro.component';
 import { MenuComponent } from './menu/menu.component';
-import { DragdropComponent} from './dragdrop/dragdrop.component';
+import { DragdropComponent} from './malaria-101/activity-2/dragdrop.component';
 import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
 import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
 import { IntroductionComponent } from './introduction/introduction.component';
@@ -24,6 +24,11 @@ import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.co
 import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
 
 export const routes: Routes = [
+    {
+        path: '',
+        component: SplashscreenComponent,
+        canActivate: [UnauthenticatedGuard]
+    },
     {
         path: 'splash',
         component: SplashscreenComponent,
@@ -50,21 +55,6 @@ export const routes: Routes = [
         canActivate: [UnauthenticatedGuard]
     },
     {
-        path: 'pcpolicy',
-        component: PcpolicyComponent,
-        canActivate: [LoggedInGuard]
-    },
-    {
-        path: 'intro',
-        component: ActivityintroComponent,
-        canActivate: [LoggedInGuard]
-    },
-    {
-        path: 'dragdrop',
-        component: DragdropComponent,
-        canActivate: [LoggedInGuard]
-    },
-    {
         path: 'reset/:token',
         component: ResetPasswordComponent,
         canActivate: [UnauthenticatedGuard]
@@ -81,12 +71,15 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'activity-1',
-                pathMatch: 'full'
+                component: ActivityintroComponent
             },
             {
                 path: 'activity-1',
                 component: HighlightActivityComponent
+            },
+            {
+                path: 'activity-2',
+                component: PcpolicyComponent
             },
             {
                 path: 'activity-3',
@@ -111,6 +104,10 @@ export const routes: Routes = [
             {
                 path: 'activity-1-2',
                 component: MalariaLifeCycleComponent
+            },
+            {
+                path: 'activity-2',
+                component: DragdropComponent
             }
         ]
     },

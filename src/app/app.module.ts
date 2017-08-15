@@ -16,15 +16,16 @@ import { LoginComponent } from './authentication/login.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PcpolicyComponent } from './pcpolicy/pcpolicy.component';
+import { PcpolicyComponent } from './introduction/activity-2/pcpolicy.component';
 import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ActivityintroComponent } from './activityintro/activityintro.component';
+import { ActivityintroComponent } from './introduction/activityintro/activityintro.component';
+import { ActivityindicatorComponent } from './activityindicator/activityindicator.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { InfokitComponent } from './infokit/infokit.component';
-import { DragdropComponent } from './dragdrop/dragdrop.component';
+import { DragdropComponent } from './malaria-101/activity-2/dragdrop.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { HighlightActivityComponent } from './introduction/highlight-activity.component';
 import { PicturePuzzleComponent } from './introduction/picture-puzzle.component';
@@ -58,6 +59,7 @@ import { SharedDataService } from './services/shared.data.service';
         ActivityintroComponent,
         HeaderComponent,
         MenuComponent,
+        ActivityindicatorComponent,
         InfokitComponent,
         InfokitPipe,
         DragdropComponent,
