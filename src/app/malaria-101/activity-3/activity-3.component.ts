@@ -22,6 +22,7 @@ export class OddOneOutComponent implements OnInit {
     public activityComplete;
     public questionText;
     public score;
+    public showNext = false;
     public opt = [];
 
     constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
@@ -39,7 +40,7 @@ export class OddOneOutComponent implements OnInit {
         this._questionLock = false;
         this.opt = [];
         this._dashboardService.getProgressStatus().subscribe(response => {
-            this.activityComplete = this._sharedData.checkProgress(2, 3, response);
+            this.showNext = this._sharedData.checkProgress(2, 3, response);
         });
         this._dashboardService.getJSONData('quiz.json').subscribe(response => {
             this._data = JSON.parse(response.data);
