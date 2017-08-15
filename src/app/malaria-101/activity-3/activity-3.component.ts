@@ -22,7 +22,6 @@ export class OddOneOutComponent implements OnInit {
     public activityComplete;
     public questionText;
     public score;
-    public showNext;
     public opt = [];
 
     constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
@@ -108,7 +107,6 @@ export class OddOneOutComponent implements OnInit {
         this._questionNumber++;
         if (this._questionNumber === 5) {
             this.activityComplete = true;
-            this.showNext = true;
             this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
             return;
         }
