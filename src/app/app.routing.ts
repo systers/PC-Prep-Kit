@@ -19,6 +19,7 @@ import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.compo
 import { IntroductionComponent } from './introduction/introduction.component';
 import { HighlightActivityComponent } from './introduction/highlight-activity.component';
 import { PicturePuzzleComponent } from './introduction/picture-puzzle.component';
+import { MatchmedsComponent } from './meds-n-labels/activity-1/matchmeds.component';
 import { Malaria101Component } from './malaria-101/malaria-101.component';
 import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.component';
 import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
@@ -116,6 +117,10 @@ export const routes: Routes = [
         component: MedsNLabelsComponent,
         canActivate: [LoggedInGuard],
         children: [
+            {
+                path: 'activity-1',
+                component: MatchmedsComponent
+            },
             {
                 path: 'activity-2',
                 component: MemoryGameComponent

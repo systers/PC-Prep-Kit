@@ -1,0 +1,32 @@
+@import "../styles/main";
+
+.medicine-container {
+    padding: $padding-med;
+}
+
+.medicine {
+    height: 100px;
+    width: 100px;
+}
+
+.des {
+    height: 135px;
+    overflow: hidden;
+}
+
+@include match-elements(0, 30%, 60%);
+
+@media only screen and (min-width: $screen-xsmall) {
+    @include match-elements(10%, 30%, 50%);
+}
+
+@media only screen and (min-width: $screen-small) {
+    @include match-elements(20%, 40%, 70%);
+}
+
+@media only screen and (min-width: $screen-med) {
+    @include match-elements(35%, 45%, 70%);
+    .meds-description{
+        padding-right: 10%;
+    }
+}

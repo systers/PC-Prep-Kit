@@ -31,6 +31,7 @@ import { HighlightActivityComponent } from './introduction/highlight-activity.co
 import { PicturePuzzleComponent } from './introduction/picture-puzzle.component';
 import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
 import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
+import { MatchmedsComponent } from './meds-n-labels/activity-1/matchmeds.component';
 import { Malaria101Component } from './malaria-101/malaria-101.component';
 import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.component';
 import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
@@ -68,6 +69,7 @@ import { SharedDataService } from './services/shared.data.service';
         IntroductionComponent,
         HighlightActivityComponent,
         PicturePuzzleComponent,
+        MatchmedsComponent,
         Malaria101Component,
         AnimatedVideoComponent,
         MalariaLifeCycleComponent
