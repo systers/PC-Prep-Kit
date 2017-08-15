@@ -25,12 +25,12 @@ export class HeaderComponent implements OnInit {
             this.language = response.pcprepkit.common.header;
         });
      }
+
     logout() {
-        this._authService.logout().subscribe(
-            data => {
-                if (!data.loggedOut) {
-                   this._router.navigate(['/login']);
-                }
-            });
+        this._authService.logout().subscribe(data => {
+            if (!data.loggedOut) {
+                this._router.navigate(['/login']);
+            }
+        });
     }
 }

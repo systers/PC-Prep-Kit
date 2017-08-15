@@ -15,14 +15,14 @@ export class AppComponent {
     constructor(private _router: Router) {
         this._router.events.pairwise().subscribe((e) => {
             this.loggedIn = (e && localStorage.getItem(AppComponent._localStorageKey)) ? true : false;
-            this.position = (this.loggedIn === true) ? 'col-md-10 col-md-offset-2' : 'col-md-12';
+            this.position = (this.loggedIn) ? 'col-md-10 col-md-offset-2' : 'col-md-12';
         });
     }
 
     /**
      * Call toggle function
      */
-     toggle() {
-         this.position = (this.position === 'col-md-10 col-md-offset-2') ? 'col-md-12' : 'col-md-10 col-md-offset-2';
-     }
+    toggle() {
+        this.position = (this.position === 'col-md-10 col-md-offset-2') ? 'col-md-12' : 'col-md-10 col-md-offset-2';
+    }
 }

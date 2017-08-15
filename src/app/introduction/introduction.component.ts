@@ -7,13 +7,13 @@ import { LanguageService } from '../services/language.service';
 })
 
 export class IntroductionComponent implements OnInit {
-  language: any;
+    language: any;
 
-  constructor(private _langService: LanguageService) {}
+    constructor(private _langService: LanguageService) {}
 
-  ngOnInit() {
-      this._langService.loadLanguage().subscribe(response => {
-          this.language = response.pcprepkit.stages.introduction;
-      });
-  }
+    ngOnInit() {
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.stages.introduction;
+        });
+    }
 }
