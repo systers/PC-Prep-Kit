@@ -41,7 +41,6 @@ import { APIService } from './services/api.service';
 import { RegService } from './services/reg.service';
 import { NavbarService } from './services/navbar.service';
 import { InfokitService } from './services/infokit.service';
-import { InfokitPipe } from './infokit/infokit.pipe';
 import { LanguageService } from './services/language.service';
 import { SharedDataService } from './services/shared.data.service';
 
@@ -61,7 +60,6 @@ import { SharedDataService } from './services/shared.data.service';
         MenuComponent,
         ActivityindicatorComponent,
         InfokitComponent,
-        InfokitPipe,
         DragdropComponent,
         MedsNLabelsComponent,
         MemoryGameComponent,
