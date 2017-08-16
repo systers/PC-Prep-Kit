@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../services/dashboard.service';
-import { Router } from '@angular/router';
+import { Event, Router, NavigationEnd } from '@angular/router';
 
 @Component({
     selector: 'app-activityindicator',
@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 
 export class ActivityindicatorComponent implements OnInit {
     // Sets the Position of Activity Indicator When Side bar is toggled.
+    private static _localStorageKey = 'pcprepkitUser';
     public position = 'col-md-3 col-md-offset-1 col-xs-3';
     activityProgress: number;
-    curActivity: number;
     activity: number;
     stage: number;
 
@@ -23,31 +23,39 @@ export class ActivityindicatorComponent implements OnInit {
      * DashboardService API for the latest Activity Completed
      * Router helps with the current Activty information
      */
-    constructor(private _dashboardService: DashboardService, private _router: Router) { }
+    constructor(private _dashboardService: DashboardService, private _router: Router) {}
 
     // Getting the latest Activity
     ngOnInit() {
-        this._dashboardService.getProgressStatus().subscribe(response => {
-            this.activity = response.activity;
-            this.stage = response.stage;
-            this.findRoute();
-        }, err => {
-            this._router.navigate(['/login']);
-        });
+      this._router.events.subscribe( event => {
+        if (event instanceof NavigationEnd) {
+            this.indicatorClass = ['indblack', 'indblack', 'indblack'];
+        }
+        if (localStorage.getItem(ActivityindicatorComponent._localStorageKey)) {
+          this._dashboardService.getProgressStatus().subscribe(response => {
+              this.activity = response.activity;
+              this.stage = response.stage;
+              this.findRoute();
+          }, err => {
+              this._router.navigate(['/login']);
+          });
+        }
+      });
     }
 
     /**
      * updateInd receives current activity information from the findRoute function
      * and updates the activity Indicator colors
      * @param  {integer} currentActivty Current activity Infromation
-     */
-    updateInd(currentActivty) {
-        if (currentActivty < this.activity) {
+    */
+    updateInd(currentStage) {
+        if (currentStage < this.stage) {
             this.activityProgress = 3;
+        } else if (currentStage === this.stage) {
+            this.activityProgress = this.activity;
         } else {
-            this.activityProgress = this.stage;
+            this.activityProgress = 0;
         }
-
         for (let i = 0; i < this.activityProgress; i++) {
             this.indicatorClass[i] = 'indgreen';
         }
@@ -59,8 +67,8 @@ export class ActivityindicatorComponent implements OnInit {
      */
     findRoute() {
         const module = this._router.url.split('/')[1];
-        const activities = ['introduction', 'malaria101', 'meds'];
-        const idx = activities.indexOf(module);
+        const stages = ['introduction', 'malaria-101', 'meds-n-labels'];
+        const idx = stages.indexOf(module);
         if (idx > -1) {
             this.updateInd(idx + 1);
         }
