@@ -1,0 +1,70 @@
+{
+    "quizlist":
+    [
+        {
+            "question":"Malaria is transmitted ______",
+            "option1":"Through mosquito bites",
+            "option2":"By eating tainted food",
+            "option3":"by physical contact",
+            "option4":"By playing in dirt",
+            "answer":"1"
+        },
+        {
+            "question":"Malaria is prevented by ______",
+            "option1":"Playing in dirt",
+            "option2":"By not maintaining hygiene",
+            "option3":"Sleeping under an insecticide-treated bednet",
+            "option4":"By eating unprotected food",
+            "answer":"3"
+        },
+        {
+            "question":"Which of the following can repel mosquitoes?",
+            "option1":"Banana",
+            "option2":"Chilli",
+            "option3":"Citronella",
+            "option4":"Garlic",
+            "answer":"3"
+        },
+        {
+            "question":"Which of these drink contains quinine, an anti-malarial property?",
+            "option1":"Lemonade",
+            "option2":"Tonic",
+            "option3":"Warm milk",
+            "option4":"Cola",
+            "answer":"2"
+        },
+        {
+            "question":"Malaria is transmitted by a mosquito bite, but what causes the disease?",
+            "option1":"Insecticide",
+            "option2":"A virus",
+            "option3":"Blood poisoning",
+            "option4":"A parasite",
+            "answer":"4"
+        },
+        {
+            "question":"Find the odd symptom of malaria",
+            "option1":"Fever",
+            "option2":"Dizziness",
+            "option3":"Fatigue",
+            "option4":"Back pain",
+            "answer":"2"
+        },
+        {
+            "question":"Find the odd statement",
+            "option1":"Malaria is a neglected tropical disease",
+            "option2":"If you get malaria once, you won't ever get it again",
+            "option3":"Malaria is quite often endemic in poorer regions of the world",
+            "option4":"Malaria is not curable",
+            "answer":"3"
+        },
+        {
+            "question":"Disease associated with malaria",
+            "option1":"Jaundice",
+            "option2":"Tuberculosis",
+            "option3":"Cholera",
+            "option4":"Typhoid",
+            "answer":"1"
+        }                            
+    ]
+}
+

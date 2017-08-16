@@ -288,5 +288,15 @@ router.post('/uploadCam', function(req, res) {
     res.send(req.files);
 });
 
+/**
+ * Return JSON file contents
+ * @param  {Object} '/getJSONData'  URI of the resource
+ * @param  {Function} (req, res)    Anonymous function to handle request and response
+ */
+router.get('/getJSONData', (req, res) => {
+    const uri = `./data/${req.query.file}`;
+    res.status(200).json({data: fs.readFileSync(uri, 'utf8')});
+});
+
 module.exports = router;
 
