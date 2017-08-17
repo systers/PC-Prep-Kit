@@ -1,4 +1,4 @@
-<div class="infokit-background" (infopop)="pop()" [hidden]="!infokitstate">
+<div class="infokit-background" (infopop)="pop()" [hidden]="!infokitState">
   <div class="container infokit-body">
     <div class="infokit-header text-center row">
       <div class="col-xs-6 col-xs-offset-3">
@@ -10,12 +10,15 @@
     </div >
     <div class="infokit-components row">
       <div class="infokit-selector row" [hidden]="showInfo">
-        <div class="col-xs-4" *ngFor=" let infoBool of infokitactive | infokitPipe" [hidden]="!infoBool.val">
-          <button class="btn btn-default btn-group-justified info-button" (click)="info(infoBool.key)">{{infoBool.def}}</button>
+        <div class="col-xs-12" [hidden]="infokitAvailable">
+          <P> No infokit available </p>
+        </div>
+        <div class="col-xs-4" *ngFor="let infoBool of infokitActive" [hidden]="!infoBool.value">
+          <button class="btn btn-default btn-group-justified info-button" (click)="info(infoBool.def)">{{infoBool.def}}</button>
         </div>
       </div>
       <div class="infokit-content" [hidden]="!showInfo">
-        {{infocontent}}
+        {{infoContent}}
       </div>
     </div>
     <div class="infokit-footer text-center row">
