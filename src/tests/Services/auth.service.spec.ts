@@ -25,10 +25,10 @@ describe('AuthService', () => {
                   useClass: MockBackend
                 }               
             ],
-            imports: [
-                RouterTestingModule,
-                HttpModule
-            ],           
+			imports: [
+				RouterTestingModule,
+				HttpModule
+			],           
         });
     });
 

@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent } from '../../app/header/header.component';
 import { NavbarComponent } from '../../app/navbar/navbar.component';
 import { NavbarService } from '../../app/services/navbar.service';
-import { PcpolicyComponent } from '../../app/pcpolicy/pcpolicy.component';
+import { PcpolicyComponent } from '../../app/introduction/activity-2/pcpolicy.component';
 import { APIService } from '../../app/services/api.service';
 import { AuthService } from '../../app/services/auth.service';
 import { DashboardService } from '../../app/services/dashboard.service';

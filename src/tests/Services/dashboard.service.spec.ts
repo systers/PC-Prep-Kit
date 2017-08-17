@@ -21,10 +21,18 @@ mockGetProgressStatusResponses.push({stage: 1, activity: 2});
 mockGetProgressStatusResponses.push({info: 'This account does not exist'});
 mockGetProgressStatusResponses.push({info: 'No data found'});
 mockGetProgressStatusResponses.push({error: 'Something went wrong while fetching user progress data'});
+
+const mockUpdateProgressStatusResponse = [];
+mockUpdateProgressStatusResponse.push({info: 'success'});
+mockUpdateProgressStatusResponse.push({info: 'Illegal operation'});
+mockUpdateProgressStatusResponse.push({error: 'Something went wrong while updating progress status'});
+mockUpdateProgressStatusResponse.push({error: 'No data recieved'});
+
 const mockUserInfoResponse = {user: {email: 'abc@gmail.com', name: 'Rajath'}};
-const mockGetProgressStatusResponse = {stage: 1, activity: 2};
-const mockUpdateProgressStatusResponse = {info: 'success'};
-const mockMailPCPolicyResponse = {message: 'Mail Sent Succesfully.'}
+
+const mockMailPCPolicyResponse = [];
+mockMailPCPolicyResponse.push({message: 'Mail Sent Succesfully.'});
+mockMailPCPolicyResponse.push({error: 'Something Went Wrong! Try again later.'});
 
 describe('DashboardService', () => {
     beforeEach(() => {
@@ -64,13 +72,13 @@ describe('DashboardService', () => {
                     if (connection.request.url === mailPcPolicyInfo) {
                         expect(connection.request.method).toBe(RequestMethod.Get);
                         connection.mockRespond(new Response(
-                            new ResponseOptions({body: mockMailPCPolicyResponse})
+                            new ResponseOptions({body: mockMailPCPolicyResponse.shift()})
                         ));               
                     }                                      
                     if (connection.request.url === updateProgressStatus) {
                         expect(connection.request.method).toBe(RequestMethod.Put);
                         connection.mockRespond(new Response(
-                            new ResponseOptions({ body: mockUpdateProgressStatusResponse })
+                            new ResponseOptions({body: mockUpdateProgressStatusResponse.shift()})
                         ));                    
                     }
                 }); 
@@ -120,15 +128,43 @@ describe('DashboardService', () => {
     it('should update user progress status', inject([DashboardService], (service: DashboardService) => {
                 service.updateProgressStatus({stage: 1, activity: 2})
                         .subscribe(res => {
-                            expect(res).toBe(mockUpdateProgressStatusResponse);
+                            expect(res).toBe({info: 'success'});
                         });
-    })); 
+    }));
+
+    it('should return illegal operation if user is at wrong activity', inject([DashboardService], (service: DashboardService) => {
+                service.updateProgressStatus({stage: 100, activity: 100})
+                        .subscribe(res => {
+                            expect(res).toBe({info: 'Illegal operation'});
+                        });
+    }));
+
+    it('should return server errors', inject([DashboardService], (service: DashboardService) => {
+                service.updateProgressStatus({stage: 1, activity: 2})
+                        .subscribe(res => {
+                            expect(res).toBe({error: 'Something went wrong while updating progress status'});
+                        });
+    }));         
+
+    it('should return no data recieved on sending empty request body', inject([DashboardService], (service: DashboardService) => {
+                service.updateProgressStatus({})
+                        .subscribe(res => {
+                            expect(res).toBe({error: 'No data recieved'});
+                        });
+    }));         
 
     it('should mail pc policy', inject([DashboardService], (service: DashboardService) => {
                 service.mailpcpolicy()
                         .subscribe(res => {
-                            expect(res).toBe(mockMailPCPolicyResponse);
+                            expect(res).toBe({message: 'Mail Sent Succesfully.'});
                         });
-    }));           
+    }));
+
+    it('should return server error response', inject([DashboardService], (service: DashboardService) => {
+                service.mailpcpolicy()
+                        .subscribe(res => {
+                            expect(res).toBe({error: 'Something Went Wrong! Try again later.'});
+                        });
+    }));             
 
 });

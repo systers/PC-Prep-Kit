@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedDataService } from '../../app/services/shared.data.service';
 import { APIService } from '../../app/services/api.service';
 import { DashboardService } from '../../app/services/dashboard.service';
-import { ActivityintroComponent } from '../../app/activityintro/activityintro.component';
+import { ActivityintroComponent } from '../../app/introduction/activityintro/activityintro.component';
 import { ResponseOptions, Response, Http, BaseRequestOptions, RequestMethod } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
