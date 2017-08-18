@@ -25,15 +25,12 @@ import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.co
 import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
 import { OddOneOutComponent } from './malaria-101/activity-3/activity-3.component';
 import { DoctorchatComponent } from './meds-n-labels/activity-3/doctorchat.component';
+import { UnlockedStageComponent } from './unlocked-stage/unlocked-stage.component';
+import { HowToPlayComponent } from './unlocked-stage/how-to-play/howtoplay.component';
 
 export const routes: Routes = [
     {
         path: '',
-        component: SplashscreenComponent,
-        canActivate: [UnauthenticatedGuard]
-    },
-    {
-        path: 'splash',
         component: SplashscreenComponent,
         canActivate: [UnauthenticatedGuard]
     },
@@ -136,9 +133,18 @@ export const routes: Routes = [
                 component: DoctorchatComponent
             }
         ]
-    }
+    },
+    {
+        path: 'unlocked-stage',
+        component: HowToPlayComponent,
+        canActivate: [LoggedInGuard],
+    },
+    {
+        path: 'unlocked-stage/game',
+        component: UnlockedStageComponent,
+        canActivate: [LoggedInGuard],
+    },
 ];
-
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]

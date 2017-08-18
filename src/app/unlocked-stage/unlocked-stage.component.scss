@@ -1,0 +1,158 @@
+@import "../styles/main";
+
+@mixin selectable($allowSelect) {
+    user-select: $allowSelect;
+    -moz-user-select: $allowSelect;
+    -khtml-user-select: $allowSelect;
+    -webkit-user-select: $allowSelect;
+    -o-user-select: $allowSelect;
+}
+
+@mixin draggable($allowDrag) {
+    user-drag: $allowDrag;
+    -moz-user-drag: $allowDrag;
+    -khtml-user-drag: $allowDrag;
+    -webkit-user-drag: $allowDrag;
+    -o-user-drag: $allowDrag;   
+}
+
+@mixin positioning($type, $top, $left) {
+    position: $type;
+    top: $top;
+    left: $left;
+}
+
+@mixin borderRadius($radius) {
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin beforeElement($padding) {
+    content: "";
+    display: block;
+    padding-top: $padding;
+}
+
+@mixin healthBar($color) {
+    width: 100%;
+    background-color: $color;
+    @include borderRadius(25px);
+    &:before {
+        @include beforeElement(8px)
+    }
+}
+
+
+@mixin health($top, $left) {
+    @include positioning(absolute, $top, $left);
+    width: 20%;
+    background-color: white;
+    @include borderRadius(25px);
+    border: 1px solid #000000;
+}
+
+@mixin legendText($top, $left) {
+    @include positioning(absolute, $top, $left);
+    font-size: 1vw;
+    font-weight: 900;
+}
+
+#scene {
+    border: 1px solid black;
+    width: 62%;
+    background-image: url('../../assets/img/unlocked-stage/background.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    @include positioning(relative, 50px, 20%);
+    @include selectable(none); 
+    @include draggable(none);    
+    &:before {
+        @include beforeElement(35%)
+    }
+
+}
+
+#trans-gif {
+    width: 55%;
+    height: auto;
+}
+
+#prevention {
+    width: 100%;
+    height: auto;    
+}
+
+#guide {
+    font-weight: $font-bold;
+}
+
+#game-end-status {
+    @include positioning(absolute, 10%, 5%);    
+}
+
+#restart {
+    padding-top: 5%;   
+}
+
+#inventory {
+    @include positioning(absolute, 125px, 83%);
+    border: 1px solid black;
+    width: 8%;
+    background: #FAE3BB;
+    padding-top: 30%;
+}
+
+#inventory-heading {
+    @include legendText(0, 20%);
+}
+
+#human-health-text {
+    @include legendText(1%, 84%);
+}
+
+#mosquito-health-text {
+    @include legendText(1%, 10%); 
+}
+
+#human {
+    display: block;
+    width: 10%;
+    margin: 0;
+    padding: 0;
+    @include positioning(relative, 50%, 80%);
+}
+
+#moz {
+    display: block;
+    width: 25px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+
+#spray {
+    position: absolute;
+    @include selectable(none); 
+    @include draggable(none);  
+}
+
+#spray-item {
+    @include positioning(absolute, 7%, 20%);
+    width: 50%;
+    cursor: pointer;
+}
+
+#human-health {
+    @include health(5%, 77%)
+    #human-health-bar {
+        @include healthBar(green)
+    }
+}
+
+#mosquito-health {
+    @include health(5%, 5%)
+    #mosquito-health-bar {
+        @include healthBar(red)
+    }     
+}
