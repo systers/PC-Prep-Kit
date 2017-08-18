@@ -85,7 +85,7 @@ export class UnlockedStageComponent implements OnInit {
         $('img[name=animate]').animate({ top: newMosquitoPos[1], left: newMosquitoPos[0] }, speed, function() {
             if (currObj._mosquitoBarWidth <= 0) {
                 currObj.success = true;
-                this._dashboardService.updateProgressStatus(currObj._status).subscribe(response => {});
+                currObj._dashboardService.updateProgressStatus(currObj._status).subscribe(response => {});
                 return;
             }
             if (currObj._humanBarWidth <= 0) {
@@ -147,6 +147,8 @@ export class UnlockedStageComponent implements OnInit {
     reload() {
         this._mosquitoBarWidth = 100;
         this._humanBarWidth = 100;
+        this._mosquitoProgBar.style.width = this._mosquitoBarWidth + '%';
+        this._humanProgBar.style.width = this._humanBarWidth + '%';
         this.gameOver = false;
         this.success = false;
         this.ngOnInit();
