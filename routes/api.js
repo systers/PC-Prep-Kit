@@ -16,6 +16,13 @@ const fs = require('fs');
 const multer = require('multer');
 const winston = require('winston');
 
+const codes = JSON.parse(fs.readFileSync('./data/codes.json'));
+const errorCode = codes.errors;
+const successCode = codes.success;
+
+const otherData = JSON.parse(fs.readFileSync('./data/english.json'));
+const mailData = otherData.mail;
+
 /**
  * Check if the request is authenticated
  * @param  {Object} req   Request object
@@ -42,7 +49,7 @@ router.use(function(req, res, next) {
         // verifies secret and checks exp
         jwt.verify(token, config.secretKey, function(err, decoded) {
             if (err) {
-                return res.json({success: false, message: 'Failed to authenticate token.'});
+                return res.json({success: false, message: errorCode.PCE025.message, code: errorCode.PCE025.code});
             } else {
                 // if everything is good, save to request for use in other routes
                 req.decoded = decoded;
@@ -55,7 +62,8 @@ router.use(function(req, res, next) {
         // return an error
         return res.status(403).send({
             success: false,
-            message: 'No token provided.'
+            message: errorCode.PCE016.message,
+            code: errorCode.PCE016.code
         });
     }
 });
@@ -87,7 +95,7 @@ router.get('/username', authenticationHelpers.isAuthOrRedirect, (req, res) => {
         res.status(200).json({username: username});
     }).catch(error => {
         if (error) {
-            res.status(500).json({error: 'Something went wrong'});
+            res.status(500).json({error: errorCode.PCE017.message, code: errorCode.PCE017.code});
         }
     });
 });
@@ -100,31 +108,31 @@ router.get('/username', authenticationHelpers.isAuthOrRedirect, (req, res) => {
  */
 router.get('/getProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     if (!req.user.email) {
-        return res.status(400).json({error: 'Email not provided'});
+        return res.status(400).json({error: errorCode.PCE021.message, code: errorCode.PCE021.code});
     }
     localUser.find({where: {
         email: req.user.email
     }}, {raw: true})
         .then(data => {
             if (!data) {
-                return res.status(200).json({info: 'This account does not exist'});
+                return res.status(200).json({info: errorCode.PCE022.message, code: errorCode.PCE022.code});
             }
             progress.find({where: {
                 user_id: data.id
             }}, {raw: true})
                 .then(progressData => {
                     if (!progressData) {
-                        return res.status(200).json({info: 'No data found'});
+                        return res.status(200).json({info: errorCode.PCE018.message, code: errorCode.PCE018.code});
                     }
                     const response = {stage: progressData.stage, activity: progressData.activity};
                     return res.status(200).json(response);
                 })
                 .catch(function(err) {
-                    return res.status(500).json({error: 'Something went wrong while fetching user progress data'});
+                    return res.status(500).json({error: errorCode.PCE019.message, code: errorCode.PCE019.code});
                 });
         })
         .catch(function(err) {
-            return res.status(500).json({error: 'Something went wrong while fetching user data'});
+            return res.status(500).json({error: errorCode.PCE020.message, code: errorCode.PCE020.code});
         });
 });
 
@@ -137,10 +145,10 @@ router.get('/getProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, r
 router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     const email = req.user.email;
     mail.mailOptions.to = email;
-    mail.mailOptions.subject = 'Peace Corps Policy';
-    mail.mailOptions.html = '<H2> Peace Corps Policy </H2>';
+    mail.mailOptions.subject = mailData.pcpolicy.subject;
+    mail.mailOptions.html = mailData.pcpolicy.content;
     mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
-        error ? res.status(500).json({error: 'Something Went Wrong! Try again later.'}) : res.json({message: 'Mail Sent Succesfully.'});
+        error ? res.status(500).json({error: errorCode.PCE023.message, code: errorCode.PCE023.code}) : res.json({message: 'Mail Sent Succesfully.'});
     });
 });
 
@@ -175,48 +183,48 @@ router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (r
                         }
                     })
                         .then(response => {
-                            return res.status(200).json({info: 'success'});
+                            return res.status(200).json({info: successCode.PCS003.message, code: successCode.PCS003.code});
                         })
                 } else if (stageDiff < 1 && activityDiff < 1) {
-                    return res.status(200).json({info: 'success'});
+                    return res.status(200).json({info: successCode.PCS003.message, code: successCode.PCS003.code});
                 } else {
-                    return res.status(200).json({info: 'Illegal operation'});
+                    return res.status(200).json({info: errorCode.PCE027.message, code: errorCode.PCE027.code});
                 }
             })
             .catch(function(err) {
-                return res.status(500).json({error: 'Something went wrong while updating progress status'});
+                return res.status(500).json({error: errorCode.PCE028.message, code: errorCode.PCE028.code});
             });
     } else {
-        return res.status(400).json({error: 'No data recieved'});
+        return res.status(400).json({error: errorCode.PCE029.message, code: errorCode.PCE029.code});
     }
 });
 
 router.get('/infokitactive', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     if (!req.user.email) {
-        return res.status(400).json({error: 'Email not provided'});
+        return res.status(400).json({error: errorCode.PCE021.message, code: errorCode.PCE021.code});
     }
     localUser.find({where: {
         email: req.user.email
     }}, {raw: true})
         .then(data => {
             if (!data) {
-                return res.status(200).json({info: 'This account does not exist'});
+                return res.status(200).json({info: errorCode.PCE022.message, code: errorCode.PCE022.code});
             }
             infokit.find({where: {
                 user_id: data.id
             }}, {raw: true})
-                .then( infokitData => {
+                .then(infokitData => {
                     if (!infokitData) {
-                        return res.status(200).json({info: 'No data found'});
+                        return res.status(200).json({info: errorCode.PCE026.message, code: errorCode.PCE026.code});
                     }
                     return res.status(200).json({infokitactive: infokitData});
                 })
                 .catch(function(err) {
-                    return res.status(500).json({error: 'Something went wrong while fetching user progress data'});
+                    return res.status(500).json({error: errorCode.PCE019.message, code: errorCode.PCE019.code});
                 });
         })
         .catch(function(err) {
-            return res.status(500).json({error: 'Something went wrong while fetching user data'});
+            return res.status(500).json({error: errorCode.PCE020.message, code: errorCode.PCE020.code});
         });
 });
 
@@ -226,27 +234,27 @@ router.get('/activateinfokit', authenticationHelpers.isAuthOrRedirect, (req, res
     updateobj[activate] = true;
 
     if (!req.user.email) {
-        return res.status(400).json({error: 'Email not provided'});
+        return res.status(400).json({error: errorCode.PCE021.message, code: errorCode.PCE021.code});
     }
     localUser.find({where: {
         email: req.user.email
     }}, {raw: true})
         .then(data => {
             if (!data) {
-                return res.status(200).json({info: 'This account does not exist'});
+                return res.status(200).json({info: errorCode.PCE022.message, code: errorCode.PCE022.code});
             }
             infokit.update( updateobj, {
                 where: {
                     user_id: data.id
                 }
             }).then(function(data) {
-                return res.json({message: 'Activity Added to Infokit'});
+                return res.json({message: successCode.PCS004.message, code: successCode.PCS004.code});
             }).catch(function(err) {
-                return res.status(500).json({error: 'Something went wrong'});
+                return res.status(500).json({error: errorCode.PCE024.message, code: errorCode.PCE024.code});
             });
         })
         .catch(function(err) {
-            return res.status(500).json({error: 'Something went wrong while fetching user data'});
+            return res.status(500).json({error: errorCode.PCE020.message, code: errorCode.PCE020.code});
         });
 });
 

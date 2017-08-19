@@ -9,6 +9,16 @@ const jwt    = require('jsonwebtoken');
 const authenticationHelpers = require('./authenticationHelpers');
 const utilityFunctions = require('./utilityfunctions');
 const readHTMLFile = utilityFunctions.readHTMLFile;
+const fs = require('fs');
+
+const codes = JSON.parse(fs.readFileSync('./data/codes.json'));
+const errorCode = codes.errors;
+const successCode = codes.success;
+
+const otherData = JSON.parse(fs.readFileSync('./data/english.json'));
+const mailData = otherData.mail;
+const mailFooterData = otherData.mail.footer;
+const mailHeaderData = otherData.mail.header;
 
 /**
  * create authentication token
@@ -108,7 +118,7 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
      */
     router.post('/forgot', function(req, res) {
         if (!req.body.email || !validateEmail(req.body.email)) {
-            return res.status(400).json({error: 'Email is invalid'});
+            return res.status(400).json({error: errorCode.PCE002.message, code: errorCode.PCE002.code});
         }
         async.waterfall([
             function(done) {
@@ -125,7 +135,7 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                 }}, {raw: true})
                     .then(data => {
                         if (!data) {
-                            return res.status(200).json({info: 'This account does not exist or you cannot change the password for this account'});
+                            return res.status(200).json({info: errorCode.PCE011.message, code: errorCode.PCE011.code});
                         }
                         const date = moment(moment.now() + (60 * 60 * 1000)).format('YYYY-MM-DD HH:mm:ss');
                         localUser.update({
@@ -143,7 +153,22 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                                     const replacements = {
                                         host: req.headers.host,
                                         token: token,
-                                        name: data.fname
+                                        name: data.fname,
+                                        title: mailData.forgotPassword.title,
+                                        preHeader: mailData.forgotPassword.preHeader,
+                                        brandTitle1: mailHeaderData.brandTitle1,
+                                        brandTitle2: mailHeaderData.brandTitle2,
+                                        greeting: mailData.forgotPassword.greeting,
+                                        textContent1: mailData.forgotPassword.textContent.textContent1,
+                                        textContent2: mailData.forgotPassword.textContent.textContent2,
+                                        textContent3: mailData.forgotPassword.textContent.textContent3,
+                                        textContent4: mailData.forgotPassword.textContent.textContent4,
+                                        textContent5: mailData.forgotPassword.textContent.textContent5,
+                                        callToAction: mailData.forgotPassword.callToAction,
+                                        signatureGreet: mailData.forgotPassword.signature.endGreet,
+                                        signatureSignOff: mailData.forgotPassword.signature.signOff,
+                                        footerText1: mailFooterData.textContent1,
+                                        footerText2: mailFooterData.copyrights
                                     };
                                     const htmlToSend = template(replacements);
                                     const to = req.body.email;
@@ -152,18 +177,18 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                                 });
                             })
                             .catch(function(err) {
-                                return res.status(500).json({error: 'Something went wrong'});
+                                return res.status(500).json({error: errorCode.PCE012.message, code: errorCode.PCE012.code});
                             });
                     }).catch(function(err) {
-                        return res.status(500).json({error: 'Something went wrong'});
+                        return res.status(500).json({error: errorCode.PCE012.message, code: errorCode.PCE012.code});
                     });
             }
         ],
         function(err, user) {
             if (err) {
-                return res.status(500).json({error: 'Something went wrong'});
+                return res.status(500).json({error: errorCode.PCE012.message, code: errorCode.PCE012.code});
             }
-            const successMessage = `An e-mail has been sent to ${user.email} with further instructions`;
+            const successMessage = `${successCode.PCS002.message1} ${user.email} ${successCode.PCS002.message2}`;
             return res.status(200).json({success: successMessage});
         });
     });
@@ -174,7 +199,7 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
      * @param  {Object} res  Response object
      */
     router.get('/reset/:token', function(req, res) {
-        const errMsg = 'Password reset token is invalid or has expired';
+        const errMsg = errorCode.PCE013.message;
         if (!req.params.token) {
             return res.redirect(`http://${req.headers.host}/login?err=${errMsg}`);
         }
@@ -191,7 +216,7 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                 }
                 res.redirect(`/reset/${req.params.token}`);
             }).catch(function(err) {
-                return res.status(500).json({error: 'Something went wrong'});
+                return res.status(500).json({error: errorCode.PCE014.message, code: errorCode.PCE014.code});
             });
     });
 
@@ -211,7 +236,7 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                 }}, {raw: true})
                     .then(data => {
                         if (!data) {
-                            const errMsg = 'Password reset token is invalid or has expired';
+                            const errMsg = errorCode.PCE013.message;
                             return res.redirect(`http://${req.headers.host}/login?err=${errMsg}`);
                         }
                         const user = {email: data.email};
@@ -219,7 +244,6 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                             if (err) {
                                 return res.status(500).json({error: 'Something went wrong'});
                             }
-
                             localUser.update({
                                 resetPasswordToken: null,
                                 resetPasswordExpires: null,
@@ -232,13 +256,27 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                             })
                                 .then(updateData => {
                                     if (!updateData) {
-                                        return res.status(500).json({error: 'Something went wrong'});
+                                        return res.status(500).json({error: errorCode.PCE015.message, code: errorCode.PCE015.code});
                                     }
                                     readHTMLFile('./public/pages/password-reset-success.html', function(err, html) {
                                         const template = handlebars.compile(html);
                                         const replacements = {
                                             email: user.email,
-                                            name: data.fname
+                                            name: data.fname,
+                                            title: mailData.passwordResetSuccess.title,
+                                            preHeader: mailData.passwordResetSuccess.preHeader,
+                                            brandTitle1: mailHeaderData.brandTitle1,
+                                            brandTitle2: mailHeaderData.brandTitle2,
+                                            greeting: mailData.passwordResetSuccess.greeting,
+                                            textContent1: mailData.passwordResetSuccess.textContent.textContent1,
+                                            textContent2: mailData.passwordResetSuccess.textContent.textContent2,
+                                            textContent3: mailData.passwordResetSuccess.textContent.textContent3,
+                                            textContent4: mailData.passwordResetSuccess.textContent.textContent4,
+                                            textContent5: mailData.passwordResetSuccess.textContent.textContent5,
+                                            signatureGreet: mailData.passwordResetSuccess.signature.endGreet,
+                                            signatureSignOff: mailData.passwordResetSuccess.signature.signOff,
+                                            footerText1: mailFooterData.textContent1,
+                                            footerText2: mailFooterData.copyrights
                                         };
                                         const htmlToSend = template(replacements);
                                         const to = user.email;
@@ -246,17 +284,19 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                                         sendEmail(to, subject, htmlToSend, user, nodemailer, done);
                                     });
                                 }).catch(function(err) {
-                                    return res.status(500).json({error: 'Something went wrong'});
+                                    return res.status(500).json({error: errorCode.PCE015.message, code: errorCode.PCE015.code});
                                 });
                         });
+                    }).catch(function(err) {
+                        return res.status(500).json({error: errorCode.PCE015.message, code: errorCode.PCE015.code});
                     });
             }
         ],
         function(err, user) {
             if (err) {
-                return res.status(500).json({error: 'Something went wrong'});
+                return res.status(500).json({error: errorCode.PCE015.message, code: errorCode.PCE015.code});
             }
-            return res.status(200).json({success: 'Success! Your password has been changed.'});
+            return res.status(200).json({success: successCode.PCS001.message, code: successCode.PCS001.code});
         });
     });
 };
