@@ -15,6 +15,8 @@ import { LanguageService } from '../services/language.service';
 export class RegisterComponent implements OnInit {
     regForm: FormGroup;
     language: any;
+    header: any;
+    authMessages: any;
 
     constructor(private _regService: RegService, private _router: Router, fb: FormBuilder, private _langService: LanguageService) {
         this.regForm = fb.group({
@@ -30,6 +32,8 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.registration;
+            this.header = response.pcprepkit.common.header;
+            this.authMessages = response.pcprepkit.authMessages;
         });
      }
 
@@ -38,7 +42,7 @@ export class RegisterComponent implements OnInit {
             if (successful) {
                 this._router.navigateByUrl('/login');
             } else {
-                this.errorMessage = 'Registration Unsuccesful';
+                this.errorMessage = this.authMessages.registrationFail;
             }
         }, err => {
             this.errorMessage = err.info;

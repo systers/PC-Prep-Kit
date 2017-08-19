@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-
+import { Observable } from 'rxjs/Rx';
 import { NavbarService } from '../services/navbar.service';
 import { LanguageService } from '../services/language.service';
 
@@ -28,16 +28,28 @@ export class NavbarComponent implements OnInit {
     @Output() togglePosition = new EventEmitter<any>();
     @Output() infoPop = new EventEmitter<any>();
     public state= 'out';
+    private _obs;
+    private _subscription;    
+    private static _localStorageKey = 'pcprepkitUser';
     constructor(private _navbarService: NavbarService, private _langService: LanguageService) { }
 
     ngOnInit() {
-        this._navbarService.getUserName().subscribe(response => {
-            this.username = response.username;
-        });
-
+        this._obs = Observable.interval(500)
+                       .do(i => this.getUserName());
+        this._subscription = this._obs.subscribe();        
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.common.navbar;
         });
+    }
+
+    getUserName() {
+        if(localStorage.getItem(NavbarComponent._localStorageKey)) {
+            this._subscription.unsubscribe();
+            this._navbarService.getUserName().subscribe(response => {
+                this.username = response.username;
+            }); 
+
+        }       
     }
 
     toggle() {

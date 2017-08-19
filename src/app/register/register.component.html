@@ -1,6 +1,6 @@
 <div class="container">
   <div class="col-xs-8 col-xs-offset-2 text-center">
-    <h1><span class="header-1">{{language?.headings.titleLeft}} </span><span class="header-2">{{language?.headings.titleRight}}</span> </h1>
+    <h2><span class="header-1">{{header?.headings.titleLeft}} </span><span class="header-2">{{header?.headings.titleRight}}</span> </h2>
     <h3 class="form-signin-heading">{{language?.messages.heading}}</h3>
     <form [formGroup]="regForm" (ngSubmit)="onSubmit(regForm.value)">
       <div class="form-group input-group">
@@ -16,8 +16,8 @@
         <input type="email" class="form-control" name="email" placeholder={{language?.placeHolders.email}} [formControl]="regForm.controls['email']">
       </div>
       <div>
-        <p *ngIf="regForm.controls['email'].hasError('required') && (regForm.controls['email'].dirty)" class="alert alert-danger" role="alert">{{language?.errors.emailReq}}</p>
-        <p *ngIf="regForm.controls['email'].hasError('pattern') && (regForm.controls['email'].dirty)" class="alert alert-danger" role="alert">{{language?.errors.emailInvalid}}</p>
+        <p *ngIf="regForm.controls['email'].hasError('required') && (regForm.controls['email'].dirty)" class="alert alert-danger" role="alert">{{authMessages?.errors.emailReq}}</p>
+        <p *ngIf="regForm.controls['email'].hasError('pattern') && (regForm.controls['email'].dirty)" class="alert alert-danger" role="alert">{{authMessages?.errors.emailInvalid}}</p>
       </div>
       <div class="form-group input-group" [ngClass]="{'has-error':!regForm.controls['password'].valid && regForm.controls['password'].dirty}">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -28,8 +28,8 @@
         <input type="password" class="form-control" name="confirmpassword" placeholder={{language?.placeHolders.confirmPassword}} [formControl]="regForm.controls['confirmpassword']">
       </div>
       <div>
-        <p *ngIf="regForm.controls['password'].hasError('required') && (regForm.controls['password'].dirty)" class="alert alert-danger" role="alert">{{language?.errors.passwordReq}}</p>
-        <p *ngIf="regForm.controls['confirmpassword'].value!=regForm.controls['password'].value && (regForm.controls['confirmpassword'].dirty)" class="alert alert-danger" role="alert">{{language?.errors.passwordMatch}}</p>
+        <p *ngIf="regForm.controls['password'].hasError('required') && (regForm.controls['password'].dirty)" class="alert alert-danger" role="alert">{{authMessages?.errors.passwordReq}}</p>
+        <p *ngIf="regForm.controls['confirmpassword'].value!=regForm.controls['password'].value && (regForm.controls['confirmpassword'].dirty)" class="alert alert-danger" role="alert">{{authMessages?.errors.passwordMatch}}</p>
       </div>
       <div class="form-group">
         <button type="submit" [disabled]="!(regForm.valid && regForm.controls['confirmpassword'].value==regForm.controls['password'].value)" class="btn btn-primary btn-lg">{{language?.messages.buttonMessage}}</button>

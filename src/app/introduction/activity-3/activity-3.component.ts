@@ -1,15 +1,17 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, Renderer } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, Renderer, ViewContainerRef } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import { DashboardService } from '../services/dashboard.service';
+import { DashboardService } from '../../services/dashboard.service';
 import 'webrtc-adapter';
 import { webcamEnum } from './webcamEnum';
-import { SharedDataService } from '../services/shared.data.service';
+import { SharedDataService } from '../../services/shared.data.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
     selector: 'app-activity3',
-    templateUrl: './picture-puzzle.component.html',
-    styleUrls: ['./introduction.component.scss']
+    templateUrl: './activity-3.component.html',
+    styleUrls: ['../introduction.component.scss']
 })
 export class PicturePuzzleComponent implements OnInit {
 
@@ -37,7 +39,7 @@ export class PicturePuzzleComponent implements OnInit {
     private _mousedownListener: any;
     private _width = 480;
     private _height = 360
-    private _status: object;
+    private _status: object = {stage: 1, activity: 3};
     private _activity: number;
 
     public webcamStates = webcamEnum;
@@ -49,15 +51,13 @@ export class PicturePuzzleComponent implements OnInit {
     public webcamStream;
     public puzzleState = 'Start puzzle';
     public activityComplete = false;
-    public position: string;
     public filesToUpload: Array<File> = [];
+    public language: any;
+    public completed = false;
+    public alerts: any;
 
-    constructor(private _http: Http, private _dashboardService: DashboardService, private _renderer: Renderer, private _sharedData: SharedDataService) {
-        this._sharedData.position.subscribe(
-            value => {
-                this.position = value;
-            }
-        );
+    constructor(private _langService: LanguageService, private _http: Http, private _dashboardService: DashboardService, public toastr: ToastsManager, vcr: ViewContainerRef, private _renderer: Renderer, private _sharedData: SharedDataService) {
+        this.toastr.setRootViewContainerRef(vcr);
     }
 
     changeWebcamState(state, btnText) {
@@ -66,7 +66,7 @@ export class PicturePuzzleComponent implements OnInit {
     }
 
     openWebcam() {
-        this.changeWebcamState(this.webcamStates.OPENED, 'Capture');
+        this.changeWebcamState(this.webcamStates.OPENED, this.language.messages.capture);
         this.imageLoaded = false;
         this._video = this.video.nativeElement;
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -84,27 +84,33 @@ export class PicturePuzzleComponent implements OnInit {
         } else {
             this.webcamStream.getTracks().forEach(function(track) { track.stop() })
         }
-        this.changeWebcamState(this.webcamStates.CAPTURED, 'Take another photo');
+        this.changeWebcamState(this.webcamStates.CAPTURED, this.language.messages.afterCapture);
         this.onImage();
     }
 
     ngOnInit() {
-        this.changeWebcamState(this.webcamStates.PAGE_LOAD, 'Take Photo');
-        this.activityComplete = this._sharedData.checkProgress(1, 3);
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.stages.introduction.picturePuzzle;
+            this.alerts = response.pcprepkit.common.alerts;
+            this.changeWebcamState(this.webcamStates.PAGE_LOAD, this.language.messages.takePhoto);
+        });
+        this._dashboardService.getProgressStatus().subscribe(response => {
+            this.completed = this._sharedData.checkProgress(1, 3, response);
+        });
     }
 
     upload() {
         if (this.webcamState === this.webcamStates.CAPTURED) {
             const camData = {base64: this._canvas.toDataURL('image/jpeg')}
             this._dashboardService.uploadCamPic(camData).subscribe(response => {
-                this._sharedData.customAlert('Success!', 'Profile picture updated successfully!', 'success');
+                this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
             });
         } else {
             const formData: any = new FormData();
             const files: Array<File> = this.filesToUpload;
             formData.append('uploads[]', files, 'profile_picture');
             this._dashboardService.uploadPic(formData).subscribe(response => {
-                this._sharedData.customAlert('Success!', 'Profile picture updated successfully!', 'success');
+                this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
             });
         }
     }
@@ -117,7 +123,7 @@ export class PicturePuzzleComponent implements OnInit {
                 this.webcamStream.getTracks().forEach(function(track) {track.stop()})
             }
         }
-        this.changeWebcamState(this.webcamStates.PAGE_LOAD, 'Take Photo');
+        this.changeWebcamState(this.webcamStates.PAGE_LOAD, this.language.messages.takePhoto);
         document.getElementById('file').click();
     }
 
@@ -127,7 +133,7 @@ export class PicturePuzzleComponent implements OnInit {
         const reader = new FileReader();
 
         if (!file.type.match(pattern)) {
-            this._sharedData.customAlert('Oops...', 'Invalid format!', 'error');
+            this._sharedData.customErrorAlert(this.alerts.activityFailMsg, this.alerts.activityFailTitle);
             return;
         }
 
@@ -156,6 +162,8 @@ export class PicturePuzzleComponent implements OnInit {
         if (this.webcamState === this.webcamStates.CAPTURED) {
             this._stage.drawImage(this._video, 0, 0, this._width, this._height);
             this.activityComplete = true;
+            this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
+            this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
         } else {
             this.initPuzzle();
         }
@@ -197,7 +205,7 @@ export class PicturePuzzleComponent implements OnInit {
         let i;
         let piece;
         let posn = {x: 0, y: 0};
-        this.puzzleState = 'Shuffle';
+        this.puzzleState = this.language.messages.shuffle;
         this._pieces = this.shuffleArray(this._pieces);
         this._stage.clearRect(0, 0, this._puzzleWidth, this._puzzleHeight);
         for (i = 0;  i < this._pieces.length; i++) {
@@ -347,7 +355,7 @@ export class PicturePuzzleComponent implements OnInit {
 
     gameOver() {
         this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
-        this._sharedData.customAlert('Good job!', 'You completed this activity!', 'success');
+        this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
         this._mousedownListener();
         this._mousemoveListener();
         this._mouseupListener();

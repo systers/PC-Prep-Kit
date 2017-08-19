@@ -1,13 +1,18 @@
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <h2 class="sub-heading-1 text-center">{{language?.heading}}</h2>
+    </div>
+</div>
 <div class="quiz-container">
     <div class="row" [hidden]="activityComplete">
-        <h2 class="col-lg-5 col-lg-offset-4 text-center">{{questionText}}</h2>
+        <h2 class="col-lg-4 col-lg-offset-4 text-center">{{questionText}}</h2>
     </div>
     <div class="row col-md-offset-3" [hidden]="activityComplete">
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             <div class="option" (click)="optionSelected($event)"><span id="1">{{this.opt[0]}}</span></div>
             <div class="option" (click)="optionSelected($event)"><span id="2">{{this.opt[1]}}</span></div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             <div class="option" (click)="optionSelected($event)"><span id="3">{{this.opt[2]}}</span></div>
             <div class="option" (click)="optionSelected($event)"><span id="4">{{this.opt[3]}}</span></div>
         </div>
@@ -15,11 +20,11 @@
     <div class="row col-lg-6 col-lg-offset-3 text-center" [hidden]="!activityComplete">
         <div class="swal2-icon swal2-info">i</div>
         <div>
-            <h2 class="swal2-title text-center" id="swal2-title">Score!<br>You got {{this.score}} out of 5 questions right.</h2>
+            <h2 class="swal2-title text-center" id="swal2-title">{{language?.descriptions.score}}<br>{{language?.descriptions.resultText1}} {{this.score}} {{language?.descriptions.resultText2}}</h2>
         </div>
         <div class="swal2-title text-center">
-            <button class="btn btn-primary btn-lg" (click)="reload()">Reset</button>
+            <button class="btn btn-primary btn-lg" (click)="reload()">{{language?.messages.resetButton}}</button>
         </div>
     </div>
 </div>
-<button-nav [complete]="showNext" prevurl="/malaria-101/activity-2" nexturl="/meds-n-labels/activity-1"></button-nav>
+<button-nav [complete]="activityComplete" [completed]="completed" prevurl="/malaria-101/activity-2" nexturl="/meds-n-labels/activity-1"></button-nav>

@@ -1,22 +1,11 @@
-$intro-color: #00F977;
-$malaria-color: #EB5A61;
-$med-color: #017E84;
-$pc-policy-color: #F2AE3E;
-$white-color: #FFFFFF;
-
-$activity-incomplete: #BEBEBE;
-
-$malaria-outer-circle-color: #E13946;
-$med-outer-circle-color: #07717E;
-$pc-outer-circle-policy-color: #F09938;
-
-$header-blue: #04529D;
+@import "../styles/main";
 
 @mixin rotation($angle) {
     -ms-transform: rotate($angle); /* IE 9 */
     -webkit-transform: rotate($angle); /* Chrome, Safari, Opera */
     transform: rotate($angle);
 }
+
 
 @mixin circle($diameter) {
     display: flex;
@@ -167,13 +156,4 @@ $header-blue: #04529D;
 .unlocked-btn {
     background-color: $white-color;
     color: grey;
-}
-
-.title {
-    color: $header-blue;
-    text-align: center;
-    margin-left: 10%;
-    font-weight: 900;
-    font-size: 25px;
-    margin-top: 10px;
 }

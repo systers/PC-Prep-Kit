@@ -1,22 +1,20 @@
 <div class="row">
-    <div class="col-lg-5 col-md-offset-4">
+    <div class="col-lg-6 col-lg-offset-3">
+        <h2 class="sub-heading-1 text-center">{{language?.heading}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-md-offset-3">
         <table class="image-table">
             <tbody>
                 <tr *ngFor="let imgRows of createRange(4); let outerIdx = index">
                     <td *ngFor="let imgs of createRange(4); let innerIdx = index;" (click)="isMatchArr[4*outerIdx+innerIdx] ? choose(4*outerIdx+innerIdx) : null" [id]="4*outerIdx+innerIdx">
-                        <img src="{{backcard}}"/>
+                        <img class="memory-imgs" src="{{backcard}}"/>
                     </td>
                 </tr>  
             </tbody>
         </table>
     </div>
 </div>
-<div class="row">
-    <button [className]="position + ' arrow-red'">
-        Prev
-    </button>
-    <button [hidden]="!activityComplete" class="arrow-green bounce col-lg-5 col-md-offset-4">
-        Next
-    </button>    
-</div>
+<button-nav nexturl="/meds-n-labels/activity-3" prevurl="/meds-n-labels/activity-1" [completed]="completed" [complete]="activityComplete"></button-nav>
 

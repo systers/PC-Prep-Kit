@@ -9,16 +9,17 @@ import { APIService } from './api.service';
 @Injectable()
 export class AuthService {
 
-    private static _localStorageKey = 'pcprepkitUser';
+    private static _localStorageKey = environment.localStorageKey;
     private _token: string = null;
     private _user: object = null;
 
+    private _baseAuthUrl = environment.baseURL + environment.authEndpoint;
     // Routes
-    private _loginAuth = environment.baseURL + environment.authEndpoint + 'login';
-    private _logoutAuth = environment.baseURL + environment.authEndpoint  + 'logout';
-    private _authenticatedApi = environment.baseURL + environment.authEndpoint  + 'authenticated';
-    private _forgotPasswordApi = environment.baseURL + environment.authEndpoint  + 'forgot';
-    private _resetPasswordApi = environment.baseURL + environment.authEndpoint  + 'reset/';
+    private _loginAuth = this._baseAuthUrl + 'login';
+    private _logoutAuth = this._baseAuthUrl + 'logout';
+    private _authenticatedApi = this._baseAuthUrl + 'authenticated';
+    private _forgotPasswordApi = this._baseAuthUrl + 'forgot';
+    private _resetPasswordApi = this._baseAuthUrl + 'reset/';
 
     constructor(private _router: Router, private _apiservice: APIService) {
         const currentUser = JSON.parse(localStorage.getItem(AuthService._localStorageKey));

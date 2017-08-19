@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-lg-5 col-lg-offset-4">
+        <h2 class="sub-heading-1">{{language?.headings.question}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-5 col-md-offset-4">
+        <blockquote class="rectangle-speech-border">
+            <p class="lead-title">
+                {{language?.descriptions.bodyContent1}}
+            </p>
+            <p class="lead-sub-heading">
+                {{language?.descriptions.bodyContent2}}
+            </p>
+            <p class="lead">
+              {{language?.descriptions.bodyContent3}}
+            </p>
+        </blockquote>
+        <img class="mosquito" src="../../../assets/img/cartoon-mosquito.png">
+    </div>
+</div>
+<button-nav [complete]="activityComplete" [completed]="completed" nexturl="/introduction/activity-2"></button-nav>

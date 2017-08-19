@@ -78,6 +78,14 @@ export class MatchmedsComponent implements OnInit {
             this.alerts = response.pcprepkit.common.alerts;
         });
 
+        this._dashboardService.getProgressStatus().subscribe(response => {
+            this.completed = this._sharedData.checkProgress(3, 1, response);
+        });
+
+        this._langService.loadLanguage().subscribe(response => {
+            this.alerts = response.pcprepkit.common.alerts;
+        });
+
         /**
         * Check Window Size and Change Width
         */

@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 function randomString(length, chars) {
     let result = '';
     for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
@@ -19,9 +21,23 @@ function validatePassword(password) {
     return re.test(password);
 }
 
+function readHTMLFile(path, callback) {
+    fs.readFile(path, {encoding: 'utf-8'}, function(err, html) {
+        if (err) {
+            throw err;
+            callback(err);
+        }
+        else {
+            callback(null, html);
+        }
+    });
+}
+
+
 module.exports = {
     validateEmail: validateEmail,
     randomString: randomString,
     validateName: validateName,
-    validatePassword: validatePassword
+    validatePassword: validatePassword,
+    readHTMLFile: readHTMLFile
 };

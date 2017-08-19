@@ -1,12 +1,14 @@
 // Import dependencies
 const smtpTransport = require('nodemailer-smtp-transport');
 const moment = require('moment');
+const handlebars = require('handlebars');
 const config = require('../config/settings');
 const _      = require('lodash');
 const bcrypt = require('bcrypt');
 const jwt    = require('jsonwebtoken');
 const authenticationHelpers = require('./authenticationHelpers');
 const utilityFunctions = require('./utilityfunctions');
+const readHTMLFile = utilityFunctions.readHTMLFile;
 
 /**
  * create authentication token
@@ -39,7 +41,7 @@ function sendEmail(recipient, subject, content, user, nodemailer, done) {
         to: recipient,
         from: config.nodeMailer.EMAIL,
         subject: subject,
-        text: content
+        html: content
     };
     transport.sendMail(mailOptions, function(err) {
         done(err, user);
@@ -125,7 +127,7 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                         if (!data) {
                             return res.status(200).json({info: 'This account does not exist or you cannot change the password for this account'});
                         }
-                        const date = moment(moment.now() + 60 * 60 * 1000).format('YYYY-MM-DD HH:mm:ss');
+                        const date = moment(moment.now() + (60 * 60 * 1000)).format('YYYY-MM-DD HH:mm:ss');
                         localUser.update({
                             resetPasswordToken: token,
                             resetPasswordExpires: date
@@ -135,11 +137,19 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                                 provider: 'local'
                             }
                         })
-                            .then(function(data) {
-                                const to = req.body.email;
-                                const subject = 'PC PREP KIT Password Reset';
-                                const text = `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\nPlease click on the following link, or paste this into your browser to complete the process:\n\nhttp://${req.headers.host}/auth/reset/${token} \n\nIf you did not request this, please ignore this email and your password will remain unchanged.\n`;
-                                sendEmail(to, subject, text, user, nodemailer, done);
+                            .then(function(updateData) {
+                                readHTMLFile('./public/pages/forgot-password.html', function(err, html) {
+                                    const template = handlebars.compile(html);
+                                    const replacements = {
+                                        host: req.headers.host,
+                                        token: token,
+                                        name: data.fname
+                                    };
+                                    const htmlToSend = template(replacements);
+                                    const to = req.body.email;
+                                    const subject = 'PC PREP KIT Password Reset';
+                                    sendEmail(to, subject, htmlToSend, user, nodemailer, done);
+                                });
                             })
                             .catch(function(err) {
                                 return res.status(500).json({error: 'Something went wrong'});
@@ -164,8 +174,9 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
      * @param  {Object} res  Response object
      */
     router.get('/reset/:token', function(req, res) {
+        const errMsg = 'Password reset token is invalid or has expired';
         if (!req.params.token) {
-            return res.status(400).json({error: 'Password reset token is invalid or has expired'});
+            return res.redirect(`http://${req.headers.host}/login?err=${errMsg}`);
         }
         localUser.find({where: {
             resetPasswordToken: req.params.token,
@@ -176,7 +187,7 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
         }}, {raw: true})
             .then(data => {
                 if (!data) {
-                    return res.status(200).json({info: 'Password reset token is invalid or has expired'});
+                    return res.redirect(`http://${req.headers.host}/login?err=${errMsg}`);
                 }
                 res.redirect(`/reset/${req.params.token}`);
             }).catch(function(err) {
@@ -200,7 +211,8 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                 }}, {raw: true})
                     .then(data => {
                         if (!data) {
-                            return res.status(200).json({info: 'Password reset token is invalid or has expired'});
+                            const errMsg = 'Password reset token is invalid or has expired';
+                            return res.redirect(`http://${req.headers.host}/login?err=${errMsg}`);
                         }
                         const user = {email: data.email};
                         bcrypt.hash(req.body.password, 10, function(err, hash) {
@@ -218,17 +230,24 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                                     provider: 'local'
                                 }
                             })
-                            .then(data => {
-                                if (!data) {
+                                .then(updateData => {
+                                    if (!updateData) {
+                                        return res.status(500).json({error: 'Something went wrong'});
+                                    }
+                                    readHTMLFile('./public/pages/password-reset-success.html', function(err, html) {
+                                        const template = handlebars.compile(html);
+                                        const replacements = {
+                                            email: user.email,
+                                            name: data.fname
+                                        };
+                                        const htmlToSend = template(replacements);
+                                        const to = user.email;
+                                        const subject = 'Your password has been changed';
+                                        sendEmail(to, subject, htmlToSend, user, nodemailer, done);
+                                    });
+                                }).catch(function(err) {
                                     return res.status(500).json({error: 'Something went wrong'});
-                                }
-                                const to = user.email;
-                                const subject = 'Your password has been changed';
-                                const text = `Hello,\n\nThis is a confirmation that the password for your account ${user.email} has just been changed.\n`;
-                                sendEmail(to, subject, text, user, nodemailer, done);
-                            }).catch(function(err) {
-                                return res.status(500).json({error: 'Something went wrong'});
-                            });
+                                });
                         });
                     });
             }

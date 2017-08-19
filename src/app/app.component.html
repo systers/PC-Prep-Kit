@@ -1,15 +1,10 @@
-<div class="container-fluid">
-  <div *ngIf="loggedIn">
-    <div class="header">
-      <app-header (toggleNavbar)="nav.toggle()"> </app-header>
-      <app-infokit #info > </app-infokit>
-      <app-navbar #nav (togglePosition)="toggle(); ind.activityToggle()" (infoPop)="info.pop()"> </app-navbar>
-      <div class="footer">
-        <app-activityindicator #ind></app-activityindicator>
-      </div>
-    </div>
-  </div>
-  <div [className]="position">
-    <router-outlet></router-outlet>
-  </div>
+<!--The whole content below can be removed with the new code.-->
+<div class="header" [hidden]='!loggedIn'>
+    <app-header (toggleNavbar)="nav.toggle()"> </app-header>
+</div>
+<app-infokit #info > </app-infokit>
+<app-navbar #nav (togglePosition)="toggle();" (infoPop)="info.pop()" [hidden]='!loggedIn'> </app-navbar>
+<router-outlet></router-outlet>
+<div class="footer" [hidden]='!loggedIn || isMenuPage' style="z-index: 999">
+	<app-activityindicator #ind></app-activityindicator>
 </div>

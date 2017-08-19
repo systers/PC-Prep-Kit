@@ -174,12 +174,11 @@ router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (r
                             id: data.progress.id
                         }
                     })
-
-                    .then(response => {
-                        return res.status(200).json({info: 'Success'});
-                    });
+                        .then(response => {
+                            return res.status(200).json({info: 'success'});
+                        })
                 } else if (stageDiff < 1 && activityDiff < 1) {
-                    return res.status(200).json({info: 'Already Updated'});
+                    return res.status(200).json({info: 'success'});
                 } else {
                     return res.status(200).json({info: 'Illegal operation'});
                 }
