@@ -55,6 +55,7 @@ export class PicturePuzzleComponent implements OnInit {
     public language: any;
     public completed = false;
     public alerts: any;
+    public userData: any;
 
     constructor(private _langService: LanguageService, private _http: Http, private _dashboardService: DashboardService, public toastr: ToastsManager, vcr: ViewContainerRef, private _renderer: Renderer, private _sharedData: SharedDataService) {
         this.toastr.setRootViewContainerRef(vcr);
@@ -89,6 +90,9 @@ export class PicturePuzzleComponent implements OnInit {
     }
 
     ngOnInit() {
+        this._dashboardService.getUserInfo().subscribe(response => {
+            this.userData = btoa(response) + '.jpeg';
+        });
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.stages.introduction.picturePuzzle;
             this.alerts = response.pcprepkit.common.alerts;
@@ -108,7 +112,7 @@ export class PicturePuzzleComponent implements OnInit {
         } else {
             const formData: any = new FormData();
             const files: Array<File> = this.filesToUpload;
-            formData.append('uploads[]', files, 'profile_picture');
+            formData.append('uploads[]', files, this.userData);
             this._dashboardService.uploadPic(formData).subscribe(response => {
                 this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
             });
@@ -161,9 +165,6 @@ export class PicturePuzzleComponent implements OnInit {
         this.setCanvas();
         if (this.webcamState === this.webcamStates.CAPTURED) {
             this._stage.drawImage(this._video, 0, 0, this._width, this._height);
-            this.activityComplete = true;
-            this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
-            this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
         } else {
             this.initPuzzle();
         }
@@ -184,7 +185,7 @@ export class PicturePuzzleComponent implements OnInit {
         this._currentDropPiece = null;
         this._stage.drawImage(this._img, 0, 0, this._width, this._height);
         this._newImg = new Image();
-        this._newImg.src = this._canvas.toDataURL('image/png');
+        this._newImg.src = this._canvas.toDataURL('image/jpeg');
         this._renderer.listen(this._newImg, 'load', (event) => this.buildPieces());
     }
 

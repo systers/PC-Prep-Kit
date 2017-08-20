@@ -1,52 +1,75 @@
-import { Component, OnInit } from '@angular/core';
-import { DashboardService } from '../services/dashboard.service';
-import { Router } from '@angular/router';
-import { LanguageService } from '../services/language.service';
-
-@Component({
-    selector: 'app-menu',
-    templateUrl: './menu.component.html',
-    styleUrls: ['./menu.component.scss']
-})
-export class MenuComponent implements OnInit {
-
-    activity: String;
-    stage: String;
-    language: any;
-
-    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _router: Router) { }
-
-    /**
-     * Utility function used in activity indicator
-     * @param {Number} number Number of activities in a stage - 3 (default)
-     */
-    createRange(number) {
-        const items: number[] = [];
-        for (let i = 1; i <= number; i++) {
-            items.push(i);
-        }
-        return items;
-    }
-
-    /**
-     * Handle router linking to introduction page
-     */
-    navigateToPage(url) {
-        this._router.navigateByUrl(url);
-    }
-
-    /**
-     * Check if user is logged in or not before loading the menu page
-     */
-    ngOnInit() {
-        this._langService.loadLanguage().subscribe(response => {
-            this.language = response.pcprepkit.stages;
-        });        
-        this._dashboardService.getProgressStatus().subscribe(response => {
-            this.activity = response.activity;
-            this.stage = response.stage;
-        }, err => {
-            this._router.navigate(['/login']);
-        });
-    }
-}
+<div class="col-md-12 text-center"><h2 class="stage-header">{{language?.menu.heading}}</h2></div>
+<div class="menu">
+    <div class="col-lg-6 col-xs-offset-3">
+        <div class="row">
+            <div class="menu-button">
+                <img class="hex" src="../../assets/img/intro.png" (click)="navigateToPage('/introduction')">
+                <button class="but intro-btn" (click)="navigateToPage('/introduction')">
+                    {{language?.introduction.heading}}
+                </button>
+                <div class="outer-circle intro-outer-circle">
+                    <div class="inner-circle intro-inner-circle">
+                        <div *ngFor="let level of createRange(3); let idx=index;" class="arc level{{idx+1}}" [ngClass]="stage>1 || (stage===1 && activity>=idx+1) ? 'completed' : ''"></div>
+                        <div class="activity">{{stage>1 ? 3 : (stage<1 ? 0 : activity)}}/3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-button">
+                <img class="hex" src="../../assets/img/malaria-101.png" (click)="navigateToPage('/malaria-101')">
+                <button class="but malaria-btn" (click)="navigateToPage('/malaria-101')">
+                    {{language?.malaria101.heading}}
+                </button>
+                <div class="outer-circle malaria-outer-circle">
+                    <div class="inner-circle malaria-inner-circle">
+                        <div *ngFor="let level of createRange(3); let idx=index" class="arc level{{idx+1}}" [ngClass]="stage>2 || (stage===2 && activity>=idx+1) ? 'completed' : ''"></div>
+                        <div class="activity">{{stage>2 ? 3 : (stage<2 ? 0 : activity)}}/3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-button">
+                <img class="hex" src="../../assets/img/meds.png" (click)="navigateToPage('/meds-n-labels')">
+                <button class="but med-btn" (click)="navigateToPage('/meds-n-labels')">
+                    {{language?.medsNLabels.heading}}
+                </button>
+                <div class="outer-circle med-outer-circle">
+                    <div class="inner-circle med-inner-circle">
+                        <div *ngFor="let level of createRange(3); let idx=index" class="arc level{{idx+1}}" [ngClass]="stage>3 || (stage===3 && activity>=idx+1) ? 'completed' : ''"></div>
+                        <div class="activity">{{stage>3 ? 3 : (stage<3 ? 0 : activity)}}/3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-button">
+                <img class="hex" src="../../assets/img/pc-policy.png" (click)="navigateToPage('/introduction/activity-2')">
+                <button class="but pc-policy-btn" (click)="navigateToPage('/introduction/activity-2')">
+                    {{language?.peaceCorps.heading}}
+                </button>
+                <div class="outer-circle pc-policy-outer-circle">
+                    <div class="inner-circle pc-policy-inner-circle">
+                        <div *ngFor="let level of createRange(3); let idx=index" class="arc level{{idx+1}}" [ngClass]="stage>4 || (stage===4 && activity>=idx+1) ? 'completed' : ''"></div>
+                        <div class="activity">{{stage>4 ? 3 : (stage<4 ? 0 : activity)}}/3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-button" (click)="navigateToPage('/unlocked-stage')">
+                <img class="hex" src="../../assets/img/unlocked.png">
+                <button class="but unlocked-btn" (click)="navigateToPage('/unlocked-stage')">
+                    {{language?.lockedStage.heading}}
+                </button>
+                <div class="outer-circle unlocked-outer-circle">
+                    <div class="inner-circle unlocked-inner-circle">
+                        <div *ngFor="let level of createRange(3); let idx=index" class="arc level{{idx+1}}" [ngClass]="stage===5 && activity>=idx+1 ? 'completed' : ''"></div>
+                        <div class="activity">{{stage===5 ? activity : 0}}/3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

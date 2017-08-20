@@ -3,6 +3,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { Observable } from 'rxjs/Rx';
 import { NavbarService } from '../services/navbar.service';
 import { LanguageService } from '../services/language.service';
+import { DashboardService } from '../services/dashboard.service';
 
 @Component({
     selector: 'app-navbar',
@@ -29,27 +30,31 @@ export class NavbarComponent implements OnInit {
     @Output() infoPop = new EventEmitter<any>();
     public state= 'out';
     private _obs;
-    private _subscription;    
+    private _subscription;
     private static _localStorageKey = 'pcprepkitUser';
-    constructor(private _navbarService: NavbarService, private _langService: LanguageService) { }
+    public proPic: any;
+    constructor(private _dashboardService: DashboardService, private _navbarService: NavbarService, private _langService: LanguageService) { }
 
     ngOnInit() {
         this._obs = Observable.interval(500)
                        .do(i => this.getUserName());
-        this._subscription = this._obs.subscribe();        
+        this._subscription = this._obs.subscribe();
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.common.navbar;
         });
     }
 
     getUserName() {
-        if(localStorage.getItem(NavbarComponent._localStorageKey)) {
+        if (localStorage.getItem(NavbarComponent._localStorageKey)) {
             this._subscription.unsubscribe();
             this._navbarService.getUserName().subscribe(response => {
                 this.username = response.username;
-            }); 
-
-        }       
+            });
+            this._dashboardService.getUserInfo().subscribe(response => {
+                const encodedData = btoa(response);
+                this.proPic = 'assets/img/uploads/' + encodedData + '.jpeg';
+            });
+        }
     }
 
     toggle() {
@@ -61,3 +66,4 @@ export class NavbarComponent implements OnInit {
         this.infoPop.emit();
     }
 }
+

@@ -20,9 +20,6 @@ const codes = JSON.parse(fs.readFileSync('./data/codes.json'));
 const errorCode = codes.errors;
 const successCode = codes.success;
 
-const otherData = JSON.parse(fs.readFileSync('./data/english.json'));
-const mailData = otherData.mail;
-
 /**
  * Check if the request is authenticated
  * @param  {Object} req   Request object
@@ -145,8 +142,8 @@ router.get('/getProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, r
 router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     const email = req.user.email;
     mail.mailOptions.to = email;
-    mail.mailOptions.subject = mailData.pcpolicy.subject;
-    mail.mailOptions.html = mailData.pcpolicy.content;
+    mail.mailOptions.subject = 'Peace Corps Policy';
+    mail.mailOptions.html = '<H2> Peace Corps Policy </H2>';
     mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
         error ? res.status(500).json({error: errorCode.PCE023.message, code: errorCode.PCE023.code}) : res.json({message: 'Mail Sent Succesfully.'});
     });
@@ -266,7 +263,7 @@ router.get('/activateinfokit', authenticationHelpers.isAuthOrRedirect, (req, res
  */
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './uploads/');
+        cb(null, './src/assets/img/uploads/');
     },
     filename: function(req, file, cb) {
         cb(null, file.originalname);
@@ -292,7 +289,7 @@ router.post('/upload', upload.array('uploads[]', 12), function(req, res) {
  */
 router.post('/uploadCam', function(req, res) {
     const base64Data = req.body.base64.replace(/^data:image\/jpeg;base64,/, '');
-    fs.writeFile('./uploads/out.jpeg', base64Data, 'base64', function(err) {
+    fs.writeFile(`./src/assets/img/uploads/${Buffer.from(req.user).toString('base64')}.jpeg`, base64Data, 'base64', function(err) {
         winston.log(err);
     });
     res.send(req.files);

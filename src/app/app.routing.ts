@@ -104,7 +104,7 @@ export const routes: Routes = [
             {
                 path: 'activity-1-2',
                 component: MalariaLifeCycleComponent
-            },            
+            },
             {
                 path: 'activity-2',
                 component: DragdropComponent
@@ -120,6 +120,11 @@ export const routes: Routes = [
         component: MedsNLabelsComponent,
         canActivate: [LoggedInGuard],
         children: [
+            {
+                path: '',
+                redirectTo: 'activity-1',
+                pathMatch: 'full'
+            },
             {
                 path: 'activity-1',
                 component: MatchmedsComponent
@@ -137,12 +142,12 @@ export const routes: Routes = [
     {
         path: 'unlocked-stage',
         component: HowToPlayComponent,
-        canActivate: [LoggedInGuard],
+        canActivate: [LoggedInGuard]
     },
     {
         path: 'unlocked-stage/game',
         component: UnlockedStageComponent,
-        canActivate: [LoggedInGuard],
+        canActivate: [LoggedInGuard]
     }
 ];
 @NgModule({
@@ -151,3 +156,4 @@ export const routes: Routes = [
 })
 export class AppRoutingModule {
 }
+
