@@ -9,12 +9,12 @@
     </div>
     <div class="row col-md-offset-3" [hidden]="activityComplete">
         <div class="col-lg-4">
-            <div class="option" (click)="optionSelected($event)"><span id="1">{{this.opt[0]}}</span></div>
-            <div class="option" (click)="optionSelected($event)"><span id="2">{{this.opt[1]}}</span></div>
+            <div class="option"><span id="1" (click)="optionSelected($event)">{{this.opt[0]}}</span></div>
+            <div class="option"><span id="2" (click)="optionSelected($event)">{{this.opt[1]}}</span></div>
         </div>
         <div class="col-lg-4">
-            <div class="option" (click)="optionSelected($event)"><span id="3">{{this.opt[2]}}</span></div>
-            <div class="option" (click)="optionSelected($event)"><span id="4">{{this.opt[3]}}</span></div>
+            <div class="option"><span id="3" (click)="optionSelected($event)">{{this.opt[2]}}</span></div>
+            <div class="option"><span id="4" (click)="optionSelected($event)">{{this.opt[3]}}</span></div>
         </div>
     </div>
     <div class="row col-lg-6 col-lg-offset-3 text-center" [hidden]="!activityComplete">
