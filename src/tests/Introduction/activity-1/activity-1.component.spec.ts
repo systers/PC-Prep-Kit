@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DashboardService } from '../../app/services/dashboard.service';
-import { APIService } from '../../app/services/api.service';
-import { HighlightActivityComponent } from '../../app/introduction/highlight-activity.component';
-import { SharedDataService } from '../../app/services/shared.data.service';
+import { DashboardService } from '../../../app/services/dashboard.service';
+import { APIService } from '../../../app/services/api.service';
+import { HighlightActivityComponent } from '../../../app/introduction/activity-1/activity-1.component';
+import { SharedDataService } from '../../../app/services/shared.data.service';
 import { HttpModule } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
