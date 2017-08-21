@@ -51,8 +51,9 @@ export class NavbarComponent implements OnInit {
                 this.username = response.username;
             });
             this._dashboardService.getUserInfo().subscribe(response => {
-                const encodedData = btoa(response);
-                this.proPic = 'assets/img/uploads/' + encodedData + '.jpeg';
+                const encodedData = btoa(response.user.email);
+                const cacheInvalidator = Date.now();
+                this.proPic = 'assets/img/uploads/' + encodedData + '.jpeg?time=' + cacheInvalidator;
             });
         }
     }

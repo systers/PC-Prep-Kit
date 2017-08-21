@@ -289,7 +289,7 @@ router.post('/upload', upload.array('uploads[]', 12), function(req, res) {
  */
 router.post('/uploadCam', function(req, res) {
     const base64Data = req.body.base64.replace(/^data:image\/jpeg;base64,/, '');
-    fs.writeFile(`./src/assets/img/uploads/${Buffer.from(req.user).toString('base64')}.jpeg`, base64Data, 'base64', function(err) {
+    fs.writeFile(`./src/assets/img/uploads/${Buffer.from(req.user.email).toString('base64')}.jpeg`, base64Data, 'base64', function(err) {
         winston.log(err);
     });
     res.send(req.files);

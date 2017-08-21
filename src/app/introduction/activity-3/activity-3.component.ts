@@ -91,7 +91,7 @@ export class PicturePuzzleComponent implements OnInit {
 
     ngOnInit() {
         this._dashboardService.getUserInfo().subscribe(response => {
-            this.userData = btoa(response) + '.jpeg';
+            this.userData = btoa(response.user.email) + '.jpeg';
         });
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.stages.introduction.picturePuzzle;
