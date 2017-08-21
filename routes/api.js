@@ -25,21 +25,21 @@ router.use(function(req, res, next) {
     // check header or url parameters or post parameters for token
     let token;
 
-    if(!req.body) {
+    if (!req.body) {
         token = req.body.token;
-    } else if(!req.query) {
+    } else if (!req.query) {
         token = req.query.token;
     } else {
         token = req.headers['x-access-token'];
     }
     // decode token
-    if(token) {
+    if (token) {
         // Removing quotes in the token
         token = token.substring(1, token.length - 1);
 
         // verifies secret and checks exp
         jwt.verify(token, config.secretKey, function(err, decoded) {
-            if(err) {
+            if (err) {
                 return res.json({success: false, message: 'Failed to authenticate token.'});
             } else {
                 // if everything is good, save to request for use in other routes
@@ -83,7 +83,7 @@ router.get('/username', authenticationHelpers.isAuthOrRedirect, (req, res) => {
             const username = `${data[0].fname} ${data[0].lname}`;
             res.status(200).json({username: username});
         }).catch(error => {
-            if(error){
+            if (error) {
                 res.status(500).json({error: 'Something went wrong'});
             }
         });
@@ -96,21 +96,21 @@ router.get('/username', authenticationHelpers.isAuthOrRedirect, (req, res) => {
  * @param  {Function} (req, res)                                      Anonymous function to handle request and response
  */
 router.get('/getProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, res) => {
-    if(!req.user.email) {
+    if (!req.user.email) {
         return res.status(400).json({error: 'Email not provided'});
     }
     localUser.find({where: {
         email: req.user.email
     }}, {raw: true})
         .then(data => {
-            if(!data) {
+            if (!data) {
                 return res.status(200).json({info: 'This account does not exist'});
             }
             progress.find({where: {
                 user_id: data.id
             }}, {raw: true})
                 .then(progressData => {
-                    if(!progressData) {
+                    if (!progressData) {
                         return res.status(200).json({info: 'No data found'});
                     }
                     const response = {stage: progressData.stage, activity: progressData.activity};
@@ -148,7 +148,7 @@ router.get('/mailpcpolicy', authenticationHelpers.isAuthOrRedirect, (req, res) =
  * @param  {Function} (req, res)                                      Anonymous function to handle request and response
  */
 router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (req, res) => {
-    if(req.body && req.body.stage && req.body.activity) {
+    if (req.body && req.body.stage && req.body.activity) {
         const currStage = req.body.stage;
         const currActivity = req.body.activity;
         localUser.find({
@@ -162,7 +162,7 @@ router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (r
                 const progressActivity = data.progress.activity;
                 const stageDiff = currStage - progressStage;
                 const activityDiff = currActivity - progressActivity;
-                if((currStage === progressStage || stageDiff === 1) && (activityDiff === 1)) {
+                if ((currStage === progressStage || stageDiff === 1) && (activityDiff === 1)) {
                     progress.update({
                         stage: currStage,
                         activity: currActivity
@@ -174,9 +174,9 @@ router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (r
                         .then(response => {
                             return res.status(200).json({info: 'success'});
                         })
-                } else if(stageDiff > 1 && activityDiff > 1) {
+                } else if (stageDiff > 1 && activityDiff > 1) {
                     return res.status(200).json({info: 'Illegal operation'});
-                } else if(stageDiff < 1 && activityDiff < 1) {
+                } else if (stageDiff < 1 && activityDiff < 1) {
                     return res.status(200).json({info: 'success'});
                 }
             })
@@ -189,21 +189,21 @@ router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (r
 });
 
 router.get('/infokitactive', authenticationHelpers.isAuthOrRedirect, (req, res) => {
-    if(!req.user.email) {
+    if (!req.user.email) {
         return res.status(400).json({error: 'Email not provided'});
     }
     localUser.find({where: {
         email: req.user.email
     }}, {raw: true})
         .then(data => {
-            if(!data) {
+            if (!data) {
                 return res.status(200).json({info: 'This account does not exist'});
             }
             infokit.find({where: {
                 user_id: data.id
             }}, {raw: true})
                 .then( infokitData => {
-                    if(!infokitData) {
+                    if (!infokitData) {
                         return res.status(200).json({info: 'No data found'});
                     }
                     return res.status(200).json({infokitactive: infokitData});
@@ -223,14 +223,14 @@ router.get('/activateinfokit', authenticationHelpers.isAuthOrRedirect, (req, res
     const updateobj = {};
     updateobj[activate] = true;
 
-    if(!req.user.email) {
+    if (!req.user.email) {
         return res.status(400).json({error: 'Email not provided'});
     }
     localUser.find({where: {
         email: req.user.email
     }}, {raw: true})
         .then(data => {
-            if(!data) {
+            if (!data) {
                 return res.status(200).json({info: 'This account does not exist'});
             }
             infokit.update( updateobj, {
@@ -299,4 +299,3 @@ router.get('/getJSONData', (req, res) => {
 });
 
 module.exports = router;
-
