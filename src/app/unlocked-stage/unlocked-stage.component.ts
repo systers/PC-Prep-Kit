@@ -122,20 +122,20 @@ export class UnlockedStageComponent implements OnInit {
 
     makeNewPosition() {
         // Get viewport dimensions (remove the dimension of the div)
-        const h = document.getElementById('scene').offsetWidth - 25;
-        const w = document.getElementById('scene').offsetHeight - 25;
+        const height = document.getElementById('scene').offsetWidth - 25;
+        const width = document.getElementById('scene').offsetHeight - 25;
 
-        const nh = Math.floor(Math.random() * h);
-        const nw = Math.floor(Math.random() * w);
+        const newHeight = Math.floor(Math.random() * height);
+        const newWidth = Math.floor(Math.random() * width);
 
-        return [nh, nw];
+        return [newHeight, newWidth];
     }
 
     calcSpeed(prev, next) {
-        const x = Math.abs(prev[1] - next[1]);
-        const y = Math.abs(prev[0] - next[0]);
+        const xPos = Math.abs(prev[1] - next[1]);
+        const yPos = Math.abs(prev[0] - next[0]);
 
-        const greatest = x > y ? x : y;
+        const greatest = xPos > yPos ? xPos : yPos;
 
         const speedModifier = 0.25;
 
