@@ -12,21 +12,21 @@
 
     <!-- LOGIN FORM -->
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-        <div class="form-group input-group" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['email'].dirty}">
+        <div class="form-group input-group" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['email'].touched}">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>        
             <input type="email" class="form-control" name="email" placeholder={{language?.placeHolders.email}} [formControl]="loginForm.controls['email']">
         </div>        
         <div class="form-control-feedback">
-            <p *ngIf="loginForm.controls['email'].hasError('required') && (loginForm.controls['email'].dirty)">{{authMessages?.errors.emailReq}}</p>
-            <p *ngIf="loginForm.controls['email'].hasError('pattern') && (loginForm.controls['email'].dirty)">{{authMessages?.errors.emailInvalid}}</p>
+            <p *ngIf="loginForm.controls['email'].hasError('required') && (loginForm.controls['email'].touched)">{{authMessages?.errors.emailReq}}</p>
+            <p *ngIf="loginForm.controls['email'].hasError('pattern') && (loginForm.controls['email'].touched)">{{authMessages?.errors.emailInvalid}}</p>
         </div>
-        <div class="form-group input-group" [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].dirty}">
+        <div class="form-group input-group" [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>        
             <input type="password" class="form-control" name="password" placeholder={{language?.placeHolders.password}} [formControl]="loginForm.controls['password']">
         </div>        
         <div class="form-control-feedback">
-            <p *ngIf="loginForm.controls['password'].hasError('required') && (loginForm.controls['password'].dirty)">{{authMessages?.errors.passwordReq}}</p>
-            <p *ngIf="loginForm.controls['password'].hasError('pattern') && (loginForm.controls['password'].dirty)">{{authMessages?.errors.passwordInvalid}}</p>
+            <p *ngIf="loginForm.controls['password'].hasError('required') && (loginForm.controls['password'].touched)">{{authMessages?.errors.passwordReq}}</p>
+            <p *ngIf="loginForm.controls['password'].hasError('pattern') && (loginForm.controls['password'].touched)">{{authMessages?.errors.passwordInvalid}}</p>
         </div>     
         <div class="form-group">
             <button type="submit" [disabled]="!loginForm.valid" class="btn btn-block btn-primary">{{language?.messages.login}}</button>

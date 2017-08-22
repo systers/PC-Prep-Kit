@@ -79,7 +79,7 @@
 }
 
 .intro-outer-circle {
-    background: $white-color;
+    background: $white;
 }
 
 .intro-inner-circle {
@@ -99,7 +99,7 @@
 }
 
 .unlocked-inner-circle {
-    background: $white-color;
+    background: $white;
 }
 
 .malaria-outer-circle {
@@ -115,13 +115,13 @@
 }
 
 .unlocked-outer-circle {
-    background: $white-color;
+    background: $white;
 }
 
 .activity {
     font-size: 20px;
     font-weight: 900;
-    color: $white-color;
+    color: $white;
 }
 
 .but {
@@ -131,7 +131,7 @@
     display: flex;
     justify-content: center;
     margin: 30px -30px;
-    color: $white-color;
+    color: $white;
     font-size: 1.5vw;
     font-weight: 900;
     margin-bottom: 50px;
@@ -154,6 +154,6 @@
 }
 
 .unlocked-btn {
-    background-color: $white-color;
+    background-color: $white;
     color: grey;
 }

@@ -5,6 +5,6 @@
 <app-infokit #info > </app-infokit>
 <app-navbar #nav (togglePosition)="toggle();" (infoPop)="info.pop()" [hidden]='!loggedIn'> </app-navbar>
 <router-outlet></router-outlet>
-<div class="footer" [hidden]='!loggedIn || isMenuPage' style="z-index: 999">
-	<app-activityindicator #ind></app-activityindicator>
+<div class="footer" [hidden]='!loggedIn || isMenuPage'>
+    <app-activityindicator #ind></app-activityindicator>
 </div>
