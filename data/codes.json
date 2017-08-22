@@ -146,7 +146,12 @@
             "code": "PCE029",
             "message": "PCE029 : No data recieved to update progress status",
             "reason": "Stage and activity not sent in request"
-        }
+        },
+        "PCE030": {
+            "code": "PCE030",
+            "message": "PCE030 :Something went wrong while encrypting password",
+            "reason": "Internal Server Error"
+        }        
     },
 
     "success": {

@@ -29,7 +29,7 @@
         "passwordResetSuccess": { 
             "title": "Password reset confirmation",
             "preHeader": "Password reset confirmation.",
-            "subject": "PC PREP KIT Password Reset",
+            "subject": "Your password has been changed",
             "greeting": "Hi",
             "textContent": {
                 "textContent1": "This is a confirmation that the password for your account ",
@@ -46,8 +46,9 @@
         "registration": { 
             "title": "Verify your PC PrepKit account",
             "preHeader": "Use this link to verify your PC PrepKit account.",
-            "subject": "PC PREP KIT Password Reset",
+            "subject": "PC PrepKit email verification",
             "greeting": "Welcome!",
+            "verificationToken": "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
             "textContent": {
                 "textContent1": "Please click on the button below to complete the verification.",
                 "textContent2": "If you did not request a password reset, please ignore this email or ",

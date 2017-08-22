@@ -172,7 +172,7 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                                     };
                                     const htmlToSend = template(replacements);
                                     const to = req.body.email;
-                                    const subject = 'PC PREP KIT Password Reset';
+                                    const subject = mailData.forgotPassword.subject;
                                     sendEmail(to, subject, htmlToSend, user, nodemailer, done);
                                 });
                             })
@@ -242,7 +242,7 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                         const user = {email: data.email};
                         bcrypt.hash(req.body.password, 10, function(err, hash) {
                             if (err) {
-                                return res.status(500).json({error: 'Something went wrong'});
+                                return res.status(500).json({error: errorCode.PCE030.message, code: errorCode.PCE030.code});
                             }
                             localUser.update({
                                 resetPasswordToken: null,
@@ -280,7 +280,7 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
                                         };
                                         const htmlToSend = template(replacements);
                                         const to = user.email;
-                                        const subject = 'Your password has been changed';
+                                        const subject = mailData.passwordResetSuccess.subject;
                                         sendEmail(to, subject, htmlToSend, user, nodemailer, done);
                                     });
                                 }).catch(function(err) {

@@ -52,7 +52,7 @@ function verificationMail(req, res, rString) {
         };
         const htmlToSend = template(replacements);
         mail.mailOptions.to = req.body.email;
-        mail.mailOptions.subject = 'PC PrepKit Email Verification';
+        mail.mailOptions.subject = mailData.registration.subject;
         mail.mailOptions.html = htmlToSend;
         mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
             if (error) {
@@ -73,17 +73,17 @@ router.post('/', function(req, res) {
         return res.status(400).json({error: errorCode.PCE003.message, code: errorCode.PCE003.code});
     }
 
-    if(!req.body.lname || !validateName(req.body.lname)) {
+    if (!req.body.lname || !validateName(req.body.lname)) {
         return res.status(400).json({error: errorCode.PCE004.message, code: errorCode.PCE004.code});
     }
 
     if (!req.body.password || !validatePassword(req.body.password)) {
         return res.status(400).json({error: errorCode.PCE005.message, code: errorCode.PCE005.code});
     }
-    const rString = randomStr(50, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    const rString = randomStr(50, mailData.registration.verificationToken);
     bcrypt.hash(req.body.password, 10, function(err, hash) {
         if (err) {
-            return res.status(500).json({error: 'Something went wrong'});
+            return res.status(500).json({error: errorCode.PCE030.message, code: errorCode.PCE030.code});
         }
         localUser.create({
             fname: req.body.fname,
