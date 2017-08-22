@@ -10,7 +10,7 @@
         </div>    
         <img id="human" src="../assets/img/unlocked-stage/human.png"/>
         <img id="moz" name="animate" src="../assets/img/unlocked-stage/mosquito.gif"/>  
-        <img id="spray" src="../assets/img/unlocked-stage/spray-cursor.gif" style="display:none"/>
+        <img id="spray" src="../assets/img/unlocked-stage/spray-cursor.gif"/>
     </div>
     <div id="inventory">
         <div id="inventory-heading">{{language?.legend.inventory}}</div>
@@ -18,17 +18,17 @@
     </div>
 </div>
 <div class="row col-lg-6 col-lg-offset-3 text-center" id="game-end-status" [hidden]="!gameOver">
-    <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: block;">
+    <div class="swal2-icon swal2-error swal2-animate-error-icon">
         <span class="swal2-x-mark swal2-animate-x-mark">
             <span class="swal2-x-mark-line-left"></span>
             <span class="swal2-x-mark-line-right"></span>
         </span>
     </div>
     <div>
-        <h2 class="swal2-title text-center" id="swal2-title">{{language?.alerts.loss.title}}</h2>
+        <h2 class="swal2-title text-center">{{language?.alerts.loss.title}}</h2>
     </div>
     <div>
-        <h2 class="swal2-title text-center" id="swal2-title">{{language?.alerts.loss.content}}</h2>
+        <h2 class="swal2-title text-center">{{language?.alerts.loss.content}}</h2>
         <img id="trans-gif" src="../assets/img/unlocked-stage/mosquito-transmission.gif"/>
     </div>
     <div class="swal2-title text-center" id="restart">
@@ -37,19 +37,19 @@
 </div>
 
 <div class="row col-lg-6 col-lg-offset-3 text-center" id="game-end-status" [hidden]="!success">
-    <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: block;">
-        <div class="swal2-success-circular-line-left" style="background: rgb(255, 255, 255);"></div>
+    <div class="swal2-icon swal2-success swal2-animate-success-icon">
+        <div class="swal2-success-circular-line-left"></div>
         <span class="swal2-success-line-tip swal2-animate-success-line-tip"></span> 
         <span class="swal2-success-line-long swal2-animate-success-line-long"></span>
         <div class="swal2-success-ring"></div> 
-        <div class="swal2-success-fix" style="background: rgb(255, 255, 255);"></div>
-        <div class="swal2-success-circular-line-right" style="background: rgb(255, 255, 255);"></div>
+        <div class="swal2-success-fix"></div>
+        <div class="swal2-success-circular-line-right"></div>
     </div>
     <div>
-        <h2 class="swal2-title text-center" id="swal2-title">{{language?.alerts.win.title}}</h2>
+        <h2 class="swal2-title text-center">{{language?.alerts.win.title}}</h2>
     </div>
     <div>
-        <h2 class="swal2-title text-center" id="swal2-title">{{language?.alerts.win.content}}</h2>
+        <h2 class="swal2-title text-center">{{language?.alerts.win.content}}</h2>
         <img id="prevention" src="../assets/img/unlocked-stage/malaria-prevention.png"/>
     </div>
     <div class="swal2-title text-center" id="restart">
