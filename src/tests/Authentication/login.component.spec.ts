@@ -47,23 +47,23 @@ describe('LoginComponent', () => {
     });
 
     it('should route to menu page on successful login', () => {
-            spyOn(authService, 'loginUser')
-            .and.returnValue(Observable.of(true));
-            component.onSubmit({email: 'user@test.com', password: 'testpwd'});  
-            expect(router.navigateByUrl).toHaveBeenCalledWith('/');
+        spyOn(authService, 'loginUser')
+        .and.returnValue(Observable.of(true));
+        component.onSubmit({email: 'user@test.com', password: 'testpwd'});
+        expect(router.navigateByUrl).toHaveBeenCalledWith('/');
     });
 
     it('should return error message on unsuccessful login', () => {
-            spyOn(authService, 'loginUser')
-            .and.returnValue(Observable.of(false));
-            component.onSubmit({email: 'user@test.com', password: 'testpwd'});  
-            expect(component.errorMessage).toEqual('Incorrect username and password, please try again');
+        spyOn(authService, 'loginUser')
+        .and.returnValue(Observable.of(false));
+        component.onSubmit({email: 'user@test.com', password: 'testpwd'});
+        expect(component.errorMessage).toEqual('Incorrect username and password, please try again');
     }); 
 
     it('should return error/info message from server on unsuccessful login', () => {
         spyOn(authService, 'loginUser')
         .and.returnValue(Observable.throw({info: 'Invalid username/password'}));
-        component.onSubmit({email: 'user@test.com', password: 'testpwd'});  
+        component.onSubmit({email: 'user@test.com', password: 'testpwd'});
         expect(component.errorMessage).toEqual('Invalid username/password');
     });         
 
