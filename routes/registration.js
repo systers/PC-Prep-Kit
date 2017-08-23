@@ -61,25 +61,12 @@ router.post('/', function(req, res) {
             infokit.create({
                 user_id: task.dataValues.id
             }).then(task => {
-<<<<<<< HEAD
                 verificationMail(req, res, rString);
             }).catch(error => {
                 if (error) {
                     res.status(500).json({error: 'Something went wrong'});
                 }
             });
-=======
-                progress.create({
-                    user_id: task.dataValues.user_id
-                }).then(task => {
-                    verificationMail(req, res, rString);
-                }).catch(error => {
-                    if (error) {
-                        res.status(500).json({error: 'Something went wrong'});
-                    }
-                });
-            })
->>>>>>> 502855e1b140c236e27a467a555ef94d8ff90a35
         })
     });
 });

@@ -174,6 +174,7 @@ router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (r
                             id: data.progress.id
                         }
                     })
+
                     .then(response => {
                         return res.status(200).json({info: 'Success'});
                     });
