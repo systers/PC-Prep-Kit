@@ -3,12 +3,12 @@
 
         "PCE001": {
             "code": "PCE001",
-            "message": "PCE001 : Something went wrong while verifying registration mail! Try again later.",
+            "message": "PCE001 : Something went wrong while verifying registration mail! Try again later",
             "reason": "Internal Server Error"
         },
         "PCE002": {
             "code": "PCE002",
-            "message": "PCE002 : Email is invalid.",
+            "message": "PCE002 : Email is invalid",
             "reason": "Email is malformed or in incorrect format"
         },
         "PCE003": {
@@ -48,7 +48,7 @@
         },
         "PCE010": {
             "code": "PCE010",
-            "message": "PCE010 : User with that email already exists.",
+            "message": "PCE010 : User with that email already exists",
             "reason": "Duplicate registration"
         },        
         "PCE011": {
@@ -79,7 +79,7 @@
 
         "PCE016": {
             "code": "PCE016",
-            "message": "PCE016 : No token provided.",
+            "message": "PCE016 : No token provided",
             "reason": "No token sent in request"
         },
         "PCE017": {
@@ -114,22 +114,22 @@
         },        
         "PCE023": {
             "code": "PCE023",
-            "message": "PCE023 : Something went wrong while mailing PC Policy! Try again later.",
+            "message": "PCE023 : Something went wrong while mailing PC Policy! Try again later",
             "reason": "Internal Server Error"
         },
         "PCE024": {
             "code": "PCE024",
-            "message": "PCE024 : Something went wrong while fetching infokit data.",
+            "message": "PCE024 : Something went wrong while fetching infokit data",
             "reason": "Internal Server Error"
         },
         "PCE025": {
             "code": "PCE025",
-            "message": "PCE025 : Failed to authenticate token.",
+            "message": "PCE025 : Failed to authenticate token",
             "reason": "Token is malformed or is incorrect"
         },
         "PCE026": {
             "code": "PCE026",
-            "message": "PCE026 : No infokit data found.",
+            "message": "PCE026 : No infokit data found",
             "reason": "The user does not exist or the infokit data of the user is not logged in infokit table"
         }, 
         "PCE027": {
@@ -139,7 +139,7 @@
         },
         "PCE028": {
             "code": "PCE028",
-            "message": "PCE028 : Something went wrong while updating progress status.",
+            "message": "PCE028 : Something went wrong while updating progress status",
             "reason": "Internal Server Error"
         },  
         "PCE029": {
@@ -157,7 +157,7 @@
     "success": {
         "PCS001": {
             "code": "PCS001",
-            "message": "PCS001 : Success! Your password has been changed."
+            "message": "PCS001 : Success! Your password has been changed"
         },
         "PCS002": {
             "code": "PCS002",
@@ -174,7 +174,7 @@
         },
         "PCS005": {
             "code": "PCS005",
-            "message": "PCS005 : Verification mail sent, please check your mail."
+            "message": "PCS005 : Verification mail sent, please check your mail"
         }        
     }
 }

@@ -34,12 +34,12 @@ export class SharedDataService {
      * Check progress of user (If the user has already completed the activity or not)
      */
     checkProgress(currStage, currActivity, response): boolean {
-            const activity = response.activity;
-            const stage = response.stage;
-            if ((stage > currStage) || (stage === currStage && activity >= currActivity)) {
-                return true;
-            }
-            return false;
+        const activity = response.activity;
+        const stage = response.stage;
+        if ((stage > currStage) || (stage === currStage && activity >= currActivity)) {
+            return true;
+        }
+        return false;
     }
 
     customAlert(title, msg, type) {

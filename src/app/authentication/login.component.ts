@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         const message = this._activatedRoute.snapshot.queryParams['msg'];
         const error = this._activatedRoute.snapshot.queryParams['err'];
-        if (message) {
-            this._sharedData.customSuccessAlert(decodeURIComponent(message), 'Complete!');
-        } else if (error) {
+        if (error) {
             this._sharedData.customErrorAlert(decodeURIComponent(error), 'Error!');
+        } else if (message) {
+            this._sharedData.customSuccessAlert(decodeURIComponent(message), 'Complete!');  
         }
     }
 
