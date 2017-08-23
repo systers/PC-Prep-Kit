@@ -36,7 +36,7 @@ mockMailPCPolicyResponse.push({error: 'Something Went Wrong! Try again later.'})
 
 describe('DashboardService', () => {
     beforeEach(() => {
-            TestBed.configureTestingModule({
+        TestBed.configureTestingModule({
             imports: [
                 HttpModule
             ], 
@@ -91,80 +91,80 @@ describe('DashboardService', () => {
     }));
 
     it('should get user info', inject([DashboardService], (service: DashboardService) => {
-                service.getUserInfo()
-                        .subscribe(res => {
-                            expect(res).toBe(mockUserInfoResponse);
-                        });
+        service.getUserInfo()
+            .subscribe(res => {
+                expect(res).toBe(mockUserInfoResponse);
+            });
     }));
 
     it('should get user progress status', inject([DashboardService], (service: DashboardService) => {
-                service.getProgressStatus()
-                        .subscribe(res => {
-                            expect(res).toBe({stage: 1, activity: 2});
-                        });
+        service.getProgressStatus()
+            .subscribe(res => {
+                expect(res).toBe({stage: 1, activity: 2});
+            });
     }));
 
     it('should return account does not exist if the user is invalid', inject([DashboardService], (service: DashboardService) => {
-                service.getProgressStatus()
-                        .subscribe(res => {
-                            expect(res).toBe({info: 'This account does not exist'});
-                        });
+        service.getProgressStatus()
+            .subscribe(res => {
+                expect(res).toBe({info: 'This account does not exist'});
+            });
     })); 
 
     it('should return no data found if the user is invalid', inject([DashboardService], (service: DashboardService) => {
-                service.getProgressStatus()
-                        .subscribe(res => {
-                            expect(res).toBe({info: 'No data found'});
-                        });
+        service.getProgressStatus()
+            .subscribe(res => {
+                expect(res).toBe({info: 'No data found'});
+            });
     }));
 
     it('should return error response in case of server error', inject([DashboardService], (service: DashboardService) => {
-                service.getProgressStatus()
-                        .subscribe(res => {
-                            expect(res).toBe({error: 'Something went wrong while fetching user progress data'});
-                        });
+        service.getProgressStatus()
+            .subscribe(res => {
+                expect(res).toBe({error: 'Something went wrong while fetching user progress data'});
+            });
     }));           
 
     it('should update user progress status', inject([DashboardService], (service: DashboardService) => {
-                service.updateProgressStatus({stage: 1, activity: 2})
-                        .subscribe(res => {
-                            expect(res).toBe({info: 'success'});
-                        });
+        service.updateProgressStatus({stage: 1, activity: 2})
+            .subscribe(res => {
+                expect(res).toBe({info: 'success'});
+            });
     }));
 
     it('should return illegal operation if user is at wrong activity', inject([DashboardService], (service: DashboardService) => {
-                service.updateProgressStatus({stage: 100, activity: 100})
-                        .subscribe(res => {
-                            expect(res).toBe({info: 'Illegal operation'});
-                        });
+        service.updateProgressStatus({stage: 100, activity: 100})
+            .subscribe(res => {
+                expect(res).toBe({info: 'Illegal operation'});
+            });
     }));
 
     it('should return server errors', inject([DashboardService], (service: DashboardService) => {
-                service.updateProgressStatus({stage: 1, activity: 2})
-                        .subscribe(res => {
-                            expect(res).toBe({error: 'Something went wrong while updating progress status'});
-                        });
+        service.updateProgressStatus({stage: 1, activity: 2})
+            .subscribe(res => {
+                expect(res).toBe({error: 'Something went wrong while updating progress status'});
+            });
     }));         
 
     it('should return no data recieved on sending empty request body', inject([DashboardService], (service: DashboardService) => {
-                service.updateProgressStatus({})
-                        .subscribe(res => {
-                            expect(res).toBe({error: 'No data recieved'});
-                        });
+        service.updateProgressStatus({})
+            .subscribe(res => {
+                expect(res).toBe({error: 'No data recieved'});
+            });
     }));         
 
     it('should mail pc policy', inject([DashboardService], (service: DashboardService) => {
-                service.mailpcpolicy()
-                        .subscribe(res => {
-                            expect(res).toBe({message: 'Mail Sent Succesfully.'});
-                        });
+        service.mailpcpolicy()
+            .subscribe(res => {
+                expect(res).toBe({message: 'Mail Sent Succesfully.'});
+            });
     }));
 
     it('should return server error response', inject([DashboardService], (service: DashboardService) => {
-                service.mailpcpolicy()
-                        .subscribe(res => {
-                            expect(res).toBe({error: 'Something Went Wrong! Try again later.'});
-                        });
+        service.mailpcpolicy()
+            .subscribe(res => {
+                expect(res).toBe({error: 'Something Went Wrong! Try again later.'});
+            });
     }));             
 
 });

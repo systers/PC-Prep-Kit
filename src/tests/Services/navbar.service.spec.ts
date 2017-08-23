@@ -53,16 +53,16 @@ describe('NavbarService', () => {
     }));
 
     it('should return the username', inject([NavbarService], (service: NavbarService) => {
-                service.getUserName()
-                        .subscribe(res => {
-                            expect(res).toBe({username: 'Rajath'});
-                        });
+        service.getUserName()
+            .subscribe(res => {
+                expect(res).toBe({username: 'Rajath'});
+            });
     }));
     it('should return server error', inject([NavbarService], (service: NavbarService) => {               
-                service.getUserName()
-                        .subscribe(res => {
-                            expect(res).toBe({error: 'Something went wrong'});
-                        });
+        service.getUserName()
+            .subscribe(res => {
+                expect(res).toBe({error: 'Something went wrong'});
+            });
     }));        
 });
 

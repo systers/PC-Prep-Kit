@@ -63,6 +63,6 @@ describe('MenuComponent', () => {
         let introButton = fixture.debugElement.nativeElement.querySelector('.intro-btn');
         introButton.click();    
         expect(router.navigateByUrl).toHaveBeenCalledWith('/introduction');
-    });      
+    });
 
 });

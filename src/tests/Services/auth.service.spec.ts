@@ -67,22 +67,22 @@ describe('AuthService', () => {
     }));
 
     it('should clear token from local storage on logging out', inject([AuthService], (service: AuthService) => {
-                service.logout()
-                        .subscribe(res => {
-                            expect(localStorage.getItem(localStorageKey)).toBe(null);
-                        });
+        service.logout()
+            .subscribe(res => {
+                expect(localStorage.getItem(localStorageKey)).toBe(null);
+            });
     }));
     it('should add token to localstorage on logging in', inject([AuthService], (service: AuthService) => {               
-                service.loginUser({email: 'abc@gmail.com', password: 'abc'})
-                        .subscribe(res => {
-                            expect(res).toBeTruthy();
-                            expect(localStorage.getItem(localStorageKey)).toBeDefined();
-                        });
+        service.loginUser({email: 'abc@gmail.com', password: 'abc'})
+            .subscribe(res => {
+                expect(res).toBeTruthy();
+                expect(localStorage.getItem(localStorageKey)).toBeDefined();
+            });
     })); 
     it('should check for authentication', inject([AuthService], (service: AuthService) => {               
-                service.authenticated()
-                        .subscribe(res => {
-                            expect(res.authenticated).toBeTruthy();
-                        });
+        service.authenticated()
+            .subscribe(res => {
+                expect(res.authenticated).toBeTruthy();
+            });
     }));        
 });
