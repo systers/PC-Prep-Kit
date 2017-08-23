@@ -47,7 +47,7 @@
 @mixin health($top, $left) {
     @include positioning(absolute, $top, $left);
     width: 20%;
-    background-color: white;
+    background-color: $white;
     @include borderRadius(25px);
     border: 1px solid $black;
 }
@@ -59,7 +59,7 @@
 }
 
 #scene {
-    border: 1px solid black;
+    border: 1px solid $black;
     width: 62%;
     background-image: url('../../assets/img/unlocked-stage/background.png');
     background-repeat: no-repeat;
@@ -91,13 +91,13 @@
     @include positioning(absolute, 10%, 5%);    
 }
 
-#restart {
+.restart {
     padding-top: 5%;   
 }
 
 #inventory {
     @include positioning(absolute, 125px, 83%);
-    border: 1px solid black;
+    border: 1px solid $black;
     width: 8%;
     background: $orange;
     padding-top: 30%;
