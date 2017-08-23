@@ -19,8 +19,8 @@ describe('NavbarService', () => {
                 NavbarService, 
                 APIService,
                 {
-                  provide: XHRBackend,
-                  useClass: MockBackend
+                    provide: XHRBackend,
+                    useClass: MockBackend
                 }               
             ],
             imports: [

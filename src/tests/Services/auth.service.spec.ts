@@ -21,14 +21,14 @@ describe('AuthService', () => {
                 AuthService, 
                 APIService,
                 {
-                  provide: XHRBackend,
-                  useClass: MockBackend
+                    provide: XHRBackend,
+                    useClass: MockBackend
                 }               
             ],
-			imports: [
-				RouterTestingModule,
-				HttpModule
-			],           
+            imports: [
+                RouterTestingModule,
+                HttpModule
+            ],           
         });
     });
 

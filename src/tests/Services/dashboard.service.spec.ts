@@ -44,8 +44,8 @@ describe('DashboardService', () => {
                 DashboardService,
                 APIService,
                 {
-                  provide: XHRBackend,
-                  useClass: MockBackend
+                    provide: XHRBackend,
+                    useClass: MockBackend
                 }                
             ]
         });
