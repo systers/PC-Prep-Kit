@@ -24,6 +24,7 @@ import { Malaria101Component } from './malaria-101/malaria-101.component';
 import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.component';
 import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
 import { OddOneOutComponent } from './malaria-101/activity-3/activity-3.component';
+import { StageCompleteComponent } from './stage-complete/stage-complete.component';
 
 export const routes: Routes = [
     {
@@ -64,6 +65,11 @@ export const routes: Routes = [
     {
         path: 'menu',
         component: MenuComponent,
+        canActivate: [LoggedInGuard]
+    },
+    {
+        path: 'stagecomplete',
+        component: StageCompleteComponent,
         canActivate: [LoggedInGuard]
     },
     {
