@@ -87,7 +87,8 @@
     font-weight: $font-bold;
 }
 
-#game-end-status {
+#game-loss-status,
+#game-win-status {
     @include positioning(absolute, 10%, 5%);    
 }
 

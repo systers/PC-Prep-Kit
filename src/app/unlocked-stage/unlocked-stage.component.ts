@@ -92,11 +92,9 @@ export class UnlockedStageComponent implements OnInit {
                 currObj.gameOver = true;
                 return;
             }
-            if (currObj._spray && currObj._mousedown) {
-                if (currObj.checkCollision(currObj._spray, currObj.mosquito)) {
-                    currObj._mosquitoBarWidth -= 10;
-                    currObj._mosquitoProgBar.style.width = currObj._mosquitoBarWidth + '%';
-                }
+            if ((currObj._spray && currObj._mousedown) && (currObj.checkCollision(currObj._spray, currObj.mosquito))) {
+                currObj._mosquitoBarWidth -= 10;
+                currObj._mosquitoProgBar.style.width = currObj._mosquitoBarWidth + '%';
             }
             if (currObj.checkCollision(currObj._human, currObj.mosquito)) {
                 currObj._humanBarWidth -= 10;
@@ -118,6 +116,7 @@ export class UnlockedStageComponent implements OnInit {
         if (!(bottomObj1 < topObj2 || topObj1 > bottomObj2 || leftObj1 > rightObj2 || rightObj1 < leftObj2)) {
             return true;
         }
+        return false;
     }
 
     makeNewPosition() {
