@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
         verificationCode: token
     }}, {raw: true})
         .then(data => {
-            if(!data) {
+            if (!data) {
                 return res.status(200).json({info: 'Couldn\'t Verify'});
             }
             localUser.update({
@@ -26,7 +26,7 @@ router.get('/', function(req, res) {
             });
         })
         .catch(error => {
-            if(error) {
+            if (error) {
                 res.status(500).json({error: 'Something went wrong'});
             }
         });

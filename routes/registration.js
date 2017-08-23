@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const router = express.Router();
 
 const mail = require('./mailService');
@@ -19,53 +20,68 @@ function verificationMail(req, res, rString) {
     mail.mailOptions.subject = 'PC PrepKit Email Verification';
     mail.mailOptions.html = `<b>Click on the link to complete the verification</b> <a href='${config.basePath}verification?token=${rString}&user=${req.body.email}'>Verify</a>`;
     mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
-        if(error) {
+        if (error) {
             res.status(500).json({error: 'Something Went Wrong! Try again later.'});
-        }else {
+        } else {
             res.json('Verification Mail Sent, Please check your mail.');
         }
     });
 }
 // Receiving HTTP Post
 router.post('/', function(req, res) {
-    if(!req.body.email || !validateEmail(req.body.email)) {
+    if (!req.body.email || !validateEmail(req.body.email)) {
         return res.status(400).json({error: 'Email is invalid'});
     }
 
-    if(!req.body.fname || !validateName(req.body.fname)) {
+    if (!req.body.fname || !validateName(req.body.fname)) {
         return res.status(400).json({error: 'First Name is invalid'});
     }
 
-    if(!req.body.lname || !validateName(req.body.lname)) {
+    if (!req.body.lname || !validateName(req.body.lname)) {
         return res.status(400).json({error: 'Last Name is invalid'});
     }
 
-    if(!req.body.password || !validatePassword(req.body.password)) {
+    if (!req.body.password || !validatePassword(req.body.password)) {
         return res.status(400).json({error: 'Password is invalid'});
     }
     const rString = randomStr(50, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-    localUser.create({
-        fname: req.body.fname,
-        lname: req.body.lname,
-        email: req.body.email,
-        password: req.body.password,
-        verificationCode: rString,
-        provider: 1
-    }).then(task => {
-        infokit.create({
-            user_id: task.dataValues.id
+    bcrypt.hash(req.body.password, 10, function(err, hash) {
+        if (err) {
+            return res.status(500).json({error: 'Something went wrong'});
+        }
+
+        localUser.create({
+            fname: req.body.fname,
+            lname: req.body.lname,
+            email: req.body.email,
+            password: hash,
+            verificationCode: rString,
+            provider: 1
         }).then(task => {
-            progress.create({
-                user_id: task.dataValues.user_id
+            infokit.create({
+                user_id: task.dataValues.id
             }).then(task => {
+<<<<<<< HEAD
                 verificationMail(req, res, rString);
             }).catch(error => {
-                if(error) {
+                if (error) {
                     res.status(500).json({error: 'Something went wrong'});
                 }
             });
+=======
+                progress.create({
+                    user_id: task.dataValues.user_id
+                }).then(task => {
+                    verificationMail(req, res, rString);
+                }).catch(error => {
+                    if (error) {
+                        res.status(500).json({error: 'Something went wrong'});
+                    }
+                });
+            })
+>>>>>>> 502855e1b140c236e27a467a555ef94d8ff90a35
         })
-    })
+    });
 });
 
 module.exports = router;

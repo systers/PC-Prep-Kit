@@ -89,6 +89,12 @@
             "boxIndicatorAvailable": "Available to drag"
           }
         }
+      },
+      "medsNLabels": {
+        "doctorChat": {
+          "heading": "Chat With Doctor",
+          "introMessage": "Hi, I am a doctor, if you need any help related to malaria, feel free to talk to me" 
+        }
       }
     }
   }

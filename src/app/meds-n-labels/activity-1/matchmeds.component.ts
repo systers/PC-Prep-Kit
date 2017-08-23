@@ -2,6 +2,10 @@ import { Component, OnInit, AfterViewInit, ViewChild, HostListener, ViewContaine
 import { Coordinates } from './coordinate-structure';
 import { MatchingInfo } from './matching.info';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { DashboardService } from '../../services/dashboard.service';
+import { SharedDataService } from '../../services/shared.data.service';
+import { LanguageService } from '../../services/language.service';
+import { InfokitService } from '../../services/infokit.service';
 
 @Component({
     selector: 'app-matchmeds',
@@ -17,9 +21,16 @@ export class MatchmedsComponent implements OnInit {
     cx: CanvasRenderingContext2D;
     canvasTop: number;
     canvasLeft: number;
-    height = 400;
+
+    height = 320;
     width = 75;
     windowWidth = window.innerWidth;
+    completed = false;
+    activityComplete = false;
+    private _status: object = {stage: 3, activity: 1};
+    public alerts: any;
+    language: any;
+    heading = '';
 
     // Number of Elements for Matching
     numElements = MatchingInfo.numElements;
@@ -52,11 +63,20 @@ export class MatchmedsComponent implements OnInit {
     correctAns = MatchingInfo.match1ans;
     givenAns = [0, 0, 0];
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef) {
+    constructor(private _langService: LanguageService, public toastr: ToastsManager, private _dashboardService: DashboardService, private _sharedData: SharedDataService, vcr: ViewContainerRef, private _infokitService: InfokitService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
+        this._dashboardService.getProgressStatus().subscribe(response => {
+            this.completed = this._sharedData.checkProgress(3, 1, response);
+        });
+
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.stages.medsNLabels.matchMeds;
+            this.heading = this.language.headingSideeffects;
+            this.alerts = response.pcprepkit.common.alerts;
+        });
 
         /**
         * Check Window Size and Change Width
@@ -256,16 +276,23 @@ export class MatchmedsComponent implements OnInit {
                 this.count++;
                 if (this.count === this.numElements) {
                     if (this.isEqual()) {
-                        this.toastr.success('Complete ! ', 'Success!');
+                        this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
                         this.matchingComplete++;
                         if (this.matchingComplete === 1) {
                             this.count = 0;
                             this.redrawCanvas();
+                            this.heading = this.language.headingDescription;
                             this.correctAns = MatchingInfo.match2ans;
                             this.display = MatchingInfo.medicineDescriptions;
+                        } else {
+                            this.completed = true;
+                            this.activityComplete = true;
+                            this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
+                            this._infokitService.activateinfokit('match_meds').subscribe(res => {});
                         }
                     } else {
-                        this.toastr.error('Wrong Match ! ', 'Try Again!');
+                        this.reset();
+                        this._sharedData.customErrorAlert(this.alerts.activityFailMsg, this.alerts.activityFailTitle);
                     }
                 }
             }
