@@ -1,0 +1,25 @@
+@import "../styles/main";
+
+.chats {
+    height: 300px;
+    overflow: auto;
+}
+
+.recv-message {
+    @include message-style($grey);
+    margin-right: 25%;
+}
+
+
+.sent-message {
+    @include message-style($light-blue);
+    margin-left: 25%;
+}
+
+.chat-window {
+    border-radius: $border-radius;
+    border-style: solid;
+    border-color: $grey;
+    padding: $padding-med;
+    background: $pale-green;
+}

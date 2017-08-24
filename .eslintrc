@@ -27,13 +27,15 @@
         "quote-props": ["error", "as-needed", { "keywords": false }],
         "eol-last": ["error", "always"],
         "no-trailing-spaces": "error",
+        "space-before-blocks": ["error"],
         "prefer-template": "error",
         "comma-spacing": ["error", { "before": false, "after": true }],
         "space-before-function-paren": ["error", "never"],
+        "space-before-blocks": ["error"],
         "no-lonely-if": "error",
         "arrow-spacing": "error",
         "key-spacing": ["error", { "beforeColon": false }],
+        "keyword-spacing": ["error", { "before": true }],
         "space-infix-ops": "error"
     }
 }
-

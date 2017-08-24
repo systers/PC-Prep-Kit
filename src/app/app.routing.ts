@@ -25,6 +25,7 @@ import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.co
 import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
 import { OddOneOutComponent } from './malaria-101/activity-3/activity-3.component';
 import { StageCompleteComponent } from './stage-complete/stage-complete.component';
+import { DoctorchatComponent } from './meds-n-labels/activity-3/doctorchat.component';
 
 export const routes: Routes = [
     {
@@ -135,6 +136,10 @@ export const routes: Routes = [
             {
                 path: 'activity-2',
                 component: MemoryGameComponent
+            },
+            {
+                path: 'activity-3',
+                component: DoctorchatComponent
             }
         ]
     }
