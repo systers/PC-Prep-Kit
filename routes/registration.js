@@ -62,21 +62,13 @@ router.post('/', function(req, res) {
                 verificationCode: rString,
                 user_id: task.dataValues.id
             }).then(task => {
-                infokit.create({
-                    user_id: task.dataValues.user_id
-                }).then(task => {
-                    progress.create({
-                        user_id: task.dataValues.user_id
-                    }).then(task => {
-                        verificationMail(req, res, rString);
-                    }).catch(error => {
-                        if (error) {
-                            res.status(500).json({error: 'Something went wrong'});
-                        }
-                    });
-                });
+                verificationMail(req, res, rString);
+            }).catch(error => {
+                if (error) {
+                    res.status(500).json({error: 'Something went wrong'});
+                }
             });
-        });
+        })
     });
 });
 

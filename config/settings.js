@@ -11,6 +11,9 @@ module.exports = {
         PROVIDER: 'Gmail',
         EMAIL: 'pcprepkit@gmail.com',
         PASSWORD: 'pcprepkit9'
+    },
+    apiai: {
+        clientToken: '2da698372070440e9ac9ac5c96917147'
     }
 
 }

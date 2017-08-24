@@ -2,6 +2,8 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { InfokitService } from '../../services/infokit.service';
 import { LanguageService } from '../../services/language.service';
+import { DashboardService } from '../../services/dashboard.service';
+import { SharedDataService } from '../../services/shared.data.service';
 
 @Component({
     selector: 'app-dragdrop',
@@ -12,10 +14,15 @@ import { LanguageService } from '../../services/language.service';
 export class DragdropComponent implements OnInit {
 
     language: any;
+    private _status: object = {stage: 2, activity: 2};
+
+    public activityComplete = false;
     /**
      * To change the postion of contents along with Body
      */
     public position= 'col-md-10 col-md-offset-2 introbody';
+    public completed = false;
+    public alerts: any;
 
     /**
      * dosAndDonts description with the values,the same order will be displayed
@@ -46,6 +53,7 @@ export class DragdropComponent implements OnInit {
     ngOnInit() {
       this._langService.loadLanguage().subscribe(response => {
           this.language = response.pcprepkit.stages.malaria101.dragdrop;
+          this.alerts = response.pcprepkit.common.alerts;
       });
     }
     /**
@@ -81,13 +89,17 @@ export class DragdropComponent implements OnInit {
      * Display the completion Message and Activate Infokit for the activity.
      */
     onComplete() {
-        this.toastr.success('Complete ! ', 'Success!');
-      //  this._infokitService.activateinfokit('do_dont').subscribe(res => {});
+        this.activityComplete = true;
+        this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
+        this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
+        this._infokitService.activateinfokit('do_dont').subscribe(res => {});
     }
 
-    constructor(private _infokitService: InfokitService, public toastr: ToastsManager, vcr: ViewContainerRef,
-      private _langService: LanguageService) {
+    constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService, private _infokitService: InfokitService, public toastr: ToastsManager, vcr: ViewContainerRef, private _langService: LanguageService) {
         this.toastr.setRootViewContainerRef(vcr);
+        this._dashboardService.getProgressStatus().subscribe(response => {
+            this.completed = this._sharedData.checkProgress(2, 2, response);
+        });
     }
 
 }

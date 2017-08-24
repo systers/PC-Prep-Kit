@@ -36,6 +36,7 @@ import { Malaria101Component } from './malaria-101/malaria-101.component';
 import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.component';
 import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
 import { OddOneOutComponent } from './malaria-101/activity-3/activity-3.component';
+import { DoctorchatComponent } from './meds-n-labels/activity-3/doctorchat.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
@@ -45,6 +46,7 @@ import { NavbarService } from './services/navbar.service';
 import { InfokitService } from './services/infokit.service';
 import { LanguageService } from './services/language.service';
 import { SharedDataService } from './services/shared.data.service';
+import { DoctorService } from './services/doctorchat.service';
 
 @NgModule({
     declarations: [
@@ -72,6 +74,8 @@ import { SharedDataService } from './services/shared.data.service';
         Malaria101Component,
         AnimatedVideoComponent,
         MalariaLifeCycleComponent,
+        OddOneOutComponent,
+        DoctorchatComponent,
         OddOneOutComponent
     ],
     imports: [
@@ -85,7 +89,7 @@ import { SharedDataService } from './services/shared.data.service';
         ToastModule.forRoot()
     ],
     providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,
-      SharedDataService, InfokitService, LanguageService],
+      SharedDataService, InfokitService, LanguageService, DoctorService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

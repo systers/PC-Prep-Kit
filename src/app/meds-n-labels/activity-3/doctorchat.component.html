@@ -1,0 +1,17 @@
+<div class="col-md-4 col-xs-6 col-md-offset-4 col-xs-offset-3">
+  <div class="chat-window">
+    <H3 class="text-center stage-header">{{language?.heading}}</H3>
+    <div class="chats" #chats>
+      <div [className]="chat.status" *ngFor="let chat of messages">
+        {{chat.message}}
+      </div>
+    </div>
+    <div class="send-message input-group">
+      <input type="text" class="form-control" [(ngModel)]="chatMessage" (keyup.enter)=send(chatMessage)>
+      <div class="input-group-btn">
+        <button (click)="send(chatMessage)" class="btn btn-success" type="button"><i class="glyphicon glyphicon-send"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+<button-nav nexturl="/stagecomplete?stage=Meds and Labels" prevurl="/meds-n-labels/activity-2" [completed]="completed" [complete]="activityComplete"></button-nav>

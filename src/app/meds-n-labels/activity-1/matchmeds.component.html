@@ -1,31 +1,23 @@
-<div class="header">
-  <app-header (togglenavbar)="nav.toggle()"> </app-header>
-</div>
 <div class="container-fluid">
-  <app-navbar #nav (toggleposition)="toggle();ind.toggle()" (infopop)="info.pop()"> </app-navbar>
-  <app-infokit #info> </app-infokit>
+  <h4 class="sub-heading-1 text-center">{{heading}}</h4>
   <div class="row">
-    <div [className]="position">
-      <div class="meds">
-        <div *ngFor = "let med of medicines">
-          <img src="assets/img/Match-meds/{{med}}.PNG" class="medicine">
-          <p class="text-center">{{med}}</p>
-        </div>
+    <div class="meds">
+      <div *ngFor = "let med of medicines">
+        <img src="assets/img/Match-meds/{{med}}.PNG" class="medicine">
+        <p class="text-center">{{med}}</p>
       </div>
-      <div class="content" (window:resize)="onResize($event)">
-        <canvas (mouseleave)="mouseLeave()" (mousedown)="mouseClick($event)" (mouseup)="mouseRelease($event)" (mousemove)="mousePos($event)" #canv></canvas>
+    </div>
+    <div class="content" (window:resize)="onResize($event)">
+      <canvas (mouseleave)="mouseLeave()" (mousedown)="mouseClick($event)" (mouseup)="mouseRelease($event)" (mousemove)="mousePos($event)" #canv></canvas>
+    </div>
+    <div class="meds-description">
+      <div>
+        <p class="text-center des" *ngFor="let des of display">{{des}}</p>
       </div>
-      <div class="meds-description">
-        <div>
-          <p class="text-center des" *ngFor = "let des of display"> {{des}} </p>
-        </div>
-      </div>
-      <div class="reset-button">
-        <button class="btn btn-primary" (click)="reset()"> Reset </button>
-      </div>
-      <div class="footer">
-        <app-activityindicator #ind> </app-activityindicator>
-      </div>
+    </div>
+    <div class="reset-button">
+      <button class="btn btn-primary" (click)="reset()"> Reset </button>
     </div>
   </div>
 </div>
+<button-nav nexturl="/meds-n-labels/activity-2" prevurl="/malaria-101/activity-3" [completed]="completed" [complete]="activityComplete"></button-nav>
