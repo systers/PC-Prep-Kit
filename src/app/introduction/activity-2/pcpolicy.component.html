@@ -1,4 +1,5 @@
 <div class="container-fluid">
+  <app-infokit #info > </app-infokit>
   <div class="row">
     <div class="pc-policy-body text-center">
       <p class="lead"> {{language?.descriptions.bodyContent1}} <Br> {{language?.descriptions.bodyContent2}}</p>
@@ -8,4 +9,5 @@
       <p>{{language?.descriptions.bodyContent4 +' '+ email}}</p>
     </div>
   </div>
+  <button-nav [completed]="completed" nexturl="/introduction/activity-3" prevurl="/introduction/activity-1"></button-nav>
 </div>

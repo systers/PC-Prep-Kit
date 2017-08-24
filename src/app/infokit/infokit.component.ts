@@ -18,15 +18,16 @@ export class InfokitComponent implements OnInit {
     public showInfo = false;
     // sets the visiblility of the Icons in Infokit Selector
     public infokitActive = [
-        {key: 'malaria_def', value: false, def: 'Malaria'},
-        {key: 'pc_policy', value: false, def: 'Peace Corps Policy'},
-        {key: 'animation', value: false, def: 'Animation'},
-        {key: 'do_dont', value: false, def: 'Do\'s and Don\'ts'},
-        {key: 'odd_one_out', value: false, def: 'Odd One Out'},
-        {key: 'match_meds', value: false, def: 'Side Effects'},
-        {key: 'side_effects', value: false, def: 'Match the Meds'},
-        {key: 'doctor_info', value: false, def: 'Doctor Information'},
+        {key: 'malaria_def', value: false, def: 'Malaria', img: 'malaria.png'},
+        {key: 'pc_policy', value: false, def: 'Peace Corps Policy', img: 'pcpolicy.png'},
+        {key: 'animation', value: false, def: 'Animation', img: 'lifecycle.png'},
+        {key: 'do_dont', value: false, def: 'Do\'s and Don\'ts', img: 'dodont.png'},
+        {key: 'odd_one_out', value: false, def: 'Odd One Out', img: 'malariainfo.png'},
+        {key: 'match_meds', value: false, def: 'Match the Meds', img: 'meds.png'},
+        {key: 'side_effects', value: false, def: 'Side Effects', img: 'sideeffects.png'},
+        {key: 'doctor_info', value: false, def: 'Doctor Information', img: 'doctor.png'}
     ];
+  
     // Sets the Heading In Infokit Pop Up
     public heading = 'Info Kit';
     // Sets the Content In Infokit Pop Up
@@ -67,20 +68,19 @@ export class InfokitComponent implements OnInit {
      * Gets Infromation from the Infokit API
      */
     getData() {
-      this.infokitAvailable = false;
-      if (localStorage.getItem(InfokitComponent._localStorageKey)) {
-          this._infokitService.infokitactive().subscribe(response => {
-              for (let info of this.infokitActive) {
-                  info.value = response.infokitactive[info.key];
-              }
-          });
-      }
+        if (localStorage.getItem(InfokitComponent._localStorageKey)) {
+            this._infokitService.infokitactive().subscribe(response => {
+                for (let info of this.infokitActive) {
+                    info.value = response.infokitactive[info.key];
+                }
 
-      for (let info of this.infokitActive) {
-          if (info.value) {
-              this.infokitAvailable = true;
-              break;
-          }
-      }
+                for (let info of this.infokitActive) {
+                    if (info.value) {
+                        this.infokitAvailable = true;
+                        break;
+                    }
+                }
+            });
+        }
     }
 }

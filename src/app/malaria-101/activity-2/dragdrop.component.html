@@ -1,43 +1,46 @@
-<div class="container-fluid">
-  <div class="row">
-    <div>
-      <div class="content">
-        <div class="row">
-          <div class="col-xs-4 col-xs-offset-2">
-            <div dnd-droppable class="panel panel-primary" [allowDrop]="allowDropFunction(box1)" (onDropSuccess)="addTobox($event,box1)">
-              <div class="panel-heading">
-                {{language?.descriptions.boxIndicatorDo}}
-              </div>
-              <div class="panel-body">
-                <div *ngFor="let item of do"><div class="panel-body">  {{item.description}} </div></div>
-              </div>
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+    <h2 class="sub-heading-1 text-center">{{language?.heading}}</h2>
+  </div>
+</div>
+<div class="row">
+  <div>
+    <div class="content">
+      <div class="row">
+        <div class="col-xs-4 col-xs-offset-2">
+          <div dnd-droppable class="panel panel-primary" [allowDrop]="allowDropFunction(box1)" (onDropSuccess)="addTobox($event,box1)">
+            <div class="panel-heading">
+              {{language?.descriptions.boxIndicatorDo}}
+            </div>
+            <div class="panel-body">
+              <div *ngFor="let item of do" class="panel panel-default"><div class="panel-body">  {{item.description}} </div></div>
             </div>
           </div>
-          <div class="col-xs-4">
-            <div dnd-droppable class="panel panel-danger" [allowDrop]="allowDropFunction(box2)" (onDropSuccess)="addTobox($event,box2)">
-              <div class="panel-heading">
-                {{language?.descriptions.boxIndicatorDont}}
-              </div>
-              <div class="panel-body">
-                <div *ngFor="let item of dont"><div class="panel-body">  {{item.description}} </div></div>
+        </div>
+        <div class="col-xs-4">
+          <div dnd-droppable class="panel panel-danger" [allowDrop]="allowDropFunction(box2)" (onDropSuccess)="addTobox($event,box2)">
+            <div class="panel-heading">
+              {{language?.descriptions.boxIndicatorDont}}
+            </div>
+            <div class="panel-body">
+              <div *ngFor="let item of dont" class="panel panel-default"><div class="panel-body"> {{item.description}} </div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+          <div class="panel panel-success">
+            <div class="panel-heading"> {{language?.descriptions.boxIndicatorAvailable}} </div>
+            <div class="panel-body">
+              <div *ngFor="let item of dosAndDonts" class="panel panel-default col-xs-6" dnd-draggable [dragData]=item>
+                <div class="panel-body">  {{item.description}} </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-6 col-xs-offset-3">
-            <div class="panel panel-success">
-              <div class="panel-heading"> {{language?.descriptions.boxIndicatorAvailable}} </div>
-              <div class="panel-body">
-                <div *ngFor="let item of dosAndDonts" class="panel panel-default col-xs-6" dnd-draggable [dragData]=item>
-                  <div class="panel-body">  {{item.description}} </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <app-activityindicator></app-activityindicator>
       </div>
     </div>
   </div>
 </div>
+<button-nav nexturl="/malaria-101/activity-3" prevurl="/malaria-101/activity-1-2" [completed]="completed" [complete]="activityComplete"></button-nav>

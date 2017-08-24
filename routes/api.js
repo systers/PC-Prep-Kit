@@ -1,10 +1,12 @@
 const express = require('express');
 const jwt    = require('jsonwebtoken');
+const apiai = require('apiai');
 const config = require('../config/settings');
 const router = express.Router();
 const models = require('../database/models');
 const mail = require('./mailService');
 const authenticationHelpers = require('./authenticationHelpers');
+const doctor = require('./doctor');
 
 const localUser = models.user_account;
 const progress = models.progress;
@@ -79,14 +81,15 @@ router.get('/username', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     localUser.findAll({
         where: {
             email: email
-        }}).then(data => {
-            const username = `${data[0].fname} ${data[0].lname}`;
-            res.status(200).json({username: username});
-        }).catch(error => {
-            if (error) {
-                res.status(500).json({error: 'Something went wrong'});
-            }
-        });
+        }
+    }).then(data => {
+        const username = `${data[0].fname} ${data[0].lname}`;
+        res.status(200).json({username: username});
+    }).catch(error => {
+        if (error) {
+            res.status(500).json({error: 'Something went wrong'});
+        }
+    });
 });
 
 /**
@@ -162,7 +165,7 @@ router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (r
                 const progressActivity = data.progress.activity;
                 const stageDiff = currStage - progressStage;
                 const activityDiff = currActivity - progressActivity;
-                if ((currStage === progressStage || stageDiff === 1) && (activityDiff === 1)) {
+                if ((currStage === progressStage && activityDiff === 1) || (stageDiff === 1 && (progressActivity === 3 || progressActivity === 0))) {
                     progress.update({
                         stage: currStage,
                         activity: currActivity
@@ -171,13 +174,14 @@ router.patch('/updateProgressStatus', authenticationHelpers.isAuthOrRedirect, (r
                             id: data.progress.id
                         }
                     })
-                        .then(response => {
-                            return res.status(200).json({info: 'success'});
-                        })
-                } else if (stageDiff > 1 && activityDiff > 1) {
-                    return res.status(200).json({info: 'Illegal operation'});
+
+                    .then(response => {
+                        return res.status(200).json({info: 'Success'});
+                    });
                 } else if (stageDiff < 1 && activityDiff < 1) {
-                    return res.status(200).json({info: 'success'});
+                    return res.status(200).json({info: 'Already Updated'});
+                } else {
+                    return res.status(200).json({info: 'Illegal operation'});
                 }
             })
             .catch(function(err) {
@@ -218,7 +222,6 @@ router.get('/infokitactive', authenticationHelpers.isAuthOrRedirect, (req, res) 
 });
 
 router.get('/activateinfokit', authenticationHelpers.isAuthOrRedirect, (req, res) => {
-    const email = req.user.email;
     const activate = req.query.activate;
     const updateobj = {};
     updateobj[activate] = true;
@@ -235,7 +238,7 @@ router.get('/activateinfokit', authenticationHelpers.isAuthOrRedirect, (req, res
             }
             infokit.update( updateobj, {
                 where: {
-                    email: email
+                    user_id: data.id
                 }
             }).then(function(data) {
                 return res.json({message: 'Activity Added to Infokit'});
@@ -296,6 +299,37 @@ router.post('/uploadCam', function(req, res) {
 router.get('/getJSONData', (req, res) => {
     const uri = `./data/${req.query.file}`;
     res.status(200).json({data: fs.readFileSync(uri, 'utf8')});
+});
+
+router.post('/doctorchat', function(req, res) {
+    const chatbot = apiai(config.apiai.clientToken);
+    let request = chatbot.textRequest(req.body.message, {
+        sessionId: req.sessionID
+    });
+
+    request.on('response', function(chatResponse) {
+
+        let result = chatResponse.result;
+        let reply = result.fulfillment.speech;
+
+        if (!reply) {
+            doctor(chatResponse, function(reply) {
+                res.json({reply: reply});
+            });
+        } else {
+            res.json({reply: reply});
+        }
+    });
+
+    request.on('error', function(error) {
+        if (error.status.code === 400) {
+            res.json({reply: 'I am sorry, I did not understand, try changing the sentence a little.'});
+        } else {
+            res.json({reply: 'There seems to be some problem with the chat.'});
+        }
+    });
+
+    request.end();
 });
 
 module.exports = router;

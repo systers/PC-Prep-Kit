@@ -1,0 +1,9 @@
+@mixin message-style($background) {
+    background: $background;
+    padding: $padding-med;
+    margin: $margin-med;
+    border-radius: $border-radius;
+    font-size: 15px;
+    font-weight: $regular;
+    color: $white;
+}

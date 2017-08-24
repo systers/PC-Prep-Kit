@@ -27,6 +27,7 @@
         "quote-props": ["error", "as-needed", { "keywords": false }],
         "eol-last": ["error", "always"],
         "no-trailing-spaces": "error",
+        "space-before-blocks": ["error"],
         "prefer-template": "error",
         "comma-spacing": ["error", { "before": false, "after": true }],
         "space-before-function-paren": ["error", "never"],
