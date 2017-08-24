@@ -10,6 +10,7 @@ const config = require('../config/settings');
 const localUser = models.user_account;
 const infokit = models.info_kit;
 const progress = models.progress;
+const verification = models.verification;
 const validateEmail = utilityFunctions.validateEmail;
 const validateName = utilityFunctions.validateName;
 const validatePassword = utilityFunctions.validatePassword;
@@ -55,10 +56,10 @@ router.post('/', function(req, res) {
             lname: req.body.lname,
             email: req.body.email,
             password: hash,
-            verificationCode: rString,
             provider: 1
         }).then(task => {
-            infokit.create({
+            verification.create({
+                verificationCode: rString,
                 user_id: task.dataValues.id
             }).then(task => {
                 verificationMail(req, res, rString);
