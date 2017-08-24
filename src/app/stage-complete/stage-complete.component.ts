@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { SharedDataService } from '../services/shared.data.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
     selector: 'app-stage-complete',
@@ -9,11 +10,15 @@ import { SharedDataService } from '../services/shared.data.service';
 })
 
 export class StageCompleteComponent implements OnInit {
+    language: any;
     stageName: string;
     public position: string;
-    constructor(private _activatedRoute: ActivatedRoute, private _sharedData: SharedDataService) { }
+    constructor(private _langService: LanguageService, private _activatedRoute: ActivatedRoute, private _sharedData: SharedDataService) { }
 
     ngOnInit() {
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.common.stageComplete;
+        });
         this.stageName = this._activatedRoute.snapshot.queryParams['stage'];
         this._sharedData.position.subscribe(
             value => {
