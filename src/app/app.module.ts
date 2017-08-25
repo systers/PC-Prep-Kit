@@ -1,17 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DndModule } from 'ng2-dnd';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { UnauthenticatedGuard } from './guards/unauthenticated.guard';
+import { ButtonNavComponent } from './button-nav/button-nav.component';
 import { LoginComponent } from './authentication/login.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password.component';
@@ -37,6 +39,8 @@ import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.co
 import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
 import { OddOneOutComponent } from './malaria-101/activity-3/activity-3.component';
 import { DoctorchatComponent } from './meds-n-labels/activity-3/doctorchat.component';
+import { UnlockedStageComponent } from './unlocked-stage/unlocked-stage.component';
+import { HowToPlayComponent } from './unlocked-stage/how-to-play/howtoplay.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
@@ -44,6 +48,7 @@ import { APIService } from './services/api.service';
 import { RegService } from './services/reg.service';
 import { NavbarService } from './services/navbar.service';
 import { InfokitService } from './services/infokit.service';
+import { InfokitPipe } from './infokit/infokit.pipe';
 import { LanguageService } from './services/language.service';
 import { SharedDataService } from './services/shared.data.service';
 import { DoctorService } from './services/doctorchat.service';
@@ -64,6 +69,7 @@ import { DoctorService } from './services/doctorchat.service';
         MenuComponent,
         ActivityindicatorComponent,
         InfokitComponent,
+        InfokitPipe,
         DragdropComponent,
         MedsNLabelsComponent,
         MemoryGameComponent,
@@ -76,7 +82,9 @@ import { DoctorService } from './services/doctorchat.service';
         MalariaLifeCycleComponent,
         OddOneOutComponent,
         DoctorchatComponent,
-        OddOneOutComponent
+        ButtonNavComponent,
+        UnlockedStageComponent,
+        HowToPlayComponent
     ],
     imports: [
         AppRoutingModule,
@@ -86,8 +94,10 @@ import { DoctorService } from './services/doctorchat.service';
         BrowserModule,
         BrowserAnimationsModule,
         DndModule.forRoot(),
+        MaterialModule,
         ToastModule.forRoot()
     ],
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,
       SharedDataService, InfokitService, LanguageService, DoctorService],
     bootstrap: [AppComponent]
