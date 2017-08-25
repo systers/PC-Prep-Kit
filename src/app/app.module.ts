@@ -38,6 +38,7 @@ import { Malaria101Component } from './malaria-101/malaria-101.component';
 import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.component';
 import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
 import { OddOneOutComponent } from './malaria-101/activity-3/activity-3.component';
+import { StageCompleteComponent } from './stage-complete/stage-complete.component';
 import { DoctorchatComponent } from './meds-n-labels/activity-3/doctorchat.component';
 import { UnlockedStageComponent } from './unlocked-stage/unlocked-stage.component';
 import { HowToPlayComponent } from './unlocked-stage/how-to-play/howtoplay.component';
@@ -81,6 +82,7 @@ import { DoctorService } from './services/doctorchat.service';
         AnimatedVideoComponent,
         MalariaLifeCycleComponent,
         OddOneOutComponent,
+        StageCompleteComponent,
         DoctorchatComponent,
         ButtonNavComponent,
         UnlockedStageComponent,

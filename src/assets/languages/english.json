@@ -51,6 +51,11 @@
         "descriptions": {
           "bodyContent": "Brought to you by"
         }
+      },
+      "stageComplete": {
+        "message1": "Congratulations! You have succesfully completed the",
+        "message2": "Stage.",
+        "buttoninfo": "Go to menu"
       }
     },
     "stages": {
