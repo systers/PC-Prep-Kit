@@ -1,24 +1,15 @@
+@import "../modules/all";
 .nav-forward {
     position: fixed;
     bottom: 40px;
     right: 20px;
-    color: white;
+    color: $white;
 }
 
 .nav-back {
     position: fixed;
     bottom: 40px;
     left: 10px;
-}
-
-.prev {
-    background: green;    
-    color: white;
-}
-
-.next {
-    background: green;
-    color: white;   
 }
 
 @mixin animation($animate) {

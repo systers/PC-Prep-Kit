@@ -11,7 +11,7 @@ const sequelize = new Sequelize('pcprepkit', 'pcprepkit', 'pcprepkit', {
 const db = {};
 fs.readdirSync(__dirname)
     .filter(function(file) {
-        return (file.indexOf('.') !== 0) && (file !== 'index.js') && (file.indexOf('~') === -1)
+        return (file.indexOf('.') !== 0) && (file !== 'index.js') && (file.indexOf('~') === -1);
     })
     .forEach(function(file) {
         const model = sequelize.import(path.join(__dirname, file));
