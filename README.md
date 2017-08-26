@@ -6,14 +6,16 @@ PC Prep Kit is a web application aimed at helping the peace corps volunteers wit
 ## Why is the project useful? 
 PC Prep kit helps spread awareness about Malaria. According to WHO[1], In 2015 there were around 212 million cases of malaria and 429,000 deaths, 90% of which is from Africa.  It is established that early diagnosis and prompt treatment of malaria prevents deaths. Taking simple preventive measures can also help in preventing malaria to a large extent. The Peace Corps Volunteers who travel to the countries effected with malaria can use the information proved in the application and learn about symptoms, medications and their side effects and preventive measure which help keep them safe. 
 
-## How can users get started with contributing to the project? 
-The technologies used in this project are 
+## Technologies used
+The project uses 
 * Node.js, Express framework (JavaScript)
 * Angular 4 (SCSS, TypeScript, HTML)
 * Mocha, Supertest, Should.js (Backend Testing)
 * Jasmine, Karma (Angular Testing)
 * MySQL + Sequalize ORM 
 * ESLint and TSLint (Linting tools)
+
+## How can users get started with contributing to the project? 
   
 Anyone can find an issue in the application, the issue is not limited to bugs but also includes UI enhancements, efficient codes, improved structure or updating depreciated functions.  
   
