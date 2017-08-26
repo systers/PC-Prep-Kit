@@ -14,11 +14,12 @@
           <p> No infokit available </p>
         </div>
         <div class="col-xs-4" *ngFor="let infoBool of infokitActive" [hidden]="!infoBool.value">
-          <button class="btn btn-default btn-group-justified info-button" (click)="info(infoBool.def)"><img class="infokit-icons" [src]="'assets/img/infokit/' + infoBool.img"></button>
+          <button class="btn btn-default btn-group-justified info-button" (click)="info(infoBool.def,infoBool.key)"><img class="infokit-icons" [src]="'assets/img/infokit/' + infoBool.img"></button>
         </div>
       </div>
       <div class="infokit-content" [hidden]="!showInfo">
-        {{infoContent}}
+        <div [innerHtml]="infoContent">
+        </div>
       </div>
     </div>
     <div class="infokit-footer text-center row">

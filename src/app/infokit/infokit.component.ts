@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InfokitService } from '../services/infokit.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
     selector: 'app-infokit',
@@ -8,6 +9,7 @@ import { InfokitService } from '../services/infokit.service';
 })
 export class InfokitComponent implements OnInit {
     private static _localStorageKey = 'pcprepkitUser';
+    language: any;
     // sets infokit visible/Invisible Default : Invisible
     public infokitState = false;
     public infokitAvailable = false;
@@ -27,19 +29,22 @@ export class InfokitComponent implements OnInit {
         {key: 'side_effects', value: false, def: 'Side Effects', img: 'sideeffects.png'},
         {key: 'doctor_info', value: false, def: 'Doctor Information', img: 'doctor.png'}
     ];
-  
+
     // Sets the Heading In Infokit Pop Up
     public heading = 'Info Kit';
     // Sets the Content In Infokit Pop Up
     public infoContent = 'loading...';
 
-    constructor(private _infokitService: InfokitService) { }
+    constructor(private _infokitService: InfokitService, private _langService: LanguageService) { }
 
     /**
      * Get data from Infokit API
      */
     ngOnInit() {
         this.getData();
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.common.infokit;
+        });
     }
 
     /**
@@ -58,10 +63,10 @@ export class InfokitComponent implements OnInit {
      * @param  {String} activity Provies Information about the section selected in Infokit Selector
      */
 
-    info(activity) {
+    info(activity, key) {
         this.heading = activity;
         this.showInfo = true;
-        this.infoContent = 'this contains information about ' + activity;
+        this.infoContent = this.language[key];
     }
 
     /**
