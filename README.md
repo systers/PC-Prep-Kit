@@ -88,6 +88,9 @@ $ ng build --watch
 to setup the Angular developmental server.
 
 After the build completes, you can navigate to http://localhost:3000/ in your browser to check out the application. 
+
+And, that's it, you are DONE. You have successfully setup the project.
+
 The app will automatically reload if you change any of the source files.
 
 ### Testing 
@@ -105,9 +108,12 @@ Run `ng test` to execute the unit tests via Karma.
 
 To contribute to the frontend testing for PC Prep Kit, you can look for files for which the test cases have not been written, or fix test cases that fail. 
 
-#### Running TSLint
+#### Running TSLint and ESLint
 
-Run `ng lint` to identify all linting errors with Angular files.
+Run `ng lint` in your terminal to identify all linting errors with Angular files. You can also run `tslint PATH_TO_YOUR_typescript_FILE` to check for linting errors of individual files.
+
+Run `eslint *.js; eslint **/*.js` in your terminal to identify all linting errors with Node files. You can also run `eslint PATH_TO_YOUR_nodejs_FILE` to check for linting errors of individual files.
+
 
 #### Need more help?
 
