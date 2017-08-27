@@ -1,0 +1,5 @@
+/dist
+
+# Files
+karma.conf.js
+protractor.conf.js
