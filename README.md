@@ -79,8 +79,13 @@ Once the database is setup, run the following command from the project directory
 $ npm start
 ```
 
-Then create a new terminal or command line tab and go to the project directory and run 
-`ng build --watch` to setup the Angular developmental server.
+Then create a new terminal or command line tab and go to the project directory and run
+
+``` 
+$ ng build --watch
+```
+
+to setup the Angular developmental server.
 
 After the build completes, you can navigate to http://localhost:3000/ in your browser to check out the application. 
 The app will automatically reload if you change any of the source files.
