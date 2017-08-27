@@ -24,7 +24,8 @@ The following procedure must be followed in order to solve an issue.
 * Check if the issue has already been reported, if not report the issue on Github.
 * Assign the issue to yourself, if you want to solve it.  
 * You can open an issue and tag it as free if you do not wish to solve it. 
-* The issues marked free are open for you to solve, assign the issue to yourself before beginning the work on it.  
+* The issues marked free are open for you to solve, assign the issue to yourself before beginning the work on it. 
+* Before you make a Pull request, make sure that there are no linting errors with the files you modified.
 
 ## Getting Started
 
@@ -110,9 +111,13 @@ To contribute to the frontend testing for PC Prep Kit, you can look for files fo
 
 #### Running TSLint and ESLint
 
-Run `ng lint` in your terminal to identify all linting errors with Angular files. You can also run `tslint PATH_TO_YOUR_typescript_FILE` to check for linting errors of individual files.
+Run `ng lint` in your terminal to identify all linting errors with Angular files. 
 
-Run `eslint *.js; eslint **/*.js` in your terminal to identify all linting errors with Node files. You can also run `eslint PATH_TO_YOUR_nodejs_FILE` to check for linting errors of individual files.
+You can also run `tslint PATH_TO_YOUR_typescript_FILE` to check for linting errors of individual files.
+
+Run `eslint *.js; eslint **/*.js` in your terminal to identify all linting errors with Node files. 
+
+You can also run `eslint PATH_TO_YOUR_nodejs_FILE` to check for linting errors of individual files.
 
 
 #### Need more help?
