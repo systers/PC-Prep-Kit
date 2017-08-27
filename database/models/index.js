@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('pcprepkit', 'pcprepkit', 'pcprepkit', {
+const config = require('../../config/settings');
+const sequelize = new Sequelize(config.databaseSetup.DATABASE_NAME, config.databaseSetup.USERNAME, config.databaseSetup.PASSWORD, {
     host: 'localhost',
     dialect: 'mysql',
     define: {
