@@ -38,7 +38,7 @@ Now, navigate to the forked repository in your profile.
 In the top-right corner of the page, you will find a green button with the text "Clone or download". Click on it.
 Copy the link that appears in the popup.
 
-Now, go to your terminal and execute this command
+Now, go to your terminal (if you are using a Linux platform) or git bash (if you are using a Windows platform) and execute this command
 
 ```
 git clone URL
