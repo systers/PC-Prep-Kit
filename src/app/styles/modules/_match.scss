@@ -5,26 +5,26 @@ $screen-med: 992px;
 @mixin match-elements($meds-left, $content-left, $des-left) {
     .meds {
         position: fixed;
-        top: 110px;
+        top: 160px;
         left: $meds-left;
         margin-top: $margin-med;
     }
 
     .content {
         position: fixed;
-        top: 150px;
+        top: 210px;
         left: $content-left;
     }
 
     .meds-description {
         position: fixed;
-        top: 150px;
+        top: 210px;
         left: $des-left;
     }
 
-    .reset-button {
+    .match-button {
         position: fixed;
-        top: 550px;
-        left: $content-left;
+        top: 580px;
+        left: ($content-left + $des-left)/2;;
     }
 }
