@@ -32,7 +32,7 @@
         <p *ngIf="regForm.controls['confirmpassword'].value!=regForm.controls['password'].value && (regForm.controls['confirmpassword'].dirty)" class="alert alert-danger" role="alert">{{authMessages?.errors.passwordMatch}}</p>
       </div>
       <div class="form-group">
-        <button type="submit" [disabled]="!(regForm.valid && regForm.controls['confirmpassword'].value==regForm.controls['password'].value)" class="btn btn-primary btn-lg">{{language?.messages.buttonMessage}}</button>
+        <button type="submit" [disabled]="!(regForm.valid && regForm.controls['confirmpassword'].value==regForm.controls['password'].value)" class="btn btn-lg button-branding-blue">{{language?.messages.buttonMessage}}</button>
       </div>
     </form>
   </div>

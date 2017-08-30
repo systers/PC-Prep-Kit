@@ -8,3 +8,14 @@
         background-color: $button-active-color;
     }
 }
+
+@mixin branding($img){
+    background: url('/assets/img/peacecorps/'+$img);
+    background-size: cover;
+    background-position: left;
+    &:hover {
+        background-size: inherit;
+        background-position: right;
+        transition: background-position 0.3s ease 0s;
+    }
+}

@@ -8,8 +8,8 @@ import { LanguageService } from '../../services/language.service';
 
 @Component({
     selector: 'app-doctorchat',
-    templateUrl: './doctorchat.component.html',
-    styleUrls: ['./doctorchat.component.scss']
+    templateUrl: './activity-3.component.html',
+    styleUrls: ['./activity-3.component.scss']
 })
 
 export class DoctorchatComponent implements OnInit, AfterViewChecked {

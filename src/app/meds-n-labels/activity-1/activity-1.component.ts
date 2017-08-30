@@ -9,8 +9,8 @@ import { InfokitService } from '../../services/infokit.service';
 
 @Component({
     selector: 'app-matchmeds',
-    templateUrl: './matchmeds.component.html',
-    styleUrls: ['./matchmeds.component.scss']
+    templateUrl: './activity-1.component.html',
+    styleUrls: ['./activity-1.component.scss']
 })
 
 
