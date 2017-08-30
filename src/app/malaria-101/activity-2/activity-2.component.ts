@@ -7,8 +7,8 @@ import { SharedDataService } from '../../services/shared.data.service';
 
 @Component({
     selector: 'app-dragdrop',
-    templateUrl: './dragdrop.component.html',
-    styleUrls: ['./dragdrop.component.scss']
+    templateUrl: './activity-2.component.html',
+    styleUrls: ['./activity-2.component.scss']
 })
 
 export class DragdropComponent implements OnInit {

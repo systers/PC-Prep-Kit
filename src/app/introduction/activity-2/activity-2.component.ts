@@ -7,8 +7,8 @@ import { SharedDataService } from '../../services/shared.data.service';
 
 @Component({
     selector: 'app-pcpolicy',
-    templateUrl: './pcpolicy.component.html',
-    styleUrls: ['./pcpolicy.component.scss']
+    templateUrl: './activity-2.component.html',
+    styleUrls: ['./activity-2.component.scss']
 })
 
 export class PcpolicyComponent implements OnInit {

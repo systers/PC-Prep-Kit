@@ -14,3 +14,19 @@
     white-space: normal;
     height: 100px;
 }
+
+.button-branding-red {
+    @include branding('pattern-red.png');
+}
+
+.button-branding-blue {
+    @include branding('pattern-blue.png');
+}
+
+.button-branding-green {
+    @include branding('pattern-green.png');
+}
+
+.button-branding-orange {
+    @include branding('pattern-orange.png');
+}

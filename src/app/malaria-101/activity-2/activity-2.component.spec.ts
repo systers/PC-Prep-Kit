@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PcpolicyComponent } from './pcpolicy.component';
+import { DragdropComponent } from './activity-2.component';
 
-describe('PcpolicyComponent', () => {
-  let component: PcpolicyComponent;
-  let fixture: ComponentFixture<PcpolicyComponent>;
+describe('DragdropComponent', () => {
+  let component: DragdropComponent;
+  let fixture: ComponentFixture<DragdropComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PcpolicyComponent ]
+      declarations: [ DragdropComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PcpolicyComponent);
+    fixture = TestBed.createComponent(DragdropComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
