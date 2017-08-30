@@ -1,11 +1,11 @@
-<p class="title">Main Menu</p>
+<div class="col-md-12 text-center"><h2 class="stage-header">{{language?.menu.heading}}</h2></div>
 <div class="menu">
-    <div class="col-lg-5 col-lg-offset-4">
+    <div class="col-lg-6 col-xs-offset-3">
         <div class="row">
             <div class="menu-button">
-                <img class="hex" src="../../assets/img/intro.png" (click)="introPage()">
-                <button class="but intro-btn" (click)="introPage()">
-                    Introduction
+                <img class="hex" src="../../assets/img/intro.png" (click)="navigateToPage('/introduction')">
+                <button class="but intro-btn" (click)="navigateToPage('/introduction')">
+                    {{language?.introduction.heading}}
                 </button>
                 <div class="outer-circle intro-outer-circle">
                     <div class="inner-circle intro-inner-circle">
@@ -17,9 +17,9 @@
         </div>
         <div class="row">
             <div class="menu-button">
-                <img class="hex" src="../../assets/img/malaria-101.png">
-                <button class="but malaria-btn">
-                    Malaria-101
+                <img class="hex" src="../../assets/img/malaria-101.png" (click)="navigateToPage('/malaria-101')">
+                <button class="but malaria-btn" (click)="navigateToPage('/malaria-101')">
+                    {{language?.malaria101.heading}}
                 </button>
                 <div class="outer-circle malaria-outer-circle">
                     <div class="inner-circle malaria-inner-circle">
@@ -31,9 +31,9 @@
         </div>
         <div class="row">
             <div class="menu-button">
-                <img class="hex" src="../../assets/img/meds.png">
-                <button class="but med-btn">
-                    Medications & Labels
+                <img class="hex" src="../../assets/img/meds.png" (click)="navigateToPage('/meds-n-labels')">
+                <button class="but med-btn" (click)="navigateToPage('/meds-n-labels')">
+                    {{language?.medsNLabels.heading}}
                 </button>
                 <div class="outer-circle med-outer-circle">
                     <div class="inner-circle med-inner-circle">
@@ -45,9 +45,9 @@
         </div>
         <div class="row">
             <div class="menu-button">
-                <img class="hex" src="../../assets/img/pc-policy.png">
-                <button class="but pc-policy-btn">
-                    Peace Corps Policy
+                <img class="hex" src="../../assets/img/pc-policy.png" (click)="navigateToPage('/introduction/activity-2')">
+                <button class="but pc-policy-btn" (click)="navigateToPage('/introduction/activity-2')">
+                    {{language?.peaceCorps.heading}}
                 </button>
                 <div class="outer-circle pc-policy-outer-circle">
                     <div class="inner-circle pc-policy-inner-circle">
@@ -58,10 +58,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="menu-button">
+            <div class="menu-button" (click)="navigateToPage('/unlocked-stage')">
                 <img class="hex" src="../../assets/img/unlocked.png">
-                <button class="but unlocked-btn">
-                    Locked stage
+                <button class="but unlocked-btn" (click)="navigateToPage('/unlocked-stage')">
+                    {{language?.lockedStage.heading}}
                 </button>
                 <div class="outer-circle unlocked-outer-circle">
                     <div class="inner-circle unlocked-inner-circle">
@@ -73,4 +73,3 @@
         </div>
     </div>
 </div>
-

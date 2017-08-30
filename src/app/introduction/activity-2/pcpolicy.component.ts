@@ -26,6 +26,8 @@ export class PcpolicyComponent implements OnInit {
             this.email = response.user.email;
         });
 
+        this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
+
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.stages.introduction.pcpolicy;
         });

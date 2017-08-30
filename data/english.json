@@ -1,0 +1,69 @@
+{
+    "mail": {
+        "pcpolicy": {
+            "subject": "Peace Corps Policy",
+            "content": "Peace Corps Policy"
+        },
+        "header": {
+            "brandTitle1": "PC Prep",
+            "brandTitle2": "Kit"
+        },
+        "forgotPassword": { 
+            "title": "Set up a new password for PC PrepKit",
+            "preHeader": "Use this link to reset your password. The link is only valid for 24 hours.",
+            "subject": "PC PREP KIT Password Reset",
+            "greeting": "Hi",
+            "textContent": {
+                "textContent1": "You recently requested to reset your password for your PC PrepKit account. Use the button below to reset it.",
+                "textContent2": "This password reset is only valid for the next 24 hours.",
+                "textContent3": "If you did not request a password reset, please ignore this email or ",
+                "textContent4": "contact support",
+                "textContent5": "if you have questions."
+            },
+            "callToAction": "Reset your password",
+            "signature":{
+                "endGreet": "Thanks,",
+                "signOff": "The Peace Corps Team"               
+            }
+        },
+        "passwordResetSuccess": { 
+            "title": "Password reset confirmation",
+            "preHeader": "Password reset confirmation.",
+            "subject": "Your password has been changed",
+            "greeting": "Hi",
+            "textContent": {
+                "textContent1": "This is a confirmation that the password for your account ",
+                "textContent2": "has just been changed.",
+                "textContent3": "Please ",
+                "textContent4": "contact support",
+                "textContent5": "if you have questions."
+            },
+            "signature":{
+                "endGreet": "Thanks,",
+                "signOff": "The Peace Corps Team"               
+            }
+        },
+        "registration": { 
+            "title": "Verify your PC PrepKit account",
+            "preHeader": "Use this link to verify your PC PrepKit account.",
+            "subject": "PC PrepKit email verification",
+            "greeting": "Welcome!",
+            "verificationToken": "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            "textContent": {
+                "textContent1": "Please click on the button below to complete the verification.",
+                "textContent2": "If you did not request a password reset, please ignore this email or ",
+                "textContent3": "contact support",
+                "textContent4": "if you have questions."
+            },
+            "callToAction": "Verify",
+            "signature":{
+                "endGreet": "Thanks,",
+                "signOff": "The Peace Corps Team"               
+            }
+        },              
+        "footer": {
+            "textContent1": "If you’re having trouble with the button above, copy and paste the URL below into your web browser.",
+            "copyrights": "2017 PC PrepKit. All rights reserved."
+        }
+    }
+}

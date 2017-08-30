@@ -114,5 +114,4 @@ export class DragdropComponent implements OnInit {
             this.completed = this._sharedData.checkProgress(2, 2, response);
         });
     }
-
 }

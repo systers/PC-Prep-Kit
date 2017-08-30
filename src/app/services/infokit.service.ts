@@ -7,9 +7,9 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class InfokitService {
-    public apiPath = environment.baseURL + environment.apiEndpoint;
-    private _getInfokitActive = this.apiPath + 'infokitactive';
-    private _activateInfokit = this.apiPath + 'activateinfokit';
+    public _baseAPIUrl = environment.baseURL + environment.apiEndpoint;
+    private _getInfokitActive = this._baseAPIUrl + 'infokitactive';
+    private _activateInfokit = this._baseAPIUrl + 'activateinfokit';
     constructor(private _http: Http, private _apiservice: APIService) { }
 
     // Get user info

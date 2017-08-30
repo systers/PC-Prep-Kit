@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Rx';
 import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
     selector: 'app-oddoneout',
@@ -22,10 +23,13 @@ export class OddOneOutComponent implements OnInit {
     public activityComplete;
     public questionText;
     public score;
-    public showNext = false;
     public opt = [];
+    public language: any;
+    public completed = false;
+    public alerts: any;
+    public solutions = '';
 
-    constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -34,13 +38,18 @@ export class OddOneOutComponent implements OnInit {
      * A set of 5 questions will be used
      */
     ngOnInit() {
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.stages.malaria101.oddOneOut;
+            this.alerts = response.pcprepkit.common.alerts;
+        });
         this.score = 0;
+        this.solutions = '';
         this.activityComplete = false;
         this._questionNumber = 0;
         this._questionLock = false;
         this.opt = [];
         this._dashboardService.getProgressStatus().subscribe(response => {
-            this.showNext = this._sharedData.checkProgress(2, 3, response);
+            this.completed = this._sharedData.checkProgress(2, 3, response);
         });
         this._dashboardService.getJSONData('quiz.json').subscribe(response => {
             this._data = JSON.parse(response.data);
@@ -58,6 +67,8 @@ export class OddOneOutComponent implements OnInit {
         this.opt.push(this._data.quizlist[this._questionNumber].option2);
         this.opt.push(this._data.quizlist[this._questionNumber].option3);
         this.opt.push(this._data.quizlist[this._questionNumber].option4);
+        const ans = this.opt[this._data.quizlist[this._questionNumber].answer - 1];
+        this.solutions += '<strong>Q:</strong> ' + this.questionText + '<br>' + '<strong>Ans:</strong> ' + ans + '<br><br>';
     }
 
     /**
@@ -71,9 +82,9 @@ export class OddOneOutComponent implements OnInit {
         this._questionLock = true;
         if (this._data.quizlist[this._questionNumber].answer === event.target.id) {
             this.score++;
-            this.toastr.success('Correct!', 'Success!');
+            this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
         } else {
-            this.toastr.error('Incorrect! ', 'Sorry!');
+            this._sharedData.customErrorAlert(this.alerts.activityFailMsg, this.alerts.activityFailTitle);
         }
         this._obs = Observable.interval(1000)
                     .do(i => this.changeQuestion() );
@@ -108,6 +119,7 @@ export class OddOneOutComponent implements OnInit {
         this._questionNumber++;
         if (this._questionNumber === 5) {
             this.activityComplete = true;
+            this._sharedData.customAlert(this.language.alerts.title, this.solutions, 'info');
             this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
             return;
         }

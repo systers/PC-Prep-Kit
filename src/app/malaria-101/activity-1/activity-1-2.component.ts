@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import { DashboardService } from '../../services/dashboard.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { SharedDataService } from '../../services/shared.data.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
     selector: 'app-life-cycle',
@@ -14,30 +16,32 @@ export class MalariaLifeCycleComponent implements OnInit {
     private subscription;
     private _status: object = {stage: 2, activity: 1};
     private currArrState = [];
-
     public activityComplete = false;
+    public completed = false;
+    public language: any;
+    public alerts: any;
     public solnArr = ['red-blood-cells.png',
                        'character-1.png',
                        'mosquito.png',
                        'mosquito.png',
                        'character-2.png',
                        'plasmodium.png']
-    public labelsArr = ['Plasmodium / Virus',
-                       'First infected mosquito',
-                       'First infected person',
-                       'Infected red blood cells',
-                       'Second infected mosquito',
-                       'Second infected person']
+    public labelsArr;
 
-    constructor(private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
-        this._dashboardService.getProgressStatus().subscribe(response => {
-            this.activityComplete = this._sharedData.checkProgress(2, 1, response);
-        });
+    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
         this.toastr.setRootViewContainerRef(vcr);
+        this._dashboardService.getProgressStatus().subscribe(response => {
+            this.completed = this._sharedData.checkProgress(2, 1, response);
+        });
     }
 
     ngOnInit() {
-        this._sharedData.customAlert('Drag and drop the images in the container to complete the life cycle', '', 'warning');
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.stages.malaria101.lifecycle;
+            this.alerts = response.pcprepkit.common.alerts;
+            this.labelsArr = this.language.labels;
+            this._sharedData.customAlert(this.language.alerts.info, '', 'warning');
+        });
     }
 
     /**
@@ -107,10 +111,10 @@ export class MalariaLifeCycleComponent implements OnInit {
 
         if (!isWrongPos && arrLength === 6) {
             this.activityComplete = true;
-            this.toastr.success('Complete!', 'Success!');
+            this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
             this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
         } else if (arrLength === 6) {
-            this.toastr.error('The life cycle is incorrect! ', 'Sorry!');
+            this._sharedData.customErrorAlert(this.alerts.activityFailMsg, this.alerts.activityFailTitle);
         }
     }
 }

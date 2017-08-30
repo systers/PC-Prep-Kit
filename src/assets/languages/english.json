@@ -1,19 +1,9 @@
 {
   "pcprepkit": {
     "registration": {
-      "headings": {
-        "titleLeft": "PC Prep",
-        "titleRight": "Kit"
-      },
       "messages": {
         "heading": "Sign Up",
         "buttonMessage": "Sign Up"
-      },
-      "errors": {
-        "emailReq": "Email is Required",
-        "emailInvalid": "The Email is Invalid",
-        "passwordReq": "Password is Required",
-        "passwordMatch": "Passwords should match"
       },
       "placeHolders": {
         "firstName": "First Name",
@@ -23,6 +13,60 @@
         "confirmPassword": "Confirm Password"
       }
     },
+
+    "forgotPassword": {
+      "messages": {
+        "heading": "Reset",
+        "buttonMessage": "Reset"
+      },
+      "placeHolders": {
+        "email": "Email"
+      }      
+    },
+
+    "resetPassword": {
+      "messages": {
+        "heading": "Reset Password",
+        "buttonMessage": "Reset Password"
+      },
+      "placeHolders": {
+        "password": "New password",
+        "confirmPassword": "Confirm password"
+      }      
+    },    
+
+    "login": {
+      "descriptions": {
+        "bodyContent1": "Be a prepared volunteer.",
+        "bodyContent2": "Build your knowledge of personal malaria",
+        "bodyContent3": "prevention for when you are out in the field.",
+        "bodyContent4": "Built by Peace Corps Volunteers for",
+        "bodyContent5": "Peace Corps Volunteers."
+       },
+      "placeHolders": {
+        "email": "Email",
+        "password": "Password"
+      },       
+      "messages": {
+        "login": "Login",
+        "googleSignin": "Sign in with Google",
+        "needAccount": "Need an account?",
+        "forgotPassword": "Forgot password?",
+        "signUp": "Signup"
+      }
+    },
+
+    "authMessages": {
+      "errors": {
+        "emailReq": "Email is required",
+        "emailInvalid": "The email address is invalid",
+        "passwordReq": "Password is required",
+        "passwordInvalid": "Password is invalid",
+        "passwordMatch": "Passwords should match",
+        "loginError": "Incorrect username and password, please try again",
+        "registrationFail": "Registration unsuccesful"
+      }
+    },      
 
     "common": {
       "navbar": {
@@ -66,6 +110,12 @@
         "match_meds": "Mefloquine can be used to treat mild or moderate malaria but should not be used to treat severe malaria. <br> Doxycycline is an antibiotic that fights bacteria in the body <br> Malarone works by interfering with the growth of parasites in the red blood cells of the human body.",
         "side_effects": "Mefloquine, taken every week, may cause upset stomach, dizziness, nausea, headache,vivd dreams, neuropsychiatric side effects. <br> Malarone taken once every day, may cause nausea, vomiting, stomach pain, headache, diarrhea. <br> Doxycycline is an antibiotic which when taken every day, may cause sensitivity to sunlight , and upset stomach.",
         "doctor_info": "Consult a doctor before you take any medication. Wrong medication can prove to be fatal."
+      },
+      "alerts": {
+        "activitySuccessTitle": "Good job!",
+        "activitySuccessMsg": "You completed this activity!",
+        "activityFailTitle": "Oops!",
+        "activityFailMsg": "That is incorrect, please try again!"
       }
     },
     "stages": {
@@ -156,6 +206,55 @@
           },
           "messages": {
             "resetButton": "Retry"
+          },
+          "alerts": {
+            "title": "Answers"
+          }
+        }
+      },
+      "medsNLabels": {
+        "heading": "Medication & Labels",
+        "memoryGame": {
+          "heading": "Complete the memory game to unlock tips on diagnosis of malaria",
+          "alerts": {
+            "title": "Congratulations!<br>You matched a pair"
+          }
+        }
+      },
+      "peaceCorps": {
+        "heading": "Peace Corps Policy"
+      },
+      "lockedStage": {
+        "heading": "Locked Stage",
+        "howtoplay": {
+          "heading": "Prevent the mosquito from transmitting the virus to the human",
+          "instructions": {
+            "title": "How to play?",
+            "ins1": "Select the inventory item",
+            "ins2": "Use the item to stop the mosquito"
+          },
+          "messages": {
+            "nextButton": "Cool, next"
+          }          
+        },
+        "game": {
+          "legend": {
+            "human": "Human",
+            "mosquito": "Mosquito",
+            "inventory": "Inventory"
+          },
+          "alerts": {
+            "loss": {
+              "title": "Game over!",
+              "content": "The mosquito has transmitted malaria virus!"
+            },
+            "win": {
+              "title": "Good job!",
+              "content": "You completed this activity!"
+            }
+          },
+          "messages": {
+            "restartButton": "Restart"
           }
         }
       },

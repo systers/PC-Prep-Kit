@@ -2,10 +2,12 @@ module.exports = function(sequelize, Sequelize) {
     // Define progress_status table
     const status = sequelize.define('progress', {
         stage: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            defaultValue: 0
         },
         activity: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            defaultValue: 0
         },
         user_id: {
             type: Sequelize.INTEGER,
@@ -16,4 +18,3 @@ module.exports = function(sequelize, Sequelize) {
     });
     return status;
 }
-
