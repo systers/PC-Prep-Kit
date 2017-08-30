@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h4 class="sub-heading-1 text-center">{{heading}}</h4>
+  <h4 class="sub-heading-1 text-center"> {{headingBase}} <span class="heading-info"> {{headingInfo}} </span></h4>
   <div class="row">
     <div class="meds">
       <div *ngFor = "let med of medicines">
@@ -15,8 +15,11 @@
         <p class="text-center des" *ngFor="let des of display">{{des}}</p>
       </div>
     </div>
-    <div class="reset-button">
-      <button class="btn btn-primary" (click)="reset()"> Reset </button>
+    <div class="match-button" [hidden]="firstComplete">
+      <button class="btn button-branding-blue" (click)="reset()"> Reset </button>
+    </div>
+    <div class="match-button" [hidden]="!firstComplete">
+      <button class="btn button-branding-green" (click)="submit()"> Next </button>
     </div>
   </div>
 </div>
