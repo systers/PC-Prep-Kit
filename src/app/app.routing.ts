@@ -6,25 +6,25 @@ import { UnauthenticatedGuard } from './guards/unauthenticated.guard';
 import { LoginComponent } from './authentication/login.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password.component';
-import { PcpolicyComponent } from './introduction/activity-2/pcpolicy.component';
+import { PcpolicyComponent } from './introduction/activity-2/activity-2.component';
 import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './introduction/activityintro/activityintro.component';
 import { MenuComponent } from './menu/menu.component';
-import { DragdropComponent} from './malaria-101/activity-2/dragdrop.component';
+import { DragdropComponent} from './malaria-101/activity-2/activity-2.component';
 import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
 import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { HighlightActivityComponent } from './introduction/activity-1/activity-1.component';
 import { PicturePuzzleComponent } from './introduction/activity-3/activity-3.component';
-import { MatchmedsComponent } from './meds-n-labels/activity-1/matchmeds.component';
+import { MatchmedsComponent } from './meds-n-labels/activity-1/activity-1.component';
 import { Malaria101Component } from './malaria-101/malaria-101.component';
 import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.component';
 import { MalariaLifeCycleComponent } from './malaria-101/activity-1/activity-1-2.component';
 import { OddOneOutComponent } from './malaria-101/activity-3/activity-3.component';
 import { StageCompleteComponent } from './stage-complete/stage-complete.component';
-import { DoctorchatComponent } from './meds-n-labels/activity-3/doctorchat.component';
+import { DoctorchatComponent } from './meds-n-labels/activity-3/activity-3.component';
 import { UnlockedStageComponent } from './unlocked-stage/unlocked-stage.component';
 import { HowToPlayComponent } from './unlocked-stage/how-to-play/howtoplay.component';
 
@@ -156,4 +156,3 @@ export const routes: Routes = [
 })
 export class AppRoutingModule {
 }
-
