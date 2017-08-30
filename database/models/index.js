@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('pcprepkit', 'root', '', {
+const config = require('../../config/settings');
+const sequelize = new Sequelize(config.databaseSetup.DATABASE_NAME, config.databaseSetup.USERNAME, config.databaseSetup.PASSWORD, {
     host: 'localhost',
     dialect: 'mysql',
     define: {
@@ -11,7 +12,7 @@ const sequelize = new Sequelize('pcprepkit', 'root', '', {
 const db = {};
 fs.readdirSync(__dirname)
     .filter(function(file) {
-        return (file.indexOf('.')!==0) && (file!=='index.js') && (file.indexOf('~')===-1)
+        return (file.indexOf('.') !== 0) && (file !== 'index.js') && (file.indexOf('~') === -1);
     })
     .forEach(function(file) {
         const model = sequelize.import(path.join(__dirname, file));

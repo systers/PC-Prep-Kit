@@ -5,6 +5,10 @@ video {
     background-color: $black !important;
 }
 
+.content {
+    margin-bottom: 100px;
+}
+
 .pieces {
     height: 125px;
     width: 115px;
@@ -126,35 +130,35 @@ video {
 }
 
 .drop-6 {
-    @include drag-drop(55%, 45%);
+    @include drag-drop(50%, 45%);
 }
 
 .drag-1 {
-    @include drag-drop(80%, 30%);
+    @include drag-drop(75%, 25%);
 }
 
 .drag-2 {
-    @include drag-drop(80%, 45%);
+    @include drag-drop(75%, 35%);
 }
 
 .drag-3 {
-    @include drag-drop(80%, 60%);
+    @include drag-drop(75%, 45%);
 }
 
 .drag-4 {
-    @include drag-drop(110%, 30%);
+    @include drag-drop(75%, 55%);
 }
 
 .drag-5 {
-    @include drag-drop(110%, 45%);
+    @include drag-drop(75%, 65%);
 }
 
 .drag-6 {
-    @include drag-drop(110%, 60%);
+    @include drag-drop(75%, 75%);
 }
 
 .quiz-container {
-    margin-top: 7%;
+    margin-top: 3%;
 }
 
 .option {

@@ -1,0 +1,51 @@
+@import "../modules/all";
+.nav-forward {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    color: $white;
+}
+
+.nav-back {
+    position: fixed;
+    bottom: 40px;
+    left: 10px;
+}
+
+@mixin animation($animate) {
+    -moz-animation: $animate;
+    -webkit-animation: $animate;
+    animation: $animate;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+.bounce {
+    @include animation(bounce 2s infinite)
+}
+
+@include keyframes(bounce) {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+

@@ -30,7 +30,9 @@ export class MatchmedsComponent implements OnInit {
     private _status: object = {stage: 3, activity: 1};
     public alerts: any;
     language: any;
-    heading = '';
+    headingBase = '';
+    headingInfo = '';
+    firstComplete = false;
 
     // Number of Elements for Matching
     numElements = MatchingInfo.numElements;
@@ -74,7 +76,16 @@ export class MatchmedsComponent implements OnInit {
 
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.stages.medsNLabels.matchMeds;
-            this.heading = this.language.headingSideeffects;
+            this.headingBase = this.language.headingBase;
+            this.headingInfo = this.language.headingSideeffects;
+            this.alerts = response.pcprepkit.common.alerts;
+        });
+
+        this._dashboardService.getProgressStatus().subscribe(response => {
+            this.completed = this._sharedData.checkProgress(3, 1, response);
+        });
+
+        this._langService.loadLanguage().subscribe(response => {
             this.alerts = response.pcprepkit.common.alerts;
         });
 
@@ -277,13 +288,8 @@ export class MatchmedsComponent implements OnInit {
                 if (this.count === this.numElements) {
                     if (this.isEqual()) {
                         this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
-                        this.matchingComplete++;
-                        if (this.matchingComplete === 1) {
-                            this.count = 0;
-                            this.redrawCanvas();
-                            this.heading = this.language.headingDescription;
-                            this.correctAns = MatchingInfo.match2ans;
-                            this.display = MatchingInfo.medicineDescriptions;
+                        if (this.matchingComplete === 0) {
+                            this.firstComplete = true;
                         } else {
                             this.completed = true;
                             this.activityComplete = true;
@@ -291,7 +297,7 @@ export class MatchmedsComponent implements OnInit {
                             this._infokitService.activateinfokit('match_meds').subscribe(res => {});
                         }
                     } else {
-                        this.reset();
+                        this.redrawCanvas();
                         this._sharedData.customErrorAlert(this.alerts.activityFailMsg, this.alerts.activityFailTitle);
                     }
                 }
@@ -312,11 +318,25 @@ export class MatchmedsComponent implements OnInit {
         }
         return true;
     }
+
     /**
      * Reset the canvas, Called when reset button clicked
      */
     reset() {
         this.count = 0;
         this.redrawCanvas();
+    }
+
+    /**
+     * switches from side effects to description
+     */
+    submit() {
+        this.firstComplete = false;
+        this.matchingComplete++;
+        this.count = 0;
+        this.redrawCanvas();
+        this.headingInfo = this.language.headingDescription;
+        this.correctAns = MatchingInfo.match2ans;
+        this.display = MatchingInfo.medicineDescriptions;
     }
 }

@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
     errorMessage: String;
     disableButton = true;
     isFocused = false;
+    authMessages: any;
 
     constructor(private _regService: RegService, private _router: Router, fb: FormBuilder, private _langService: LanguageService) {
         this.regForm = fb.group({
@@ -34,6 +35,8 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.registration;
+            this.header = response.pcprepkit.common.header;
+            this.authMessages = response.pcprepkit.authMessages;
         });
      }
 

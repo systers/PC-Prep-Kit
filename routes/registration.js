@@ -52,7 +52,7 @@ function verificationMail(req, res, rString) {
 
         const htmlToSend = template(replacements);
         mail.mailOptions.to = req.body.email;
-        mail.mailOptions.subject = 'PC PrepKit Email Verification';
+        mail.mailOptions.subject = mailData.registration.subject;
         mail.mailOptions.html = htmlToSend;
         mail.smtpTransport.sendMail(mail.mailOptions, function(error) {
             if (error) {

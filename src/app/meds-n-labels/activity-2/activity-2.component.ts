@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { Observable } from 'rxjs/Rx';
 import { DIAGNOSIS } from './diagnosis-detail';
 import { SharedDataService } from '../../services/shared.data.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
     selector: 'app-activity-2',
@@ -26,6 +28,9 @@ export class MemoryGameComponent implements OnInit {
     public isMatchArr: boolean[] = [];
     public backcard = this._baseImgPath + 'logo.png'; // shows back of card when turned over
     public activityComplete = false;
+    public completed = false;
+    public language: any;
+    public alerts: any;
 
     private _faces = [
                 'area-1.png',
@@ -46,16 +51,23 @@ export class MemoryGameComponent implements OnInit {
                 'virus-1.png',
             ];
 
-    constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService) {
+    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
             this._sharedData.position.subscribe(
             value => {
                 this.position = value;
             }
         );
+        this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
-        this.activityComplete = this._sharedData.checkProgress(3, 2);
+        this._dashboardService.getProgressStatus().subscribe(response => {
+            this.completed = this._sharedData.checkProgress(3, 2, response);
+        });
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.stages.medsNLabels.memoryGame;
+            this.alerts = response.pcprepkit.common.alerts;
+        });
         this.shuffle(this._faces);
         this.createBoolArr();
     }
@@ -138,7 +150,7 @@ export class MemoryGameComponent implements OnInit {
             const med = medName.substr(0, medName.lastIndexOf('.'));
             for (let i = 0; i < DIAGNOSIS.length; i++) {
                 if (DIAGNOSIS[i].name === med) {
-                    this._sharedData.customAlert('Congratulations!<br>You matched a pair', DIAGNOSIS[i].desc, 'success');
+                    this._sharedData.customAlert(this.language.alerts.title, DIAGNOSIS[i].desc, 'success');
                     this.isMatchArr[this._secondchoice] = false;
                     this.isMatchArr[this._firstchoice] = false;
                     break;
@@ -146,11 +158,12 @@ export class MemoryGameComponent implements OnInit {
             }
             this._matches++;
             if (this._matches === 8) {
-                this._sharedData.customAlert('Good job!', 'You completed this activity!', 'success');
+                this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
                 this._status = {stage: 3, activity: 2};
                 this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
                 this.activityComplete = true;
             }
+            return;
         }
         this.getImgElement(this._firstchoice).src = this.backcard;
         this.getImgElement(this._secondchoice).src = this.backcard;

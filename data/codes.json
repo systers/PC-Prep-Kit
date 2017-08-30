@@ -1,0 +1,181 @@
+{
+    "errors": {
+
+        "PCE001": {
+            "code": "PCE001",
+            "message": "PCE001 : Something went wrong while verifying registration mail! Try again later",
+            "reason": "Internal Server Error"
+        },
+        "PCE002": {
+            "code": "PCE002",
+            "message": "PCE002 : Email is invalid",
+            "reason": "Email is malformed or in incorrect format"
+        },
+        "PCE003": {
+            "code": "PCE003",
+            "message": "PCE003 : First name is invalid",
+            "reason": "First name is malformed or in incorrect format"
+        },
+        "PCE004": {
+            "code": "PCE004",
+            "message": "PCE004 : Last name is invalid",
+            "reason": "Last name is malformed or in incorrect format"
+        },
+        "PCE005": {
+            "code": "PCE005",
+            "message": "PCE005 : Password is invalid",
+            "reason": "Password is malformed or in incorrect format"
+        },
+        "PCE006": {
+            "code": "PCE006",            
+            "message": "PCE006 : Something went wrong while registering user",
+            "reason": "Internal Server Error"
+        },
+        "PCE007": {
+            "code": "PCE007",
+            "message": "PCE007 : Could not verify user",
+            "reason": "User pre-verification data not logged in database"
+        },
+        "PCE008": {
+            "code": "PCE008",
+            "message": "PCE008 : Invalid email or password",
+            "reason": "Email and/or Password is malformed or in incorrect format"
+        },
+        "PCE009": {
+            "code": "PCE009",
+            "message": "PCE009 : Please login with Google",
+            "reason": "User has already registered with his/her Google account and tries to login locally"
+        },
+        "PCE010": {
+            "code": "PCE010",
+            "message": "PCE010 : User with that email already exists",
+            "reason": "Duplicate registration"
+        },        
+        "PCE011": {
+            "code": "PCE011",
+            "message": "PCE011 : This account does not exist or you cannot change the password for this account",
+            "reason": "User tries to reset a non-existent account's password or a Google registered account's password"
+        },
+        "PCE012": {
+            "code": "PCE012",
+            "message": "PCE012 : Something went wrong while resetting password",
+            "reason": "Internal Server Error"
+        },  
+        "PCE013": {
+            "code": "PCE013",
+            "message": "PCE013 : Password reset token is invalid or has expired",
+            "reason": "User opens a password reset link that has passed its expiration time"
+        }, 
+        "PCE014": {
+            "code": "PCE014",
+            "message": "PCE014 : Something went wrong while opening reset password page",
+            "reason": "Internal Server Error"
+        }, 
+       "PCE015": {
+            "code": "PCE015",
+            "message": "PCE015 : Something went wrong while updating password to new password",
+            "reason": "Internal Server Error"
+        },
+
+        "PCE016": {
+            "code": "PCE016",
+            "message": "PCE016 : No token provided",
+            "reason": "No token sent in request"
+        },
+        "PCE017": {
+            "code": "PCE017",
+            "message": "PCE017 : Something went wrong while fetching username",
+            "reason": "Internal Server Error"
+        },
+        "PCE018": {
+            "code": "PCE018",
+            "message": "PCE018 : No progress data found",
+            "reason": "The user does not exist or the progress data of the user is not logged in progress_status table"
+        },
+        "PCE019": {
+            "code": "PCE019",
+            "message": "PCE019 : Something went wrong while fetching user progress data",
+            "reason": "Internal Server Error"
+        },
+        "PCE020": {
+            "code": "PCE020",            
+            "message": "PCE020 : Something went wrong while fetching user data",
+            "reason": "Internal Server Error"
+        },
+        "PCE021": {
+            "code": "PCE021",
+            "message": "PCE021 : Email not provided",
+            "reason": "Email is not present in request"
+        }, 
+        "PCE022": {
+            "code": "PCE022",
+            "message": "PCE022 : This account does not exist",
+            "reason": "Invalid user credentials"
+        },        
+        "PCE023": {
+            "code": "PCE023",
+            "message": "PCE023 : Something went wrong while mailing PC Policy! Try again later",
+            "reason": "Internal Server Error"
+        },
+        "PCE024": {
+            "code": "PCE024",
+            "message": "PCE024 : Something went wrong while fetching infokit data",
+            "reason": "Internal Server Error"
+        },
+        "PCE025": {
+            "code": "PCE025",
+            "message": "PCE025 : Failed to authenticate token",
+            "reason": "Token is malformed or is incorrect"
+        },
+        "PCE026": {
+            "code": "PCE026",
+            "message": "PCE026 : No infokit data found",
+            "reason": "The user does not exist or the infokit data of the user is not logged in infokit table"
+        }, 
+        "PCE027": {
+            "code": "PCE027",
+            "message": "PCE027 : Illegal operation",
+            "reason": "The stage and activity user completes is not the immediate next stage or activity"
+        },
+        "PCE028": {
+            "code": "PCE028",
+            "message": "PCE028 : Something went wrong while updating progress status",
+            "reason": "Internal Server Error"
+        },  
+        "PCE029": {
+            "code": "PCE029",
+            "message": "PCE029 : No data recieved to update progress status",
+            "reason": "Stage and activity not sent in request"
+        },
+        "PCE030": {
+            "code": "PCE030",
+            "message": "PCE030 :Something went wrong while encrypting password",
+            "reason": "Internal Server Error"
+        }        
+    },
+
+    "success": {
+        "PCS001": {
+            "code": "PCS001",
+            "message": "PCS001 : Success! Your password has been changed"
+        },
+        "PCS002": {
+            "code": "PCS002",
+            "message1": "PCS002 : An e-mail has been sent to",
+            "message2": "with further instructions"
+        },
+        "PCS003": {
+            "code": "PCS003",
+            "message": "PCS003 : Successfully updated user progress status"
+        }, 
+        "PCS004": {
+            "code": "PCS004",
+            "message": "PCS004 : Activity added to Infokit"
+        },
+        "PCS005": {
+            "code": "PCS005",
+            "message": "PCS005 : Verification mail sent, please check your mail"
+        }        
+    }
+}
+

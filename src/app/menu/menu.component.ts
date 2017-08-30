@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../services/dashboard.service';
 import { Router } from '@angular/router';
+import { LanguageService } from '../services/language.service';
 
 @Component({
     selector: 'app-menu',
@@ -11,8 +12,9 @@ export class MenuComponent implements OnInit {
 
     activity: String;
     stage: String;
+    language: any;
 
-    constructor(private _dashboardService: DashboardService, private _router: Router) { }
+    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _router: Router) { }
 
     /**
      * Utility function used in activity indicator
@@ -29,14 +31,17 @@ export class MenuComponent implements OnInit {
     /**
      * Handle router linking to introduction page
      */
-    introPage() {
-        this._router.navigateByUrl('/introduction');
+    navigateToPage(url) {
+        this._router.navigateByUrl(url);
     }
 
     /**
      * Check if user is logged in or not before loading the menu page
      */
     ngOnInit() {
+        this._langService.loadLanguage().subscribe(response => {
+            this.language = response.pcprepkit.stages;
+        });        
         this._dashboardService.getProgressStatus().subscribe(response => {
             this.activity = response.activity;
             this.stage = response.stage;

@@ -43,10 +43,10 @@ const app = express();
 const api = require('./routes/api');
 
 // test api route
-const test=require('./routes/test');
+const test = require('./routes/test');
 // route for verification and registration
-const verification=require('./routes/verification');
-const registration=require('./routes/registration');
+const verification = require('./routes/verification');
+const registration = require('./routes/registration');
 
 // uncomment after placing your favicon in /public
 //const favicon = require('serve-favicon');

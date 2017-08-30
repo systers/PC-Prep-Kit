@@ -8,11 +8,9 @@
     background: $yellow; /* Gecko Browsers */
 }
 
-h2 {
-    font-weight: $bold;
-}
-
 .mosquito {
+    position: relative;
+    bottom: 30px;
     width: 80px;
     height: auto;
 }
@@ -82,61 +80,4 @@ h2 {
     height: 15px;
     background: $white;
   }
-}
-
-.arrow {
-    width: 75px;
-    line-height: 75px;
-    text-align: center;
-    opacity: 1;
-    border: none;
-    color: $white;
-    @include border-radius(50%);
-}
-
-.arrow-red {
-    @extend .arrow;
-    background: $red;
-}
-
-.arrow-green {
-    @extend .arrow;
-    background: green;
-}
-
-@mixin animation($animate) {
-    -moz-animation: $animate;
-    -webkit-animation: $animate;
-    animation: $animate;
-}
-
-@mixin keyframes($animationName) {
-    @-webkit-keyframes #{$animationName} {
-        @content;
-    }
-    @-moz-keyframes #{$animationName} {
-        @content;
-    }
-    @-o-keyframes #{$animationName} {
-        @content;
-    }
-    @keyframes #{$animationName} {
-        @content;
-    }
-}
-
-.bounce {
-    @include animation(bounce 2s infinite)
-}
-
-@include keyframes(bounce) {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-30px);
-    }
-    60% {
-        transform: translateY(-15px);
-    }
 }
