@@ -16,6 +16,9 @@ export class RegisterComponent implements OnInit {
     regForm: FormGroup;
     language: any;
     header: any;
+    errorMessage: String;
+    disableButton = true;
+    isFocused = false;
     authMessages: any;
 
     constructor(private _regService: RegService, private _router: Router, fb: FormBuilder, private _langService: LanguageService) {
@@ -37,15 +40,28 @@ export class RegisterComponent implements OnInit {
         });
      }
 
+    onFocus() {
+        this.errorMessage = '';
+        this.isFocused = true;
+    }
+
+    onBlur() {
+        this.isFocused = false;
+    }
+
     onSubmit = function(form: any) {
+        this.disableButton = false;
+        this.errorMessage = '';
         this._regService.registerUser(form).subscribe((successful: boolean): void => {
             if (successful) {
                 this._router.navigateByUrl('/login');
             } else {
-                this.errorMessage = this.authMessages.registrationFail;
+                this.disableButton = true;
+                this.errorMessage = 'Registration Unsuccesful';
             }
         }, err => {
-            this.errorMessage = err.info;
+            this.disableButton = true;
+            this.errorMessage = err.error;
         });
     };
 }

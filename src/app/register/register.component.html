@@ -5,34 +5,33 @@
     <form [formGroup]="regForm" (ngSubmit)="onSubmit(regForm.value)">
       <div class="form-group input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input type="text" class="form-control" name="fname" placeholder={{language?.placeHolders.firstName}} [formControl]="regForm.controls['fname']">
+        <input type="text" class="form-control" name="fname" placeholder={{language?.placeHolders.firstName}} [formControl]="regForm.controls['fname']" (focus)="onFocus()" (blur)="onBlur()">
       </div>
       <div class="form-group input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input type="text" class="form-control" name="lname" placeholder={{language?.placeHolders.lastName}} [formControl]="regForm.controls['lname']">
+        <input type="text" class="form-control" name="lname" placeholder={{language?.placeHolders.lastName}} [formControl]="regForm.controls['lname']" (focus)="onFocus()" (blur)="onBlur()">
       </div>
       <div class="form-group input-group" [ngClass]="{'has-error':!regForm.controls['email'].valid && regForm.controls['email'].dirty}">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input type="email" class="form-control" name="email" placeholder={{language?.placeHolders.email}} [formControl]="regForm.controls['email']">
-      </div>
-      <div>
-        <p *ngIf="regForm.controls['email'].hasError('required') && (regForm.controls['email'].dirty)" class="alert alert-danger" role="alert">{{authMessages?.errors.emailReq}}</p>
-        <p *ngIf="regForm.controls['email'].hasError('pattern') && (regForm.controls['email'].dirty)" class="alert alert-danger" role="alert">{{authMessages?.errors.emailInvalid}}</p>
+        <input type="email" class="form-control" name="email" placeholder={{language?.placeHolders.email}} [formControl]="regForm.controls['email']" (focus)="onFocus()" (blur)="onBlur()">
       </div>
       <div class="form-group input-group" [ngClass]="{'has-error':!regForm.controls['password'].valid && regForm.controls['password'].dirty}">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input type="password" class="form-control" name="password" placeholder={{language?.placeHolders.password}} [formControl]="regForm.controls['password']">
+        <input type="password" class="form-control" name="password" placeholder={{language?.placeHolders.password}} [formControl]="regForm.controls['password']" (focus)="onFocus()" (blur)="onBlur()">
       </div>
       <div class="form-group input-group" [ngClass]="{'has-error':!regForm.controls['confirmpassword'].valid && regForm.controls['confirmpassword'].dirty}">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input type="password" class="form-control" name="confirmpassword" placeholder={{language?.placeHolders.confirmPassword}} [formControl]="regForm.controls['confirmpassword']">
+        <input type="password" class="form-control" name="confirmpassword" placeholder={{language?.placeHolders.confirmPassword}} [formControl]="regForm.controls['confirmpassword']" (focus)="onFocus()" (blur)="onBlur()">
       </div>
-      <div>
-        <p *ngIf="regForm.controls['password'].hasError('required') && (regForm.controls['password'].dirty)" class="alert alert-danger" role="alert">{{authMessages?.errors.passwordReq}}</p>
-        <p *ngIf="regForm.controls['confirmpassword'].value!=regForm.controls['password'].value && (regForm.controls['confirmpassword'].dirty)" class="alert alert-danger" role="alert">{{authMessages?.errors.passwordMatch}}</p>
+      <div class="alert alert-danger">
+        <p *ngIf="regForm.controls['email'].hasError('required') && (regForm.controls['email'].dirty && !isFocused)" role="alert">{{language?.errors.emailReq}}</p>
+        <p *ngIf="regForm.controls['email'].hasError('pattern') && (regForm.controls['email'].dirty && !isFocused)" role="alert">{{language?.errors.emailInvalid}}</p>
+        <p *ngIf="regForm.controls['password'].hasError('required') && (regForm.controls['password'].dirty && !isFocused)" role="alert">{{language?.errors.passwordReq}}</p>
+        <p *ngIf="regForm.controls['confirmpassword'].value!=regForm.controls['password'].value && (regForm.controls['confirmpassword'].dirty && !isFocused)" role="alert">{{language?.errors.passwordMatch}}</p>
       </div>
+      <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
       <div class="form-group">
-        <button type="submit" [disabled]="!(regForm.valid && regForm.controls['confirmpassword'].value==regForm.controls['password'].value)" class="btn btn-lg button-branding-blue">{{language?.messages.buttonMessage}}</button>
+        <button type="submit" [disabled]="!(regForm.valid && regForm.controls['confirmpassword'].value==regForm.controls['password'].value && disableButton)" class="btn btn-primary btn-lg">{{language?.messages.buttonMessage}}</button>
       </div>
     </form>
   </div>
