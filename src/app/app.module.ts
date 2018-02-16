@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DndModule } from 'ng2-dnd';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
-import { MaterialModule } from '@angular/material';
+//import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -92,7 +92,7 @@ import { DoctorService } from './services/doctorchat.service';
         BrowserModule,
         BrowserAnimationsModule,
         DndModule.forRoot(),
-        MaterialModule,
+        //MaterialModule,
         ToastModule.forRoot()
     ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

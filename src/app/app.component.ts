@@ -10,7 +10,7 @@ import { SharedDataService } from './services/shared.data.service';
 export class AppComponent {
     private static _localStorageKey = 'pcprepkitUser';
     title = 'PC Prep Kit';
-    public position = 'col-md-10 col-md-offset-2';
+    public position = 'col-mat-10 col-mat-offset-2';
     public loggedIn = false;
     public isMenuPage = false;
 

@@ -9,6 +9,8 @@ module.exports = function(passport, models) {
     const progress = models.progress;
     let fname, lname;
 
+    passport.authenticate('oath2', {failWithError: true});
+    
     passport.serializeUser(function(user, done) {
         done(null, user);
     });
