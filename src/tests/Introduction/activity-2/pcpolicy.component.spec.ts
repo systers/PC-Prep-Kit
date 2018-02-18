@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent } from '../../../app/header/header.component';
 import { NavbarComponent } from '../../../app/navbar/navbar.component';
 import { NavbarService } from '../../../app/services/navbar.service';
-import { PcpolicyComponent } from '../../../app/introduction/activity-2/pcpolicy.component';
+import { PcpolicyComponent } from '../../../app/introduction/activity-2/activity-2.component';
 import { APIService } from '../../../app/services/api.service';
 import { AuthService } from '../../../app/services/auth.service';
 import { DashboardService } from '../../../app/services/dashboard.service';
@@ -20,18 +20,18 @@ describe('PcpolicyComponent', () => {
                 HttpModule,
                 RouterTestingModule,
                 BrowserAnimationsModule
-            ],      
-            declarations: [ 
+            ],
+            declarations: [
                 PcpolicyComponent,
                 HeaderComponent,
                 NavbarComponent
             ],
-            providers: [ 
+            providers: [
                 DashboardService,
                 APIService,
                 AuthService,
                 NavbarService
-            ]      
+            ]
         })
         .compileComponents();
     }));

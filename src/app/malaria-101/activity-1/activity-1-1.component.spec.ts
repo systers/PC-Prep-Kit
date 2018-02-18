@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemoryGameComponent } from './activity-2.component';
+import { AnimatedVideoComponent } from './activity-1-1.component';
 
-describe('MemoryGameComponent', () => {
-  let component: MemoryGameComponent;
-  let fixture: ComponentFixture<MemoryGameComponent>;
+describe('AnimatedVideoComponent', () => {
+  let component: AnimatedVideoComponent;
+  let fixture: ComponentFixture<AnimatedVideoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemoryGameComponent ]
+      declarations: [ AnimatedVideoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MemoryGameComponent);
+    fixture = TestBed.createComponent(AnimatedVideoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
