@@ -24,7 +24,7 @@
     "@angular/router": "^4.0.0",
     "apiai": "^4.0.3",
     "async": "^2.4.1",
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^1.0.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.17.1",
     "connect-flash": "^0.1.1",
@@ -61,7 +61,8 @@
     "sweetalert2": "^6.6.6",
     "webrtc-adapter": "^4.2.1",
     "winston": "^2.3.1",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "email-verify": "0.2.1"
   },
   "devDependencies": {
     "@angular/cli": "1.1.0",

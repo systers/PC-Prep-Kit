@@ -3,6 +3,11 @@ const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
 const configAuth = require('./settings');
 
+const fs = require('fs');
+
+const codes = JSON.parse(fs.readFileSync('./data/codes.json'));
+const errorCode = codes.errors;
+
 module.exports = function(passport, models) {
 
     const localUser = models.user_account;
@@ -55,7 +60,7 @@ module.exports = function(passport, models) {
                 }})
                 .spread((user, created) => {
                     if (!created && !user) {
-                        return done(null, false, {info: 'User with that email already exists'});
+                        return done(null, false, {info: errorCode.PCE010.message, code: errorCode.PCE010.code});
                     }
                     progress.findOrCreate({where: {
                         user_id: user.id
@@ -97,17 +102,17 @@ module.exports = function(passport, models) {
             }}, {raw: true})
                 .then(data => {
                     if (!data) {
-                        return done(null, false, {info: 'Invalid email or password'});
+                        return done(null, false, {info: errorCode.PCE008.message, code: errorCode.PCE008.code});
                     }
                     if (data.provider === 'google') {
-                        return done(null, false, {info: 'Please login with Google'});
+                        return done(null, false, {info: errorCode.PCE009.message, code: errorCode.PCE009.code});
                     }
                     bcrypt.compare(password, data.password, function(err, response) {
                         if (response) {
                             const response = { email: data.email, name: data.name};
                             return done(null, response);
                         } else {
-                            return done(null, false, {info: 'Invalid password'});
+                            return done(null, false, {info: errorCode.PCE005.message, code: errorCode.PCE005.code});
                         }
                     });
                 })

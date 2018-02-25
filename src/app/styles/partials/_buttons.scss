@@ -2,6 +2,7 @@
 
 .toggle-button {
     @include button($transparent, $hover-blue, $hover-blue);
+    color: $white;
 }
 
 .logout-button {

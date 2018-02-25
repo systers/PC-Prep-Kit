@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
     regForm: FormGroup;
     language: any;
     header: any;
-    errorMessage: String;
+    errorMessage: string;
     disableButton = true;
     isFocused = false;
     authMessages: any;

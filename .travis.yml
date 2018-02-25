@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "6.10.3"
+cache:
+  directories:
+    — node_modules
+before_install:
+  - mysql -e "CREATE DATABASE pcprepkit; CREATE USER 'pcprepkit' IDENTIFIED BY 'pcprepkit'; GRANT ALL PRIVILEGES ON pcprepkit.* TO 'pcprepkit' WITH GRANT OPTION"
+install:
+  - npm install
+  - npm build
+before_script:
+  - npm start &
+  - sleep 60
+script:
+  - ./node_modules/.bin/mocha timeout -10000

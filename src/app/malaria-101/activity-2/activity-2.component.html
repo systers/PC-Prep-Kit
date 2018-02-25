@@ -19,10 +19,10 @@
         </div>
         <div class="col-xs-4">
           <div dnd-droppable [className]="'panel panel-danger ' + dropCheckDont" (onDropSuccess)="addTobox($event,box2)" (onDragOver)="checkDrop($event,box2)" (onDragLeave)="reset()">
-            <div class="panel-heading">
+            <div class="panel-heading panel-dont">
               {{language?.descriptions.boxIndicatorDont}}
             </div>
-            <div class="panel-body panel-dont">
+            <div class="panel-body">
               <div *ngFor="let item of dont" class="panel panel-default"><div class="panel-body"> {{item.description}} </div></div>
             </div>
           </div>
