@@ -23,15 +23,15 @@
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
         <input type="password" class="form-control" name="confirmpassword" placeholder={{language?.placeHolders.confirmPassword}} [formControl]="regForm.controls['confirmpassword']" (focus)="onFocus()" (blur)="onBlur()">
       </div>
-      <div class="alert alert-danger">
-        <p *ngIf="regForm.controls['email'].hasError('required') && (regForm.controls['email'].dirty && !isFocused)" role="alert">{{language?.errors.emailReq}}</p>
-        <p *ngIf="regForm.controls['email'].hasError('pattern') && (regForm.controls['email'].dirty && !isFocused)" role="alert">{{language?.errors.emailInvalid}}</p>
-        <p *ngIf="regForm.controls['password'].hasError('required') && (regForm.controls['password'].dirty && !isFocused)" role="alert">{{language?.errors.passwordReq}}</p>
-        <p *ngIf="regForm.controls['confirmpassword'].value!=regForm.controls['password'].value && (regForm.controls['confirmpassword'].dirty && !isFocused)" role="alert">{{language?.errors.passwordMatch}}</p>
+      <div>
+        <p *ngIf="regForm.controls['email'].hasError('required') && (regForm.controls['email'].touched && !isFocused)" class="alert alert-danger" role="alert">{{authMessages?.errors.emailReq}}</p>
+        <p *ngIf="regForm.controls['email'].hasError('pattern') && (regForm.controls['email'].touched) && !isFocused" class="alert alert-danger" role="alert">{{authMessages?.errors.emailInvalid}}</p>
+        <p *ngIf="regForm.controls['password'].hasError('required') && (regForm.controls['password'].touched && !isFocused)" class="alert alert-danger" role="alert">{{authMessages?.errors.passwordReq}}</p>
+        <p *ngIf="regForm.controls['confirmpassword'].value!=regForm.controls['password'].value && (regForm.controls['confirmpassword'].touched && !isFocused)" class="alert alert-danger" role="alert">{{authMessages?.errors.passwordMatch}}</p>
       </div>
       <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
       <div class="form-group">
-        <button type="submit" [disabled]="!(regForm.valid && regForm.controls['confirmpassword'].value==regForm.controls['password'].value && disableButton)" class="btn btn-primary btn-lg">{{language?.messages.buttonMessage}}</button>
+        <button type="submit" [disabled]="!(regForm.valid && regForm.controls['confirmpassword'].value==regForm.controls['password'].value && disableButton)" class="btn button-branding-blue btn-lg">{{language?.messages.buttonMessage}}</button>
       </div>
     </form>
   </div>
