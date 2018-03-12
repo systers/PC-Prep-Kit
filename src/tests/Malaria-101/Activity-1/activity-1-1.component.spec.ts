@@ -15,13 +15,13 @@ describe('AnimatedVideoComponent', () => {
             imports: [
                 RouterTestingModule,
                 HttpModule
-            ],      
+            ],
             declarations: [ AnimatedVideoComponent ],
             providers: [
                 DashboardService,
                 APIService,
-                SharedDataService    
-            ]      
+                SharedDataService
+            ]
         })
         .compileComponents();
     }));

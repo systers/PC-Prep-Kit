@@ -14,7 +14,7 @@ describe('MemoryGameComponent', () => {
     let fixture: ComponentFixture<MemoryGameComponent>;
     let dashboardService: DashboardService;
     let authService: AuthService;
-    let apiService: APIService;  
+    let apiService: APIService;
     let sharedService: SharedDataService;
 
     beforeEach(async(() => {
@@ -22,13 +22,13 @@ describe('MemoryGameComponent', () => {
             imports: [
                 RouterTestingModule,
                 HttpModule
-            ],       
+            ],
             declarations: [ MemoryGameComponent ],
             providers: [
                 DashboardService,
                 APIService,
                 AuthService,
-                SharedDataService        
+                SharedDataService
             ]
         }).compileComponents();
     }));
@@ -39,7 +39,7 @@ describe('MemoryGameComponent', () => {
         dashboardService = TestBed.get(DashboardService);
         apiService = TestBed.get(APIService);
         authService = TestBed.get(AuthService);
-        sharedService = TestBed.get(SharedDataService);     
+        sharedService = TestBed.get(SharedDataService);
         fixture.detectChanges();
     });
 
@@ -48,9 +48,9 @@ describe('MemoryGameComponent', () => {
     });
 
     it('should match all pairs', () => {
-        for(let i = 0; i < 16; i++) {
-            for(let j = 0; j < 16; j++) {
-                if(i !== j) {              
+        for (let i = 0; i < 16; i++) {
+            for (let j = 0; j < 16; j++) {
+                if (i !== j) {
                     component.choose(i);
                     component.choose(j);
                     component.check();

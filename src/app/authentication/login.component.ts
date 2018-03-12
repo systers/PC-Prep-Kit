@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
     header: any;
     authMessages: any;
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private _sharedData: SharedDataService, private _activatedRoute: ActivatedRoute, private _langService: LanguageService, private _authService: AuthService, private _router: Router, fb: FormBuilder) {
+
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private _sharedData: SharedDataService, private _activatedRoute: ActivatedRoute,
+                private _langService: LanguageService, private _authService: AuthService, private _router: Router, fb: FormBuilder) {
         this.toastr.setRootViewContainerRef(vcr);
         this.loginForm = fb.group({
             'email' : [null, Validators.compose([Validators.required, Validators.pattern('[^ @]*@[^ @]*')])],
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
         if (error) {
             this._sharedData.customErrorAlert(decodeURIComponent(error), 'Error!');
         } else if (message) {
-            this._sharedData.customSuccessAlert(decodeURIComponent(message), 'Complete!');  
+            this._sharedData.customSuccessAlert(decodeURIComponent(message), 'Complete!');
         }
     }
 

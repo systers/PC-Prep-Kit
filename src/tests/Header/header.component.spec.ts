@@ -23,13 +23,13 @@ describe('HeaderComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule
-            ],       
+            ],
             declarations: [ HeaderComponent ],
-            providers: [ 
-                { provide: Http, useValue: mockHttpProvider },      
+            providers: [
+                { provide: Http, useValue: mockHttpProvider },
                 AuthService,
                 APIService
-            ],      
+            ],
         })
         .compileComponents();
     }));

@@ -14,7 +14,7 @@ describe('HighlightActivityComponent', () => {
     let dashboardService: DashboardService;
     let apiService: APIService;
     let sharedService: SharedDataService;
-    let selection = window.getSelection();
+    const selection = window.getSelection();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -22,12 +22,12 @@ describe('HighlightActivityComponent', () => {
             imports: [
                 RouterTestingModule,
                 HttpModule
-            ],             
+            ],
             providers: [
-                SharedDataService, 
+                SharedDataService,
                 DashboardService,
                 APIService
-            ]            
+            ]
         })
         .compileComponents();
     }));
@@ -47,14 +47,14 @@ describe('HighlightActivityComponent', () => {
 
     it('malaria definition is highlighted', () => {
         const rangeObject = {
-            removeAllRanges: function(){return ''},
-            empty: function(){return ''}
-        };        
-        spyOn(window, 'getSelection').and.returnValues('An intermittent and remittent fever caused by a protozoan parasite that invades the red blood cells. The parasite is transmitted by mosquitoes in many tropical and subtropical regions.', rangeObject); 
-        //selection.removeAllRanges = jasmine.createSpy("removeSel").and.returnValue('');         
+            removeAllRanges: function() {return ''},
+            empty: function() {return ''}
+        };
+        spyOn(window, 'getSelection').and.returnValues('An intermittent and remittent fever caused by a protozoan parasite that invades the red blood cells. The parasite is transmitted by mosquitoes in many tropical and subtropical regions.', rangeObject);
+        // selection.removeAllRanges = jasmine.createSpy("removeSel").and.returnValue('');
         spyOn(selection, 'removeAllRanges').and.returnValue('');
         component.select();
         expect(component.activityComplete).toBeTruthy();
-    });        
+    });
 
 });

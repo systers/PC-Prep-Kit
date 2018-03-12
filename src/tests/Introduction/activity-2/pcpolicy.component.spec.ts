@@ -20,18 +20,18 @@ describe('PcpolicyComponent', () => {
                 HttpModule,
                 RouterTestingModule,
                 BrowserAnimationsModule
-            ],      
-            declarations: [ 
+            ],
+            declarations: [
                 PcpolicyComponent,
                 HeaderComponent,
                 NavbarComponent
             ],
-            providers: [ 
+            providers: [
                 DashboardService,
                 APIService,
                 AuthService,
                 NavbarService
-            ]      
+            ]
         })
         .compileComponents();
     }));

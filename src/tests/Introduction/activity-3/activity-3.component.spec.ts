@@ -26,12 +26,12 @@ describe('PicturePuzzleComponent', () => {
             imports: [
                 RouterTestingModule,
                 HttpModule
-            ],             
+            ],
             providers: [
-                SharedDataService, 
+                SharedDataService,
                 DashboardService,
                 APIService
-            ]            
+            ]
         })
         .compileComponents();
     }));
@@ -41,11 +41,11 @@ describe('PicturePuzzleComponent', () => {
         component = fixture.componentInstance;
         dashboardService = TestBed.get(DashboardService);
         sharedService = TestBed.get(SharedDataService);
-        apiService = TestBed.get(APIService);   
-        btn = fixture.debugElement.nativeElement.querySelectorAll('button'); 
+        apiService = TestBed.get(APIService);
+        btn = fixture.debugElement.nativeElement.querySelectorAll('button');
         browse = btn[0];
         puzzle = btn[1];
-        saveProPic = btn[2];     
+        saveProPic = btn[2];
         fixture.detectChanges();
     });
 
@@ -54,12 +54,12 @@ describe('PicturePuzzleComponent', () => {
     });
 
     it('webcam is open', () => {
-        let webcamOpenBtn = fixture.debugElement.nativeElement.querySelector('#webcamOpen'); 
+        const webcamOpenBtn = fixture.debugElement.nativeElement.querySelector('#webcamOpen');
         webcamOpenBtn.click();
         expect(puzzle.disabled).toEqual(true);
         expect(saveProPic.disabled).toEqual(true);
-        expect(component.webcamState).toEqual(component.webcamStates.OPENED); 
-        expect(component.webcamButtonText).toEqual('Capture');              
+        expect(component.webcamState).toEqual(component.webcamStates.OPENED);
+        expect(component.webcamButtonText).toEqual('Capture');
     });
 
 });

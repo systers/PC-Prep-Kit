@@ -10,7 +10,7 @@ describe('MedsNLabelsComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule
-            ],      
+            ],
             declarations: [ MedsNLabelsComponent ]
         })
         .compileComponents();
