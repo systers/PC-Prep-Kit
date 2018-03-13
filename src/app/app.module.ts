@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DndModule } from 'ng2-dnd';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
-import { MaterialModule } from '@angular/material';
+import { MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -92,11 +92,10 @@ import { DoctorService } from './services/doctorchat.service';
         BrowserModule,
         BrowserAnimationsModule,
         DndModule.forRoot(),
-        MaterialModule,
         ToastModule.forRoot()
     ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,
+    providers: [{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,
       SharedDataService, InfokitService, LanguageService, DoctorService],
     bootstrap: [AppComponent]
 })
