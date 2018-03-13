@@ -74,7 +74,15 @@ CREATE DATABASE pcprepkit;
 
 or if you are using a tool like phpMyAdmin to manage your database, you can setup it up there too.
 
-Once the database is setup, run the following command from the project directory.
+#### Setting up api.ai for doctor chat module
+* Signup on api.ai with the same google project used for gmail login. 
+* Create a new agent. 
+* On the sidebar, click on the settings icon adjacent to the agent name. 
+* Open Export and Import tab and select import from zip. 
+* upload the malariaDoctor.zip file available in the repo. 
+* get the client key from the console and replace it in settings.js file
+
+Once the database and the settings.json file is setup, run the following command from the project directory.
 
 ```
 $ npm start
