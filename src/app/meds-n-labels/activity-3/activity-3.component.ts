@@ -31,8 +31,8 @@ export class DoctorchatComponent implements OnInit, AfterViewChecked {
         this._infokitService.activateinfokit('doctor_info').subscribe(res => {});
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.stages.medsNLabels.doctorChat;
+            this.messages.push({message: this.language.introMessage, status: 'recv-message'});
         });
-        this.messages.push({message: this.language.introMessage, status: 'recv-message'});
     }
 
     ngAfterViewChecked() {

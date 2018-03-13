@@ -214,52 +214,6 @@
       },
       "medsNLabels": {
         "heading": "Medication & Labels",
-        "memoryGame": {
-          "heading": "Complete the memory game to unlock tips on diagnosis of malaria",
-          "alerts": {
-            "title": "Congratulations!<br>You matched a pair"
-          }
-        }
-      },
-      "peaceCorps": {
-        "heading": "Peace Corps Policy"
-      },
-      "lockedStage": {
-        "heading": "Locked Stage",
-        "howtoplay": {
-          "heading": "Prevent the mosquito from transmitting the virus to the human",
-          "instructions": {
-            "title": "How to play?",
-            "ins1": "Select the inventory item",
-            "ins2": "Use the item to stop the mosquito"
-          },
-          "messages": {
-            "nextButton": "Cool, next"
-          }
-        },
-        "game": {
-          "legend": {
-            "human": "Human",
-            "mosquito": "Mosquito",
-            "inventory": "Inventory"
-          },
-          "alerts": {
-            "loss": {
-              "title": "Game over!",
-              "content": "The mosquito has transmitted malaria virus!"
-            },
-            "win": {
-              "title": "Good job!",
-              "content": "You completed this activity!"
-            }
-          },
-          "messages": {
-            "restartButton": "Restart"
-          }
-        }
-      },
-      "medsNLabels": {
-        "heading": "Medication & Labels",
         "matchMeds": {
           "headingBase": "Match the medicines with their",
           "headingSideeffects": "right side-effects",

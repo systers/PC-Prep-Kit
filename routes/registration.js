@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 
 const mail = require('./mailService');
 const models = require('../database/models');
@@ -81,21 +82,20 @@ router.post('/', function(req, res) {
                 return res.status(400).json({error: errorCode.PCE002.message, code: errorCode.PCE002.code});
             } else {
                 const rString = randomStr(50, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-                localUser.create({
-                    fname: req.body.fname,
-                    lname: req.body.lname,
-                    email: req.body.email,
-                    password: req.body.password,
-                    provider: 1
-                }).catch(error => {
-                      if (error) {
-                          res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
-                      }
-                }).then(task => {
-                      verification.create({
-                          verificationCode: rString,
-                          user_id: task.dataValues.id
-                      }).then(task => {
+                bcrypt.hash(req.body.password, 10, function(err, hash) {
+                    localUser.create({
+                        fname: req.body.fname,
+                        lname: req.body.lname,
+                        email: req.body.email,
+                        password: hash,
+                        provider: 1
+                    }).catch(error => {
+                        res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
+                    }).then(task => {
+                        verification.create({
+                            verificationCode: rString,
+                            user_id: task.dataValues.id
+                        }).then(task => {
                             infokit.create({
                                 user_id: task.dataValues.user_id
                             }).then(task => {
@@ -107,7 +107,8 @@ router.post('/', function(req, res) {
                                     res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
                                 });
                             });
-                      });
+                        });
+                    });
                 });
             }
         });

@@ -13,6 +13,7 @@
     background: url('/assets/img/peacecorps/'+$img);
     background-size: cover;
     background-position: left;
+    color: $white;
     &:hover {
         background-size: inherit;
         background-position: right;

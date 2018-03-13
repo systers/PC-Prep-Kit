@@ -8,6 +8,7 @@ module.exports = function(models) {
     Progress.belongsTo(User, {foreignKey: 'user_id', targetKey: 'id', onDelete: 'cascade'});
     User.hasOne(Progress, {foreignKey: 'user_id', targetKey: 'id', onDelete: 'cascade'});
     Infokit.belongsTo(User, {foreignKey: 'user_id', targetKey: 'id', onDelete: 'cascade'});
+    User.hasOne(Infokit, {foreignKey: 'user_id', targetKey: 'id', onDelete: 'cascade'});
     Verification.belongsTo(User, {foreignKey: 'user_id', targetKey: 'id', onDelete: 'cascade'});
     User.hasOne(Verification, {foreignKey: 'user_id', targetKey: 'id', onDelete: 'cascade'});
 }
