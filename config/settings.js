@@ -2,7 +2,7 @@ module.exports = {
     basePath: 'http://localhost:3000/',
     googleAuth: {
         clientID: '701417346516-33qb38qk06480vh9vg91btfletf6nlqr.apps.googleusercontent.com',
-        clientSecret: '45rNBMN0HsoYJmsyxZ3qkHeC',
+        clientSecret: 'bf538d9651594b4b99667f287cdc9fd5',
         callbackURL: 'http://localhost:3000/auth/google/callback',
         access_type: 'offline'
     },
