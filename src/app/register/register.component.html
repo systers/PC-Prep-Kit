@@ -27,7 +27,6 @@
         <p *ngIf="regForm.controls['email'].hasError('required') && (regForm.controls['email'].touched && !isFocused)" class="alert alert-danger" role="alert">{{authMessages?.errors.emailReq}}</p>
         <p *ngIf="regForm.controls['email'].hasError('pattern') && (regForm.controls['email'].touched) && !isFocused" class="alert alert-danger" role="alert">{{authMessages?.errors.emailInvalid}}</p>
         <p *ngIf="regForm.controls['password'].hasError('required') && (regForm.controls['password'].touched && !isFocused)" class="alert alert-danger" role="alert">{{authMessages?.errors.passwordReq}}</p>
-        <p *ngIf="regForm.controls['password'].hasError('pattern') && (regForm.controls['password'].touched && !isFocused)" class="alert alert-danger" role="alert">{{authMessages?.errors.passwordInvalid}}</p>
         <p *ngIf="regForm.controls['confirmpassword'].value!=regForm.controls['password'].value && (regForm.controls['confirmpassword'].touched && !isFocused)" class="alert alert-danger" role="alert">{{authMessages?.errors.passwordMatch}}</p>
       </div>
       <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>

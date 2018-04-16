@@ -61,7 +61,7 @@
         "emailReq": "Email is required",
         "emailInvalid": "The email address is invalid",
         "passwordReq": "Password is required",
-        "passwordInvalid": "Password is invalid. Password must: Be a minimum of 8 characters; Contain at least 1 lowercase and 1 uppercase letter; Contain at least 1 special character (!@#$%^&*); Contain at least 1 number (0–9)",
+        "passwordInvalid": "Password is invalid",
         "passwordMatch": "Passwords should match",
         "loginError": "Incorrect username and password, please try again",
         "registrationFail": "Registration unsuccesful"
