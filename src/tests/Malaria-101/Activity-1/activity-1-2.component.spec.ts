@@ -15,13 +15,13 @@ describe('MalariaLifeCycleComponent', () => {
             imports: [
                 RouterTestingModule,
                 HttpModule
-            ],      
+            ],
             declarations: [ MalariaLifeCycleComponent ],
             providers: [
                 DashboardService,
                 APIService,
-                SharedDataService    
-            ]      
+                SharedDataService
+            ]
         })
         .compileComponents();
     }));

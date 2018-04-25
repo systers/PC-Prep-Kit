@@ -39,20 +39,20 @@ describe('DashboardService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpModule
-            ], 
+            ],
             providers: [
                 DashboardService,
                 APIService,
                 {
                     provide: XHRBackend,
                     useClass: MockBackend
-                }                
+                }
             ]
         });
     });
     beforeEach(() => { fakeAsync(
         inject([
-            XHRBackend, 
+            XHRBackend,
             DashboardService
         ], (mockBackend: MockBackend, service: DashboardService) => {
             mockBackend.connections.subscribe(
@@ -61,30 +61,30 @@ describe('DashboardService', () => {
                         expect(connection.request.method).toBe(RequestMethod.Get);
                         connection.mockRespond(new Response(
                             new ResponseOptions({body: mockUserInfoResponse})
-                        ));                
-                    } 
+                        ));
+                    }
                     if (connection.request.url === getProgressStatus) {
                         expect(connection.request.method).toBe(RequestMethod.Get);
                         connection.mockRespond(new Response(
                             new ResponseOptions({body: mockGetProgressStatusResponses.shift()})
-                        ));               
-                    }   
+                        ));
+                    }
                     if (connection.request.url === mailPcPolicyInfo) {
                         expect(connection.request.method).toBe(RequestMethod.Get);
                         connection.mockRespond(new Response(
                             new ResponseOptions({body: mockMailPCPolicyResponse.shift()})
-                        ));               
-                    }                                      
+                        ));
+                    }
                     if (connection.request.url === updateProgressStatus) {
                         expect(connection.request.method).toBe(RequestMethod.Put);
                         connection.mockRespond(new Response(
                             new ResponseOptions({body: mockUpdateProgressStatusResponse.shift()})
-                        ));                    
+                        ));
                     }
-                }); 
+                });
             })
         )
-    });    
+    });
 
     it('should be created', inject([DashboardService], (service: DashboardService) => {
         expect(service).toBeTruthy();
@@ -109,7 +109,7 @@ describe('DashboardService', () => {
             .subscribe(res => {
                 expect(res).toBe({info: 'This account does not exist'});
             });
-    })); 
+    }));
 
     it('should return no data found if the user is invalid', inject([DashboardService], (service: DashboardService) => {
         service.getProgressStatus()
@@ -123,7 +123,7 @@ describe('DashboardService', () => {
             .subscribe(res => {
                 expect(res).toBe({error: 'Something went wrong while fetching user progress data'});
             });
-    }));           
+    }));
 
     it('should update user progress status', inject([DashboardService], (service: DashboardService) => {
         service.updateProgressStatus({stage: 1, activity: 2})
@@ -144,14 +144,14 @@ describe('DashboardService', () => {
             .subscribe(res => {
                 expect(res).toBe({error: 'Something went wrong while updating progress status'});
             });
-    }));         
+    }));
 
     it('should return no data recieved on sending empty request body', inject([DashboardService], (service: DashboardService) => {
         service.updateProgressStatus({})
             .subscribe(res => {
                 expect(res).toBe({error: 'No data recieved'});
             });
-    }));         
+    }));
 
     it('should mail pc policy', inject([DashboardService], (service: DashboardService) => {
         service.mailpcpolicy()
@@ -165,6 +165,6 @@ describe('DashboardService', () => {
             .subscribe(res => {
                 expect(res).toBe({error: 'Something Went Wrong! Try again later.'});
             });
-    }));             
+    }));
 
 });

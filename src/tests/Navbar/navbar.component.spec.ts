@@ -16,11 +16,11 @@ describe('NavbarComponent', () => {
                 HttpModule,
                 BrowserAnimationsModule
             ],
-            declarations: [ 
+            declarations: [
                 NavbarComponent,
                 HeaderComponent
             ],
-            providers: [ 
+            providers: [
                 NavbarService,
                 APIService
             ]

@@ -25,7 +25,7 @@
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [
-      true,
+      false,
       140
     ],
     "member-access": false,
@@ -118,11 +118,7 @@
       "camelCase"
     ],
     "component-selector": [
-      true,
-      "element",
-      "app",
-      "kebab-case"
-    ],
+      true, "element", ["app", "button"], "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,

@@ -141,7 +141,7 @@ export class PicturePuzzleComponent implements OnInit {
             return;
         }
 
-        this.filesToUpload = <Array<File>>file;
+        this.filesToUpload = <Array<File>> file;
         this.loaded = false;
         reader.onload = this.handleReaderLoaded.bind(this);
         reader.readAsDataURL(file);

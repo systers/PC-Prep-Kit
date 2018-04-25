@@ -24,6 +24,7 @@ import { DashboardService } from '../services/dashboard.service';
 })
 
 export class NavbarComponent implements OnInit {
+    private static _localStorageKey = 'pcprepkitUser';
     username: String;
     language: any;
     @Output() togglePosition = new EventEmitter<any>();
@@ -31,7 +32,6 @@ export class NavbarComponent implements OnInit {
     public state= 'out';
     private _obs;
     private _subscription;
-    private static _localStorageKey = 'pcprepkitUser';
     public proPic: any;
     constructor(private _dashboardService: DashboardService, private _navbarService: NavbarService, private _langService: LanguageService) { }
 

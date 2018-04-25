@@ -18,23 +18,23 @@ describe('AuthService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                AuthService, 
+                AuthService,
                 APIService,
                 {
                     provide: XHRBackend,
                     useClass: MockBackend
-                }               
+                }
             ],
             imports: [
                 RouterTestingModule,
                 HttpModule
-            ],           
+            ],
         });
     });
 
     beforeEach(() => { fakeAsync(
         inject([
-            XHRBackend, 
+            XHRBackend,
             AuthService
         ], (mockBackend: MockBackend, service: AuthService) => {
             mockBackend.connections.subscribe(
@@ -43,24 +43,24 @@ describe('AuthService', () => {
                         expect(connection.request.method).toBe(RequestMethod.Get);
                         connection.mockRespond(new Response(
                             new ResponseOptions({})
-                        ));                
-                    } 
+                        ));
+                    }
                     if (connection.request.url === authenticatedApi) {
                         expect(connection.request.method).toBe(RequestMethod.Get);
                         connection.mockRespond(new Response(
                             new ResponseOptions({body: mockAuthenticatedResponse})
-                        ));               
-                    }                     
+                        ));
+                    }
                     if (connection.request.url === loginAuthUrl) {
                         expect(connection.request.method).toBe(RequestMethod.Post);
                         connection.mockRespond(new Response(
                             new ResponseOptions({ body: mockLoginResponse })
-                        ));                    
+                        ));
                     }
-                }); 
+                });
             })
         )
-    });    
+    });
 
     it('should be created', inject([AuthService], (service: AuthService) => {
         expect(service).toBeTruthy();
@@ -72,17 +72,17 @@ describe('AuthService', () => {
                 expect(localStorage.getItem(localStorageKey)).toBe(null);
             });
     }));
-    it('should add token to localstorage on logging in', inject([AuthService], (service: AuthService) => {               
+    it('should add token to localstorage on logging in', inject([AuthService], (service: AuthService) => {
         service.loginUser({email: 'abc@gmail.com', password: 'abc'})
             .subscribe(res => {
                 expect(res).toBeTruthy();
                 expect(localStorage.getItem(localStorageKey)).toBeDefined();
             });
-    })); 
-    it('should check for authentication', inject([AuthService], (service: AuthService) => {               
+    }));
+    it('should check for authentication', inject([AuthService], (service: AuthService) => {
         service.authenticated()
             .subscribe(res => {
                 expect(res.authenticated).toBeTruthy();
             });
-    }));        
+    }));
 });

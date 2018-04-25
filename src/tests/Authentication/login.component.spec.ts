@@ -14,23 +14,23 @@ describe('LoginComponent', () => {
     let fixture: ComponentFixture<LoginComponent>;
     let authService: AuthService;
     let apiService: APIService;
-    let router = {
+    const router = {
         navigateByUrl: jasmine.createSpy('navigateByUrl')
     }
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ LoginComponent ],
-            imports: [ 
+            imports: [
                 ReactiveFormsModule,
                 RouterTestingModule,
                 HttpModule
             ],
             providers: [
-                { provide: Router, useValue: router },   
+                { provide: Router, useValue: router },
                 AuthService,
                 APIService
-            ]            
+            ]
         })
         .compileComponents();
     }));
@@ -39,7 +39,7 @@ describe('LoginComponent', () => {
         fixture = TestBed.createComponent(LoginComponent);
         component = fixture.componentInstance;
         authService = fixture.debugElement.injector.get(AuthService);
-        apiService = TestBed.get(APIService);             
+        apiService = TestBed.get(APIService);
     });
 
     it('should be created', () => {
@@ -58,13 +58,13 @@ describe('LoginComponent', () => {
         .and.returnValue(Observable.of(false));
         component.onSubmit({email: 'user@test.com', password: 'testpwd'});
         expect(component.errorMessage).toEqual('Incorrect username and password, please try again');
-    }); 
+    });
 
     it('should return error/info message from server on unsuccessful login', () => {
         spyOn(authService, 'loginUser')
         .and.returnValue(Observable.throw({info: 'Invalid username/password'}));
         component.onSubmit({email: 'user@test.com', password: 'testpwd'});
         expect(component.errorMessage).toEqual('Invalid username/password');
-    });         
+    });
 
 });
