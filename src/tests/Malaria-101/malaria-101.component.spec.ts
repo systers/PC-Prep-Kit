@@ -12,7 +12,7 @@ describe('Malaria101Component', () => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule
-            ],      
+            ],
             declarations: [ Malaria101Component ]
         })
         .compileComponents();

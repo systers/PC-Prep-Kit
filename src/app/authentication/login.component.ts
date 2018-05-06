@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         if (error) {
             this._sharedData.customErrorAlert(decodeURIComponent(error), 'Error!');
         } else if (message) {
-            this._sharedData.customSuccessAlert(decodeURIComponent(message), 'Complete!');  
+            this._sharedData.customSuccessAlert(decodeURIComponent(message), 'Complete!');
         }
     }
 

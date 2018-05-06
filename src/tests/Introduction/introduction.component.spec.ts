@@ -11,7 +11,7 @@ describe('IntroductionComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule
-            ],   
+            ],
             declarations: [ IntroductionComponent ]
         })
         .compileComponents();

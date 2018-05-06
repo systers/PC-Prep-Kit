@@ -10,7 +10,7 @@ describe('SplashscreenComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule
-            ],      
+            ],
             declarations: [ SplashscreenComponent ]
         })
         .compileComponents();

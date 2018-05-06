@@ -16,23 +16,23 @@ describe('NavbarService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                NavbarService, 
+                NavbarService,
                 APIService,
                 {
                     provide: XHRBackend,
                     useClass: MockBackend
-                }               
+                }
             ],
             imports: [
                 RouterTestingModule,
                 HttpModule
-            ],           
+            ],
         });
     });
 
     beforeEach(() => { fakeAsync(
         inject([
-            XHRBackend, 
+            XHRBackend,
             NavbarService
         ], (mockBackend: MockBackend, service: NavbarService) => {
             mockBackend.connections.subscribe(
@@ -41,12 +41,12 @@ describe('NavbarService', () => {
                         expect(connection.request.method).toBe(RequestMethod.Get);
                         connection.mockRespond(new Response(
                             new ResponseOptions({body: mockUserNameResponse.shift()})
-                        ));                
+                        ));
                     }
-                }); 
+                });
             })
         )
-    });    
+    });
 
     it('should be created', inject([NavbarService], (service: NavbarService) => {
         expect(service).toBeTruthy();
@@ -58,11 +58,11 @@ describe('NavbarService', () => {
                 expect(res).toBe({username: 'Rajath'});
             });
     }));
-    it('should return server error', inject([NavbarService], (service: NavbarService) => {               
+    it('should return server error', inject([NavbarService], (service: NavbarService) => {
         service.getUserName()
             .subscribe(res => {
                 expect(res).toBe({error: 'Something went wrong'});
             });
-    }));        
+    }));
 });
 

@@ -13,7 +13,7 @@ describe('MenuComponent', () => {
     let fixture: ComponentFixture<MenuComponent>;
     let dashboardService: DashboardService;
     let apiService: APIService;
-    let router = {
+    const router = {
         navigate: jasmine.createSpy('navigate'),
         navigateByUrl: jasmine.createSpy('navigateByUrl')
     };
@@ -24,12 +24,12 @@ describe('MenuComponent', () => {
             imports: [
                 RouterTestingModule,
                 HttpModule
-            ],             
+            ],
             providers: [
-                { provide: Router, useValue: router }, 
+                { provide: Router, useValue: router },
                 DashboardService,
                 APIService
-            ]            
+            ]
         })
         .compileComponents();
     }));
@@ -48,20 +48,20 @@ describe('MenuComponent', () => {
 
     it('should initialize the stage and activity indicators', () => {
         spyOn(dashboardService, 'getProgressStatus').and.returnValue(Observable.of({stage: 1, activity: 1}));
-        component.ngOnInit();        
+        component.ngOnInit();
         expect(component.stage).toBe(1);
         expect(component.activity).toBe(1);
     });
 
     it('should initialize the stage and activity indicators', () => {
         spyOn(dashboardService, 'getProgressStatus').and.returnValue(Observable.throw({error: 'ERROR'}));
-        component.ngOnInit();        
+        component.ngOnInit();
         expect(router.navigate).toHaveBeenCalledWith(['/login']);
     });
 
     it('should navigate to respective pages on clicking on stages in menu page', () => {
-        let introButton = fixture.debugElement.nativeElement.querySelector('.intro-btn');
-        introButton.click();    
+        const introButton = fixture.debugElement.nativeElement.querySelector('.intro-btn');
+        introButton.click();
         expect(router.navigateByUrl).toHaveBeenCalledWith('/introduction');
     });
 

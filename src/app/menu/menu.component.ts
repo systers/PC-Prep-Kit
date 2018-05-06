@@ -41,7 +41,7 @@ export class MenuComponent implements OnInit {
     ngOnInit() {
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.stages;
-        });        
+        });
         this._dashboardService.getProgressStatus().subscribe(response => {
             this.activity = response.activity;
             this.stage = response.stage;

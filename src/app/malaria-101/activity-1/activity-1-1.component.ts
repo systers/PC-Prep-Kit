@@ -18,5 +18,5 @@ export class AnimatedVideoComponent implements OnInit {
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.stages.malaria101.lifecycle;
         });
-    }    
+    }
 }
