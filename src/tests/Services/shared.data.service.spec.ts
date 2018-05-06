@@ -9,7 +9,7 @@ describe('SharedDataService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpModule
-            ],        	
+            ],
             providers: [SharedDataService, DashboardService, APIService]
         });
     });

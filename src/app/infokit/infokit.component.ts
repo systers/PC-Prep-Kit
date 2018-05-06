@@ -75,11 +75,11 @@ export class InfokitComponent implements OnInit {
     getData() {
         if (localStorage.getItem(InfokitComponent._localStorageKey)) {
             this._infokitService.infokitactive().subscribe(response => {
-                for (let info of this.infokitActive) {
+                for (const info of this.infokitActive) {
                     info.value = response.infokitactive[info.key];
                 }
 
-                for (let info of this.infokitActive) {
+                for (const info of this.infokitActive) {
                     if (info.value) {
                         this.infokitAvailable = true;
                         break;
