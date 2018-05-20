@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, HostListener, ViewContainerRef } from '@angular/core';
 import { Coordinates } from './coordinate-structure';
 import { MatchingInfo } from './matching.info';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
 import { LanguageService } from '../../services/language.service';
@@ -65,8 +64,8 @@ export class MatchmedsComponent implements OnInit {
     correctAns = MatchingInfo.match1ans;
     givenAns = [0, 0, 0];
 
-    constructor(private _langService: LanguageService, public toastr: ToastsManager, private _dashboardService: DashboardService, private _sharedData: SharedDataService, vcr: ViewContainerRef, private _infokitService: InfokitService) {
-        this.toastr.setRootViewContainerRef(vcr);
+    constructor(private _langService: LanguageService,  private _dashboardService: DashboardService, private _sharedData: SharedDataService, vcr: ViewContainerRef, private _infokitService: InfokitService) {
+
     }
 
     ngOnInit() {

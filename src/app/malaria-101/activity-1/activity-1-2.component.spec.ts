@@ -1,11 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpModule } from '@angular/http';
-import { MalariaLifeCycleComponent } from '../../../app/malaria-101/activity-1/activity-1-2.component';
+import {HttpClientModule} from '@angular/common/http';
+import { MalariaLifeCycleComponent } from './activity-1-2.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DashboardService } from '../../../app/services/dashboard.service';
-import { APIService } from '../../../app/services/api.service';
-import { SharedDataService } from '../../../app/services/shared.data.service';
-
+import { DashboardService } from '../../services/dashboard.service';
+import { APIService } from '../../services/api.service';
+import { SharedDataService } from '../../services/shared.data.service';
+import {ButtonNavComponent} from '../../button-nav/button-nav.component';
+import {LanguageService} from '../../services/language.service';
+import {ToastrService, ToastrModule} from 'ngx-toastr';
 describe('MalariaLifeCycleComponent', () => {
     let component: MalariaLifeCycleComponent;
     let fixture: ComponentFixture<MalariaLifeCycleComponent>;
@@ -14,13 +16,17 @@ describe('MalariaLifeCycleComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule,
-                HttpModule
+                HttpClientModule,
+              ToastrModule.forRoot()
             ],
-            declarations: [ MalariaLifeCycleComponent ],
+            declarations: [ MalariaLifeCycleComponent,
+                            ButtonNavComponent],
             providers: [
                 DashboardService,
                 APIService,
-                SharedDataService
+                SharedDataService,
+                LanguageService,
+              ToastrService
             ]
         })
         .compileComponents();

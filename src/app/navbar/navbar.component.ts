@@ -1,9 +1,10 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { Observable } from 'rxjs/Rx';
-import { NavbarService } from '../services/navbar.service';
-import { LanguageService } from '../services/language.service';
-import { DashboardService } from '../services/dashboard.service';
+import {interval as observableInterval} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {NavbarService} from '../services/navbar.service';
+import {LanguageService} from '../services/language.service';
+import {DashboardService} from '../services/dashboard.service';
 
 @Component({
     selector: 'app-navbar',
@@ -20,7 +21,7 @@ import { DashboardService } from '../services/dashboard.service';
         transition('out => in', animate('100ms ease-in')),
         transition('in => out', animate('100ms ease-out'))
         ])
-    ]
+    ],
 })
 
 export class NavbarComponent implements OnInit {
@@ -36,8 +37,8 @@ export class NavbarComponent implements OnInit {
     constructor(private _dashboardService: DashboardService, private _navbarService: NavbarService, private _langService: LanguageService) { }
 
     ngOnInit() {
-        this._obs = Observable.interval(500)
-                       .do(i => this.getUserName());
+        this._obs = observableInterval(500).pipe(
+                       tap(i => this.getUserName()));
         this._subscription = this._obs.subscribe();
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.common.navbar;

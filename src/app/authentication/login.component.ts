@@ -1,13 +1,10 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { LanguageService } from '../services/language.service';
-import { SharedDataService } from '../services/shared.data.service';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {LanguageService} from '../services/language.service';
+import {SharedDataService} from '../services/shared.data.service';
 
-import { AuthService } from '../services/auth.service';
+import {AuthService} from '../services/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -23,8 +20,7 @@ export class LoginComponent implements OnInit {
     header: any;
     authMessages: any;
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private _sharedData: SharedDataService, private _activatedRoute: ActivatedRoute, private _langService: LanguageService, private _authService: AuthService, private _router: Router, fb: FormBuilder) {
-        this.toastr.setRootViewContainerRef(vcr);
+    constructor( vcr: ViewContainerRef, private _sharedData: SharedDataService, private _activatedRoute: ActivatedRoute, private _langService: LanguageService, private _authService: AuthService, private _router: Router, fb: FormBuilder) {
         this.loginForm = fb.group({
             'email' : [null, Validators.compose([Validators.required, Validators.pattern('[^ @]*@[^ @]*')])],
             'password' : [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')])]

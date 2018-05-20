@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { DashboardService } from '../../services/dashboard.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { SharedDataService } from '../../services/shared.data.service';
-import { LanguageService } from '../../services/language.service';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {DashboardService} from '../../services/dashboard.service';
+import {SharedDataService} from '../../services/shared.data.service';
+import {LanguageService} from '../../services/language.service';
 
 @Component({
     selector: 'app-life-cycle',
@@ -28,8 +26,7 @@ export class MalariaLifeCycleComponent implements OnInit {
                        'plasmodium.png']
     public labelsArr;
 
-    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
-        this.toastr.setRootViewContainerRef(vcr);
+    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService,  vcr: ViewContainerRef) {
         this._dashboardService.getProgressStatus().subscribe(response => {
             this.completed = this._sharedData.checkProgress(2, 1, response);
         });
