@@ -1,12 +1,15 @@
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DashboardService } from '../../../app/services/dashboard.service';
-import { APIService } from '../../../app/services/api.service';
-import { HighlightActivityComponent } from '../../../app/introduction/activity-1/activity-1.component';
-import { SharedDataService } from '../../../app/services/shared.data.service';
-import { HttpModule } from '@angular/http';
-import { RouterTestingModule } from '@angular/router/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {DashboardService} from '../../services/dashboard.service';
+import {APIService} from '../../services/api.service';
+import {HighlightActivityComponent} from './activity-1.component';
+import {SharedDataService} from '../../services/shared.data.service';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ButtonNavComponent} from '../../button-nav/button-nav.component';
+import {LanguageService} from '../../services/language.service';
+import {ToastrService} from 'ngx-toastr';
+import {ToastrModule} from 'ngx-toastr';
 
 describe('HighlightActivityComponent', () => {
     let component: HighlightActivityComponent;
@@ -18,15 +21,18 @@ describe('HighlightActivityComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ HighlightActivityComponent ],
+            declarations: [ HighlightActivityComponent, ButtonNavComponent ],
             imports: [
                 RouterTestingModule,
-                HttpModule
+                HttpClientModule,
+                ToastrModule.forRoot()
             ],
             providers: [
                 SharedDataService,
                 DashboardService,
-                APIService
+                APIService,
+              LanguageService,
+              ToastrService
             ]
         })
         .compileComponents();

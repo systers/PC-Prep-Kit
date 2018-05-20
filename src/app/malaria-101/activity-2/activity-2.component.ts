@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { InfokitService } from '../../services/infokit.service';
 import { LanguageService } from '../../services/language.service';
 import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
+
 
 @Component({
     selector: 'app-dragdrop',
@@ -108,8 +108,7 @@ export class DragdropComponent implements OnInit {
         this._infokitService.activateinfokit('do_dont').subscribe(res => {});
     }
 
-    constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService, private _infokitService: InfokitService, public toastr: ToastsManager, vcr: ViewContainerRef, private _langService: LanguageService) {
-        this.toastr.setRootViewContainerRef(vcr);
+    constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService, private _infokitService: InfokitService,  vcr: ViewContainerRef, private _langService: LanguageService) {
         this._dashboardService.getProgressStatus().subscribe(response => {
             this.completed = this._sharedData.checkProgress(2, 2, response);
         });

@@ -64,6 +64,7 @@ function verificationMail(req, res, rString) {
         });
     });
 }
+
 // Receiving HTTP Post
 router.post('/', function(req, res) {
     if (!req.body.email || !validateEmail(req.body.email)) {
@@ -75,43 +76,43 @@ router.post('/', function(req, res) {
     } else if (!req.body.password || !validatePassword(req.body.password)) {
         return res.status(400).json({error: errorCode.PCE005.message, code: errorCode.PCE005.code});
     } else {
-        verifier.verify(req.body.email, function(err, info) {
-            if (err) {
-                return res.status(400).json({error: errorCode.PCE002.message, code: errorCode.PCE002.code});
-            } else if (!info.success) {
-                return res.status(400).json({error: errorCode.PCE002.message, code: errorCode.PCE002.code});
-            } else {
-                const rString = randomStr(50, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-                bcrypt.hash(req.body.password, 10, function(err, hash) {
-                    localUser.create({
-                        fname: req.body.fname,
-                        lname: req.body.lname,
-                        email: req.body.email,
-                        password: hash,
-                        provider: 1
-                    }).catch(error => {
-                        res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
+    // verifier.verify(req.body.email, function (err, info) {
+    // if (err) {
+    //     return res.status(400).json({error: errorCode.PCE002.message, code: errorCode.PCE002.code});
+    // } else if (!info.success) {
+    //     return res.status(400).json({error: errorCode.PCE002.message, code: errorCode.PCE002.code});
+    // } else {
+        const rString = randomStr(50, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+        bcrypt.hash(req.body.password, 10, function(err, hash) {
+            localUser.create({
+                fname: req.body.fname,
+                lname: req.body.lname,
+                email: req.body.email,
+                password: hash,
+                provider: 1
+            }).catch(error => {
+                res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
+            }).then(task => {
+                verification.create({
+                    verificationCode: rString,
+                    user_id: task.dataValues.id
+                }).then(task => {
+                    infokit.create({
+                        user_id: task.dataValues.user_id
                     }).then(task => {
-                        verification.create({
-                            verificationCode: rString,
-                            user_id: task.dataValues.id
+                        progress.create({
+                            user_id: task.dataValues.user_id
                         }).then(task => {
-                            infokit.create({
-                                user_id: task.dataValues.user_id
-                            }).then(task => {
-                                progress.create({
-                                    user_id: task.dataValues.user_id
-                                }).then(task => {
-                                    verificationMail(req, res, rString);
-                                }).catch(error => {
-                                    res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
-                                });
-                            });
+                            verificationMail(req, res, rString);
+                        }).catch(error => {
+                            res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
                         });
                     });
                 });
-            }
+            });
         });
+    //   }
+    // );
     }
 });
 

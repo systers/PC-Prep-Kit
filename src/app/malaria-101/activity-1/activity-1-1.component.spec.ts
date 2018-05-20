@@ -1,11 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpModule } from '@angular/http';
-import { AnimatedVideoComponent } from '../../../app/malaria-101/activity-1/activity-1-1.component';
+import {HttpClientModule} from '@angular/common/http';
+import { AnimatedVideoComponent } from './activity-1-1.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DashboardService } from '../../../app/services/dashboard.service';
-import { APIService } from '../../../app/services/api.service';
-import { SharedDataService } from '../../../app/services/shared.data.service';
-
+import { DashboardService } from '../../services/dashboard.service';
+import { APIService } from '../../services/api.service';
+import { SharedDataService } from '../../services/shared.data.service';
+import {ButtonNavComponent} from '../../button-nav/button-nav.component';
+import {LanguageService} from '../../services/language.service';
+import {ToastrService, ToastrModule} from 'ngx-toastr';
 describe('AnimatedVideoComponent', () => {
     let component: AnimatedVideoComponent;
     let fixture: ComponentFixture<AnimatedVideoComponent>;
@@ -14,13 +16,16 @@ describe('AnimatedVideoComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule,
-                HttpModule
+                HttpClientModule,
+                ToastrModule.forRoot()
             ],
-            declarations: [ AnimatedVideoComponent ],
+            declarations: [ AnimatedVideoComponent, ButtonNavComponent ],
             providers: [
                 DashboardService,
                 APIService,
-                SharedDataService
+                SharedDataService,
+                LanguageService,
+              ToastrService
             ]
         })
         .compileComponents();

@@ -1,6 +1,9 @@
+
+import {of as observableOf,  Observable } from 'rxjs';
+
+import {catchError, map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
@@ -9,18 +12,18 @@ export class LoggedInGuard implements CanActivate {
     constructor(private router: Router, private authService: AuthService) {};
 
     canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-        return this.authService.authenticated()
-                    .map(
+        return this.authService.authenticated().pipe(
+                    map(
                         result => {
                             if (result.authenticated) {
                                 return true;
                             }
                             this.router.navigate(['/login']);
                             return false;
-                        })
-                    .catch(error => {
+                        }),
+                    catchError(error => {
                         this.router.navigate(['/login']);
-                        return Observable.of(false);
-                    });
+                        return observableOf(false);
+                    }), );
     }
 }

@@ -1,13 +1,14 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-
+import {MaterialModule} from '../material.module';
 import { LanguageService } from '../services/language.service';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    styleUrls: ['./header.component.scss'],
+    providers: [MaterialModule]
 })
 
 export class HeaderComponent implements OnInit {

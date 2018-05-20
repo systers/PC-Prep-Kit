@@ -2,12 +2,15 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import 'webrtc-adapter';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DashboardService } from '../../../app/services/dashboard.service';
-import { APIService } from '../../../app/services/api.service';
-import { PicturePuzzleComponent } from '../../../app/introduction/activity-3/activity-3.component';
-import { SharedDataService } from '../../../app/services/shared.data.service';
-import { HttpModule } from '@angular/http';
+import { DashboardService } from '../../services/dashboard.service';
+import { APIService } from '../../services/api.service';
+import { PicturePuzzleComponent } from './activity-3.component';
+import { SharedDataService } from '../../services/shared.data.service';
+import {HttpClientModule} from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
+import {ButtonNavComponent} from '../../button-nav/button-nav.component';
+import {LanguageService} from '../../services/language.service';
+import {ToastrService, ToastrModule} from 'ngx-toastr';
 
 describe('PicturePuzzleComponent', () => {
     let component: PicturePuzzleComponent;
@@ -22,15 +25,20 @@ describe('PicturePuzzleComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ PicturePuzzleComponent ],
+            declarations: [ PicturePuzzleComponent,
+            ButtonNavComponent],
             imports: [
                 RouterTestingModule,
-                HttpModule
+                HttpClientModule,
+              ToastrModule.forRoot()
             ],
             providers: [
                 SharedDataService,
                 DashboardService,
-                APIService
+                APIService,
+                LanguageService,
+              ToastrService
+
             ]
         })
         .compileComponents();
@@ -53,13 +61,18 @@ describe('PicturePuzzleComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('webcam is open', () => {
+    it('webcam is open', async( () => {
         const webcamOpenBtn = fixture.debugElement.nativeElement.querySelector('#webcamOpen');
+        spyOn(component, 'openWebcam');
         webcamOpenBtn.click();
-        expect(puzzle.disabled).toEqual(true);
-        expect(saveProPic.disabled).toEqual(true);
-        expect(component.webcamState).toEqual(component.webcamStates.OPENED);
-        expect(component.webcamButtonText).toEqual('Capture');
-    });
+        fixture.whenStable().then( () => {
+          expect(component.openWebcam).toHaveBeenCalled();
+          expect(component.webcamState).toEqual(component.webcamStates.OPENED);
+          expect(component.webcamButtonText).toEqual('Capture');
+          expect(puzzle.disabled).toEqual(true);
+          expect(saveProPic.disabled).toEqual(true);
+        });
+    }));
 
 });
+
