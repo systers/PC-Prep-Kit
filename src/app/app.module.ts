@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DndModule} from 'ng2-dnd';
-
+import {StopTheBreedModule} from './prevention/stop-the-breed/stop-the-breed.module';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routing';
@@ -51,6 +51,11 @@ import {LanguageService} from './services/language.service';
 import {SharedDataService} from './services/shared.data.service';
 import {DoctorService} from './services/doctorchat.service';
 import {ToastrModule} from 'ngx-toastr';
+import {MaterialModule} from './material.module';
+import {PreventionComponent} from './prevention/prevention.component';
+import { SharedModule } from './shared.module';
+import {MatButtonModule} from '@angular/material';
+import {MatIconModule} from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -80,9 +85,9 @@ import {ToastrModule} from 'ngx-toastr';
         OddOneOutComponent,
         StageCompleteComponent,
         DoctorchatComponent,
-        ButtonNavComponent,
         UnlockedStageComponent,
-        HowToPlayComponent
+        HowToPlayComponent,
+        PreventionComponent
     ],
     imports: [
         AppRoutingModule,
@@ -93,8 +98,17 @@ import {ToastrModule} from 'ngx-toastr';
         BrowserAnimationsModule,
         DndModule.forRoot(),
         ToastrModule.forRoot(),
+        StopTheBreedModule,
+        RouterModule,
+        SharedModule,
+        MaterialModule,
+        MatButtonModule,
+        MatIconModule
 
-        RouterModule
+    ],
+    exports: [
+      MatButtonModule,
+      MatIconModule
     ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,

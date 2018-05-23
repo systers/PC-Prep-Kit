@@ -1,0 +1,23 @@
+<div *ngIf=" !data.tutorial">
+
+  <div mat-dialog-content>
+    Oh Yeah!! You just removed <b> {{ data.name }} :D </b>.
+    <br>
+    <br>
+    They can be a breeding ground for those deadly mosquitoes. Remove them from your surroundings!!
+  </div>
+  <div mat-dialog-actions style="text-align: center">
+    <button mat-button (click)="onNoClick()">Okay!!</button>
+  </div>
+</div>
+
+
+<div *ngIf=" data.tutorial">
+  <img src="../../../assets/img/stop-the-breed/title1.png" height="300" width="300"
+       style="display: block; margin: 0 auto">
+  <h3> Just select the possible breeding grounds for mosquitoes!!</h3>
+  <div mat-dialog-actions style="text-align: center">
+    <button mat-button (click)="onNoClick()">PLAY NOW!!</button>
+  </div>
+</div>
+

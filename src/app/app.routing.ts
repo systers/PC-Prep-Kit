@@ -12,7 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './introduction/activityintro/activityintro.component';
 import { MenuComponent } from './menu/menu.component';
-import { DragdropComponent} from './malaria-101/activity-2/activity-2.component';
+import { DragdropComponent } from './malaria-101/activity-2/activity-2.component';
 import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
 import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
 import { IntroductionComponent } from './introduction/introduction.component';
@@ -27,132 +27,150 @@ import { StageCompleteComponent } from './stage-complete/stage-complete.componen
 import { DoctorchatComponent } from './meds-n-labels/activity-3/activity-3.component';
 import { UnlockedStageComponent } from './unlocked-stage/unlocked-stage.component';
 import { HowToPlayComponent } from './unlocked-stage/how-to-play/howtoplay.component';
+import { StopTheBreedComponent } from './prevention/stop-the-breed/stop-the-breed.component';
+import { PreventionComponent } from './prevention/prevention.component';
 
 export const routes: Routes = [
-    {
+  {
+    path: '',
+    component: SplashscreenComponent,
+    canActivate: [UnauthenticatedGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [UnauthenticatedGuard]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [UnauthenticatedGuard]
+  },
+  {
+    path: 'forgot',
+    component: ForgotPasswordComponent,
+    canActivate: [UnauthenticatedGuard]
+  },
+  {
+    path: 'reset/:token',
+    component: ResetPasswordComponent,
+    canActivate: [UnauthenticatedGuard]
+  },
+  {
+    path: 'menu',
+    component: MenuComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'stagecomplete',
+    component: StageCompleteComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'introduction',
+    component: IntroductionComponent,
+    canActivate: [LoggedInGuard],
+    children: [
+      {
         path: '',
-        component: SplashscreenComponent,
-        canActivate: [UnauthenticatedGuard]
+        component: ActivityintroComponent
+      },
+      {
+        path: 'activity-1',
+        component: HighlightActivityComponent
+      },
+      {
+        path: 'activity-2',
+        component: PcpolicyComponent
+      },
+      {
+        path: 'activity-3',
+        component: PicturePuzzleComponent
+      }
+    ]
+  },
+  {
+    path: 'malaria-101',
+    component: Malaria101Component,
+    canActivate: [LoggedInGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'activity-1-1',
+        pathMatch: 'full'
+      },
+      {
+        path: 'activity-1-1',
+        component: AnimatedVideoComponent
+      },
+      {
+        path: 'activity-1-2',
+        component: MalariaLifeCycleComponent
+      },
+      {
+        path: 'activity-2',
+        component: DragdropComponent
+      },
+      {
+        path: 'activity-3',
+        component: OddOneOutComponent
+      }
+    ]
+  },
+  {
+    path: 'meds-n-labels',
+    component: MedsNLabelsComponent,
+    canActivate: [LoggedInGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'activity-1',
+        pathMatch: 'full'
+      },
+      {
+        path: 'activity-1',
+        component: MatchmedsComponent
+      },
+      {
+        path: 'activity-2',
+        component: MemoryGameComponent
+      },
+      {
+        path: 'activity-3',
+        component: DoctorchatComponent
+      }
+    ]
+  },
+  {
+    path: 'unlocked-stage',
+    component: HowToPlayComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'unlocked-stage/game',
+    component: UnlockedStageComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'prevent',
+    canActivate: [LoggedInGuard],
+    component: PreventionComponent,
+    children: [{
+      path: '',
+      redirectTo: 'stop-the-breed/game',
+      pathMatch: 'full'
+    }, {
+      path: 'stop-the-breed/game',
+      component: StopTheBreedComponent,
     },
-    {
-        path: 'login',
-        component: LoginComponent,
-        canActivate: [UnauthenticatedGuard]
-    },
-    {
-        path: 'register',
-        component: RegisterComponent,
-        canActivate: [UnauthenticatedGuard]
-    },
-    {
-        path: 'forgot',
-        component: ForgotPasswordComponent,
-        canActivate: [UnauthenticatedGuard]
-    },
-    {
-        path: 'reset/:token',
-        component: ResetPasswordComponent,
-        canActivate: [UnauthenticatedGuard]
-    },
-    {
-        path: 'menu',
-        component: MenuComponent,
-        canActivate: [LoggedInGuard]
-    },
-    {
-        path: 'stagecomplete',
-        component: StageCompleteComponent,
-        canActivate: [LoggedInGuard]
-    },
-    {
-        path: 'introduction',
-        component: IntroductionComponent,
-        canActivate: [LoggedInGuard],
-        children: [
-            {
-                path: '',
-                component: ActivityintroComponent
-            },
-            {
-                path: 'activity-1',
-                component: HighlightActivityComponent
-            },
-            {
-                path: 'activity-2',
-                component: PcpolicyComponent
-            },
-            {
-                path: 'activity-3',
-                component: PicturePuzzleComponent
-            }
-        ]
-    },
-    {
-        path: 'malaria-101',
-        component: Malaria101Component,
-        canActivate: [LoggedInGuard],
-        children: [
-            {
-                path: '',
-                redirectTo: 'activity-1-1',
-                pathMatch: 'full'
-            },
-            {
-                path: 'activity-1-1',
-                component: AnimatedVideoComponent
-            },
-            {
-                path: 'activity-1-2',
-                component: MalariaLifeCycleComponent
-            },
-            {
-                path: 'activity-2',
-                component: DragdropComponent
-            },
-            {
-                path: 'activity-3',
-                component: OddOneOutComponent
-            }
-        ]
-    },
-    {
-        path: 'meds-n-labels',
-        component: MedsNLabelsComponent,
-        canActivate: [LoggedInGuard],
-        children: [
-            {
-                path: '',
-                redirectTo: 'activity-1',
-                pathMatch: 'full'
-            },
-            {
-                path: 'activity-1',
-                component: MatchmedsComponent
-            },
-            {
-                path: 'activity-2',
-                component: MemoryGameComponent
-            },
-            {
-                path: 'activity-3',
-                component: DoctorchatComponent
-            }
-        ]
-    },
-    {
-        path: 'unlocked-stage',
-        component: HowToPlayComponent,
-        canActivate: [LoggedInGuard]
-    },
-    {
-        path: 'unlocked-stage/game',
-        component: UnlockedStageComponent,
-        canActivate: [LoggedInGuard]
-    }
+
+    ]
+  },
 ];
+
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
 }

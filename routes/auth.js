@@ -69,20 +69,15 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
     router.post('/login', function(req, res, next) {
         passport.authenticate('local-login', function(err, user, info) {
             if (err) {
-                console.warn('error received');
                 return next(err);
             }
             if (!user) {
-                console.warn('Invalid email/password');
                 return res.status(200).json({error: errorCode.PCE008.message, code: errorCode.PCE008.code});
             }
-            console.warn(' Just before login');
             req.logIn(user, function(err) {
                 if (err) {
-                    console.warn('err in req.login');
                     return next(err);
                 }
-                console.warn('before creating token');
                 return res.status(200).json({ user: user, token: createToken(user) });
             });
 

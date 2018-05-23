@@ -10,10 +10,7 @@ export class APIService {
 
 
   private _localStorageKey = environment.localStorageKey;
-  private _headers: HttpHeaders = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Accept', 'application/json')
-    .set('x-access-token', localStorage.getItem(this._localStorageKey));
+
 
   constructor(private _http: HttpClient) {
   }
@@ -24,8 +21,7 @@ export class APIService {
    * @return {Observable<any>}     Return response
    */
   public get(url: string): Observable<any> {
-    // this._setHeaders();
-    return this._http.get(url, {headers: this._headers}).pipe(
+    return this._http.get(url, {headers: {'Content-Type': 'application/json', 'Accept' : 'application/json', 'x-access-token' : localStorage.getItem(this._localStorageKey) + ''}}).pipe(
       tap(res => console.log(' A GET request received')),
       map(data => data),
       catchError(this._handleError));
@@ -38,8 +34,7 @@ export class APIService {
    * @return {Observable<any>}      Return response
    */
   public post(url: string, body: Object): Observable<any> {
-    // this._setHeaders();
-    return this._http.post(url, body, {headers: this._headers}).pipe(
+    return this._http.post(url, body, {headers: {'Content-Type': 'application/json', 'Accept' : 'application/json', 'x-access-token' : localStorage.getItem(this._localStorageKey) + ''}}).pipe(
       tap(res => console.log(' A POST request received')),
       map(data => data),
       catchError(this._handleError));
@@ -53,10 +48,7 @@ export class APIService {
    */
   public postFile(url: string, body: Object): Observable<any> {
     // Need new header object for this API call
-    const _headers = new HttpHeaders()
-      .set('x-access-token', localStorage.getItem(this._localStorageKey));
-    // this.setTokenHeader();
-    return this._http.post(url, body, {headers: _headers}).pipe(
+    return this._http.post(url, body, {headers: {'Content-Type': 'application/json', 'Accept' : 'application/json', 'x-access-token' : localStorage.getItem(this._localStorageKey) + ''}}).pipe(
       map(data => data),
       catchError(this._handleError));
   }
@@ -68,8 +60,8 @@ export class APIService {
    * @return {Observable<any>}      Return response
    */
   public put(url: string, body: Object): Observable<any> {
-    // this._setHeaders();
-    return this._http.put(url, body, {headers: this._headers}).pipe(
+
+    return this._http.put(url, body, {headers: {'Content-Type': 'application/json', 'Accept' : 'application/json', 'x-access-token' : localStorage.getItem(this._localStorageKey) + ''}}).pipe(
       map(data => data),
       catchError(this._handleError));
   }
@@ -81,8 +73,8 @@ export class APIService {
    * @return {Observable<any>}      Return response
    */
   public patch(url: string, body: Object): Observable<any> {
-    // this._setHeaders();
-    return this._http.patch(url, body, {headers: this._headers}).pipe(
+
+    return this._http.patch(url, body, {headers: {'Content-Type': 'application/json', 'Accept' : 'application/json', 'x-access-token' : localStorage.getItem(this._localStorageKey) + ''}}).pipe(
       map(data => data),
       catchError(this._handleError));
   }
@@ -91,7 +83,7 @@ export class APIService {
    * Generic error handle
    * @param {Response} error Response object
    */
-  // Made error handling more robust
+  // More robust error handling
   private _handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
