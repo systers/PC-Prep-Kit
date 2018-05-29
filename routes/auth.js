@@ -3,9 +3,9 @@ const smtpTransport = require('nodemailer-smtp-transport');
 const moment = require('moment');
 const handlebars = require('handlebars');
 const config = require('../config/settings');
-const _      = require('lodash');
-const bcrypt = require('bcrypt');
-const jwt    = require('jsonwebtoken');
+const _    = require('lodash');
+const bcrypt  = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const authenticationHelpers = require('./authenticationHelpers');
 const utilityFunctions = require('./utilityfunctions');
 const readHTMLFile = utilityFunctions.readHTMLFile;
@@ -59,21 +59,20 @@ function sendEmail(recipient, subject, content, user, nodemailer, done) {
 }
 
 module.exports = function(router, passport, async, nodemailer, crypto, models) {
-
     const localUser = models.user_account;
     /**
-     * Handle local login
-     * @param  {Object} req   Request object
-     * @param  {Object} res   Response object
-     * @param  {Object} next  Callback to the next function to be executed
-     */
+   * Handle local login
+   *  @param  {Object} req   Request object
+   *  @param  {Object} res   Response object
+   *  @param  {Object} next  Callback to the next function to be executed
+    */
     router.post('/login', function(req, res, next) {
         passport.authenticate('local-login', function(err, user, info) {
             if (err) {
                 return next(err);
             }
             if (!user) {
-                return res.status(200).json(info);
+                return res.status(200).json({error: errorCode.PCE008.message, code: errorCode.PCE008.code});
             }
             req.logIn(user, function(err) {
                 if (err) {
@@ -93,29 +92,29 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
             failureRedirect: '/login' }));
 
     /**
-     * Handle logout
-     * @param  {Object} req  Request object
-     * @param  {Object} res  Response object
-     */
+      * Handle logout
+      * @param  {Object} req  Request object
+      * @param  {Object} res  Response object
+      */
     router.get('/logout', authenticationHelpers.isAuthOrRedirect, function(req, res) {
         req.logout();
         res.json({loggedOut: req.isAuthenticated()});
     });
 
     /**
-     * Create and send authentication token to client
-     * @param  {Object} req  Request object
-     * @param  {Object} res  Response object
-     */
+      * Create and send authentication token to client
+      * @param  {Object} req  Request object
+      * @param  {Object} res  Response object
+      */
     router.get('/authenticated', authenticationHelpers.isAuth, function(req, res) {
         res.json({authenticated: true, token: createToken(req.user)});
     });
 
     /**
-     * Handle forgot password and generate reset password token
-     * @param  {Object} req  Request object
-     * @param  {Object} res  Response object
-     */
+    * Handle forgot password and generate reset password token
+    * @param  {Object} req  Request object
+    * @param  {Object} res  Response object
+    */
     router.post('/forgot', function(req, res) {
         if (!req.body.email || !validateEmail(req.body.email)) {
             return res.status(400).json({error: errorCode.PCE002.message, code: errorCode.PCE002.code});
@@ -194,10 +193,10 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
     });
 
     /**
-     * Check validity of reset password token
-     * @param  {Object} req  Request object
-     * @param  {Object} res  Response object
-     */
+    * Check validity of reset password token
+    * @param  {Object} req  Request object
+    * @param  {Object} res  Response object
+    */
     router.get('/reset/:token', function(req, res) {
         const errMsg = errorCode.PCE013.message;
         if (!req.params.token) {
@@ -221,10 +220,10 @@ module.exports = function(router, passport, async, nodemailer, crypto, models) {
     });
 
     /**
-     * Handle resetting the password
-     * @param  {Object} req  Request object
-     * @param  {Object} res  Response object
-     */
+    * Handle resetting the password
+    * @param  {Object} req  Request object
+    * @param  {Object} res  Response object
+    */
     router.put('/reset/:token', function(req, res) {
         async.waterfall([
             function(done) {

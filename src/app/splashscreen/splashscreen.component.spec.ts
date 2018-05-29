@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { SplashscreenComponent } from './splashscreen.component';
+import { LanguageService } from '../services/language.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { APIService } from '../services/api.service';
+
 
 describe('SplashscreenComponent', () => {
   let component: SplashscreenComponent;
@@ -8,9 +12,13 @@ describe('SplashscreenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SplashscreenComponent ]
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [SplashscreenComponent],
+      providers: [LanguageService, HttpClient, HttpHandler, APIService],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -23,3 +31,4 @@ describe('SplashscreenComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

@@ -1,79 +1,77 @@
 import 'rxjs/Rx';
 import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { MemoryGameComponent } from './activity-2.component';
-import { SharedDataService } from '../../services/shared.data.service';
 import { DashboardService } from '../../services/dashboard.service';
-import { AuthService } from '../../services/auth.service';
 import { APIService } from '../../services/api.service';
+import { HighlightActivityComponent } from './activity-1.component';
+import { SharedDataService } from '../../services/shared.data.service';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LanguageService } from '../../services/language.service';
 import { ButtonNavComponent } from '../../button-nav/button-nav.component';
+import { LanguageService } from '../../services/language.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs/Observable';
 
 const languageData = require('../../../assets/languages/english.json');
 
-describe('MemoryGameComponent', () => {
-  let component: MemoryGameComponent;
-  let fixture: ComponentFixture<MemoryGameComponent>;
+describe('HighlightActivityComponent', () => {
+  let component: HighlightActivityComponent;
+  let fixture: ComponentFixture<HighlightActivityComponent>;
   let dashboardService: DashboardService;
-  let authService: AuthService;
   let apiService: APIService;
   let sharedService: SharedDataService;
   let languageService: LanguageService;
-
+  const selection = window.getSelection();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      declarations: [HighlightActivityComponent, ButtonNavComponent],
       imports: [
         RouterTestingModule,
         HttpClientModule,
         ToastrModule.forRoot()
       ],
-      declarations: [MemoryGameComponent,
-        ButtonNavComponent],
       providers: [
+        SharedDataService,
         DashboardService,
         APIService,
-        AuthService,
-        SharedDataService,
         LanguageService,
-        ToastrService,
+        ToastrService
       ]
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MemoryGameComponent);
+    fixture = TestBed.createComponent(HighlightActivityComponent);
     component = fixture.componentInstance;
     dashboardService = TestBed.get(DashboardService);
-    apiService = TestBed.get(APIService);
-    authService = TestBed.get(AuthService);
     sharedService = TestBed.get(SharedDataService);
-    fixture.detectChanges();
+    apiService = TestBed.get(APIService);
     languageService = TestBed.get(LanguageService);
+    fixture.detectChanges();
   });
 
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
-  //
-  it('should match all pairs', fakeAsync(() => {
+
+  it('malaria definition is highlighted', fakeAsync(() => {
+    const rangeObject = {
+      removeAllRanges: function () {
+        return ''
+      },
+      empty: function () {
+        return ''
+      }
+    };
     spyOn(languageService, 'loadLanguage').and.returnValue(Observable.of(languageData));
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      for (let i = 0; i < 16; i++) {
-        for (let j = 0; j < 16; j++) {
-          if (i !== j) {
-            component.choose(i);
-            component.choose(j);
-            component.check();
-          }
-        }
-      }
+      spyOn(window, 'getSelection').and.returnValues('An intermittent and remittent fever caused by a protozoan parasite that invades the red blood cells. The parasite is transmitted by mosquitoes in many tropical and subtropical regions.', rangeObject);
+      spyOn(selection, 'removeAllRanges').and.returnValue('');
+      component.select();
       expect(component.activityComplete).toBeTruthy();
     });
   }));
-});
 
+});

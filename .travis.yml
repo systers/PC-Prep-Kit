@@ -1,6 +1,10 @@
 language: node_js
 node_js:
-  - "6.10.3"
+  - "8.11.2"
+dist: trusty #needs Ubuntu Trusty
+sudo: required
+addons:
+  chrome: stable #installing Chrome on Travis to run tests
 cache:
   directories:
     — node_modules
@@ -14,3 +18,4 @@ before_script:
   - sleep 60
 script:
   - ./node_modules/.bin/mocha timeout -10000
+  - ng test --watch=false
