@@ -1,9 +1,12 @@
+
+import {interval as observableInterval} from 'rxjs';
+
+import {tap} from 'rxjs/operators';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { Observable } from 'rxjs/Rx';
 import { DIAGNOSIS } from './diagnosis-detail';
 import { SharedDataService } from '../../services/shared.data.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
@@ -51,13 +54,13 @@ export class MemoryGameComponent implements OnInit {
                 'virus-1.png',
             ];
 
-    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService, ) {
             this._sharedData.position.subscribe(
             value => {
                 this.position = value;
             }
         );
-        this.toastr.setRootViewContainerRef(vcr);
+
     }
 
     ngOnInit() {
@@ -133,8 +136,8 @@ export class MemoryGameComponent implements OnInit {
             } else if (this._firstchoice !== card) {
                 this._clicks = 2;
                 this._secondchoice = card;
-                this._obs = Observable.interval(500)
-                            .do(i => this.check());
+                this._obs = observableInterval(500).pipe(
+                            tap(i => this.check()));
                 this._subscription = this._obs.subscribe();
             }
         }

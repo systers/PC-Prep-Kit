@@ -1,10 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { environment } from '../../environments/environment';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
 import 'rxjs/Rx';
-import { APIService } from './api.service';
+import {APIService} from './api.service';
 
 @Injectable()
 export class RegService {
@@ -17,9 +15,6 @@ export class RegService {
 
     public registerUser(body: Object): Observable<any> {
 
-        return this._apiservice.post(this._regApi, body)
-                            .map((res: Response) => {
-                                return res.json();
-                            });
+        return this._apiservice.post(this._regApi, body);
     }
 }

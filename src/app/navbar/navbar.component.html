@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <div class="sidebar" [@toggleNav]="state">
-    <md-toolbar color="primary">
+    <mat-toolbar color="primary">
       <button type="button" class="btn btn-default btn-lg toggle-button" aria-label="Left Align" (click)="toggle()">
         <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
       </button>
-    </md-toolbar>
+    </mat-toolbar>
 
     <ul class="nav text-center">
       <div class="profile">
@@ -14,6 +14,7 @@
       <li><a routerLink="/introduction">{{language?.links.introduction}}</a></li>
       <li><a routerLink="/malaria-101/activity-1-1">{{language?.links.malaria101}}</a></li>
       <li><a routerLink="/meds-n-labels/activity-1">{{language?.links.medsAndLabels}}</a></li>
+      <li><a routerLink="/prevent">{{language?.links.prevention}}</a></li>
       <li><a routerLink="/introduction/activity-1">{{language?.links.pcpolicy}}</a></li>
       <li><a (click)="toggleInfokit()">{{language?.links.infokit}}</a></li>
     </ul>

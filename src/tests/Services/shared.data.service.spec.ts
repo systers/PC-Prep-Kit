@@ -2,15 +2,18 @@ import { TestBed, inject } from '@angular/core/testing';
 import { DashboardService } from '../../app/services/dashboard.service';
 import { SharedDataService } from '../../app/services/shared.data.service';
 import { APIService } from '../../app/services/api.service';
-import { HttpModule } from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
+import {ToastrService, ToastrModule} from 'ngx-toastr';
 
 describe('SharedDataService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                HttpModule
+                HttpClientModule,
+              ToastrModule.forRoot()
             ],
-            providers: [SharedDataService, DashboardService, APIService]
+            providers: [SharedDataService, DashboardService, APIService,
+              ToastrService]
         });
     });
 

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DashboardService } from '../../services/dashboard.service';
 import { LanguageService } from '../../services/language.service';
 import { InfokitService } from '../../services/infokit.service';
 import { SharedDataService } from '../../services/shared.data.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-pcpolicy',
@@ -17,8 +17,7 @@ export class PcpolicyComponent implements OnInit {
     private _status: object = {stage: 1, activity: 2};
     public completed = true;
 
-    constructor(private _dashboardService: DashboardService, private _langService: LanguageService, public toastr: ToastsManager, vcr: ViewContainerRef, private _infokitService: InfokitService, private _sharedData: SharedDataService) {
-        this.toastr.setRootViewContainerRef(vcr);
+    constructor(private _dashboardService: DashboardService, private _langService: LanguageService, public toastr: ToastrService,  private _infokitService: InfokitService, private _sharedData: SharedDataService) {
     }
 
     ngOnInit() {

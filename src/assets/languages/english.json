@@ -75,7 +75,8 @@
           "malaria101": "Malaria 101",
           "medsAndLabels": "Medication And Labels",
           "pcpolicy": "Peace Corps Policy",
-          "infokit": "Infokit"
+          "infokit": "Infokit",
+          "prevention": "Prevention"
         }
       },
       "header": {
@@ -232,6 +233,15 @@
       },
       "peaceCorps": {
         "heading": "Peace Corps Policy"
+      },
+      "prevention": {
+        "heading": "Prevention",
+        "stopTheBreed": {
+          "heading": "Eliminate all the mosquito breeding places by clicking over them ",
+          "alerts" : {
+            "title" : "Congratulations!! <br> You eliminated a "
+          }
+        }
       },
       "lockedStage": {
         "heading": "Locked Stage",
