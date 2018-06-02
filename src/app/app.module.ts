@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DndModule } from 'ng2-dnd';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
-import { MaterialModule } from '@angular/material';
+
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -51,53 +50,59 @@ import { InfokitService } from './services/infokit.service';
 import { LanguageService } from './services/language.service';
 import { SharedDataService } from './services/shared.data.service';
 import { DoctorService } from './services/doctorchat.service';
+import { ToastrModule } from 'ngx-toastr';
+import { MaterialModule } from './material.module';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        LoginComponent,
-        ForgotPasswordComponent,
-        ResetPasswordComponent,
-        PcpolicyComponent,
-        SplashscreenComponent,
-        RegisterComponent,
-        NavbarComponent,
-        ActivityintroComponent,
-        HeaderComponent,
-        MenuComponent,
-        ActivityindicatorComponent,
-        InfokitComponent,
-        DragdropComponent,
-        MedsNLabelsComponent,
-        MemoryGameComponent,
-        IntroductionComponent,
-        HighlightActivityComponent,
-        PicturePuzzleComponent,
-        MatchmedsComponent,
-        Malaria101Component,
-        AnimatedVideoComponent,
-        MalariaLifeCycleComponent,
-        OddOneOutComponent,
-        StageCompleteComponent,
-        DoctorchatComponent,
-        ButtonNavComponent,
-        UnlockedStageComponent,
-        HowToPlayComponent
-    ],
-    imports: [
-        AppRoutingModule,
-        FormsModule,
-        HttpModule,
-        ReactiveFormsModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        DndModule.forRoot(),
-        MaterialModule,
-        ToastModule.forRoot()
-    ],
-    schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-    providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,
-      SharedDataService, InfokitService, LanguageService, DoctorService],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    PcpolicyComponent,
+    SplashscreenComponent,
+    RegisterComponent,
+    NavbarComponent,
+    ActivityintroComponent,
+    HeaderComponent,
+    MenuComponent,
+    ActivityindicatorComponent,
+    InfokitComponent,
+    DragdropComponent,
+    MedsNLabelsComponent,
+    MemoryGameComponent,
+    IntroductionComponent,
+    HighlightActivityComponent,
+    PicturePuzzleComponent,
+    MatchmedsComponent,
+    Malaria101Component,
+    AnimatedVideoComponent,
+    MalariaLifeCycleComponent,
+    OddOneOutComponent,
+    StageCompleteComponent,
+    DoctorchatComponent,
+    ButtonNavComponent,
+    UnlockedStageComponent,
+    HowToPlayComponent
+  ],
+  imports: [
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    DndModule.forRoot(),
+    ToastrModule.forRoot(),
+    MaterialModule,
+
+    RouterModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,
+    SharedDataService, InfokitService, LanguageService, DoctorService],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
+

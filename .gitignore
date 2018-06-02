@@ -43,3 +43,9 @@ testem.log
 Thumbs.db
 *.*~
 
+# User uploaded files
+/src/assets/img/uploads/*
+
+# Config files storing passwords
+/config/settings.js
+

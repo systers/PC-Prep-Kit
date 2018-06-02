@@ -1,8 +1,9 @@
+import { interval as observableInterval } from 'rxjs';
+
+import { tap } from 'rxjs/operators';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
 import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
@@ -29,8 +30,8 @@ export class OddOneOutComponent implements OnInit {
     public alerts: any;
     public solutions = '';
 
-    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService, public toastr: ToastsManager, vcr: ViewContainerRef) {
-        this.toastr.setRootViewContainerRef(vcr);
+    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService,  vcr: ViewContainerRef) {
+
     }
 
     /**
@@ -86,8 +87,8 @@ export class OddOneOutComponent implements OnInit {
         } else {
             this._sharedData.customErrorAlert(this.alerts.activityFailMsg, this.alerts.activityFailTitle);
         }
-        this._obs = Observable.interval(1000)
-                    .do(i => this.changeQuestion() );
+        this._obs = observableInterval(1000).pipe(
+                    tap(i => this.changeQuestion() ));
         this._subscription = this._obs.subscribe();
     }
 

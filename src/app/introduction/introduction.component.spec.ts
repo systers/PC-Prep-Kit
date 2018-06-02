@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { IntroductionComponent } from './introduction.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { LanguageService } from '../services/language.service';
+import { HttpClientModule } from '@angular/common/http';
+import { APIService } from '../services/api.service';
 
 describe('IntroductionComponent', () => {
   let component: IntroductionComponent;
@@ -8,9 +11,14 @@ describe('IntroductionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IntroductionComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      declarations: [IntroductionComponent],
+      providers: [LanguageService, APIService],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -23,3 +31,5 @@ describe('IntroductionComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+

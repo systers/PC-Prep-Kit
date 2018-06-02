@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewChecked, ViewChild, ViewContainerRef } from '@angular/core';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DoctorService } from '../../services/doctorchat.service';
 import { SharedDataService } from '../../services/shared.data.service';
 import { InfokitService } from '../../services/infokit.service';
@@ -22,8 +21,8 @@ export class DoctorchatComponent implements OnInit, AfterViewChecked {
     messages = [];
     @ViewChild('chats') chatContainer;
 
-    constructor(private _doctorchat: DoctorService, private _sharedData: SharedDataService, vcr: ViewContainerRef, private _infokitService: InfokitService, public toastr: ToastsManager, private _dashboardService: DashboardService, private _langService: LanguageService) {
-        this.toastr.setRootViewContainerRef(vcr);
+    constructor(private _doctorchat: DoctorService, private _sharedData: SharedDataService, vcr: ViewContainerRef, private _infokitService: InfokitService,  private _dashboardService: DashboardService, private _langService: LanguageService) {
+
     }
 
     ngOnInit() {
