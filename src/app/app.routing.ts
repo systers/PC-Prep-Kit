@@ -12,7 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './introduction/activityintro/activityintro.component';
 import { MenuComponent } from './menu/menu.component';
-import { DragdropComponent} from './malaria-101/activity-2/activity-2.component';
+import { DragdropComponent } from './malaria-101/activity-2/activity-2.component';
 import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
 import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
 import { IntroductionComponent } from './introduction/introduction.component';
@@ -27,6 +27,8 @@ import { StageCompleteComponent } from './stage-complete/stage-complete.componen
 import { DoctorchatComponent } from './meds-n-labels/activity-3/activity-3.component';
 import { UnlockedStageComponent } from './unlocked-stage/unlocked-stage.component';
 import { HowToPlayComponent } from './unlocked-stage/how-to-play/howtoplay.component';
+import { StopTheBreedComponent } from './prevention/stop-the-breed/stop-the-breed.component';
+import { PreventionComponent } from './prevention/prevention.component';
 
 export const routes: Routes = [
     {
@@ -148,7 +150,23 @@ export const routes: Routes = [
         path: 'unlocked-stage/game',
         component: UnlockedStageComponent,
         canActivate: [LoggedInGuard]
-    }
+    },
+    {
+        path: 'prevent',
+        canActivate: [LoggedInGuard],
+        component: PreventionComponent,
+        children: [
+            {
+              path: '',
+              redirectTo: 'stop-the-breed/game',
+              pathMatch: 'full'
+            },
+            {
+              path: 'stop-the-breed/game',
+              component: StopTheBreedComponent,
+            },
+    ]
+    },
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

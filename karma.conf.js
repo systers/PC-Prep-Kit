@@ -29,6 +29,7 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['ChromeHeadless'],
     singleRun: false,
-    concurrency: Infinity
+    concurrency: Infinity,
+    files: ["node_modules/raphael/raphael.min.js"]
   });
 };
