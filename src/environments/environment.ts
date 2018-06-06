@@ -11,5 +11,6 @@ export const environment = {
     apiEndpoint: 'api/',
     authEndpoint: 'auth/',
     regEndPoint: 'registration/',
+    updateEndPoint: 'update-user/',
     localStorageKey: 'pcprepkitUser'
 };

@@ -131,6 +131,7 @@ describe('Testing APIs', function() {
                     });
             });
 
+
             it('Get username', function(done) {
                 server
                     .get('/api/username')
@@ -140,6 +141,21 @@ describe('Testing APIs', function() {
                     .expect(200)
                     .end(function(err, res) {
                         res.body.username.should.equal(`${testCred.fname} ${testCred.lname}`);
+                        done();
+                    });
+            });
+
+            it('Updates User Profile', function(done) {
+                let updatedProfile = {firstName: 'newFirstName', lastName: 'newLastName'};
+                server
+                    .patch('/update-user/')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .send(updatedProfile)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.info.should.equal('PCS006 : User\'s profile was successfully updated');
                         done();
                     });
             });
