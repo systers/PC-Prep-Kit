@@ -27,7 +27,9 @@ export class InfokitComponent implements OnInit {
         {key: 'odd_one_out', value: false, def: 'Odd One Out', img: 'malariainfo.png'},
         {key: 'match_meds', value: false, def: 'Match the Meds', img: 'meds.png'},
         {key: 'side_effects', value: false, def: 'Side Effects', img: 'sideeffects.png'},
-        {key: 'doctor_info', value: false, def: 'Doctor Information', img: 'doctor.png'}
+        {key: 'doctor_info', value: false, def: 'Doctor Information', img: 'doctor.png'},
+        {key: 'stop_Breed', value: false, def: 'StopTheBreed', img: 'stopBreed.png'},
+        {key: 'stride_Against', value: false, def: 'StrideAgainstMalaria', img: 'strideAgainst.png'}
     ];
 
     // Sets the Heading In Infokit Pop Up

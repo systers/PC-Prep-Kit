@@ -1,0 +1,9 @@
+<div mat-dialog-content>
+  <div id="question">{{data.question}}</div>
+  <mat-divider></mat-divider>
+</div>
+<div id="options">
+  <button mat-stroked-button (click)="setTrue(); save()">{{language?.true}}</button>
+  <button mat-stroked-button (click)="setFalse(); save()">{{language?.false}}</button>
+</div>
+

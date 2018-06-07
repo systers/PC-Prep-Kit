@@ -9,6 +9,7 @@ import { SharedDataService } from '../../services/shared.data.service';
 import { StopTheBreedComponent } from './stop-the-breed.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from '../../material.module';
+import { InfokitService } from '../../services/infokit.service';
 
 describe('StopTheBreedComponent', () => {
   let component: StopTheBreedComponent;
@@ -17,7 +18,8 @@ describe('StopTheBreedComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [StopTheBreedComponent],
-      providers: [LanguageService, HttpClient, HttpHandler, ToastrService, APIService, DashboardService, SharedDataService],
+      providers: [LanguageService, HttpClient, HttpHandler, ToastrService, APIService, DashboardService,
+        SharedDataService, InfokitService],
       imports: [RouterTestingModule, ToastrModule.forRoot(), SharedModule, MaterialModule]
     })
       .compileComponents();

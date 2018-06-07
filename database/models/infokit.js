@@ -32,6 +32,14 @@ module.exports = function(sequelize, Sequelize) {
         doctor_info: {
             type: Sequelize.BOOLEAN,
             defaultValue: false
+        },
+        stop_Breed: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
+        },
+        stride_Against: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
         }
     }, {
         tableName: 'info_kit'

@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3 text-center">
+    <h2 class="stage-header">{{language?.heading}}</h2>
+  </div>
+</div>
+
+<div class="row">
+  <h2 class="sub-heading-1 text-center">{{language?.howtoplay.instructions.title}}</h2>
+  <ol id="guide">
+    <li>{{language?.howtoplay.instructions.ins1}}</li>
+    <li>{{language?.howtoplay.instructions.ins2}}</li>
+  </ol>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-3">
+    <div #gameArea id="game-area"></div>
+  </div>
+</div>
+<button-nav nexturl="/" prevurl="/prevent/stop-the-breed/game" [completed]="completed"
+            [complete]="activityComplete">
+</button-nav>
+

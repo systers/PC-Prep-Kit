@@ -77,5 +77,4 @@ describe('PicturePuzzleComponent', () => {
       expect(saveProPic.disabled).toEqual(true);
     });
   }));
-
 });

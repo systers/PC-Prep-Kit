@@ -4,6 +4,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material';
 import { MatIconModule } from '@angular/material';
+import { MatDividerModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
 import { MatTooltipModule } from '@angular/material';
 
@@ -14,8 +15,8 @@ import { MatTooltipModule } from '@angular/material';
     MatButtonModule,
     MatChipsModule,
     MatIconModule,
+    MatDividerModule,
     MatSidenavModule,
-    MatIconModule,
     MatTooltipModule
   ],
   exports: [
@@ -23,7 +24,7 @@ import { MatTooltipModule } from '@angular/material';
     MatDialogModule,
     MatButtonModule,
     MatChipsModule,
-    MatIconModule,
+    MatDividerModule,
     MatSidenavModule,
     MatIconModule,
     MatTooltipModule

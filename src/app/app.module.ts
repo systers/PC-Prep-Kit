@@ -53,6 +53,7 @@ import { SharedDataService } from './services/shared.data.service';
 import { DoctorService } from './services/doctorchat.service';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material.module';
+import { StridesAgainstModule } from './prevention/strides-against/strides-against.module';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { MaterialModule } from './material.module';
     MaterialModule,
     SharedModule,
     StopTheBreedModule,
+    StridesAgainstModule,
 
     RouterModule
   ],
