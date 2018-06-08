@@ -53,6 +53,8 @@ import { SharedDataService } from './services/shared.data.service';
 import { DoctorService } from './services/doctorchat.service';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material.module';
+import { PerformanceDisplayComponent } from './performance-display/performance-display.component';
+import { PerformanceDisplayService } from './services/performance-display.service';
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { StridesAgainstModule } from './prevention/strides-against/strides-against.module';
 
@@ -87,6 +89,8 @@ import { StridesAgainstModule } from './prevention/strides-against/strides-again
     UnlockedStageComponent,
     HowToPlayComponent,
     PreventionComponent,
+    PerformanceDisplayComponent,
+    PreventionComponent,
     HowToPlayComponent,
     UserUpdateComponent
   ],
@@ -107,11 +111,11 @@ import { StridesAgainstModule } from './prevention/strides-against/strides-again
     RouterModule
   ],
   entryComponents: [
-    UserUpdateComponent,
+    PerformanceDisplayComponent, UserUpdateComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,
-    SharedDataService, InfokitService, LanguageService, DoctorService],
+    SharedDataService, InfokitService, LanguageService, DoctorService, PerformanceDisplayService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

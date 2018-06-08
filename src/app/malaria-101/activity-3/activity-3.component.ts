@@ -5,6 +5,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
 import { LanguageService } from '../../services/language.service';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
 
 @Component({
     selector: 'app-oddoneout',
@@ -30,7 +31,8 @@ export class OddOneOutComponent implements OnInit {
     public alerts: any;
     public solutions = '';
 
-    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService,  vcr: ViewContainerRef) {
+    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService,  vcr: ViewContainerRef,
+                private _performanceService: PerformanceDisplayService) {
 
     }
 
@@ -120,7 +122,8 @@ export class OddOneOutComponent implements OnInit {
         this._questionNumber++;
         if (this._questionNumber === 5) {
             this.activityComplete = true;
-            this._sharedData.customAlert(this.language.alerts.title, this.solutions, 'info');
+          if (!this.completed) { this._performanceService.openDialog(5); }
+          this._sharedData.customAlert(this.language.alerts.title, this.solutions, 'info');
             this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
             return;
         }

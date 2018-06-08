@@ -10,6 +10,9 @@ import { StopTheBreedComponent } from './stop-the-breed.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from '../../material.module';
 import { InfokitService } from '../../services/infokit.service';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 describe('StopTheBreedComponent', () => {
   let component: StopTheBreedComponent;
@@ -19,8 +22,8 @@ describe('StopTheBreedComponent', () => {
     TestBed.configureTestingModule({
       declarations: [StopTheBreedComponent],
       providers: [LanguageService, HttpClient, HttpHandler, ToastrService, APIService, DashboardService,
-        SharedDataService, InfokitService],
-      imports: [RouterTestingModule, ToastrModule.forRoot(), SharedModule, MaterialModule]
+        SharedDataService, InfokitService, PerformanceDisplayService, MatDialog],
+      imports: [RouterTestingModule, ToastrModule.forRoot(), SharedModule, MaterialModule, OverlayModule]
     })
       .compileComponents();
   }));

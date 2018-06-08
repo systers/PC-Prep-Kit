@@ -11,6 +11,9 @@ import { LanguageService } from '../../services/language.service';
 import { ButtonNavComponent } from '../../button-nav/button-nav.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs/Observable';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 const languageData = require('../../../assets/languages/english.json');
 
@@ -29,7 +32,8 @@ describe('MemoryGameComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        OverlayModule
       ],
       declarations: [MemoryGameComponent,
         ButtonNavComponent],
@@ -40,6 +44,8 @@ describe('MemoryGameComponent', () => {
         SharedDataService,
         LanguageService,
         ToastrService,
+        PerformanceDisplayService,
+        MatDialog
       ]
     }).compileComponents();
   }));

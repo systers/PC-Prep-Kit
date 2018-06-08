@@ -11,6 +11,9 @@ import { ButtonNavComponent } from '../../button-nav/button-nav.component';
 import { LanguageService } from '../../services/language.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { By } from '@angular/platform-browser';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 describe('PicturePuzzleComponent', () => {
   let component: PicturePuzzleComponent;
@@ -31,14 +34,17 @@ describe('PicturePuzzleComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        OverlayModule
       ],
       providers: [
         SharedDataService,
         DashboardService,
         APIService,
         LanguageService,
-        ToastrService
+        ToastrService,
+        PerformanceDisplayService,
+        MatDialog
 
       ]
     })

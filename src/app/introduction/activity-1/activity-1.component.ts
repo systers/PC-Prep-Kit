@@ -1,5 +1,5 @@
 import { interval as observableInterval } from 'rxjs';
-
+import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { tap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
@@ -23,10 +23,10 @@ export class HighlightActivityComponent implements OnInit {
     public language: any;
     public alerts: any;
     public completed = false;
+  constructor(private _langService: LanguageService, private _dashboardService: DashboardService,
+              private _sharedData: SharedDataService, private _performanceService: PerformanceDisplayService) {
 
-    constructor(private _langService: LanguageService, private _dashboardService: DashboardService,  private _sharedData: SharedDataService) {
-
-    }
+  }
 
     /**
      * Handle activity setup (Displaying activity information, checking user's progress and checking completing of activity)
@@ -69,6 +69,7 @@ export class HighlightActivityComponent implements OnInit {
                 });
                 this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
                 this.activityComplete = true;
+                if (!this.completed) { this._performanceService.openDialog(1); }
             }
         }
     }

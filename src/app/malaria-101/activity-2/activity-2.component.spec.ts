@@ -10,6 +10,9 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { APIService } from '../../services/api.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { RouterTestingModule } from '@angular/router/testing';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 describe('DragdropComponent', () => {
   let component: DragdropComponent;
@@ -20,8 +23,8 @@ describe('DragdropComponent', () => {
       declarations: [DragdropComponent, ButtonNavComponent, DraggableComponent],
       providers: [LanguageService,
         SharedDataService, InfokitService, DragDropService, DashboardService,
-        HttpClient, HttpHandler, APIService, ToastrService, DragDropConfig],
-      imports: [ToastrModule.forRoot(), RouterTestingModule]
+        HttpClient, HttpHandler, APIService, ToastrService, DragDropConfig, PerformanceDisplayService, MatDialog],
+      imports: [ToastrModule.forRoot(), RouterTestingModule, OverlayModule]
     })
       .compileComponents();
   }));

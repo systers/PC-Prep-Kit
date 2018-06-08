@@ -143,6 +143,17 @@
         "activitySuccessMsg": "You completed this activity!",
         "activityFailTitle": "Oops!",
         "activityFailMsg": "That is incorrect, please try again!"
+      },
+      "performanceDisplay": {
+        "Heading": {
+          "start": "Congratulations on Completing the ",
+          "end": " activity!"
+        },
+        "tooltip": {
+          "Dashboard": "Dashboard",
+          "Toolkit": "Infokit"
+        },
+        "message": "This activity has been added to the toolkit. You may access it from there in future."
       }
     },
     "stages": {

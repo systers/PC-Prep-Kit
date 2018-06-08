@@ -7,6 +7,7 @@ import { SharedDataService } from '../../services/shared.data.service';
 import { LanguageService } from '../../services/language.service';
 import { DashboardService } from '../../services/dashboard.service';
 import { InfokitService } from '../../services/infokit.service';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
 
 @Component({
   selector: 'app-stop-the-breed',
@@ -34,7 +35,7 @@ export class StopTheBreedComponent implements OnInit {
 
   constructor(public dialog: MatDialog, public sharedDataService: SharedDataService,
               private _langService: LanguageService, private _dashboardService: DashboardService,
-              private _infokitService: InfokitService) {
+              private _infokitService: InfokitService, private _performanceService: PerformanceDisplayService) {
   }
 
 
@@ -45,6 +46,8 @@ export class StopTheBreedComponent implements OnInit {
       this._dashboardService.updateProgressStatus({stage: 4, activity: 2})
         .subscribe(res => res);
       this.activityComplete = true;
+      if (!this.completed) { this._performanceService.openDialog(8); }
+
       this._infokitService.activateinfokit('stop_Breed').subscribe( () => {});
     }
   }

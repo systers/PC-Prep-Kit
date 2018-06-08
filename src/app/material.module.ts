@@ -17,7 +17,7 @@ import { MatTooltipModule } from '@angular/material';
     MatIconModule,
     MatDividerModule,
     MatSidenavModule,
-    MatTooltipModule,
+    MatTooltipModule
   ],
   exports: [
     MatToolbarModule,
@@ -25,9 +25,9 @@ import { MatTooltipModule } from '@angular/material';
     MatButtonModule,
     MatChipsModule,
     MatDividerModule,
-    MatTooltipModule,
     MatSidenavModule,
     MatIconModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule {
