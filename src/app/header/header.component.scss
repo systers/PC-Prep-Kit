@@ -1,7 +1,26 @@
 @import "../styles/main";
+#header {
+  background: $blue;
+}
 
 .header-bar {
-    background: $header-background;
-    margin-top: 0;
-    margin-bottom: 0;
+  background: $header-background;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.icons {
+  color: $white;
+  font-size: $font-size-med;
+}
+
+.icons :hover {
+  cursor: pointer;
+}
+
+i {
+  margin-right: 1em;
+}
+
+#toggle {
+  font-size: $font-size-med;
 }

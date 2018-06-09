@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../material.module';
 import { DashboardService } from '../services/dashboard.service';
 import { LanguageService } from '../services/language.service';
+import { InfokitComponent } from '../infokit/infokit.component';
+import { InfokitService } from '../services/infokit.service';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -22,13 +24,15 @@ describe('NavbarComponent', () => {
       ],
       declarations: [
         NavbarComponent,
-        HeaderComponent
+        HeaderComponent,
+        InfokitComponent
       ],
       providers: [
         NavbarService,
         APIService,
         DashboardService,
-        LanguageService
+        LanguageService,
+        InfokitService
       ]
     })
       .compileComponents();

@@ -1,6 +1,5 @@
-<!--The whole content below can be removed with the new code.-->
 <div class="header" [hidden]='!loggedIn'>
-    <app-header (toggleNavbar)="nav.toggle()"> </app-header>
+    <app-header (toggleNavbar)="nav.toggle()" (openEditProfile)="nav.editUser()"> </app-header>
 </div>
 <app-infokit #info > </app-infokit>
 <app-navbar #nav (togglePosition)="toggle();" (infoPop)="info.pop()" [hidden]='!loggedIn'> </app-navbar>

@@ -14,6 +14,7 @@ import { LanguageService } from '../services/language.service';
 export class HeaderComponent implements OnInit {
     language: any;
     @Output() toggleNavbar = new EventEmitter<any>();
+    @Output() openEditProfile = new EventEmitter<any> ();
 
     navbartoggle() {
         this.toggleNavbar.emit();
@@ -33,5 +34,9 @@ export class HeaderComponent implements OnInit {
                 this._router.navigate(['/login']);
             }
         });
+    }
+
+    editProfile(): void {
+      this.openEditProfile.emit();
     }
 }
