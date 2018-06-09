@@ -6,13 +6,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DndModule } from 'ng2-dnd';
 
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { UnauthenticatedGuard } from './guards/unauthenticated.guard';
-import { ButtonNavComponent } from './button-nav/button-nav.component';
 import { LoginComponent } from './authentication/login.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password.component';
@@ -40,6 +38,9 @@ import { StageCompleteComponent } from './stage-complete/stage-complete.componen
 import { DoctorchatComponent } from './meds-n-labels/activity-3/activity-3.component';
 import { UnlockedStageComponent } from './unlocked-stage/unlocked-stage.component';
 import { HowToPlayComponent } from './unlocked-stage/how-to-play/howtoplay.component';
+import { PreventionComponent } from './prevention/prevention.component';
+import { StopTheBreedModule } from './prevention/stop-the-breed/stop-the-breed.module';
+import { SharedModule } from './shared.module';
 
 import { DashboardService } from './services/dashboard.service';
 import { AuthService } from './services/auth.service';
@@ -81,9 +82,9 @@ import { MaterialModule } from './material.module';
     OddOneOutComponent,
     StageCompleteComponent,
     DoctorchatComponent,
-    ButtonNavComponent,
     UnlockedStageComponent,
-    HowToPlayComponent
+    HowToPlayComponent,
+    PreventionComponent
   ],
   imports: [
     AppRoutingModule,
@@ -95,6 +96,8 @@ import { MaterialModule } from './material.module';
     DndModule.forRoot(),
     ToastrModule.forRoot(),
     MaterialModule,
+    SharedModule,
+    StopTheBreedModule,
 
     RouterModule
   ],

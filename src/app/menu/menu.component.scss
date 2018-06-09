@@ -102,6 +102,10 @@
     background: $white;
 }
 
+.prevent-inner-circle {
+  background: $prevent-color;
+}
+
 .malaria-outer-circle {
     background: $malaria-outer-circle-color;
 }
@@ -112,6 +116,9 @@
 
 .pc-policy-outer-circle {
     background: $pc-outer-circle-policy-color;
+}
+.prevent-outer-circle {
+  background: $prevent-outer-circle-color;
 }
 
 .unlocked-outer-circle {
@@ -156,4 +163,8 @@
 .unlocked-btn {
     background-color: $white;
     color: grey;
+}
+
+.prevent-btn {
+  background-color: $prevent-color;
 }
