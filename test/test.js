@@ -1,15 +1,13 @@
 const supertest = require('supertest');
 const should = require('should');
 const models = require('../database/models');
-// let expect = chai.expect;
 const localUser = models.user_account;
 const server = supertest.agent('http://localhost:3000');
-const testCred = {fname: 'testfirstname', lname: 'testlastname', email: 'test34374@gmail.com', password: 'Testing-1', confirmpassword: 'Testing-1'};
+const testCred = {fname: 'testfirstname', lname: 'testlastname', email: 'abcde@efg.ijklm', password: 'Testing-1', confirmpassword: 'Testing-1'};
+const verification = models.verification;
 
-// const sinon = require('sinon');
 let user;
 let token;
-// const Verifier = require('email-verify');
 describe('Testing APIs', function() {
 
     it('login without registration', function(done) {
@@ -22,7 +20,6 @@ describe('Testing APIs', function() {
                 done();
             });
     });
-    // res.json().info.should.equal('PCE008 : Invalid email or password');
     it('Forgot password without registration', function(done) {
         server
             .post('/auth/forgot')
@@ -36,10 +33,6 @@ describe('Testing APIs', function() {
 
     describe('Creating User', function() {
 
-        // before(function(done){
-        //     this.verify = sinon.stub(verifier, 'verify').returns(true);
-        //     done();
-        // }); Not working
         before('Register User', function(done) {
             this.enableTimeouts(false);
 
@@ -49,11 +42,33 @@ describe('Testing APIs', function() {
                 .expect(200)
                 .end(function(err, res) {
                     res.body.should.be.okay;
-
-                    // Email API not working
-                    // res.body.should.equal('PCS005 : Verification mail sent, please check your mail.');
+                    res.body.should.equal('PCS005 : Verification mail sent, please check your mail');
                     done();
+                })
+        });
+
+        before('Verify the user E-Mail ID', function(done) {
+            localUser.find({
+                where: {
+                    email: testCred.email
+                },
+            }).then( data => {
+                const id = data.id;
+                verification.find({
+                    where: {
+                        user_id: id
+                    }
+                }).then( data => {
+                    const verificationToken = data.verificationCode;
+                    server
+                        .get(`/verification?token=${verificationToken}&user=${testCred.email}`)
+                        .expect(200)
+                        .end(function(err, res) {
+                            res.body.should.be.okay;
+                            done();
+                        })
                 });
+            })
         });
 
         after('Delete User', function(done) {
@@ -65,18 +80,19 @@ describe('Testing APIs', function() {
                 done();
             });
         });
-        /* Email API not working
+
         it('Forgot password after registration', function(done) {
+            this.enableTimeouts(false);
             server
-            .post('/auth/forgot')
-            .send(testCred)
-            .expect(200)
-            .end(function(err, res) {
-                res.body.success.should.equal(`PCS002 : An e-mail has been sent to ${testCred.email} with further instructions`);
-                done();
-            });
+                .post('/auth/forgot')
+                .send(testCred)
+                .expect(200)
+                .end(function(err, res) {
+                    res.body.success.should.equal(`PCS002 : An e-mail has been sent to ${testCred.email} with further instructions`);
+                    done();
+                });
         });
-*/
+
 
 
         it('Authentication Fail without login', function(done) {
@@ -173,8 +189,9 @@ describe('Testing APIs', function() {
                         done();
                     });
             });
-            /* MAIL API not working
+
             it('Mail PC Policy', function(done) {
+                this.enableTimeouts(false);
                 server
                     .get('/api/mailpcpolicy')
                     .set('Content-Type', 'application/json')
@@ -186,7 +203,7 @@ describe('Testing APIs', function() {
                         done();
                     });
             });
-*/
+
             it('Update progress Status Illegal test', function(done) {
                 let updatedStatus = {stage: 2, activity: 1};
                 server

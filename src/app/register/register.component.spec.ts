@@ -6,6 +6,9 @@ import { RegService } from '../services/reg.service';
 import { APIService } from '../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LanguageService } from '../services/language.service';
+import { MaterialModule } from '../material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -17,7 +20,10 @@ describe('RegisterComponent', () => {
       imports: [
         HttpClientModule,
         ReactiveFormsModule,
-        RouterTestingModule
+        RouterTestingModule,
+        MaterialModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot()
       ],
       providers: [
         RegService,

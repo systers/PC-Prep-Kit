@@ -3,12 +3,21 @@
     "registration": {
       "messages": {
         "heading": "Sign Up",
-        "buttonMessage": "Sign Up"
+        "registerButtonMessage": "Register",
+        "loginButtonMessage": "Back to Login",
+        "successMessage": "We have a sent you a verification mail. Please verify to login."
       },
       "placeHolders": {
+        "firstName": "Your first name",
+        "lastName": "Your last name",
+        "email": "Your personal email id",
+        "password": "Type a strong and secure password",
+        "confirmPassword": "Retype the above password"
+      },
+      "labels": {
         "firstName": "First Name",
         "lastName": "Last Name",
-        "email": "Email",
+        "email": "E-Mail",
         "password": "Password",
         "confirmPassword": "Confirm Password"
       }
@@ -16,8 +25,9 @@
 
     "forgotPassword": {
       "messages": {
-        "heading": "Reset",
-        "buttonMessage": "Reset"
+        "heading": "Reset Your Password",
+        "resetButtonMessage": "Reset",
+        "loginButtonMessage": "Back to Login"
       },
       "placeHolders": {
         "email": "Email"
@@ -62,9 +72,14 @@
         "emailInvalid": "The email address is invalid",
         "passwordReq": "Password is required",
         "passwordInvalid": "Password is invalid",
-        "passwordMatch": "Passwords should match",
+        "passwordMatch": "Passwords must match",
+        "confirmPasswordReq": "Confirm password is required",
         "loginError": "Incorrect username and password, please try again",
-        "registrationFail": "Registration unsuccesful"
+        "registrationFail": "Registration unsuccessful",
+        "passwordLength": "Password must be at least 8 characters long",
+        "passwordPattern": "Password must have at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character (!@#$%^&*)",
+        "firstNameReq": "First Name is required"
+
       }
     },
     "userUpdate": {
