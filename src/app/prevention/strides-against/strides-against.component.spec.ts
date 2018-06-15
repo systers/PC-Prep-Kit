@@ -15,6 +15,8 @@ import { StridesAgainstComponent } from './strides-against.component';
 import { InfokitService } from '../../services/infokit.service';
 import { CertificateService } from '../../certificate/certificate.component';
 import { NavbarService } from '../../services/navbar.service';
+import { BadgeService } from '../../services/BadgeService/badge.service';
+
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -40,7 +42,7 @@ describe('StridesAgainstComponent', () => {
       imports: [RouterTestingModule, ToastrModule.forRoot(), SharedModule, MaterialModule, OverlayModule],
       providers: [LanguageService, HttpClient, HttpHandler, ToastrService,
         APIService, DashboardService, SharedDataService, {provide: ComponentFixtureAutoDetect, useValue: true},
-        InfokitService, PerformanceDisplayService, MatDialog, CertificateService, NavbarService
+        InfokitService, PerformanceDisplayService, MatDialog, BadgeService, CertificateService, NavbarService
       ],
 
     })

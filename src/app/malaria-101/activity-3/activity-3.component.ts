@@ -5,6 +5,8 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
 import { LanguageService } from '../../services/language.service';
+import { BadgeService } from '../../services/BadgeService/badge.service';
+import swal from 'sweetalert2';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 
 @Component({
@@ -32,7 +34,7 @@ export class OddOneOutComponent implements OnInit {
     public solutions = '';
 
     constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService,  vcr: ViewContainerRef,
-                private _performanceService: PerformanceDisplayService) {
+                private _performanceService: PerformanceDisplayService, private _badgeService: BadgeService) {
 
     }
 
@@ -122,8 +124,16 @@ export class OddOneOutComponent implements OnInit {
         this._questionNumber++;
         if (this._questionNumber === 5) {
             this.activityComplete = true;
-          if (!this.completed) { this._performanceService.openDialog(5); }
-          this._sharedData.customAlert(this.language.alerts.title, this.solutions, 'info');
+            swal({
+              title: this.language.alerts.title,
+              html: this.solutions,
+              type: 'info',
+            }).then( res => { if (!this.completed) {
+              const badgeNumber = 2;
+              const currStage = 5;
+              this._badgeService.updateBadgeNumber(badgeNumber).subscribe(response => response);
+              this._performanceService.openDialog(currStage);
+          }});
             this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
             return;
         }

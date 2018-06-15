@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { InfokitService } from '../services/infokit.service';
 import { LanguageService } from '../services/language.service';
+import { BadgeConfig } from '../badge/Config';
+import { BadgeService } from '../services/BadgeService/badge.service';
+import { Badge } from '../badge/models/badgeModel';
 
 @Component({
     selector: 'app-infokit',
@@ -13,6 +16,7 @@ export class InfokitComponent implements OnInit {
     // sets infokit visible/Invisible Default : Invisible
     public infokitState = false;
     public infokitAvailable = false;
+    public badgesAvailable = false;
     /**
      * sets the Infokit Information to visible/Invisible Default : Invisible.
      * When Infokit Information is Invisible the Infokit Selector is Visible and Vice Versa.
@@ -33,11 +37,14 @@ export class InfokitComponent implements OnInit {
     ];
 
     // Sets the Heading In Infokit Pop Up
-    public heading = 'Info Kit';
+    public heading;
     // Sets the Content In Infokit Pop Up
-    public infoContent = 'loading...';
+    public infoContent;
+    public badgeNumber: number;
+    public activeBadges: Array<Badge> = [];
 
-    constructor(private _infokitService: InfokitService, private _langService: LanguageService) { }
+    constructor(private _infokitService: InfokitService, private _langService: LanguageService,
+                private _badgeService: BadgeService) { }
 
     /**
      * Get data from Infokit API
@@ -46,6 +53,8 @@ export class InfokitComponent implements OnInit {
         this.getData();
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.common.infokit;
+            this.heading = this.language.headings.heading_main;
+            this.infoContent = this.language.messages.loadingMessage;
         });
     }
 
@@ -55,9 +64,9 @@ export class InfokitComponent implements OnInit {
      */
     pop() {
         this.getData();
+        this.getBadges();
+
         this.showInfo = false;
-        this.heading = 'Info Kit';
-        this.infoContent = 'loading...';
         this.infokitState = !this.infokitState;
     }
     /**
@@ -69,6 +78,12 @@ export class InfokitComponent implements OnInit {
         this.heading = activity;
         this.showInfo = true;
         this.infoContent = this.language[key];
+    }
+
+    badgeInfo(name, message) {
+      this.heading = name;
+      this.showInfo = true;
+      this.infoContent = message;
     }
 
     /**
@@ -90,4 +105,14 @@ export class InfokitComponent implements OnInit {
             });
         }
     }
+  getBadges() {
+      if (localStorage.getItem(InfokitComponent._localStorageKey)) {
+        this._badgeService.getBadgeNumber().subscribe( res => {
+          this.badgeNumber = res;
+          BadgeConfig.splice(this.badgeNumber + 1);
+          this.activeBadges = BadgeConfig;
+          if (this.activeBadges.length) {this.badgesAvailable = true; }
+        });
+      }}
 }
+

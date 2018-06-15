@@ -69,7 +69,8 @@ export class HighlightActivityComponent implements OnInit {
                 });
                 this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
                 this.activityComplete = true;
-                if (!this.completed) { this._performanceService.openDialog(1); }
+                if (!this.completed) { const currStage = 1;
+                  this._performanceService.openDialog(currStage); }
             }
         }
     }

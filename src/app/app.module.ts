@@ -54,6 +54,8 @@ import { DoctorService } from './services/doctorchat.service';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material.module';
 import { ActivityGuard } from './guards/activity.guard';
+import { BadgeService } from './services/BadgeService/badge.service';
+import { BadgeComponent } from './badge/badge.component';
 import { CertificateComponent } from './certificate/certificate.component';
 import { CertificateService } from './certificate/certificate.component';
 import { PerformanceDisplayComponent } from './performance-display/performance-display.component';
@@ -94,8 +96,7 @@ import { StridesAgainstModule } from './prevention/strides-against/strides-again
     PreventionComponent,
     CertificateComponent,
     PerformanceDisplayComponent,
-    PreventionComponent,
-    HowToPlayComponent,
+    BadgeComponent,
     UserUpdateComponent
   ],
   imports: [
@@ -115,12 +116,11 @@ import { StridesAgainstModule } from './prevention/strides-against/strides-again
     RouterModule
   ],
   entryComponents: [
-    UserUpdateComponent, CertificateComponent,
-    PerformanceDisplayComponent, UserUpdateComponent,
+    BadgeComponent, UserUpdateComponent, PerformanceDisplayComponent, CertificateComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,
-    SharedDataService, InfokitService, LanguageService, DoctorService, CertificateService, PerformanceDisplayService, ActivityGuard],
+    SharedDataService, InfokitService, LanguageService, DoctorService, CertificateService, PerformanceDisplayService, ActivityGuard, BadgeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

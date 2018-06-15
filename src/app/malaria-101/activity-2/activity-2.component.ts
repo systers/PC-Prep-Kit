@@ -107,7 +107,8 @@ export class DragdropComponent implements OnInit {
         this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
         this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
         this._infokitService.activateinfokit('do_dont').subscribe(res => {});
-        if (!this.completed) { this._performanceService.openDialog(4); }
+        if (!this.completed) { const currStage = 4;
+          this._performanceService.openDialog(currStage); }
 
     }
 

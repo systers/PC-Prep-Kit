@@ -16,6 +16,8 @@ import { LanguageService } from '../../services/language.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { InfokitService } from '../../services/infokit.service';
 import { SharedDataService } from '../../services/shared.data.service';
+import { BadgeService } from '../../services/BadgeService/badge.service';
+import { NotifyService } from '../../badge/notify';
 
 describe('PcpolicyComponent', () => {
   let component: PcpolicyComponent;
@@ -47,6 +49,8 @@ describe('PcpolicyComponent', () => {
         ToastrService,
         InfokitService,
         SharedDataService,
+        BadgeService,
+        NotifyService
       ]
     })
       .compileComponents();

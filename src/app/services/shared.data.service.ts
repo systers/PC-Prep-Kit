@@ -47,9 +47,9 @@ export class SharedDataService {
     }
 
     customSuccessAlert(msg, title) {
-        this.toastr.success(msg, title);
+        this.toastr.success(msg, title, {positionClass: 'custom-toastr-class'});
     }
     customErrorAlert(msg, title) {
-        this.toastr.error(msg, title);
+        this.toastr.error(msg, title, {positionClass: 'custom-toastr-class'});
     }
 }

@@ -46,7 +46,8 @@ export class StopTheBreedComponent implements OnInit {
       this._dashboardService.updateProgressStatus({stage: 4, activity: 1})
         .subscribe(res => res);
       this.activityComplete = true;
-      if (!this.completed) { this._performanceService.openDialog(8); }
+      if (!this.completed) { const currStage = 8;
+        this._performanceService.openDialog(currStage); }
 
       this._infokitService.activateinfokit('stop_Breed').subscribe( () => {});
     }

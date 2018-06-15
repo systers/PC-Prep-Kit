@@ -10,6 +10,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { APIService } from '../services/api.service';
 import { InfokitService } from '../services/infokit.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BadgeService } from '../services/BadgeService/badge.service';
+import { NotifyService } from '../badge/notify';
 
 describe('PerformanceDisplayComponent', () => {
   let component: PerformanceDisplayComponent;
@@ -22,7 +24,7 @@ describe('PerformanceDisplayComponent', () => {
       providers: [{
         provide: MAT_DIALOG_DATA,
         useValue: {currentActivityName: 'TestActivity', nextActivityURL: '/test', nextActivity: 'nextActivity'}
-      }, {provide: MatDialogRef, useValue: {}}, LanguageService, APIService, InfokitService]
+      }, {provide: MatDialogRef, useValue: {}}, LanguageService, APIService, InfokitService, BadgeService, NotifyService]
     })
       .compileComponents();
   }));

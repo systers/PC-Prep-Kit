@@ -97,6 +97,67 @@ router.get('/username', authenticationHelpers.isAuthOrRedirect, (req, res) => {
     });
 });
 
+router.get('/user/badge', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    if (!req.user.email) {
+        return res.status(400).json({error: errorCode.PCE021.message, code: errorCode.PCE021.code});
+    }
+    localUser.find({where: {
+        email: req.user.email
+    }}, {raw: true})
+        .then(data => {
+            if (!data) {
+                return res.status(200).json({info: errorCode.PCE022.message, code: errorCode.PCE022.code});
+            }
+            progress.find({where: {
+                user_id: data.id
+            }}, {raw: true})
+                .then(progressData => {
+                    if (!progressData) {
+                        return res.status(200).json({info: errorCode.PCE018.message, code: errorCode.PCE018.code});
+                    }
+                    const response = {badge: progressData.badge};
+                    return res.status(200).json(response);
+                })
+                .catch(function() {
+                    return res.status(500).json({error: errorCode.PCE019.message, code: errorCode.PCE019.code});
+                });
+        })
+        .catch(function() {
+            return res.status(500).json({error: errorCode.PCE020.message, code: errorCode.PCE020.code});
+        });
+});
+
+
+
+router.patch('/user/badge/update', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    if (req.body) {
+        localUser.find({
+            where: {
+                email: req.user.email
+            },
+            include: [progress]
+        }, {raw: true})
+            .then(data => {
+                progress.update({
+                    badge: req.body.badge
+                }, {
+                    where: {
+                        id: data.progress.id
+                    }
+                })
+                    .then(() => {
+                        return res.status(200).json({info: successCode.PCS007.message, code: successCode.PCS007.code});
+                    })
+
+            })
+            .catch(function() {
+                return res.status(500).json({error: errorCode.PCE032.message, code: errorCode.PCE032.code});
+            });
+    } else {
+        return res.status(400).json({error: errorCode.PCE029.message, code: errorCode.PCE029.code});
+    }
+});
+
 /**
  * GET progress status API
  * @param  {String} '/getProgressStatus'                              URI of the resource

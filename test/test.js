@@ -263,6 +263,34 @@ describe('Testing APIs', function() {
                     });
             });
 
+            it('Update User\'s Badge', function(done) {
+                let newBadge = {badge: 10};
+                server
+                    .patch('/api/user/badge/update')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .send(newBadge)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.info.should.equal('PCS007 : User\'s current badge was successfully updated');
+                        done();
+                    });
+            });
+
+            it('Get User\'s badge', function(done) {
+                server
+                    .get('/api/user/badge')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.badge.should.equal(10);
+                        done();
+                    });
+            });
+
             it('Get Infokit Before Update', function(done) {
                 server
                     .get('/api/infokitactive')
