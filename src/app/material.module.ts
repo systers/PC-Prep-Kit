@@ -4,6 +4,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material';
 import { MatIconModule } from '@angular/material';
+import { MatSidenavModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -11,17 +13,24 @@ import { MatIconModule } from '@angular/material';
     MatDialogModule,
     MatButtonModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatTooltipModule
   ],
   exports: [
     MatToolbarModule,
     MatDialogModule,
     MatButtonModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatTooltipModule
   ]
 })
-export class MaterialModule { }
+export class MaterialModule {
+}
 
 // Have created this new module that shall able to allow us keep a track of different components that we are using in the project
 

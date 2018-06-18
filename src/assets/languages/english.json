@@ -76,7 +76,9 @@
           "medsAndLabels": "Medication And Labels",
           "pcpolicy": "Peace Corps Policy",
           "infokit": "Infokit",
-          "prevention": "Prevention"
+          "doctorChat": "Doctor Chat",
+          "prevention": "Prevention",
+          "menu": "Menu"
         }
       },
       "header": {

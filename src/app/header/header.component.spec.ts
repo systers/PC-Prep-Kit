@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { MaterialModule } from '../material.module';
 import { LanguageService } from '../services/language.service';
+import { InfokitComponent } from '../infokit/infokit.component';
+import { InfokitService } from '../services/infokit.service';
 
 
 describe('HeaderComponent', () => {
@@ -20,11 +22,12 @@ describe('HeaderComponent', () => {
         HttpClientTestingModule,
         MaterialModule
       ],
-      declarations: [HeaderComponent],
+      declarations: [HeaderComponent, InfokitComponent],
       providers: [
         AuthService,
         APIService,
-        LanguageService
+        LanguageService,
+        InfokitService
       ],
     })
       .compileComponents();

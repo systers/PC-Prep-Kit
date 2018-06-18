@@ -1,22 +1,45 @@
 <div class="container-fluid">
   <div class="sidebar" [@toggleNav]="state">
-    <mat-toolbar color="primary">
-      <button type="button" class="btn btn-default btn-lg toggle-button" aria-label="Left Align" (click)="toggle()">
-        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+    <mat-toolbar id="navbar">
+      <button id="toggle" type="button" class="btn btn-default btn-lg toggle-button" aria-label="Left Align" (click)="toggle()">
+        &#9776;
       </button>
+      <img src="/assets/img/leftBanner.png" id="banner">
     </mat-toolbar>
 
     <ul class="nav text-center">
       <div class="profile">
-        <img  [src]="proPic" onError="this.src='assets/img/profilepic.png';" class="profile-pic img-circle">
+        <img [src]="proPic" onError="this.src='assets/img/profilepic.png';" class="profile-pic img-circle">
         <p> {{username}} </p>
       </div>
-      <li><a routerLink="/introduction">{{language?.links.introduction}}</a></li>
-      <li><a routerLink="/malaria-101/activity-1-1">{{language?.links.malaria101}}</a></li>
-      <li><a routerLink="/meds-n-labels/activity-1">{{language?.links.medsAndLabels}}</a></li>
-      <li><a routerLink="/prevent">{{language?.links.prevention}}</a></li>
-      <li><a routerLink="/introduction/activity-1">{{language?.links.pcpolicy}}</a></li>
-      <li><a (click)="toggleInfokit()">{{language?.links.infokit}}</a></li>
+      <li>
+        <a routerLink="/menu" routerLinkActive="active-link" class="menu-link">{{language?.links.menu}}</a>
+      </li>
+      <br>
+      <li>
+        <a class="menu-link" routerLink="/meds-n-labels/activity-3" routerLinkActive="active-link">{{language?.links.doctorChat}}</a>
+      </li>
+      <br>
+      <li>
+        <a class="menu-link" routerLink="/introduction"
+           routerLinkActive="active-link">{{language?.links.introduction}}</a>
+      </li>
+      <br>
+      <li>
+        <a class="menu-link" routerLink="/malaria-101/activity-1-1" routerLinkActive="active-link">{{language?.links.malaria101}}</a>
+      </li>
+      <br>
+      <li>
+        <a class="menu-link" routerLink="/prevent/" routerLinkActive="active-link">{{language?.links.prevention}}</a>
+      </li>
+      <br>
+      <li>
+        <a class="menu-link" routerLink="/meds-n-labels/activity-1" routerLinkActive="active-link">{{language?.links.medsAndLabels}}</a>
+      </li>
+      <br>
+      <li>
+        <a class="menu-link" routerLink="/introduction/activity-1" routerLinkActive="active-link">{{language?.links.pcpolicy}}</a>
+      </li>
     </ul>
   </div>
 </div>

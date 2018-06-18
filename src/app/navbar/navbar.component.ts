@@ -63,9 +63,5 @@ export class NavbarComponent implements OnInit {
         this.state = (this.state === 'out') ? 'in' : 'out';
         this.togglePosition.emit();
     }
-
-    toggleInfokit() {
-        this.infoPop.emit();
-    }
 }
 
