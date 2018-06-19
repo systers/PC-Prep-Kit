@@ -43,7 +43,7 @@ export class StopTheBreedComponent implements OnInit {
     this.count--;
     if (this.count === 0) {
       this.sharedDataService.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
-      this._dashboardService.updateProgressStatus({stage: 4, activity: 2})
+      this._dashboardService.updateProgressStatus({stage: 4, activity: 1})
         .subscribe(res => res);
       this.activityComplete = true;
       if (!this.completed) { this._performanceService.openDialog(8); }
