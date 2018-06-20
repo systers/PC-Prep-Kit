@@ -63,8 +63,8 @@
           <button class="but malaria-btn" (click)="navigateToPage('/prevent')">
             {{language?.prevention.heading}}
           </button>
-          <div class="outer-circle malaria-outer-circle">
-            <div class="inner-circle malaria-inner-circle">
+          <div class="outer-circle prevent-outer-circle">
+            <div class="inner-circle prevent-inner-circle">
               <div *ngFor="let level of createRange(3); let idx=index" class="arc level{{idx+1}}" [ngClass]="stage===6 && activity>=idx+1 ? 'completed' : ''"></div>
               <div class="activity">{{stage===6 ? activity : 0}}/3</div>
             </div>

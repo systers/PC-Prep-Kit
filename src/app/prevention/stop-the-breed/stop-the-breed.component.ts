@@ -6,6 +6,7 @@ import { elementConfig } from './game-config';
 import { SharedDataService } from '../../services/shared.data.service';
 import { LanguageService } from '../../services/language.service';
 import { DashboardService } from '../../services/dashboard.service';
+import { InfokitService } from '../../services/infokit.service';
 
 @Component({
   selector: 'app-stop-the-breed',
@@ -32,7 +33,8 @@ export class StopTheBreedComponent implements OnInit {
   count = 5;
 
   constructor(public dialog: MatDialog, public sharedDataService: SharedDataService,
-              private _langService: LanguageService, private _dashboardService: DashboardService) {
+              private _langService: LanguageService, private _dashboardService: DashboardService,
+              private _infokitService: InfokitService) {
   }
 
 
@@ -43,6 +45,7 @@ export class StopTheBreedComponent implements OnInit {
       this._dashboardService.updateProgressStatus({stage: 4, activity: 2})
         .subscribe(res => res);
       this.activityComplete = true;
+      this._infokitService.activateinfokit('stop_Breed').subscribe( () => {});
     }
   }
 

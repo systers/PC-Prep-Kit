@@ -112,7 +112,9 @@
         "odd_one_out": "Citronella can replel mosquitos. <br> Malaria is transmitted through mosquito bites. <br> Malaria is transmitted by a mosquito but parasite causes the disease.",
         "match_meds": "Mefloquine can be used to treat mild or moderate malaria but should not be used to treat severe malaria. <br> Doxycycline is an antibiotic that fights bacteria in the body <br> Malarone works by interfering with the growth of parasites in the red blood cells of the human body.",
         "side_effects": "Mefloquine, taken every week, may cause upset stomach, dizziness, nausea, headache,vivd dreams, neuropsychiatric side effects. <br> Malarone taken once every day, may cause nausea, vomiting, stomach pain, headache, diarrhea. <br> Doxycycline is an antibiotic which when taken every day, may cause sensitivity to sunlight , and upset stomach.",
-        "doctor_info": "Consult a doctor before you take any medication. Wrong medication can prove to be fatal."
+        "doctor_info": "Consult a doctor before you take any medication. Wrong medication can prove to be fatal.",
+        "stop_Breed": "Be always alert about your surroundings. Keep a close check on the probable mosquito breeding places. These may include: <br> Old-tyres, <br>open-bottles,<br>drums,<br>open-containers etc.",
+        "stride_Against": "For a long time, there have been many myths and misconceptions prevalent about prevention. Myths: <br> Homeopathy medicines work in Malaria.<br> Garlic helps prevent Malaria.<br> Yeast Extract helps prevent Malaria.<br> However, some things like Mosquito spray, Air conditioned surroundings, full sleeved clothes are indeed helpful in preventing Malaria."
       },
       "alerts": {
         "activitySuccessTitle": "Good job!",
@@ -240,8 +242,42 @@
         "heading": "Prevention",
         "stopTheBreed": {
           "heading": "Eliminate all the mosquito breeding places by clicking over them ",
-          "alerts" : {
-            "title" : "Congratulations!! <br> You eliminated a "
+          "alerts": {
+            "title": "Congratulations!! <br> You eliminated a "
+          }
+        },
+        "stridesAgainst": {
+          "heading": "Stride Against Malaria",
+          "howtoplay": {
+            "instructions": {
+              "title": "How to play?",
+              "ins1": "Click on the person to move and reach the objects placed on the board",
+              "ins2": "Answer the questions that come up. Goal is to reach finishing point."
+            }
+          },
+          "game": {
+            "alerts": {
+              "correct": {
+                "title": "That's correct.",
+                "finish": {
+                  "body": "You saved the community.",
+                  "title": "Congratulations!!"
+                }
+              },
+              "incorrect": {
+                "title": "Incorrect."
+              },
+              "question": {
+                "response": {
+                  "true": "TRUE",
+                  "false": "FALSE"
+                }
+              }
+            },
+            "messages": {
+              "confirmButton": "Try Again",
+              "dashboardLink": "Go to Dashboard"
+            }
           }
         }
       },

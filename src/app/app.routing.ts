@@ -29,6 +29,7 @@ import { UnlockedStageComponent } from './unlocked-stage/unlocked-stage.componen
 import { HowToPlayComponent } from './unlocked-stage/how-to-play/howtoplay.component';
 import { StopTheBreedComponent } from './prevention/stop-the-breed/stop-the-breed.component';
 import { PreventionComponent } from './prevention/prevention.component';
+import { StridesAgainstComponent } from './prevention/strides-against/strides-against.component';
 
 export const routes: Routes = [
     {
@@ -164,6 +165,10 @@ export const routes: Routes = [
             {
               path: 'stop-the-breed/game',
               component: StopTheBreedComponent,
+            },
+            {
+              path: 'stride-against-malaria/game',
+              component: StridesAgainstComponent,
             },
     ]
     },
