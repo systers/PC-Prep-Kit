@@ -175,7 +175,11 @@
         "PCS005": {
             "code": "PCS005",
             "message": "PCS005 : Verification mail sent, please check your mail"
-        }        
+        },
+        "PCS006": {
+          "code": "PCS006",
+          "message": "PCS006 : User's profile was successfully updated"
+        }
     }
 }
 

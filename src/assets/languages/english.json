@@ -67,6 +67,28 @@
         "registrationFail": "Registration unsuccesful"
       }
     },
+    "userUpdate": {
+      "messages": {
+        "heading": "Update your profile!",
+        "buttonMessage": "UPDATE",
+        "hoverProfile": "Click to upload",
+        "placeHolders": {
+          "firstName": "First Name",
+          "lastName": "Last Name"
+        }
+      },
+      "alerts": {
+        "success": {
+          "title": "Success!",
+          "body": "Profile Updated"
+        },
+        "fail": {
+          "title": "Failure",
+          "body": "Profile not updated"
+        },
+        "error": "First Name is required"
+      }
+    },
 
     "common": {
       "navbar": {
@@ -318,3 +340,4 @@
     }
   }
 }
+

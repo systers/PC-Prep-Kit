@@ -74,3 +74,11 @@ ul {
 #toggle {
     font-size: $font-size-med;
 }
+
+.edit-btn {
+    text-align: right;
+}
+
+.edit-btn:hover {
+    cursor: pointer;
+}

@@ -53,6 +53,7 @@ import { SharedDataService } from './services/shared.data.service';
 import { DoctorService } from './services/doctorchat.service';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material.module';
+import { UserUpdateComponent } from './user-update/user-update.component';
 import { StridesAgainstModule } from './prevention/strides-against/strides-against.module';
 
 @NgModule({
@@ -85,7 +86,9 @@ import { StridesAgainstModule } from './prevention/strides-against/strides-again
     DoctorchatComponent,
     UnlockedStageComponent,
     HowToPlayComponent,
-    PreventionComponent
+    PreventionComponent,
+    HowToPlayComponent,
+    UserUpdateComponent
   ],
   imports: [
     AppRoutingModule,
@@ -102,6 +105,9 @@ import { StridesAgainstModule } from './prevention/strides-against/strides-again
     StridesAgainstModule,
 
     RouterModule
+  ],
+  entryComponents: [
+    UserUpdateComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,

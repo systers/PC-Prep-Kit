@@ -5,7 +5,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { NavbarService } from '../services/navbar.service';
 import { LanguageService } from '../services/language.service';
 import { DashboardService } from '../services/dashboard.service';
-
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { UserUpdateComponent } from '../user-update/user-update.component';
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
@@ -34,7 +35,8 @@ export class NavbarComponent implements OnInit {
     private _obs;
     private _subscription;
     public proPic: any;
-    constructor(private _dashboardService: DashboardService, private _navbarService: NavbarService, private _langService: LanguageService) { }
+    private dialogWidth = '400px';
+    constructor(private _dashboardService: DashboardService, private _navbarService: NavbarService, private _langService: LanguageService, private _dialog: MatDialog) { }
 
     ngOnInit() {
         this._obs = observableInterval(500).pipe(
@@ -63,5 +65,21 @@ export class NavbarComponent implements OnInit {
         this.state = (this.state === 'out') ? 'in' : 'out';
         this.togglePosition.emit();
     }
+
+    toggleInfokit() {
+        this.infoPop.emit();
+    }
+
+    editUser(): void {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.data = {
+        profilePicture: this.proPic,
+        username: this.username
+      };
+      dialogConfig.width = this.dialogWidth;
+      const dialogRef = this._dialog.open(UserUpdateComponent, dialogConfig);
+      dialogRef.afterClosed( ).subscribe(res => this.ngOnInit());
+    }
 }
+
 
