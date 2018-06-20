@@ -1,0 +1,26 @@
+<div id="body">
+  <div id="header">
+    <img src="assets/img/topLogo.png" id="top-logo">
+  </div>
+  <h3>
+    <i>{{language?.congratsMessage.messagePart1}}</i>
+    <br>
+    {{language?.congratsMessage.messagePart2}}
+    <br><br>
+    <span id="name">{{data.name}}</span>
+    <br><br>
+    {{language?.congratsMessage.messagePart3}}
+  </h3>
+  <h1>
+    <span id="left-brand">{{language?.congratsMessage.brandPart1}}</span> <span id="right-brand">{{language?.congratsMessage.brandPart2}}</span>
+  </h1>
+  <a href="/"><mat-icon id="home">home</mat-icon></a>
+  <mat-icon id="print" (click)="print()">print</mat-icon>
+  <br>
+  <div id="footer">
+    <figure>
+      <img src='assets/img/expert.png' id="badge" label="Expert">
+      <figcaption>{{language?.badgeLabel}}</figcaption>
+    </figure>
+  </div>
+</div>
