@@ -44,7 +44,11 @@ export class DoctorchatComponent implements OnInit, AfterViewChecked {
             this.messages.push({message: sentMessage, status: 'sent-message'});
             if (localStorage.getItem(DoctorchatComponent._localStorageKey)) {
                 this._doctorchat.doctorMessage({message: sentMessage}).subscribe(response => {
-                    this.messages.push({message: response.reply, status: 'recv-message'});
+                    if (response.reply.hasOwnProperty('link') && response.reply.hasOwnProperty('image')) {
+                      this.messages.push({message: response.reply.message, status: 'recv-message', link: response.reply.link, image: response.reply.image});
+                    } else {
+                      this.messages.push({message: response.reply, status: 'recv-message'});
+                    }
                 });
             }
         }
