@@ -11,6 +11,9 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { InfokitService } from '../../services/infokit.service';
 import { LanguageService } from '../../services/language.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 describe('DoctorchatComponent', () => {
   let component: DoctorchatComponent;
@@ -19,8 +22,9 @@ describe('DoctorchatComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DoctorchatComponent, ButtonNavComponent],
-      imports: [FormsModule, ToastrModule.forRoot(), RouterTestingModule],
-      providers: [DoctorService, APIService, HttpClient, HttpHandler, SharedDataService, DashboardService, ToastrService, InfokitService, LanguageService]
+      imports: [FormsModule, ToastrModule.forRoot(), RouterTestingModule, OverlayModule],
+      providers: [DoctorService, APIService, HttpClient, HttpHandler, SharedDataService, DashboardService, ToastrService, InfokitService, LanguageService,
+                  PerformanceDisplayService, MatDialog]
     })
       .compileComponents();
   }));

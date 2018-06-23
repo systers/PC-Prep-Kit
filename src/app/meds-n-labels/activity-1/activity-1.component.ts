@@ -5,6 +5,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
 import { LanguageService } from '../../services/language.service';
 import { InfokitService } from '../../services/infokit.service';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
 
 @Component({
     selector: 'app-matchmeds',
@@ -64,7 +65,8 @@ export class MatchmedsComponent implements OnInit {
     correctAns = MatchingInfo.match1ans;
     givenAns = [0, 0, 0];
 
-    constructor(private _langService: LanguageService,  private _dashboardService: DashboardService, private _sharedData: SharedDataService, vcr: ViewContainerRef, private _infokitService: InfokitService) {
+    constructor(private _langService: LanguageService,  private _dashboardService: DashboardService, private _sharedData: SharedDataService, vcr: ViewContainerRef, private _infokitService: InfokitService,
+                private _performanceService: PerformanceDisplayService) {
 
     }
 
@@ -292,6 +294,7 @@ export class MatchmedsComponent implements OnInit {
                         } else {
                             this.completed = true;
                             this.activityComplete = true;
+                            if (!this.completed) { this._performanceService.openDialog(6); }
                             this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
                             this._infokitService.activateinfokit('match_meds').subscribe(res => {});
                         }

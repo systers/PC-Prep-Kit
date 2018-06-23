@@ -6,6 +6,7 @@ import 'webrtc-adapter';
 import { webcamEnum } from './webcamEnum';
 import { SharedDataService } from '../../services/shared.data.service';
 import { LanguageService } from '../../services/language.service';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
 
 @Component({
     selector: 'app-activity3',
@@ -56,7 +57,8 @@ export class PicturePuzzleComponent implements OnInit {
     public alerts: any;
     public userData: any;
 
-    constructor(private _langService: LanguageService, private _http: HttpClient, private _dashboardService: DashboardService, vcr: ViewContainerRef, private _renderer: Renderer2, private _sharedData: SharedDataService) {
+    constructor(private _langService: LanguageService, private _http: HttpClient, private _dashboardService: DashboardService, vcr: ViewContainerRef, private _renderer: Renderer2,
+                private _sharedData: SharedDataService, private _performanceService: PerformanceDisplayService) {
     }
 
     changeWebcamState(state, btnText) {
@@ -360,5 +362,7 @@ export class PicturePuzzleComponent implements OnInit {
         this._mouseupListener();
         this.initPuzzle();
         this.activityComplete = true;
+        if (!this.completed) { this._performanceService.openDialog(2); }
+
     }
 }

@@ -1,0 +1,23 @@
+<div id="close" (click)="close()">&times;</div>
+<div id="title"> {{language?.Heading.start}} <b>{{activityName}}</b> {{language?.Heading.end}}</div>
+
+<mat-dialog-content>
+  <div id="trophy">
+    <img src="assets/img/trophy.gif">
+    <br>
+    <br>
+  </div>
+  <div id="message">
+    <i>{{language?.message}}</i>
+  </div>
+  <br>
+  <div class="row">
+    <i class="fa fa-wrench fa-4x" [matTooltip]="language?.tooltip.Toolkit" tabindex="-1" (click)="info.pop()"></i>
+    <i class="fa fa-home fa-4x " [matTooltip]="language?.tooltip.Dashboard" tabindex="-1" (click)="goDashboard()"></i>
+    <i class="fa fa-arrow-circle-right fa-4x" [matTooltip]="nextActivity" cdkTrapFocus (click)="goNextActivity()"></i>
+  </div>
+
+</mat-dialog-content>
+
+<app-infokit #info></app-infokit>
+

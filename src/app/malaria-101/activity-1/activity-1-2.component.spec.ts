@@ -8,6 +8,9 @@ import { SharedDataService } from '../../services/shared.data.service';
 import { ButtonNavComponent } from '../../button-nav/button-nav.component';
 import { LanguageService } from '../../services/language.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 describe('MalariaLifeCycleComponent', () => {
   let component: MalariaLifeCycleComponent;
@@ -18,7 +21,8 @@ describe('MalariaLifeCycleComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        OverlayModule
       ],
       declarations: [MalariaLifeCycleComponent,
         ButtonNavComponent],
@@ -27,7 +31,9 @@ describe('MalariaLifeCycleComponent', () => {
         APIService,
         SharedDataService,
         LanguageService,
-        ToastrService
+        ToastrService,
+        PerformanceDisplayService,
+        MatDialog
       ]
     })
       .compileComponents();

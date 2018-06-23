@@ -15,6 +15,7 @@ import { AuthService } from './services/auth.service';
 import { LanguageService } from './services/language.service';
 import { InfokitService } from './services/infokit.service';
 import { NavbarService } from './services/navbar.service';
+import { MatDialogModule } from '@angular/material';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -22,7 +23,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent, HeaderComponent, InfokitComponent, NavbarComponent, ActivityindicatorComponent
       ],
-      imports: [RouterTestingModule, MaterialModule, ToastrModule.forRoot()],
+      imports: [RouterTestingModule, MaterialModule, ToastrModule.forRoot(), MatDialogModule],
       providers: [SharedDataService, DashboardService,
         HttpClient, HttpHandler, APIService, ToastrService, AuthService,
         LanguageService, InfokitService, NavbarService]

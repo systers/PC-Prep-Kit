@@ -10,6 +10,8 @@ import { ButtonNavComponent } from '../../button-nav/button-nav.component';
 import { LanguageService } from '../../services/language.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs/Observable';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { MatDialogModule } from '@angular/material';
 
 const languageData = require('../../../assets/languages/english.json');
 
@@ -28,14 +30,16 @@ describe('HighlightActivityComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        MatDialogModule
       ],
       providers: [
         SharedDataService,
         DashboardService,
         APIService,
         LanguageService,
-        ToastrService
+        ToastrService,
+        PerformanceDisplayService
       ]
     })
       .compileComponents();

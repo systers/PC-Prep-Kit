@@ -9,7 +9,9 @@ import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
 describe('MatchmedsComponent', () => {
   let component: MatchmedsComponent;
   let fixture: ComponentFixture<MatchmedsComponent>;
@@ -18,8 +20,8 @@ describe('MatchmedsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [MatchmedsComponent, ButtonNavComponent],
       providers: [LanguageService, HttpClient, HttpHandler, APIService,
-        DashboardService, SharedDataService, ToastrService, InfokitService],
-      imports: [ToastrModule.forRoot(), RouterTestingModule]
+        DashboardService, SharedDataService, ToastrService, InfokitService, PerformanceDisplayService, MatDialog],
+      imports: [ToastrModule.forRoot(), RouterTestingModule, OverlayModule]
     })
       .compileComponents();
   }));

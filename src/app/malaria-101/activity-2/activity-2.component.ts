@@ -3,6 +3,7 @@ import { InfokitService } from '../../services/infokit.service';
 import { LanguageService } from '../../services/language.service';
 import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
 
 
 @Component({
@@ -106,9 +107,13 @@ export class DragdropComponent implements OnInit {
         this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
         this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
         this._infokitService.activateinfokit('do_dont').subscribe(res => {});
+        if (!this.completed) { this._performanceService.openDialog(4); }
+
     }
 
-    constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService, private _infokitService: InfokitService,  vcr: ViewContainerRef, private _langService: LanguageService) {
+    constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService, private _infokitService: InfokitService,  vcr: ViewContainerRef, private _langService: LanguageService,
+                private _performanceService: PerformanceDisplayService
+    ) {
         this._dashboardService.getProgressStatus().subscribe(response => {
             this.completed = this._sharedData.checkProgress(2, 2, response);
         });

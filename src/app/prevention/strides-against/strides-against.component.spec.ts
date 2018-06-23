@@ -13,7 +13,9 @@ import { ComponentFixtureAutoDetect } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { StridesAgainstComponent } from './strides-against.component';
 import { InfokitService } from '../../services/infokit.service';
-
+import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
 const languageData = require('../../../assets/languages/english.json');
 import * as RaphaelJS from 'raphael';
 import { Observable } from 'rxjs/Observable';
@@ -32,10 +34,10 @@ describe('StridesAgainstComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [StridesAgainstComponent],
-      imports: [RouterTestingModule, ToastrModule.forRoot(), SharedModule, MaterialModule],
+      imports: [RouterTestingModule, ToastrModule.forRoot(), SharedModule, MaterialModule, OverlayModule],
       providers: [LanguageService, HttpClient, HttpHandler, ToastrService,
         APIService, DashboardService, SharedDataService, {provide: ComponentFixtureAutoDetect, useValue: true},
-        InfokitService
+        InfokitService, PerformanceDisplayService, MatDialog
       ],
 
     })
