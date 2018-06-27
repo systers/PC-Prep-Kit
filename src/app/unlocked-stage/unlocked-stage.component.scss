@@ -112,8 +112,25 @@
     @include legendText(1%, 84%);
 }
 
+#stars {
+  position: absolute;
+  top: 7%;
+  left: 86%;
+  color: $yellow;
+}
+
+#score {
+  position: absolute;
+  top: 11%;
+  left: 83.5%;
+}
+
 #mosquito-health-text {
-    @include legendText(1%, 10%); 
+    @include legendText(1%, 11.5%);
+}
+
+#net-health-text {
+  @include legendText(1%, 13%);
 }
 
 #human {
@@ -124,7 +141,7 @@
     @include positioning(relative, 50%, 80%);
 }
 
-#moz {
+.moz {
     display: block;
     width: 25px;
     margin: 0;
@@ -132,11 +149,15 @@
     position: absolute;
 }
 
-#spray {
+#spray, #net {
     position: absolute;
     display: none;
     @include selectable(none); 
-    @include draggable(none);  
+    @include draggable(none);
+}
+
+#net {
+    height: 5em;
 }
 
 #spray-item {
@@ -145,22 +166,72 @@
     cursor: pointer;
 }
 
+#net-item {
+  @include positioning(absolute, 30%, 20%);
+  width: 50%;
+  cursor: pointer;
+}
+
+#pill-item {
+  @include positioning(absolute, 55%, 35%);
+  width: 30%;
+  cursor: pointer;
+}
+
 #human-health {
-    @include health(5%, 77%)
+    @include health(5%, 77%);
     #human-health-bar {
         @include healthBar(green)
     }
 }
 
 #mosquito-health {
-    @include health(5%, 5%)
+    @include health(5%, 5%);
     #mosquito-health-bar {
         @include healthBar(red)
     }     
+}
+
+#net-health {
+  @include health(5%, 5%);
+  #net-health-bar {
+    @include healthBar(blue)
+  }
 }
 
 .swal2-success-circular-line-left,
 .swal2-success-fix,
 .swal2-success-circular-line-right {
     background: rgb(255, 255, 255);
+}
+
+#performance {
+  font-size: $font-size-med;
+}
+
+.progress-bar-vertical {
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  width: 10px;
+  min-height: 100px;
+  display: flex;
+  align-items: flex-end;
+  margin-right: 20px;
+  float: left;
+}
+
+.progress-bar-vertical .progress-bar {
+  width: 100%;
+  height: 0;
+  -webkit-transition: height 0.6s ease;
+  -o-transition: height 0.6s ease;
+  transition: height 0.6s ease;
+}
+
+#progressText {
+  position: absolute;
+  left: 4%;
+  top: 10%;
+  font-weight: bold;
 }

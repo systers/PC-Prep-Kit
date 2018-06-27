@@ -1,20 +1,36 @@
 <div id="container" [hidden]="gameOver || success">
     <div id="scene">
-        <div id="human-health-text">{{language?.legend.human}}</div>
+      <div class="progress  progress-bar-vertical">
+        <div class="progress-bar progress-bar-danger" role="progressbar"  [ngStyle]="{'height': sprayValue + '%'}">
+      </div>
+      </div>
+      <div id="progressText"> Spray </div>
+      <div id="human-health-text">{{language?.legend.human}}</div>
         <div id="human-health">
             <div id="human-health-bar"></div>
         </div>
-        <div id="mosquito-health-text">{{language?.legend.mosquito}}</div>
-        <div id="mosquito-health">
+      <div id="performance">
+      <div id="stars"><i class="fa fa-star" aria-hidden="true"></i> 1</div>
+      <div id="score">Score: {{score}}</div>
+      </div>
+        <div id="mosquito-health-text" [hidden]="!spray">{{language?.legend.mosquito1}}Mosquito</div>
+        <div id="mosquito-health" [hidden]="!spray">
             <div id="mosquito-health-bar"></div>
-        </div>    
-        <img id="human" src="../assets/img/unlocked-stage/human.png"/>
-        <img id="moz" name="animate" src="../assets/img/unlocked-stage/mosquito.gif"/>  
-        <img id="spray" src="../assets/img/unlocked-stage/spray-cursor.gif"/>
+        </div>
+      <div id="net-health-text" [hidden]="!net">{{language?.legend.mosquito1}}Net</div>
+      <div id="net-health" [hidden]="!net">
+        <div id="net-health-bar"></div>
+      </div>
+      <!--<img id="human" src="../assets/img/unlocked-stage/human.png"/>-->
+        <!--<img class="moz" id="moz1" name="animate" src="../assets/img/unlocked-stage/mosquito.gif"/>-->
+        <!--<img id="spray" src="../assets/img/unlocked-stage/spray-cursor.gif" />-->
+        <!--<img id="net" src="../assets/img/unlocked-stage/net.png" />-->
     </div>
     <div id="inventory">
         <div id="inventory-heading">{{language?.legend.inventory}}</div>
         <img id="spray-item" src="../assets/img/unlocked-stage/spray-item.gif"/>
+        <img id="net-item" src="../assets/img/unlocked-stage/net.png"/>
+        <img id="pill-item" src="../assets/img/unlocked-stage/pill.png"/>
     </div>
 </div>
 <div class="row col-lg-6 col-lg-offset-3 text-center" id="game-loss-status" [hidden]="!gameOver">
