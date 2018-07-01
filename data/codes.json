@@ -151,7 +151,12 @@
             "code": "PCE030",
             "message": "PCE030 :Something went wrong while encrypting password",
             "reason": "Internal Server Error"
-        }        
+        },
+        "PCE031": {
+            "code": "PCE031",
+            "message": "PCE031 :E-Mail ID is not verified",
+            "reason": "User has not verified his email-address"
+        }
     },
 
     "success": {

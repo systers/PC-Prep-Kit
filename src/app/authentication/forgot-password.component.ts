@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LanguageService } from '../services/language.service';
+import { emailRegex } from '../register/Regex';
 
 @Component({
     selector: 'app-forgot-password',
     templateUrl: './forgot-password.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent {
 
@@ -20,7 +20,7 @@ export class ForgotPasswordComponent {
 
     constructor(private _authService: AuthService, fb: FormBuilder, private _langService: LanguageService) {
         this.resetForm = fb.group({
-            'email' : [null, Validators.compose([Validators.required, Validators.pattern('[^ @]*@[^ @]*')])]
+            'email' : [null, Validators.compose([Validators.required, Validators.pattern(emailRegex)])]
         });
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.forgotPassword;

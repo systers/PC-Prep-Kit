@@ -70,7 +70,7 @@ router.post('/', function(req, res) {
         return res.status(400).json({error: errorCode.PCE002.message, code: errorCode.PCE002.code});
     } else if (!req.body.fname || !validateName(req.body.fname)) {
         return res.status(400).json({error: errorCode.PCE003.message, code: errorCode.PCE003.code});
-    } else if (!req.body.lname || !validateName(req.body.lname)) {
+    } else if (req.body.lname && !validateName(req.body.lname)) {
         return res.status(400).json({error: errorCode.PCE004.message, code: errorCode.PCE004.code});
     } else if (!req.body.password || !validatePassword(req.body.password)) {
         return res.status(400).json({error: errorCode.PCE005.message, code: errorCode.PCE005.code});

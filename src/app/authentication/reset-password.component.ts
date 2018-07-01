@@ -9,7 +9,7 @@ import { LanguageService } from '../services/language.service';
 @Component({
     selector: 'app-reset-password',
     templateUrl: './reset-password.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
 
@@ -20,15 +20,12 @@ export class ResetPasswordComponent implements OnInit {
     language: any;
     header: any;
     authMessages: any;
+    hide = true;
 
-    constructor(private _langService: LanguageService, private _authService: AuthService,  private _router: Router,  private _route: ActivatedRoute, fb: FormBuilder) {
-        this._langService.loadLanguage().subscribe(response => {
-            this.language = response.pcprepkit.resetPassword;
-            this.header = response.pcprepkit.common.header;
-            this.authMessages = response.pcprepkit.authMessages;
-        });
+
+  constructor(private _langService: LanguageService, private _authService: AuthService,  private _router: Router,  private _route: ActivatedRoute, fb: FormBuilder) {
         this.resetPasswordForm = fb.group({
-            'password' : [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')])],
+            'password' : [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$'), Validators.minLength(8)])],
             'confirmPassword' : [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')])]
         }, {
             validator: PasswordValidation.MatchPassword // your validation method
@@ -38,6 +35,11 @@ export class ResetPasswordComponent implements OnInit {
     ngOnInit() {
         this._route.params.subscribe(params => {
             this.token = params['token'];
+            this._langService.loadLanguage().subscribe(response => {
+              this.language = response.pcprepkit.resetPassword;
+              this.header = response.pcprepkit.common.header;
+              this.authMessages = response.pcprepkit.authMessages;
+          });
         });
     }
 

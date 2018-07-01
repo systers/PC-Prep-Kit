@@ -107,6 +107,9 @@ module.exports = function(passport, models) {
                     if (data.provider === 'google') {
                         return done(null, false, {info: errorCode.PCE009.message, code: errorCode.PCE009.code});
                     }
+                    if (!data.verificationStatus) {
+                        return done(null, false, {info: errorCode.PCE031.message, code: errorCode.PCE031.code});
+                    }
                     bcrypt.compare(password, data.password, function(err, response) {
                         if (response) {
                             const response = { email: data.email, name: data.name};
