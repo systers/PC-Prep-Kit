@@ -104,6 +104,18 @@
         "error": "First Name is required"
       }
     },
+    "certificate": {
+      "header": "CERTIFICATE",
+      "congratsMessage": {
+        "messagePart1": "Certificate of Achievement",
+        "messagePart2": "presented to ",
+        "messagePart3": "for completing all activities in ",
+        "brandPart1": "PC Prep",
+        "brandPart2": "Kit"
+      },
+      "dashboardLink": "Go to Dashboard",
+      "badgeLabel": "Expert"
+    },
 
     "common": {
       "navbar": {

@@ -13,12 +13,15 @@ import { ComponentFixtureAutoDetect } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { StridesAgainstComponent } from './strides-against.component';
 import { InfokitService } from '../../services/infokit.service';
+import { CertificateService } from '../../certificate/certificate.component';
+import { NavbarService } from '../../services/navbar.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
-const languageData = require('../../../assets/languages/english.json');
 import * as RaphaelJS from 'raphael';
 import { Observable } from 'rxjs/Observable';
+
+const languageData = require('../../../assets/languages/english.json');
 
 class MockLanguage extends LanguageService {
   loadLanguage() {
@@ -37,7 +40,7 @@ describe('StridesAgainstComponent', () => {
       imports: [RouterTestingModule, ToastrModule.forRoot(), SharedModule, MaterialModule, OverlayModule],
       providers: [LanguageService, HttpClient, HttpHandler, ToastrService,
         APIService, DashboardService, SharedDataService, {provide: ComponentFixtureAutoDetect, useValue: true},
-        InfokitService, PerformanceDisplayService, MatDialog
+        InfokitService, PerformanceDisplayService, MatDialog, CertificateService, NavbarService
       ],
 
     })

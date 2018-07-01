@@ -11,6 +11,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { PositionElement } from './models/elements';
 import { Item } from './models/Item';
 import { InfokitService } from '../../services/infokit.service';
+import { CertificateService } from '../../certificate/certificate.component';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 
 export class PaperConfig {
@@ -61,7 +62,7 @@ export class StridesAgainstComponent implements OnInit {
 
   constructor(public languageService: LanguageService, public dialog: MatDialog, public sharedDataService: SharedDataService,
               public router: Router, public dashboardService: DashboardService, private infokitService: InfokitService,
-              private _performanceService: PerformanceDisplayService) {
+              private _certificateService: CertificateService) {
   }
 
   /**
@@ -166,7 +167,9 @@ export class StridesAgainstComponent implements OnInit {
           this.dashboardService.updateProgressStatus({stage: 4, activity: 2})
             .subscribe(res => res);
           this.activityComplete = true;
-          if (!this.completed) { this._performanceService.openDialog(9); }
+          if (!this.completed) {
+            this._certificateService.openCertificate();
+          }
           this.infokitService.activateinfokit('stride_Against').subscribe( () => {});
         }
       });

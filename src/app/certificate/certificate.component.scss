@@ -1,0 +1,68 @@
+@import "../styles/main";
+
+// Variables
+$padding-body: 40px;
+$icon-height-large: 4em;
+$icon-height-med: 3em;
+$icon-height-small: 2em;
+
+#body {
+  text-align: center;
+  font-size: $font-size-small;
+  background-size: cover;
+  padding: $padding-body
+}
+
+#name {
+  color: $blue;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: $font-size-large;
+}
+
+#left-brand {
+  color: $blue;
+  font-weight: $bold;
+}
+
+#right-brand {
+  color: $red;
+  font-weight: $bold;
+}
+
+#header {
+  text-align: center;
+  padding: $padding-large;
+}
+
+#top-logo {
+  height: $icon-height-large;
+}
+
+figcaption {
+  font-size: $font-size-small;
+  color: $blue;
+}
+
+#badge {
+  height: $icon-height-med;
+}
+
+#home {
+  font-size: $icon-height-small;
+  color: $blue;
+}
+
+#print {
+  font-size: $icon-height-small;
+  color: $red;
+}
+
+#home, #print:hover {
+  cursor: pointer;
+}
+
+a {
+  outline: none;
+  margin-right: $margin-large;
+}

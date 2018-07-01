@@ -1,9 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'custom-theme';
+@import "app/styles/main";
+
 
 body {
     overflow-x: hidden;
     background: white;
     color: black;
+}
+
+.certificateClass {
+    .mat-dialog-container {
+      background-image: url("assets/img/certificateBackground.jpg");
+      background-size: cover;
+    }
+}
+.certificateBackdrop {
+    background-image: url("assets/img/certificateBackdrop.jpg");
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+  #body {
+    visibility: visible;
+    background-image: url("assets/img/certificateBackground.jpg") !important;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  #body * {
+    visibility: visible;
+  }
+  #home, #print{
+    visibility: hidden;
+    display: none;
+  }
+}
+@page {
+    size: auto;
+    margin: 0;
 }
 
