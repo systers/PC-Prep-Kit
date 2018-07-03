@@ -82,6 +82,9 @@
 
       }
     },
+    "activityAccess": {
+      "alert": "Please complete previous activities before accessing this activity."
+    },
     "userUpdate": {
       "messages": {
         "heading": "Update your profile!",
