@@ -377,9 +377,28 @@
           "legend": {
             "human": "Human",
             "mosquito": "Mosquito",
-            "inventory": "Inventory"
+            "inventory": "Inventory",
+            "spray": "spray"
+          },
+          "toolTips": {
+            "pill": "Boost your health",
+            "spray": "Refill your spray"
           },
           "alerts": {
+            "level": {
+              "nextLevel": "You reached Level ",
+              "finalLevel": "Final level reached."
+            },
+            "buy": {
+              "success": {
+                "spray": "Spray refilled!",
+                "health": "Health boosted!"
+              },
+              "fail": {
+                "spray": "Not enough stars. 1 star needed for refill.",
+                "health": "Not enough stars. 2 stars needed for health boost."
+              }
+            },
             "loss": {
               "title": "Game over!",
               "content": "The mosquito has transmitted malaria virus!"
