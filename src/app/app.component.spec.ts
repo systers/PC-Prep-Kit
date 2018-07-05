@@ -15,6 +15,9 @@ import { AuthService } from './services/auth.service';
 import { LanguageService } from './services/language.service';
 import { InfokitService } from './services/infokit.service';
 import { NavbarService } from './services/navbar.service';
+import { BadgeService } from './services/BadgeService/badge.service';
+import { NotifyService } from './badge/notify';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material';
 
 describe('AppComponent', () => {
@@ -23,10 +26,10 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent, HeaderComponent, InfokitComponent, NavbarComponent, ActivityindicatorComponent
       ],
-      imports: [RouterTestingModule, MaterialModule, ToastrModule.forRoot(), MatDialogModule],
+      imports: [RouterTestingModule, MaterialModule, ToastrModule.forRoot(), BrowserAnimationsModule, MatDialogModule],
       providers: [SharedDataService, DashboardService,
         HttpClient, HttpHandler, APIService, ToastrService, AuthService,
-        LanguageService, InfokitService, NavbarService]
+        LanguageService, InfokitService, NavbarService, BadgeService, NotifyService]
     }).compileComponents();
   }));
 

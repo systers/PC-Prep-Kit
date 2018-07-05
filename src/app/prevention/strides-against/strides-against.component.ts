@@ -11,6 +11,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { PositionElement } from './models/elements';
 import { Item } from './models/Item';
 import { InfokitService } from '../../services/infokit.service';
+import { BadgeService } from '../../services/BadgeService/badge.service';
 import { CertificateService } from '../../certificate/certificate.component';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 
@@ -62,7 +63,7 @@ export class StridesAgainstComponent implements OnInit {
 
   constructor(public languageService: LanguageService, public dialog: MatDialog, public sharedDataService: SharedDataService,
               public router: Router, public dashboardService: DashboardService, private infokitService: InfokitService,
-              private _certificateService: CertificateService) {
+              private _performanceService: PerformanceDisplayService, private _badgeService: BadgeService, private _certificateService: CertificateService) {
   }
 
   /**
@@ -168,6 +169,10 @@ export class StridesAgainstComponent implements OnInit {
             .subscribe(res => res);
           this.activityComplete = true;
           if (!this.completed) {
+            const currStage = 9;
+            const badgeNumber = 4;
+            this._performanceService.openDialog(currStage);
+            this._badgeService.updateBadgeNumber(badgeNumber).subscribe(res => res);
             this._certificateService.openCertificate();
           }
           this.infokitService.activateinfokit('stride_Against').subscribe( () => {});

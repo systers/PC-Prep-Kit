@@ -157,16 +157,32 @@
         "buttoninfo": "Go to menu"
       },
       "infokit": {
-        "malaria_def": "An intermittent and remittent fever caused by a protozoan parasite that invades the red blood cells. The parasite is transmitted by mosquitoes in many tropical and subtropical regions.",
-        "pc_policy": "This contains Peace Corps Policy",
-        "animation": "The malaria parasite life cycle involves two hosts. During a blood meal, a malaria-infected female Anopheles mosquito inoculates sporozoites into the human host . Sporozoites infect liver cells and mature into schizonts , which rupture and release merozoites.",
-        "do_dont": "Dos <br> Contaminated water around should be disposed. <br> Use Mosquito repellent. <br> Body Should be covered as much as possible <br> <br> Don'ts <br> Don't keep unscreened doors and windows open. <br> Don't play outside in shorts and half/without sleeves clothes",
-        "odd_one_out": "Citronella can replel mosquitos. <br> Malaria is transmitted through mosquito bites. <br> Malaria is transmitted by a mosquito but parasite causes the disease.",
-        "match_meds": "Mefloquine can be used to treat mild or moderate malaria but should not be used to treat severe malaria. <br> Doxycycline is an antibiotic that fights bacteria in the body <br> Malarone works by interfering with the growth of parasites in the red blood cells of the human body.",
-        "side_effects": "Mefloquine, taken every week, may cause upset stomach, dizziness, nausea, headache,vivd dreams, neuropsychiatric side effects. <br> Malarone taken once every day, may cause nausea, vomiting, stomach pain, headache, diarrhea. <br> Doxycycline is an antibiotic which when taken every day, may cause sensitivity to sunlight , and upset stomach.",
-        "doctor_info": "Consult a doctor before you take any medication. Wrong medication can prove to be fatal.",
-        "stop_Breed": "Be always alert about your surroundings. Keep a close check on the probable mosquito breeding places. These may include: <br> Old-tyres, <br>open-bottles,<br>drums,<br>open-containers etc.",
-        "stride_Against": "For a long time, there have been many myths and misconceptions prevalent about prevention. Myths: <br> Homeopathy medicines work in Malaria.<br> Garlic helps prevent Malaria.<br> Yeast Extract helps prevent Malaria.<br> However, some things like Mosquito spray, Air conditioned surroundings, full sleeved clothes are indeed helpful in preventing Malaria."
+        "headings": {
+           "heading_main": "Info Kit",
+           "heading_info": "Info-tiles",
+           "heading_badges": "Badges"
+        },
+        "info_tiles": {
+          "malaria_def": "An intermittent and remittent fever caused by a protozoan parasite that invades the red blood cells. The parasite is transmitted by mosquitoes in many tropical and subtropical regions.",
+          "pc_policy": "This contains Peace Corps Policy",
+          "animation": "The malaria parasite life cycle involves two hosts. During a blood meal, a malaria-infected female Anopheles mosquito inoculates sporozoites into the human host . Sporozoites infect liver cells and mature into schizonts , which rupture and release merozoites.",
+          "do_dont": "Dos <br> Contaminated water around should be disposed. <br> Use Mosquito repellent. <br> Body Should be covered as much as possible <br> <br> Don'ts <br> Don't keep unscreened doors and windows open. <br> Don't play outside in shorts and half/without sleeves clothes",
+          "odd_one_out": "Citronella can replel mosquitos. <br> Malaria is transmitted through mosquito bites. <br> Malaria is transmitted by a mosquito but parasite causes the disease.",
+          "match_meds": "Mefloquine can be used to treat mild or moderate malaria but should not be used to treat severe malaria. <br> Doxycycline is an antibiotic that fights bacteria in the body <br> Malarone works by interfering with the growth of parasites in the red blood cells of the human body.",
+          "side_effects": "Mefloquine, taken every week, may cause upset stomach, dizziness, nausea, headache,vivd dreams, neuropsychiatric side effects. <br> Malarone taken once every day, may cause nausea, vomiting, stomach pain, headache, diarrhea. <br> Doxycycline is an antibiotic which when taken every day, may cause sensitivity to sunlight , and upset stomach.",
+          "doctor_info": "Consult a doctor before you take any medication. Wrong medication can prove to be fatal.",
+          "stop_Breed": "Be always alert about your surroundings. Keep a close check on the probable mosquito breeding places. These may include: <br> Old-tyres, <br>open-bottles,<br>drums,<br>open-containers etc.",
+          "stride_Against": "For a long time, there have been many myths and misconceptions prevalent about prevention. Myths: <br> Homeopathy medicines work in Malaria.<br> Garlic helps prevent Malaria.<br> Yeast Extract helps prevent Malaria.<br> However, some things like Mosquito spray, Air conditioned surroundings, full sleeved clothes are indeed helpful in preventing Malaria."
+        },
+        "messages": {
+          "loadingMessage": "loading ...",
+          "defaultMessage": "No infokit available"
+        }
+      },
+      "badges": {
+        "headingLeft": "Congratulations!! You have earned the ",
+        "headingRight": "badge.",
+        "infokitMessage": "You can see your badges in Infokit"
       },
       "alerts": {
         "activitySuccessTitle": "Good job!",

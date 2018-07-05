@@ -156,6 +156,11 @@
             "code": "PCE031",
             "message": "PCE031 :E-Mail ID is not verified",
             "reason": "User has not verified his email-address"
+        },
+        "PCE032": {
+        "code": "PCE032",
+        "message": "PCE032 : Something went wrong while updating user's badge",
+        "reason": "Internal Server Error"
         }
     },
 
@@ -184,6 +189,10 @@
         "PCS006": {
           "code": "PCS006",
           "message": "PCS006 : User's profile was successfully updated"
+        },
+        "PCS007": {
+          "code": "PCS007",
+          "message": "PCS007 : User's current badge was successfully updated"
         }
     }
 }

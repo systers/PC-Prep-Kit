@@ -3,12 +3,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material';
+import { MatIconModule } from '@angular/material';
 import { MatDividerModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
-import { MatIconModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { MatIconModule } from '@angular/material';
     MatDividerModule,
     MatSidenavModule,
     MatTooltipModule,
+    MatSnackBarModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -28,12 +30,13 @@ import { MatIconModule } from '@angular/material';
     MatDialogModule,
     MatChipsModule,
     MatDividerModule,
-    MatTooltipModule,
     MatSidenavModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatSnackBarModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule {

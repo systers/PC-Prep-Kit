@@ -1,4 +1,5 @@
 @import "../styles/main";
+
 #header {
   background: $blue;
 }
@@ -8,6 +9,7 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
 .icons {
   color: $white;
   font-size: $font-size-med;
@@ -24,3 +26,9 @@ i {
 #toggle {
   font-size: $font-size-med;
 }
+
+img {
+  height: 2em;
+  margin-right: 1em;
+}
+

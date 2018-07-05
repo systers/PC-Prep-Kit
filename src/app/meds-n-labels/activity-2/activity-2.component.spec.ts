@@ -11,6 +11,8 @@ import { LanguageService } from '../../services/language.service';
 import { ButtonNavComponent } from '../../button-nav/button-nav.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs/Observable';
+import { NotifyService } from '../../badge/notify';
+import { BadgeService } from '../../services/BadgeService/badge.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -45,7 +47,9 @@ describe('MemoryGameComponent', () => {
         LanguageService,
         ToastrService,
         PerformanceDisplayService,
-        MatDialog
+        MatDialog,
+        NotifyService,
+        BadgeService
       ]
     }).compileComponents();
   }));

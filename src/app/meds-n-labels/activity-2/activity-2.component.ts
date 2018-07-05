@@ -6,6 +6,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { DIAGNOSIS } from './diagnosis-detail';
 import { SharedDataService } from '../../services/shared.data.service';
 import { LanguageService } from '../../services/language.service';
+import { BadgeService } from '../../services/BadgeService/badge.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 
 @Component({
@@ -54,7 +55,7 @@ export class MemoryGameComponent implements OnInit {
             ];
 
     constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService,
-                private _performanceService: PerformanceDisplayService) {
+                private _performanceService: PerformanceDisplayService, private _badgeService: BadgeService) {
             this._sharedData.position.subscribe(
             value => {
                 this.position = value;
@@ -165,8 +166,11 @@ export class MemoryGameComponent implements OnInit {
                 this._status = {stage: 3, activity: 2};
                 this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
                 this.activityComplete = true;
-              if (!this.completed) { this._performanceService.openDialog(7); }
-
+                if (!this.completed) {
+                  const badgeNumber = 3;
+                  const currStage = 7;
+                  this._badgeService.updateBadgeNumber(badgeNumber).subscribe(res => res);
+                  this._performanceService.openDialog(currStage); }
             }
             return;
         }

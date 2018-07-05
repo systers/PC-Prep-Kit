@@ -294,7 +294,8 @@ export class MatchmedsComponent implements OnInit {
                         } else {
                             this.completed = true;
                             this.activityComplete = true;
-                            if (!this.completed) { this._performanceService.openDialog(6); }
+                            if (!this.completed) { const currStage = 6;
+                              this._performanceService.openDialog(currStage); }
                             this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
                             this._infokitService.activateinfokit('match_meds').subscribe(res => {});
                         }
