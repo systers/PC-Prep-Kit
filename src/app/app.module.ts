@@ -62,6 +62,8 @@ import { PerformanceDisplayComponent } from './performance-display/performance-d
 import { PerformanceDisplayService } from './services/performance-display.service';
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { StridesAgainstModule } from './prevention/strides-against/strides-against.module';
+import { LeaderBoardService } from './services/leaderBoard.service';
+import { LeaderBoardComponent } from './leader-board/leader-board.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +99,8 @@ import { StridesAgainstModule } from './prevention/strides-against/strides-again
     CertificateComponent,
     PerformanceDisplayComponent,
     BadgeComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    LeaderBoardComponent
   ],
   imports: [
     AppRoutingModule,
@@ -116,11 +119,12 @@ import { StridesAgainstModule } from './prevention/strides-against/strides-again
     RouterModule
   ],
   entryComponents: [
-    BadgeComponent, UserUpdateComponent, PerformanceDisplayComponent, CertificateComponent,
+    BadgeComponent, UserUpdateComponent, PerformanceDisplayComponent, CertificateComponent, LeaderBoardComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,
-    SharedDataService, InfokitService, LanguageService, DoctorService, CertificateService, PerformanceDisplayService, ActivityGuard, BadgeService],
+    SharedDataService, InfokitService, LanguageService, DoctorService, CertificateService, PerformanceDisplayService, ActivityGuard,
+    BadgeService, LeaderBoardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

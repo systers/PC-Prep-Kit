@@ -16,6 +16,7 @@ import { NotifyService } from '../../badge/notify';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 describe('PicturePuzzleComponent', () => {
   let component: PicturePuzzleComponent;
@@ -49,7 +50,8 @@ describe('PicturePuzzleComponent', () => {
         MatDialog,
         ToastrService,
         NotifyService,
-        BadgeService
+        BadgeService,
+        LeaderBoardService
 
       ]
     })

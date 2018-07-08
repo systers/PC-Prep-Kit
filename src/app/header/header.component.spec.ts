@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { fakeAsync, flush } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import { Badge } from '../badge/models/badgeModel';
+import { LeaderBoardService } from '../services/leaderBoard.service';
+import { NavbarService } from '../services/navbar.service';
 
 const mockBadge: Badge = {
   name: 'badgeName',
@@ -42,7 +44,9 @@ describe('HeaderComponent', () => {
         LanguageService,
         InfokitService,
         BadgeService,
-        NotifyService
+        NotifyService,
+        LeaderBoardService,
+        NavbarService
       ],
     })
       .compileComponents();

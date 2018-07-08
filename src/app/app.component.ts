@@ -2,6 +2,7 @@ import { pairwise } from 'rxjs/operators';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedDataService } from './services/shared.data.service';
+import { LeaderBoardService } from './services/leaderBoard.service';
 
 @Component({
     selector: 'app-root',

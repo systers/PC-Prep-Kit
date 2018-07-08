@@ -158,9 +158,24 @@
             "reason": "User has not verified his email-address"
         },
         "PCE032": {
-        "code": "PCE032",
-        "message": "PCE032 : Something went wrong while updating user's badge",
-        "reason": "Internal Server Error"
+            "code": "PCE032",
+            "message": "PCE032 Something went wrong while updating user's badge",
+            "reason": "Internal Server Error"
+        },
+        "PCE033": {
+            "code": "PCE033",
+            "message": "PCE033 Something went wrong while updating user's score",
+            "reason": "Internal Server Error"
+        },
+        "PCE034": {
+            "code": "PCE034",
+            "message": "PCE034 No activity-progress data found",
+            "reason": "The user does not exist or the progress data of the user is not logged in progress_status table"
+        },
+        "PCE035": {
+            "code": "PCE035",
+            "message": "PCE035 Something went wrong while fetching activity-progress data",
+            "reason": "Internal Server Error"
         }
     },
 
@@ -192,8 +207,16 @@
         },
         "PCS007": {
           "code": "PCS007",
-          "message": "PCS007 : User's current badge was successfully updated"
-        }
+          "message": "PCS007 User's current badge was successfully updated"
+        },
+        "PCS008": {
+          "code": "PCS008",
+          "message": "PCS008 User's current total score was successfully updated"
+      },
+        "PCS009": {
+        "code": "PCS009",
+        "message": "PCS009 User's current score in the specific activity was updated"
+      }
     }
 }
 

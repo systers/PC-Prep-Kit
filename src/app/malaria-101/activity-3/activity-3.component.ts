@@ -8,6 +8,7 @@ import { LanguageService } from '../../services/language.service';
 import { BadgeService } from '../../services/BadgeService/badge.service';
 import swal from 'sweetalert2';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 @Component({
     selector: 'app-oddoneout',
@@ -23,6 +24,13 @@ export class OddOneOutComponent implements OnInit {
     private _subscription;
     private _data;
     private _status: object = {stage: 2, activity: 3};
+    private readonly POINTS_PER_CORRECT_ANSWER = 10;
+    private readonly LAST_QUESTION = 5;
+    private readonly CURR_STAGE = 5;
+    private readonly BADGE_NUMBER = 2;
+    private readonly ACTIVITY = 'oddOneOut';
+
+
 
     public activityComplete;
     public questionText;
@@ -34,7 +42,7 @@ export class OddOneOutComponent implements OnInit {
     public solutions = '';
 
     constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService,  vcr: ViewContainerRef,
-                private _performanceService: PerformanceDisplayService, private _badgeService: BadgeService) {
+                private _performanceService: PerformanceDisplayService, private _badgeService: BadgeService, private _leaderBoardService: LeaderBoardService) {
 
     }
 
@@ -122,17 +130,25 @@ export class OddOneOutComponent implements OnInit {
     changeQuestion() {
         this._subscription.unsubscribe();
         this._questionNumber++;
-        if (this._questionNumber === 5) {
+        if (this._questionNumber === this.LAST_QUESTION) {
             this.activityComplete = true;
+            this._dashboardService.getActivityScore({activity: this.ACTIVITY}).subscribe( res => {
+              const points = this.score * this.POINTS_PER_CORRECT_ANSWER;
+              if ((res.score < points)) {
+                // ensuring best possible score
+                const prevScore = res.score;
+                this._dashboardService.updateActivityScore({activity: this.ACTIVITY, score: points}).subscribe(() => {
+                  this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, score: points, prevScore: prevScore})
+                });
+              }
+            });
             swal({
               title: this.language.alerts.title,
               html: this.solutions,
               type: 'info',
             }).then( res => { if (!this.completed) {
-              const badgeNumber = 2;
-              const currStage = 5;
-              this._badgeService.updateBadgeNumber(badgeNumber).subscribe(response => response);
-              this._performanceService.openDialog(currStage);
+              this._badgeService.updateBadgeNumber(this.BADGE_NUMBER).subscribe(response => response);
+              this._performanceService.openDialog(this.CURR_STAGE);
           }});
             this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
             return;

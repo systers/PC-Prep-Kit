@@ -142,7 +142,7 @@ describe('Testing APIs', function() {
                     .set('x-access-token', `'${token}'`)
                     .expect(200)
                     .end(function(err, res) {
-                        res.body.user.email.should.equal(testCred.email);
+                        res.body.user.should.equal(testCred.email);
                         done();
                     });
             });
@@ -273,7 +273,7 @@ describe('Testing APIs', function() {
                     .send(newBadge)
                     .expect(200)
                     .end(function(err, res) {
-                        res.body.info.should.equal('PCS007 : User\'s current badge was successfully updated');
+                        res.body.info.should.equal('PCS007 User\'s current badge was successfully updated');
                         done();
                     });
             });
@@ -287,6 +287,110 @@ describe('Testing APIs', function() {
                     .expect(200)
                     .end(function(err, res) {
                         res.body.badge.should.equal(10);
+                        done();
+                    });
+            });
+
+
+            it('Update User\'s total score', function(done) {
+                let newScore = {score: 100};
+                server
+                    .patch('/api/user/score/update')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .send(newScore)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.info.should.equal('PCS008 User\'s current total score was successfully updated');
+                        done();
+                    });
+            });
+
+            it('Update User\'s total score with empty body', function(done) {
+                server
+                    .patch('/api/user/score/update')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .send()
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.error.should.equal('PCE033 Something went wrong while updating user\'s score');
+                        done();
+                    });
+            });
+
+            it('Exception should occur in invalid user\'s score update', function(done) {
+                let newScore = {something: 100};
+                server
+                    .patch('/api/user/score/update')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .send(newScore)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.code.should.equal('PCE033');
+                        done();
+                    });
+            });
+
+            it('Get User\'s score', function(done) {
+                server
+                    .get('/api/user/score')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.score.should.equal(100);
+                        done();
+                    });
+            });
+
+            it('Update User\'s score in specific activity', function(done) {
+                let body = {activity: 'dragAndDrop', score: 150};
+                server
+                    .patch('/api/user/activity/score/update')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .send(body)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.info.should.equal('PCS009 User\'s current score in the specific activity was updated');
+                        done();
+                    });
+            });
+
+            it('Get User\'s score in specific activity', function(done) {
+                let body = {activity: 'dragAndDrop'};
+                server
+                    .post('/api/user/activity/score')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .send(body)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.score.should.equal(150);
+                        done();
+                    });
+            });
+
+            it('Get the LeaderBoard array', function(done) {
+                let body = {badge: 10};
+                server
+                    .post('/api/leaderBoard')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .send(body)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body[0].score.should.equal(100);
+                        res.body[0].name.should.equal('newFirstName newLastName');
                         done();
                     });
             });

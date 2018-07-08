@@ -19,6 +19,13 @@ body {
       background-size: cover;
     }
 }
+
+.leaderBoardClass {
+  .mat-dialog-container {
+      background-color: $light-blue !important;
+  }
+}
+
 .certificateBackdrop {
     background-image: url("assets/img/certificateBackdrop.jpg");
 }

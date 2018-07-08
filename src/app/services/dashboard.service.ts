@@ -20,6 +20,8 @@ export class DashboardService {
   private _uploadCamPic = this._baseAPIUrl + 'uploadCam';
   private _uploadPic = this._baseAPIUrl + 'upload';
   private _getJSONData = this._baseAPIUrl + 'getJSONData';
+  private _getActivityScore = this._baseAPIUrl + 'user/activity/score';
+  private _updateActivityScore = this._baseAPIUrl + 'user/activity/score/update';
 
 
   constructor(private _http: HttpClient, private _apiservice: APIService) {
@@ -101,6 +103,18 @@ export class DashboardService {
    */
   getJSONData(jsonFile): Observable<any> {
     return this._apiservice.get(this._getJSONData + '?file=' + jsonFile).pipe(
+      map(res => res)
+    )
+  }
+
+  getActivityScore(request): Observable<any> {
+    return this._apiservice.post(this._getActivityScore, request).pipe(
+      map(res => res)
+    )
+  }
+
+  updateActivityScore(request): Observable<any> {
+    return this._apiservice.patch(this._updateActivityScore, request).pipe(
       map(res => res)
     )
   }

@@ -11,6 +11,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 describe('MalariaLifeCycleComponent', () => {
   let component: MalariaLifeCycleComponent;
@@ -33,7 +34,8 @@ describe('MalariaLifeCycleComponent', () => {
         LanguageService,
         ToastrService,
         PerformanceDisplayService,
-        MatDialog
+        MatDialog,
+        LeaderBoardService
       ]
     })
       .compileComponents();

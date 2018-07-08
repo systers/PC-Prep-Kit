@@ -1,5 +1,3 @@
-import { AnimatedVideoComponent } from './malaria-101/activity-1/activity-1-1.component';
-
 interface PreviousActivityConfig {
   prevStage: number;
   prevActivity: number;

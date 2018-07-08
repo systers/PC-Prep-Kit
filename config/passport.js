@@ -12,6 +12,7 @@ module.exports = function(passport, models) {
 
     const localUser = models.user_account;
     const progress = models.progress;
+    const activityProgress = models.activityProgress;
     let fname, lname;
 
     passport.serializeUser(function(user, done) {
@@ -51,13 +52,13 @@ module.exports = function(passport, models) {
                 email: profile.emails[0].value,
                 provider: 'google'
             }, defaults: {
-                    email: profile.emails[0].value,
-                    provider: 'google',
-                    google_token: accessToken,
-                    google_id: profile.id,
-                    fname: fname,
-                    lname: lname
-                }})
+                email: profile.emails[0].value,
+                provider: 'google',
+                google_token: accessToken,
+                google_id: profile.id,
+                fname: fname,
+                lname: lname
+            }})
                 .spread((user, created) => {
                     if (!created && !user) {
                         return done(null, false, {info: errorCode.PCE010.message, code: errorCode.PCE010.code});
@@ -65,10 +66,10 @@ module.exports = function(passport, models) {
                     progress.findOrCreate({where: {
                         user_id: user.id
                     }, defaults: {
-                            user_id: user.id,
-                            stage: 0,
-                            activity: 0
-                        }})
+                        user_id: user.id,
+                        stage: 0,
+                        activity: 0
+                    }})
                         .spread((status, created) => {
                             const response = {email: user.email, name: user.name};
                             return done(null, response);
@@ -76,7 +77,21 @@ module.exports = function(passport, models) {
                         .catch(function(err) {
                             return done(err);
                         });
-                })
+                    activityProgress.findOrCreate({where: {
+                        user_id: user.id
+                    }, defaults: {
+                        user_id: user.id,
+                    }})
+                        .spread(() => {
+                            const response = {email: user.email, name: user.name};
+                            return done(null, response);
+                        })
+                        .catch(function(err) {
+                            return done(err);
+                        });
+                }
+
+                )
                 .catch(function(err) {
                     return done(err);
                 });

@@ -3,6 +3,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
 import { LanguageService } from '../../services/language.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 @Component({
     selector: 'app-life-cycle',
@@ -15,6 +16,9 @@ export class MalariaLifeCycleComponent implements OnInit {
     private subscription;
     private _status: object = {stage: 2, activity: 1};
     private currArrState = [];
+    private readonly ARRAY_LENGTH = 6;
+    private readonly CURR_STAGE = 3;
+    private readonly ACTIVITY = 'lifeCycle';
     public activityComplete = false;
     public completed = false;
     public language: any;
@@ -26,9 +30,11 @@ export class MalariaLifeCycleComponent implements OnInit {
                        'character-2.png',
                        'plasmodium.png']
     public labelsArr;
+    private readonly NUMBER_OF_MATCHES = 6;
 
     constructor(private _langService: LanguageService, private _dashboardService: DashboardService, private _sharedData: SharedDataService,  vcr: ViewContainerRef,
-                private _performanceService: PerformanceDisplayService) {
+                private _performanceService: PerformanceDisplayService, private _leaderBoardService: LeaderBoardService
+    ) {
         this._dashboardService.getProgressStatus().subscribe(response => {
             this.completed = this._sharedData.checkProgress(2, 1, response);
         });
@@ -108,13 +114,15 @@ export class MalariaLifeCycleComponent implements OnInit {
             }
         }
 
-        if (!isWrongPos && arrLength === 6) {
+        if (!isWrongPos && arrLength === this.ARRAY_LENGTH) {
             this.activityComplete = true;
-          if (!this.completed) {const currStage = 3;
-            this._performanceService.openDialog(currStage); }
+          if (!this.completed) {
+            this._performanceService.openDialog(this.CURR_STAGE);
+            this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, level: 'level1'})
+          }
           this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
             this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
-        } else if (arrLength === 6) {
+        } else if (arrLength === this.NUMBER_OF_MATCHES) {
             this._sharedData.customErrorAlert(this.alerts.activityFailMsg, this.alerts.activityFailTitle);
         }
     }

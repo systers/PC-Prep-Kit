@@ -22,6 +22,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
 import * as RaphaelJS from 'raphael';
 import { Observable } from 'rxjs/Observable';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 const languageData = require('../../../assets/languages/english.json');
 
@@ -42,7 +43,7 @@ describe('StridesAgainstComponent', () => {
       imports: [RouterTestingModule, ToastrModule.forRoot(), SharedModule, MaterialModule, OverlayModule],
       providers: [LanguageService, HttpClient, HttpHandler, ToastrService,
         APIService, DashboardService, SharedDataService, {provide: ComponentFixtureAutoDetect, useValue: true},
-        InfokitService, PerformanceDisplayService, MatDialog, BadgeService, CertificateService, NavbarService
+        InfokitService, PerformanceDisplayService, MatDialog, BadgeService, CertificateService, NavbarService, LeaderBoardService
       ],
 
     })
