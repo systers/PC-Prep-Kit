@@ -62,6 +62,7 @@ import { PerformanceDisplayComponent } from './performance-display/performance-d
 import { PerformanceDisplayService } from './services/performance-display.service';
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { StridesAgainstModule } from './prevention/strides-against/strides-against.module';
+import { LevelNavigateComponent } from './level-navigate/level-navigate.component';
 import { LeaderBoardService } from './services/leaderBoard.service';
 import { LeaderBoardComponent } from './leader-board/leader-board.component';
 
@@ -100,6 +101,7 @@ import { LeaderBoardComponent } from './leader-board/leader-board.component';
     PerformanceDisplayComponent,
     BadgeComponent,
     UserUpdateComponent,
+    LevelNavigateComponent,
     LeaderBoardComponent
   ],
   imports: [
@@ -115,7 +117,6 @@ import { LeaderBoardComponent } from './leader-board/leader-board.component';
     SharedModule,
     StopTheBreedModule,
     StridesAgainstModule,
-
     RouterModule
   ],
   entryComponents: [

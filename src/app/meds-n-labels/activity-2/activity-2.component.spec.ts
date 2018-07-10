@@ -16,8 +16,10 @@ import { BadgeService } from '../../services/BadgeService/badge.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LevelNavigateComponent } from '../../level-navigate/level-navigate.component';
+import { ActivatedRoute } from '@angular/router';
+import { MaterialModule } from '../../material.module';
 import { LeaderBoardService } from '../../services/leaderBoard.service';
-
 const languageData = require('../../../assets/languages/english.json');
 
 describe('MemoryGameComponent', () => {
@@ -28,6 +30,7 @@ describe('MemoryGameComponent', () => {
   let apiService: APIService;
   let sharedService: SharedDataService;
   let languageService: LanguageService;
+  const MOCK_LEVEL = 1;
 
 
   beforeEach(async(() => {
@@ -36,10 +39,11 @@ describe('MemoryGameComponent', () => {
         RouterTestingModule,
         HttpClientModule,
         ToastrModule.forRoot(),
-        OverlayModule
+        OverlayModule,
+        MaterialModule
       ],
       declarations: [MemoryGameComponent,
-        ButtonNavComponent],
+        ButtonNavComponent, LevelNavigateComponent],
       providers: [
         DashboardService,
         APIService,
@@ -51,7 +55,8 @@ describe('MemoryGameComponent', () => {
         MatDialog,
         NotifyService,
         BadgeService,
-        LeaderBoardService
+        LeaderBoardService,
+        {provide: ActivatedRoute, useValue: {params: Observable.of({level: MOCK_LEVEL})}}
       ]
     }).compileComponents();
   }));

@@ -4,6 +4,7 @@ import { LanguageService } from '../../services/language.service';
 import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { ActivatedRoute } from '@angular/router';
 import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class DragdropComponent implements OnInit {
     language: any;
     private score = 0;
     private readonly POINTS_PER_CORRECT_ANSWER = 10;
-    private readonly CURR_STAGE = 4;
+    public readonly CURR_STAGE = 4;
     private readonly ACTIVITY = 'dragAndDrop';
 
     private _status: object = {stage: 2, activity: 2};
@@ -30,6 +31,9 @@ export class DragdropComponent implements OnInit {
     public position= 'col-md-10 col-md-offset-2 introbody';
     public completed = false;
     public alerts: any;
+    public readonly LEVEL_CONFIG = [5, 7, 10];
+    public noOfDosAndDonts;
+    public level: number;
 
     /**
      * dosAndDonts description with the values,the same order will be displayed
@@ -62,8 +66,33 @@ export class DragdropComponent implements OnInit {
           this.language = response.pcprepkit.stages.malaria101.dragdrop;
           this.alerts = response.pcprepkit.common.alerts;
       });
+      this._route.params.subscribe( params => {
+        this.noOfDosAndDonts = this.LEVEL_CONFIG[ params.level - 1];
+        this.level =  parseInt(params.level, 10);
+      });
+      this.shuffle(this.dosAndDonts);
+      this.dosAndDonts.splice(this.noOfDosAndDonts);
     }
 
+  /**
+   * Shuffle the questions and answers
+   * @param {Array} array The array that has to be shuffled
+   */
+    shuffle(array) {
+      let currentIndex = array.length, temporaryValue, randomIndex;
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+      return array;
+    }
     /**
      * Checks if the Content is valid before dropping
      * Removes the Object from dosAndDonts Array and fill it in either do or dont array, Check if the dosAndDonts Array is empty
@@ -112,12 +141,16 @@ export class DragdropComponent implements OnInit {
         this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
         this._infokitService.activateinfokit('do_dont').subscribe(res => {});
         if (!this.completed) {
+          this._dashboardService.updateActivityLevel({activity: 'dragAndDrop', level: this.level}).subscribe(() => {});
+          if (this.level === 1) {
           this._performanceService.openDialog(this.CURR_STAGE);
+          }
         }
+
     }
 
     constructor(private _dashboardService: DashboardService, private _sharedData: SharedDataService, private _infokitService: InfokitService,  vcr: ViewContainerRef, private _langService: LanguageService,
-                private _performanceService: PerformanceDisplayService, private _leaderBoardService: LeaderBoardService
+                private _performanceService: PerformanceDisplayService, private _route: ActivatedRoute, private _leaderBoardService: LeaderBoardService
     ) {
         this._dashboardService.getProgressStatus().subscribe(response => {
             this.completed = this._sharedData.checkProgress(2, 2, response);

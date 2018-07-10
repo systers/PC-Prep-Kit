@@ -1,4 +1,5 @@
 @import "../styles/main";
+$adjust-left: 200px;
 
 .memory-imgs {
     height: 120px;
@@ -18,9 +19,11 @@
 }
 
 .image-table td {
-    border: 1px solid #fff;
-    box-sizing: border-box;
-    -webkit-box-shadow: 0 0 1px #999;
-    box-shadow: 0 0 1px #999;
+    border: 1px solid $light-grey;
+    -webkit-box-shadow: 1px 1px 1px 1px #999;
+    box-shadow: 1px 1px 1px 1px #999;
 }
 
+.adjust-left {
+    margin-left: $adjust-left;
+}

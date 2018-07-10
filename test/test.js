@@ -395,6 +395,52 @@ describe('Testing APIs', function() {
                     });
             });
 
+            it('Update User\'s levelNumber in specific activity', function(done) {
+                let body = {activity: 'memoryGame', level: 1};
+                server
+                    .patch('/api/user/activity/levelNumber/update')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .send(body)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.info.should.equal('User\'s current level in the specific activity was updated');
+                        done();
+                    });
+            });
+
+            it('Get User\'s levelNumber in non-existent activity', function(done) {
+                let body = {someActivity: 'someName'};
+                server
+                    .post('/api/user/activity/levelNumber')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .send(body)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.should.deepEqual({});
+                        done();
+                    });
+            });
+
+            it('Get User\'s levelNumber in specific activity', function(done) {
+                let body = {activity: 'memoryGame'};
+                server
+                    .post('/api/user/activity/levelNumber')
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .set('x-access-token', `'${token}'`)
+                    .send(body)
+                    .expect(200)
+                    .end(function(err, res) {
+                        res.body.level.should.equal(1);
+                        done();
+                    });
+            });
+
+
             it('Get Infokit Before Update', function(done) {
                 server
                     .get('/api/infokitactive')
