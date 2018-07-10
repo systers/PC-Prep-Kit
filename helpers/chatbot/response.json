@@ -1,0 +1,27 @@
+{
+    "malariaRisk": {
+      "level1": "It is less likely that you are infected with malaria. However it is always recommended you visit a doctor since malaria can turn out to be life threatening.",
+      "level2": "There are chances of you being infected with malaria. Malaria can be a threat to life, It is always recommended you visit your doctor if you have any doubts.",
+      "level3": "You seem to have quite a lot of symptoms related to malaria. Malaria can be a threat to life, please visit your doctor Immediately."
+    },
+    "medicineSafe": {
+      "gender": {
+        "male": "Wrong medication may cause adverse side effects, please consult your doctor",
+        "female": "Wrong medication may cause adverse side effects, malaria is very harmful in case of pregnancies. Please consult your doctor."
+      }
+    },
+    "preventionTip": {
+      "message": "Using Mosquito repellent will be of a great help. Wear long sleeve clothes. You could check for any stagnant water."
+    },
+    "suggestMedicine": {
+      "message": "The medicines which are used to treat malaria are called antimalarials. The medicine you take will depend on your location and your current health condition. Drug Treatment is based on species of parasites you are infected with. If you are infected with P. falciparum, it can be life threatening. Infection caused by other species are rarely life threatening. The popular medicines for malaria are Mefloquine, malarone , doxycycline."
+    },
+    "medicineSideEffects": {
+      "malarone": "Malarone may cause nausea, vomiting, stomach pain, headache, diarrhea.",
+      "mefloquine": "Mefloquine has some neuropsychiatric side effects, it may cause headache, nausea, dizziness and stomach upset",
+      "doxycycline": "Doxycycline may cause stomach upset and sensitivity to sunlight"
+    },
+    "introductionMalaria": {
+      "message": "An intermittent and remittent fever caused by a protozoan parasite that invades the red blood cells. The parasite is transmitted by mosquitoes in many tropical and subtropical regions."
+    }
+}
