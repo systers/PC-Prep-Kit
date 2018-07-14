@@ -14,6 +14,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { BotService } from '../../services/BotService/bot.service';
 
 describe('DoctorchatComponent', () => {
   let component: DoctorchatComponent;
@@ -24,7 +25,7 @@ describe('DoctorchatComponent', () => {
       declarations: [DoctorchatComponent, ButtonNavComponent],
       imports: [FormsModule, ToastrModule.forRoot(), RouterTestingModule, OverlayModule],
       providers: [DoctorService, APIService, HttpClient, HttpHandler, SharedDataService, DashboardService, ToastrService, InfokitService, LanguageService,
-                  PerformanceDisplayService, MatDialog]
+                  PerformanceDisplayService, MatDialog, BotService]
     })
       .compileComponents();
   }));

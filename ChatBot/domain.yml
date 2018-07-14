@@ -1,0 +1,99 @@
+slots:
+  age:
+    type: float
+  requested_slot:
+    type: text
+  matches:
+    type: text
+  medicine:
+    type: text
+#  symptoms:
+#    type: list
+#  medicines:
+#    type: list
+
+intents:
+ - greet
+ - thankyou
+ - goodbye
+ - identity
+ - botPlace
+ - prevent
+ - intro
+ - medicines
+ - safeMedicine
+ - gender
+ - affirm
+ - deny
+ - informThird
+ - Male
+ - Female
+ - informAge
+
+entities:
+ - medicine
+ - age
+
+templates:
+  utter_greet:
+    - "hey there!"
+    - "hello!"
+    - "Hi what's up!"
+  utter_goodbye:
+    - "goodbye :("
+    - "take care"
+    - "see you soon"
+    - "be healthy"
+  utter_default:
+    - "default message"
+  utter_youarewelcome:
+    - "you're very welcome"
+    - "Welcome sir."
+    - "My pleasure."
+  utter_identity:
+    - "I am a Peace Corps assistant. I specialise in Malaria."
+    - "I am a Malaria Specialist"
+    - "I am your friend. I'll help you in fighting malaria"
+    - "Like you, I'm also a Peace Corp Volunteer"
+  utter_place:
+    - "I live in PC-Prep-Kit"
+    - "I am always with you, my friend."
+  utter_prevent:
+    - "There are various ways for preventing Malaria. I'll tell you one by one."
+    - "Yes. There are ways for preventing it. I'll tell you one by one."
+  utter_intro:
+    - "Malaria is a disease of the blood that is caused by the Plasmodium parasite, which is transmitted from person to person by a particular type of mosquito."
+    - "It's a disease caused by a plasmodium parasite and transmitted by the bite of infected mosquitoes."
+  utter_medicines:
+    - "Don't worry, These are the medicines which would help."
+    - "Cool. Take these medicines, and you'll be good."
+  utter_ask_name:
+    - "What's your name?"
+  utter_ask_gender:
+    - "May I know your gender please?"
+  utter_ask_pregnant:
+    - "Are you Pregnant? Please answer in yes or no"
+  utter_ask_age:
+   - "May I know your age please"
+
+actions:
+  - utter_default
+  - utter_greet
+  - utter_goodbye
+  - utter_youarewelcome
+  - utter_identity
+  - utter_place
+  - utter_prevent
+  - utter_intro
+  - utter_medicines
+  - utter_ask_name
+  - utter_ask_gender
+  - utter_ask_pregnant
+  - bot.ActionPatientInformation
+  - bot.ActionSuggestPregnant
+  - bot.ActionSuggestNormal
+  - utter_ask_age
+  - bot.CheckAge
+  - bot.ActionCheckMedicineNormal
+  - bot.ActionCheckMedicinePregnant
+

@@ -49,3 +49,17 @@ Thumbs.db
 # Config files storing passwords
 /config/settings.js
 
+#English model file required for entity extraction by MITIE
+/ChatBot/total_word_feature_extractor.dat
+
+#RASA log files
+/ChatBot/out.log
+/ChatBot/rasa_core.log
+
+#Python virtual environment
+/ChatBot/venv/*
+/ChatBot/src/*
+
+#IDE settings
+/ChatBot/.idea
+

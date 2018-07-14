@@ -20,6 +20,7 @@ import { NotifyService } from './badge/notify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material';
 import { LeaderBoardService } from './services/leaderBoard.service';
+import { BotService } from './services/BotService/bot.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -30,7 +31,7 @@ describe('AppComponent', () => {
       imports: [RouterTestingModule, MaterialModule, ToastrModule.forRoot(), BrowserAnimationsModule, MatDialogModule],
       providers: [SharedDataService, DashboardService,
         HttpClient, HttpHandler, APIService, ToastrService, AuthService,
-        LanguageService, InfokitService, NavbarService, BadgeService, NotifyService, LeaderBoardService]
+        LanguageService, InfokitService, NavbarService, BadgeService, NotifyService, LeaderBoardService, BotService]
     }).compileComponents();
   }));
 

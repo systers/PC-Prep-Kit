@@ -1,9 +1,10 @@
-import { Component, OnInit, AfterViewChecked, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DoctorService } from '../../services/doctorchat.service';
 import { SharedDataService } from '../../services/shared.data.service';
 import { InfokitService } from '../../services/infokit.service';
 import { DashboardService } from '../../services/dashboard.service';
 import { LanguageService } from '../../services/language.service';
+import { BotService } from '../../services/BotService/bot.service';
 
 @Component({
     selector: 'app-doctorchat',
@@ -21,7 +22,7 @@ export class DoctorchatComponent implements OnInit, AfterViewChecked {
     messages = [];
     @ViewChild('chats') chatContainer;
 
-    constructor(private _doctorchat: DoctorService, private _sharedData: SharedDataService, vcr: ViewContainerRef, private _infokitService: InfokitService,  private _dashboardService: DashboardService, private _langService: LanguageService) {
+    constructor(private _doctorchat: DoctorService, private _sharedData: SharedDataService, vcr: ViewContainerRef, private _infokitService: InfokitService,  private _dashboardService: DashboardService, private _langService: LanguageService, private _botService: BotService) {
 
     }
 
@@ -39,18 +40,23 @@ export class DoctorchatComponent implements OnInit, AfterViewChecked {
     }
 
     send(sentMessage) {
-        this.chatMessage = '';
-        if (sentMessage) {
-            this.messages.push({message: sentMessage, status: 'sent-message'});
-            if (localStorage.getItem(DoctorchatComponent._localStorageKey)) {
-                this._doctorchat.doctorMessage({message: sentMessage}).subscribe(response => {
-                    if (response.reply.hasOwnProperty('link') && response.reply.hasOwnProperty('image')) {
-                      this.messages.push({message: response.reply.message, status: 'recv-message', link: response.reply.link, image: response.reply.image});
-                    } else {
-                      this.messages.push({message: response.reply, status: 'recv-message'});
-                    }
-                });
-            }
+      this.chatMessage = '';
+      if (sentMessage) {
+        this.messages.push({message: {text: sentMessage}, status: 'sent-message'});
+        if (localStorage.getItem(DoctorchatComponent._localStorageKey)) {
+          this._botService.getIntent(sentMessage).subscribe(intent => {
+            this._botService.getResponse(sentMessage).subscribe(text => {
+              if (this._botService.checkCustomIntent(intent)) {
+                const customResponse = this._botService.getCustomResponse(intent);
+                customResponse['text'] = text;
+                this.messages.push({message: customResponse, status: 'recv-message'});
+              } else {
+                this.messages.push({message: {text}, status: 'recv-message'});
+              }
+            })
+          })
         }
+      }
     }
 }
+
