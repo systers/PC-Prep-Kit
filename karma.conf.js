@@ -30,6 +30,6 @@ module.exports = function (config) {
     browsers: ['ChromeHeadless'],
     singleRun: false,
     concurrency: Infinity,
-    files: ["node_modules/raphael/raphael.min.js"]
+    files: ["node_modules/raphael/raphael.min.js", "node_modules/jquery/dist/jquery.js"]
   });
 };

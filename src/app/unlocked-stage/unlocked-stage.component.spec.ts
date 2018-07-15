@@ -8,6 +8,9 @@ import { DashboardService } from '../services/dashboard.service';
 import { SharedDataService } from '../services/shared.data.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatSnackBarModule } from '@angular/material';
+import { MaterialModule } from '../material.module';
+
 
 describe('UnlockedStageComponent', () => {
   let component: UnlockedStageComponent;
@@ -18,7 +21,7 @@ describe('UnlockedStageComponent', () => {
       declarations: [UnlockedStageComponent, ButtonNavComponent],
       providers: [LanguageService, HttpClient, HttpHandler, APIService,
         DashboardService, SharedDataService, ToastrService],
-      imports: [ToastrModule.forRoot(), RouterTestingModule]
+      imports: [ToastrModule.forRoot(), RouterTestingModule, MatSnackBarModule, MaterialModule]
     })
       .compileComponents();
   }));
@@ -27,10 +30,10 @@ describe('UnlockedStageComponent', () => {
     fixture = TestBed.createComponent(UnlockedStageComponent);
     component = fixture.componentInstance;
   });
-
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+  // Game depends on JQuery
 });
 
 

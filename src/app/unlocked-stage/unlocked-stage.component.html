@@ -1,20 +1,20 @@
 <div id="container" [hidden]="gameOver || success">
     <div id="scene">
-        <div id="human-health-text">{{language?.legend.human}}</div>
-        <div id="human-health">
-            <div id="human-health-bar"></div>
-        </div>
-        <div id="mosquito-health-text">{{language?.legend.mosquito}}</div>
-        <div id="mosquito-health">
-            <div id="mosquito-health-bar"></div>
-        </div>    
-        <img id="human" src="../assets/img/unlocked-stage/human.png"/>
-        <img id="moz" name="animate" src="../assets/img/unlocked-stage/mosquito.gif"/>  
-        <img id="spray" src="../assets/img/unlocked-stage/spray-cursor.gif"/>
+      <div class="progress  progress-bar-vertical">
+        <div class="progress-bar progress-bar-danger" role="progressbar"  [ngStyle]="{'height': sprayValue + '%'}"></div>
+      </div>
+      <div id="progressText">{{language?.legend.spray}}</div>
+      <div id="human-health-text">{{language?.legend.human}}</div>
+      <div id="human-health">
+        <div id="human-health-bar"></div>
+      </div>
+      <div id="performance">
+      <div id="stars" *ngIf="starCount"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{starCount}}</div>
+      </div>
     </div>
     <div id="inventory">
-        <div id="inventory-heading">{{language?.legend.inventory}}</div>
-        <img id="spray-item" src="../assets/img/unlocked-stage/spray-item.gif"/>
+        <img id="pill-item" src="../assets/img/unlocked-stage/pill.png" (click)="healthBoost()" [matTooltip]="language?.toolTips.pill"/>
+        <img id="spray-item" src="../assets/img/unlocked-stage/spray-item.gif" (click)="sprayRefill()" [matTooltip]="language?.toolTips.spray"/>
     </div>
 </div>
 <div class="row col-lg-6 col-lg-offset-3 text-center" id="game-loss-status" [hidden]="!gameOver">
@@ -39,9 +39,9 @@
 <div class="row col-lg-6 col-lg-offset-3 text-center" id="game-win-status" [hidden]="!success">
     <div class="swal2-icon swal2-success swal2-animate-success-icon">
         <div class="swal2-success-circular-line-left"></div>
-        <span class="swal2-success-line-tip swal2-animate-success-line-tip"></span> 
+        <span class="swal2-success-line-tip swal2-animate-success-line-tip"></span>
         <span class="swal2-success-line-long swal2-animate-success-line-long"></span>
-        <div class="swal2-success-ring"></div> 
+        <div class="swal2-success-ring"></div>
         <div class="swal2-success-fix"></div>
         <div class="swal2-success-circular-line-right"></div>
     </div>
