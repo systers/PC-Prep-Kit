@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import * as $ from 'jquery';
 import { DashboardService } from '../services/dashboard.service';
 import { SharedDataService } from '../services/shared.data.service';
@@ -46,30 +46,21 @@ export class UnlockedStageComponent implements OnInit {
   private keydown = false;
   private levelCounter = 1;
   private maxLevel = 4;
+  private readonly HEALTH_REDUCTION = 5;
+  private readonly NET_POSITION_CONSTRAINT = {minX: 1200, maxX: 1270, maxY: 517};
+  private readonly SPRAY_OFFSET = {x: 510, y: 150};
+  private readonly NET_OFFSET = {y: 150};
+  private readonly MOSQUITO_HEALTH_REDUCTION = 20;
+  private readonly HEALTH_BOOST = 30;
+  private readonly MAX_HEALTH = 100;
+  private readonly SPRAY_BOOST = 20;
+  private readonly MOSQUITO_ENTRY_TIMES = [10, 20, 40];
+
+  private SPEED_MODIFIER = 0.20;
 
   constructor(private _langService: LanguageService, private _renderer: Renderer2, private _dashboardService: DashboardService, private _sharedData: SharedDataService,
               public snackBar: MatSnackBar) {
   }
-
-  // If we need keyboard movement for the net
-  @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent) {
-
-    if (event.keyCode === 38) {
-      this.keydown = true;
-      const that = this;
-      setInterval(function () {
-        if (that.keydown) {
-          that.$net.css({top: '-=2px'});
-        }
-      }, 10);
-    }
-    if (event.keyCode === 40) {
-      this.keydown = false;
-      this.$net.css({top: '+=20px'});
-    }
-  }
-
 
   ngOnInit() {
     this._langService.loadLanguage().subscribe(response => {
@@ -100,7 +91,7 @@ export class UnlockedStageComponent implements OnInit {
     this.$net.attr({'id': 'net'});
     $('#scene').append(this.$net);
     this.$net.css({display: 'block'});
-    this.$net.css({left: '840px'});
+    this.$net.css({left: '72%'});
 
     // Progress and HealthBars
     this._humanProgBar = document.getElementById('human-health-bar');
@@ -112,6 +103,11 @@ export class UnlockedStageComponent implements OnInit {
     // Time increment begins as the game starts
     this.incrementTime();
     this._spray = this.$spray;
+    // Bind events with the canvas
+    this.bindEvents();
+  }
+
+  bindEvents() {
     this._mousemoveListener = this._renderer.listen(this._canvas, 'mousemove', (event) => this.moveOverCanvasSpray(event));
     this._mouseleaveListener = this._renderer.listen(this._canvas, 'mouseleave', (event) => this.leaveCanvas());
     this._mousedownListener = this._renderer.listen(this._canvas, 'mousedown', (event) => this.attack());
@@ -126,17 +122,21 @@ export class UnlockedStageComponent implements OnInit {
     const that = this;
     setTimeout(function () {
       if (that._mousedown) {
-        that.stopAttack();
-        that.sprayValue -= 4;
+        that.sprayValue -= 1;
         that.measureSpray();
+        if (that.sprayValue < 0) {
+          that.stopAttack();
+        }
       }
-    }, 500)
+    }, 50)
   }
 
   attack() {
-    this.$spray.attr('src', '../assets/img/unlocked-stage/spray.gif');
-    this._mousedown = true;
-    this.measureSpray();
+    if (this.sprayValue >= 0) {
+      this.$spray.attr('src', '../assets/img/unlocked-stage/spray.gif');
+      this._mousedown = true;
+      this.measureSpray();
+    }
   }
 
   stopAttack() {
@@ -147,13 +147,13 @@ export class UnlockedStageComponent implements OnInit {
   moveOverCanvasSpray(e) {
     this._canvas.style.cursor = 'none';
     this._spray.css({display: 'block'});
-    this._spray.css({left: e.pageX - 510 + 'px'});
-    this._spray.css({top: e.pageY - 150 + 'px'});
+    this._spray.css({left: e.pageX - this.SPRAY_OFFSET.x + 'px'});
+    this._spray.css({top: e.pageY - this.SPRAY_OFFSET.y + 'px'});
   }
 
   moveOverCanvasNet(e) {
-    if (!(e.pageX > 1270 || e.pageX < 1200 || e.pageY < 517)) {
-      this.$net.css({top: e.pageY - 150 + 'px'});
+    if (!(e.pageX > this.NET_POSITION_CONSTRAINT.maxX || e.pageX < this.NET_POSITION_CONSTRAINT.minX || e.pageY < this.NET_POSITION_CONSTRAINT.maxY)) {
+      this.$net.css({top: e.pageY - this.NET_OFFSET.y + 'px'});
     }
   }
 
@@ -190,7 +190,7 @@ export class UnlockedStageComponent implements OnInit {
         }
         if ((currObj.checkCollison(mosquito, currObj.$human))) {
           if (!currObj._collisionWithManStatus) {
-            currObj._humanBarWidth -= 10;
+            currObj._humanBarWidth -= currObj.HEALTH_REDUCTION;
             currObj._humanProgBar.style.width = currObj._humanBarWidth + '%';
             currObj._collisionWithManStatus = true;
             if (currObj._humanBarWidth === 0) {currObj.gameOver = true}
@@ -199,7 +199,7 @@ export class UnlockedStageComponent implements OnInit {
         if (!collisionWithSpray) {
           if (currObj._spray && currObj._mousedown && currObj._spray.css('display') === 'block' && currObj.checkCollison(mosquito, currObj._spray)) {
             collisionWithSpray = true;
-            currObj.mosquitoesStrength[id] -= 20;
+            currObj.mosquitoesStrength[id] -= currObj.MOSQUITO_HEALTH_REDUCTION;
             if (currObj.mosquitoesStrength[id] === 0) {
               mosquito.remove();
               currObj.mosCountCurrent--;
@@ -233,7 +233,7 @@ export class UnlockedStageComponent implements OnInit {
       this.openDialog(this.language.alerts.buy.fail.health);
     } else {
       this.openDialog(this.language.alerts.buy.success.health);
-      this._humanBarWidth = (this._humanBarWidth + 30) >= 100 ? 100 : this._humanBarWidth + 30;
+      this._humanBarWidth = (this._humanBarWidth + this.HEALTH_BOOST) >= this.MAX_HEALTH ? this.MAX_HEALTH : this._humanBarWidth + this.HEALTH_BOOST;
       this._humanProgBar.style.width = this._humanBarWidth + '%';
       this.starCount -= 2;
     }
@@ -244,7 +244,7 @@ export class UnlockedStageComponent implements OnInit {
       this.openDialog(this.language.alerts.buy.fail.spray);
     } else {
       this.openDialog(this.language.alerts.buy.success.spray);
-      this.sprayValue += 20;
+      this.sprayValue += this.SPRAY_BOOST;
       this.starCount -= 1;
     }
   }
@@ -273,9 +273,8 @@ export class UnlockedStageComponent implements OnInit {
 
     const greatest = xPos > yPos ? xPos : yPos;
 
-    const speedModifier = 0.25;
 
-    const speed = Math.ceil(greatest / speedModifier);
+    const speed = Math.ceil(greatest / this.SPEED_MODIFIER);
 
     return speed;
   }
@@ -294,13 +293,7 @@ export class UnlockedStageComponent implements OnInit {
       this.setMosquitoes();
     }
     this._timeout = setTimeout(function () {
-      if (that.time === 10) {
-        that.addMosquito();
-      }
-      if (that.time === 20) {
-        that.addMosquito();
-      }
-      if (that.time === 35) {
+      if (that.MOSQUITO_ENTRY_TIMES.includes(that.time)) {
         that.addMosquito();
       }
       that.time++;
@@ -323,9 +316,8 @@ export class UnlockedStageComponent implements OnInit {
     $('#scene').append(copy);
     this.animateDiv(copy, [100, 100], this.mosCountInitial++);
     this.mosCountCurrent++;
-    this.levelCounter++;
-    const levelMessage = (this.levelCounter === this.maxLevel) ? this.language.alerts.level.finalLevel : this.language.alerts.level.nextLevel + ' ' + this.levelCounter;
-    this.openDialog(levelMessage);
+    // increasing speed with time
+    this.SPEED_MODIFIER += 0.03;
   }
 
 }
