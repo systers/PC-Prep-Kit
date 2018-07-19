@@ -6,3 +6,6 @@ export class Item {
   element: Elements;
 }
 
+export class LevelItems {
+  [level: string]: Array<Item>
+}

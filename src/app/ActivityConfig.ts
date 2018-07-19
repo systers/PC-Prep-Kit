@@ -43,16 +43,16 @@ export const ActivityConfig: Array<Activity> = [
   {
     name: 'Stop the Breed',
     url: '/prevent/stop-the-breed/game',
-    levels: 3
+    levels: 2
   },
   {
     name: 'Stride Against Malaria',
     url: '/prevent/stride-against-malaria/game',
-    levels: 3
+    levels: 2
   },
   {
     name: 'Moskito Asasinato',
-    url: 'unlocked-stage',
+    url: 'unlocked-stage/game',
     levels: 3
   },
 ];

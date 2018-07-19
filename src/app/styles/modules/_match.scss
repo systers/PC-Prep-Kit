@@ -18,13 +18,16 @@ $screen-med: 992px;
 
     .meds-description {
         position: fixed;
-        top: 210px;
+        top: 180px;
         left: $des-left;
     }
 
     .match-button {
         position: fixed;
-        top: 580px;
-        left: ($content-left + $des-left)/2;;
+        top: 830px;
+        left: ($meds-left + $des-left)/2;
+        font-size: $font-size-small;
+        color: $white;
+        background-color: $orange;
     }
 }

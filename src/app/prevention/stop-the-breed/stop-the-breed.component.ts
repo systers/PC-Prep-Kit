@@ -8,6 +8,7 @@ import { LanguageService } from '../../services/language.service';
 import { DashboardService } from '../../services/dashboard.service';
 import { InfokitService } from '../../services/infokit.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { ActivatedRoute } from '@angular/router';
 import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 @Component({
@@ -24,8 +25,8 @@ export class StopTheBreedComponent implements OnInit {
   activityComplete = false;
   completed = false;
 
-  canvasWidth = 1380;
-  canvasHeight = 773;
+  private readonly CANVAS_WIDTH = 1380;
+  private readonly CANVAS_HEIGHT = 773;
   elementConfig = elementConfig;
   backgroundConfig = backgroundConfig;
 
@@ -33,14 +34,17 @@ export class StopTheBreedComponent implements OnInit {
   paper: RaphaelPaper;
   glow: RaphaelSet;
   count = 5;
+  private readonly LEVELS = ['level1', 'level2'];
+  private level: string;
+  private levelNumber;
 
-  private readonly CURR_STAGE = 8;
+  readonly CURR_STAGE = 8;
   private readonly ACTIVITY = 'stopBreed';
 
 
   constructor(public dialog: MatDialog, public sharedDataService: SharedDataService,
               private _langService: LanguageService, private _dashboardService: DashboardService,
-              private _infokitService: InfokitService, private _performanceService: PerformanceDisplayService,
+              private _infokitService: InfokitService, private _performanceService: PerformanceDisplayService, private _route: ActivatedRoute,
               private _leaderBoardService: LeaderBoardService) {
   }
 
@@ -53,10 +57,12 @@ export class StopTheBreedComponent implements OnInit {
         .subscribe(res => res);
       this.activityComplete = true;
       if (!this.completed) {
-        this._performanceService.openDialog(this.CURR_STAGE);
-        this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, level: 'level1'});
+        if (this.levelNumber === 1) {
+          this._performanceService.openDialog(this.CURR_STAGE);
+        }
       }
-
+      this._dashboardService.updateActivityLevel({activity: this.ACTIVITY, level: this.levelNumber}).subscribe(() => {});
+      this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, level: this.level});
       this._infokitService.activateinfokit('stop_Breed').subscribe( () => {});
     }
   }
@@ -71,12 +77,18 @@ export class StopTheBreedComponent implements OnInit {
       this.completed = this.sharedDataService.checkProgress(4, 1, res);
     });
 
-    // The paper element of Raphael where the game canvas has been set up
-    this.paper = Raphael(this.gameArea.nativeElement, this.canvasWidth, this.canvasHeight);
-    const bgItem = this.backgroundConfig;
-    this.paper.image(bgItem.imageURL, bgItem.positionX, bgItem.positionY, bgItem.width, bgItem.height);
+    this._route.params.subscribe( params => {
+      this.level =   this.LEVELS[ params.level - 1];
+      this.levelNumber = parseInt( params.level, 10);
+    });
 
-    this.elementConfig.forEach((el) => {
+    // The paper element of Raphael where the game canvas has been set up
+    this.paper = Raphael(this.gameArea.nativeElement, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
+    const bgItem = this.backgroundConfig;
+    const currentLevel = this.level;
+    this.paper.image(bgItem[currentLevel].imageURL, bgItem[currentLevel].positionX, bgItem[currentLevel].positionY, bgItem[currentLevel].width, bgItem[currentLevel].height);
+
+    this.elementConfig[this.level].forEach((el) => {
       const item = el.item;
       const element: RaphaelElement = this.paper.image(item.imageURL, item.positionX, item.positionY, item.width, item.height);
 

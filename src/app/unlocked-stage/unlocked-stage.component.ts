@@ -4,6 +4,8 @@ import { DashboardService } from '../services/dashboard.service';
 import { SharedDataService } from '../services/shared.data.service';
 import { LanguageService } from '../services/language.service';
 import { MatSnackBar } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-unlocked-stage',
@@ -41,11 +43,11 @@ export class UnlockedStageComponent implements OnInit {
   private mosquitoes = [];
   private maxMosquitoes = 10;
   private mosquitoesStrength = Array(this.maxMosquitoes).fill(100);
-  private mosCountInitial = 2;
-  private mosCountCurrent = this.mosCountInitial;
+  private mosCountCurrent: number;
   private keydown = false;
   private levelCounter = 1;
-  private maxLevel = 4;
+  private level: number;
+  public readonly CURR_STAGE = 10;
   private readonly HEALTH_REDUCTION = 5;
   private readonly NET_POSITION_CONSTRAINT = {minX: 1200, maxX: 1270, maxY: 517};
   private readonly SPRAY_OFFSET = {x: 510, y: 150};
@@ -54,12 +56,18 @@ export class UnlockedStageComponent implements OnInit {
   private readonly HEALTH_BOOST = 30;
   private readonly MAX_HEALTH = 100;
   private readonly SPRAY_BOOST = 20;
-  private readonly MOSQUITO_ENTRY_TIMES = [10, 20, 40];
 
-  private SPEED_MODIFIER = 0.20;
+  /*Parameters below would change as per the level i.e.
+  * MOSQUITO_COUNT_INITIAL => no. of mosquitoes initially in the game
+  * MOSQUITO_ENTRY_TIMES => Array of times, when a new mosquito would enter in the game
+  * SPEED_MODIFIER => Higher speeds for difficult levels*/
+  private MOSQUITO_COUNT_INITIAL = [2, 3, 4];
+  private readonly MOSQUITO_ENTRY_TIMES = [[10, 20, 40], [10, 15, 40], [5, 20, 40]];
+  private readonly SPEED_MODIFIER = [0.20, 0.25, 0.30];
+
 
   constructor(private _langService: LanguageService, private _renderer: Renderer2, private _dashboardService: DashboardService, private _sharedData: SharedDataService,
-              public snackBar: MatSnackBar) {
+              public snackBar: MatSnackBar, private _route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -67,6 +75,10 @@ export class UnlockedStageComponent implements OnInit {
       this.language = response.pcprepkit.stages.lockedStage.game;
     });
     this._canvas = document.getElementById('scene');
+    this._route.params.subscribe( params => {
+      this.level =  parseInt(params.level, 10);
+    });
+    this.mosCountCurrent = this.MOSQUITO_COUNT_INITIAL[this.level - 1];
 
     // Initialising single mosquito
     this.$mosquito = $('<div><img src="../assets/img/unlocked-stage/mosquito.gif" class="moz"></div>');
@@ -75,7 +87,7 @@ export class UnlockedStageComponent implements OnInit {
     this.$mosquito.append(progress);
 
     // Adding n = mosCountInitial initially in the game
-    for (let i = 1; i <= this.mosCountInitial; i++) {
+    for (let i = 1; i <= this.MOSQUITO_COUNT_INITIAL[this.level - 1]; i++) {
       const mosquitoClone = this.$mosquito.clone();
       $('#scene').append(mosquitoClone);
       this.mosquitoes.push(mosquitoClone);
@@ -206,6 +218,7 @@ export class UnlockedStageComponent implements OnInit {
               currObj.starCount++;
               if (currObj.mosCountCurrent === 0) {
                 currObj.success = true;
+                currObj._dashboardService.updateActivityLevel({activity: 'moskitoAsasinato', level: currObj.level}).subscribe(() => {});
               }
             }
             mosquito.children('.mosquitoHealth').text(currObj.mosquitoesStrength[id]);
@@ -274,7 +287,7 @@ export class UnlockedStageComponent implements OnInit {
     const greatest = xPos > yPos ? xPos : yPos;
 
 
-    const speed = Math.ceil(greatest / this.SPEED_MODIFIER);
+    const speed = Math.ceil(greatest / this.SPEED_MODIFIER[this.level - 1]);
 
     return speed;
   }
@@ -293,7 +306,7 @@ export class UnlockedStageComponent implements OnInit {
       this.setMosquitoes();
     }
     this._timeout = setTimeout(function () {
-      if (that.MOSQUITO_ENTRY_TIMES.includes(that.time)) {
+      if (that.MOSQUITO_ENTRY_TIMES[that.level - 1].includes(that.time)) {
         that.addMosquito();
       }
       that.time++;
@@ -314,10 +327,10 @@ export class UnlockedStageComponent implements OnInit {
   addMosquito() {
     const copy = this.$mosquito.clone();
     $('#scene').append(copy);
-    this.animateDiv(copy, [100, 100], this.mosCountInitial++);
+    this.animateDiv(copy, [100, 100], this.MOSQUITO_COUNT_INITIAL[this.level - 1]++);
     this.mosCountCurrent++;
     // increasing speed with time
-    this.SPEED_MODIFIER += 0.03;
+    this.SPEED_MODIFIER[this.level - 1] += 0.03;
   }
 
 }

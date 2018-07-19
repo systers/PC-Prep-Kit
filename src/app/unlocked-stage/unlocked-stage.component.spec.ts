@@ -10,6 +10,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBarModule } from '@angular/material';
 import { MaterialModule } from '../material.module';
+import { LevelNavigateComponent } from '../level-navigate/level-navigate.component';
 
 
 describe('UnlockedStageComponent', () => {
@@ -18,7 +19,7 @@ describe('UnlockedStageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UnlockedStageComponent, ButtonNavComponent],
+      declarations: [UnlockedStageComponent, ButtonNavComponent, LevelNavigateComponent],
       providers: [LanguageService, HttpClient, HttpHandler, APIService,
         DashboardService, SharedDataService, ToastrService],
       imports: [ToastrModule.forRoot(), RouterTestingModule, MatSnackBarModule, MaterialModule]

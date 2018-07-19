@@ -325,8 +325,10 @@
         "heading": "Medication & Labels",
         "matchMeds": {
           "headingBase": "Match the medicines with their",
-          "headingSideeffects": "right side-effects",
-          "headingDescription": "right description"
+          "headingsLevel": {
+            "level1": "right side-effects",
+            "level2": "right description"
+          }
         },
         "memoryGame": {
           "heading": "Complete the memory game to unlock tips on diagnosis of malaria",
@@ -348,7 +350,7 @@
         "stopTheBreed": {
           "heading": "Eliminate all the mosquito breeding places by clicking over them ",
           "alerts": {
-            "title": "Congratulations!! <br> You eliminated a "
+            "title": "Congratulations!! <br> You eliminated "
           }
         },
         "stridesAgainst": {

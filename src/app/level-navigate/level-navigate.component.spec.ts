@@ -6,7 +6,6 @@ import { APIService } from '../services/api.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MaterialModule } from '../material.module';
 
-
 describe('LevelNavigateComponent', () => {
   let component: LevelNavigateComponent;
   let fixture: ComponentFixture<LevelNavigateComponent>;

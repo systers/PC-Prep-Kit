@@ -6,6 +6,7 @@ import { SharedDataService } from '../../services/shared.data.service';
 import { LanguageService } from '../../services/language.service';
 import { InfokitService } from '../../services/infokit.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { ActivatedRoute } from '@angular/router';
 import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class MatchmedsComponent implements OnInit {
     canvasTop: number;
     canvasLeft: number;
 
-    height = 320;
+    height = 600;
     width = 75;
     windowWidth = window.innerWidth;
     completed = false;
@@ -32,17 +33,15 @@ export class MatchmedsComponent implements OnInit {
     public alerts: any;
     language: any;
     headingBase = '';
-    headingInfo = '';
-    firstComplete = false;
+    headingLevel = '';
 
     // Number of Elements for Matching
     numElements = MatchingInfo.numElements;
     medicines = MatchingInfo.medicines;
 
-    display = MatchingInfo.medicinesideeffects;
+    display: Array<string>;
     // Counter for Keeping track of Element number
     count = 0 ;
-    matchingComplete = 0;
     // Start and End Points of a Line
     start: Coordinates[] = [];
     end: Coordinates[] = [];
@@ -53,34 +52,51 @@ export class MatchmedsComponent implements OnInit {
     clicked = false;
 
     // Canvas Position Information
-    radius = 10;
-    diameter = this.radius * 2;
-    lineWidth = 5;
-    spacing = this.radius;
-    gap = 7 * (this.radius + this.spacing);
+    private readonly RADIUS = 10;
+    private readonly DIAMETER = this.RADIUS * 2;
+    private readonly LINE_WIDTH = 5;
+    private readonly SPACING = this.RADIUS;
+    private readonly GAP = 7 * (this.RADIUS + this.SPACING);
 
-    offset = 0;
-    startPos = this.offset + this.lineWidth;
+    private readonly OFFSET = 0;
+    startPos = this.OFFSET + this.LINE_WIDTH;
     endPos: number;
 
-    correctAns = MatchingInfo.match1ans;
-    givenAns = [0, 0, 0];
+    correctAns: Array<number>;
+    givenAns = new Array(this.numElements).fill(0);
+
+    private level: string;
+    private levelNumber: number;
+    private readonly LEVELS = ['level1', 'level2'];
     readonly CURR_STAGE = 6;
     readonly ACTIVITY = 'matchMeds';
 
+    private readonly COLOR_ORANGE = '#DC5034';
+    private readonly COLOR_BLUE = '#466bc1';
+
+
+
 
     constructor(private _langService: LanguageService,  private _dashboardService: DashboardService, private _sharedData: SharedDataService, vcr: ViewContainerRef, private _infokitService: InfokitService,
-                private _performanceService: PerformanceDisplayService, private _leaderBoardService: LeaderBoardService) {}
+                private _performanceService: PerformanceDisplayService, private _leaderBoardService: LeaderBoardService, private _route: ActivatedRoute) {}
 
     ngOnInit() {
         this._dashboardService.getProgressStatus().subscribe(response => {
             this.completed = this._sharedData.checkProgress(3, 1, response);
         });
 
+        this._route.params.subscribe( params => {
+          this.level = this.LEVELS[ params.level - 1];
+          this.levelNumber =  parseInt(params.level, 10);
+          this.display = MatchingInfo[this.level];
+          this.correctAns = MatchingInfo.ans[this.level];
+          this.shuffleArrays([this.correctAns, this.medicines]);
+        });
+
         this._langService.loadLanguage().subscribe(response => {
             this.language = response.pcprepkit.stages.medsNLabels.matchMeds;
             this.headingBase = this.language.headingBase;
-            this.headingInfo = this.language.headingSideeffects;
+            this.headingLevel = this.language.headingsLevel[this.level];
             this.alerts = response.pcprepkit.common.alerts;
         });
 
@@ -96,7 +112,7 @@ export class MatchmedsComponent implements OnInit {
         * Check Window Size and Change Width
         */
         this.checkWindowSize(this.windowWidth);
-        this.endPos = this.width - this.radius - this.lineWidth;
+        this.endPos = this.width - this.RADIUS - this.LINE_WIDTH;
 
         /**
         * Initializing Start and End Coordinates to origin.
@@ -126,13 +142,13 @@ export class MatchmedsComponent implements OnInit {
      */
     paintCanvasElements() {
         for (let i = 0; i < this.numElements; i++) {
-            const spacing = this.gap * i;
-            this.setLineStyle('#466bc1', this.lineWidth);
+            const spacing = this.GAP * i;
+            this.setLineStyle(this.COLOR_BLUE, this.LINE_WIDTH);
             this.cx.beginPath();
-            this.cx.arc(this.startPos + this.radius, spacing + this.radius + this.lineWidth, this.radius, 0, 2 * Math.PI);
+            this.cx.arc(this.startPos + this.RADIUS, spacing + this.RADIUS + this.LINE_WIDTH, this.RADIUS, 0, 2 * Math.PI);
             this.cx.stroke();
             this.cx.beginPath();
-            this.cx.arc(this.endPos , spacing + this.radius + this.lineWidth, this.radius, 0, 2 * Math.PI);
+            this.cx.arc(this.endPos , spacing + this.RADIUS + this.LINE_WIDTH, this.RADIUS, 0, 2 * Math.PI);
             this.cx.stroke();
         }
     }
@@ -184,7 +200,7 @@ export class MatchmedsComponent implements OnInit {
         this.updateCanvasCord();
         this.checkWindowSize($event.target.innerWidth);
         this.canvasElement.width = this.width;
-        this.endPos = this.width - this.radius - this.lineWidth;
+        this.endPos = this.width - this.RADIUS - this.LINE_WIDTH;
         this.redrawCanvas();
     }
 
@@ -200,7 +216,7 @@ export class MatchmedsComponent implements OnInit {
      * @param  {number} $event Mouse Coordinates
      */
     mouseClick($event) {
-        this.setLineStyle('#9932cc', 10);
+        this.setLineStyle(this.COLOR_ORANGE, 10);
         this.cx.beginPath();
         this.tempStart.x = $event.clientX - this.canvasLeft;
         this.tempStart.y = $event.clientY - this.canvasTop;
@@ -245,7 +261,7 @@ export class MatchmedsComponent implements OnInit {
 
         for (let i = 0; i < this.count; i ++) {
             this.cx.beginPath();
-            this.setLineStyle('#9932cc', 10);
+            this.setLineStyle(this.COLOR_ORANGE, 10);
             this.cx.moveTo(this.start[i].x, this.start[i].y);
             this.cx.lineTo(this.end[i].x, this.end[i].y);
             this.cx.stroke();
@@ -263,9 +279,9 @@ export class MatchmedsComponent implements OnInit {
             let left = 0;
 
             for (let i = 0; i < this.numElements; i++) {
-                const spacing = this.gap * i;
-                if (this.tempStart.x > this.startPos && this.tempStart.x < this.startPos + this.diameter
-                  && this.tempStart.y < (this.diameter + spacing) && this.tempStart.y > spacing) {
+                const spacing = this.GAP * i;
+                if (this.tempStart.x > this.startPos && this.tempStart.x < this.startPos + this.DIAMETER
+                  && this.tempStart.y < (this.DIAMETER + spacing) && this.tempStart.y > spacing) {
                     left = i;
                     startValid = true;
                     break;
@@ -273,9 +289,9 @@ export class MatchmedsComponent implements OnInit {
             }
 
             for (let i = 0; i < this.numElements; i++) {
-                const spacing = this.gap * i;
-                if (this.tempEnd.x > this.endPos - this.radius && this.tempEnd.x < this.endPos + this.diameter
-                  && this.tempEnd.y < (this.diameter + spacing) && this.tempEnd.y > spacing) {
+                const spacing = this.GAP * i;
+                if (this.tempEnd.x > this.endPos - this.RADIUS && this.tempEnd.x < this.endPos + this.DIAMETER
+                  && this.tempEnd.y < (this.DIAMETER + spacing) && this.tempEnd.y > spacing) {
                     this.givenAns[left] = i + 1;
                     endValid = true;
                     break;
@@ -291,18 +307,17 @@ export class MatchmedsComponent implements OnInit {
                 if (this.count === this.numElements) {
                     if (this.isEqual()) {
                         this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
-                        if (this.matchingComplete === 0) {
-                            this.firstComplete = true;
-                        } else {
                             this.completed = true;
                             this.activityComplete = true;
-                          if (!this.completed) {
-                            this._performanceService.openDialog(this.CURR_STAGE);
-                          }
-                              this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
-                              this._infokitService.activateinfokit('match_meds').subscribe(res => {});
-                              this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, level: 'level1'});
-                    }
+                            if (!this.completed) {
+                              if (this.levelNumber === 1) {
+                                this._performanceService.openDialog(this.CURR_STAGE);
+                              }
+                            }
+                      this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
+                      this._infokitService.activateinfokit('match_meds').subscribe(res => {});
+                      this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, level: this.level});
+                      this._dashboardService.updateActivityLevel({activity: this.ACTIVITY, level: this.level}).subscribe(() => {});
                     } else {
                         this.redrawCanvas();
                         this._sharedData.customErrorAlert(this.alerts.activityFailMsg, this.alerts.activityFailTitle);
@@ -334,16 +349,17 @@ export class MatchmedsComponent implements OnInit {
         this.redrawCanvas();
     }
 
-    /**
-     * switches from side effects to description
-     */
-    submit() {
-        this.firstComplete = false;
-        this.matchingComplete++;
-        this.count = 0;
-        this.redrawCanvas();
-        this.headingInfo = this.language.headingDescription;
-        this.correctAns = MatchingInfo.match2ans;
-        this.display = MatchingInfo.medicineDescriptions;
+    shuffleArrays(arrays: Array<Array<any>>) {
+      let currentIndex = arrays[0].length;
+      let temp, randomIndex;
+      while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        for (let i = 0; i < arrays.length; i++) {
+          temp = arrays[i][currentIndex];
+          arrays[i][currentIndex] = arrays[i][randomIndex];
+          arrays[i][randomIndex] = temp;
+        }
+      }
     }
 }
