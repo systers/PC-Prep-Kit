@@ -200,6 +200,14 @@
           "Toolkit": "Infokit"
         },
         "message": "This activity has been added to the toolkit. You may access it from there in future."
+      },
+      "leaderBoard": {
+        "headings": {
+          "badge": "Badge: ",
+          "rank": "Rank",
+          "name": "Name",
+          "points": "Points"
+        }
       }
     },
     "stages": {

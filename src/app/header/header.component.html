@@ -10,6 +10,7 @@
     </div>
   <div class="col-md-1">
     <img  [@newBadge]="state" [src]="badge?.image" [matTooltip]="badge?.name" (@newBadge.done) = "checkInitialState($event)" onError="this.src = 'assets/img/badges/default.gif'">
+    <i matTooltip="LeaderBoard" class="fa fa-trophy icons" (click)="loadLeaderBoard()"></i>
     <i matTooltip="Update Profile" class="fa fa-pencil-square-o icons" (click)="editProfile()"></i>
     <i matTooltip="Infokit" class="fa fa-archive icons" (click)="info.pop()"></i>
     <i matTooltip="Logout" class="fa fa-power-off icons" (click)="logout()"></i>

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, HostListener, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Coordinates } from './coordinate-structure';
 import { MatchingInfo } from './matching.info';
 import { DashboardService } from '../../services/dashboard.service';
@@ -6,6 +6,7 @@ import { SharedDataService } from '../../services/shared.data.service';
 import { LanguageService } from '../../services/language.service';
 import { InfokitService } from '../../services/infokit.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 @Component({
     selector: 'app-matchmeds',
@@ -64,11 +65,12 @@ export class MatchmedsComponent implements OnInit {
 
     correctAns = MatchingInfo.match1ans;
     givenAns = [0, 0, 0];
+    readonly CURR_STAGE = 6;
+    readonly ACTIVITY = 'matchMeds';
+
 
     constructor(private _langService: LanguageService,  private _dashboardService: DashboardService, private _sharedData: SharedDataService, vcr: ViewContainerRef, private _infokitService: InfokitService,
-                private _performanceService: PerformanceDisplayService) {
-
-    }
+                private _performanceService: PerformanceDisplayService, private _leaderBoardService: LeaderBoardService) {}
 
     ngOnInit() {
         this._dashboardService.getProgressStatus().subscribe(response => {
@@ -294,11 +296,13 @@ export class MatchmedsComponent implements OnInit {
                         } else {
                             this.completed = true;
                             this.activityComplete = true;
-                            if (!this.completed) { const currStage = 6;
-                              this._performanceService.openDialog(currStage); }
-                            this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
-                            this._infokitService.activateinfokit('match_meds').subscribe(res => {});
-                        }
+                          if (!this.completed) {
+                            this._performanceService.openDialog(this.CURR_STAGE);
+                          }
+                              this._dashboardService.updateProgressStatus(this._status).subscribe(response => {});
+                              this._infokitService.activateinfokit('match_meds').subscribe(res => {});
+                              this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, level: 'level1'});
+                    }
                     } else {
                         this.redrawCanvas();
                         this._sharedData.customErrorAlert(this.alerts.activityFailMsg, this.alerts.activityFailTitle);

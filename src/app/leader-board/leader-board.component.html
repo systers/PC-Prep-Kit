@@ -1,0 +1,23 @@
+<div id="body">
+  <div id="close" (click)="close()">&times;</div>
+  <img [src]="image" [matTooltip]="language?.badge + badgeName">
+  <br>
+  <br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>{{language?.rank}}</th>
+      <th>{{language?.name}}</th>
+      <th>{{language?.points}}</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let user of data; index as i">
+    <tr>
+      <td [ngClass] = "{ 'user' : checkCurrentUser(user.userEmail) } ">{{i + 1}}</td>
+      <td [ngClass] = "{ 'user' : checkCurrentUser(user.userEmail) } ">{{user.name}}</td>
+      <td [ngClass] = "{ 'user' : checkCurrentUser(user.userEmail) } ">{{user.score}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

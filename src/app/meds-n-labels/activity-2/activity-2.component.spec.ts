@@ -16,6 +16,7 @@ import { BadgeService } from '../../services/BadgeService/badge.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 const languageData = require('../../../assets/languages/english.json');
 
@@ -49,7 +50,8 @@ describe('MemoryGameComponent', () => {
         PerformanceDisplayService,
         MatDialog,
         NotifyService,
-        BadgeService
+        BadgeService,
+        LeaderBoardService
       ]
     }).compileComponents();
   }));

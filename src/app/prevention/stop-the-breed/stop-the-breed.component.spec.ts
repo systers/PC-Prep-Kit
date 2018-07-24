@@ -13,6 +13,7 @@ import { InfokitService } from '../../services/infokit.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 describe('StopTheBreedComponent', () => {
   let component: StopTheBreedComponent;
@@ -22,7 +23,7 @@ describe('StopTheBreedComponent', () => {
     TestBed.configureTestingModule({
       declarations: [StopTheBreedComponent],
       providers: [LanguageService, HttpClient, HttpHandler, ToastrService, APIService, DashboardService,
-        SharedDataService, InfokitService, PerformanceDisplayService, MatDialog],
+        SharedDataService, InfokitService, PerformanceDisplayService, MatDialog, LeaderBoardService],
       imports: [RouterTestingModule, ToastrModule.forRoot(), SharedModule, MaterialModule, OverlayModule]
     })
       .compileComponents();

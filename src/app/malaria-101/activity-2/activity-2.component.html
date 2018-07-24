@@ -8,7 +8,7 @@
     <div class="content">
       <div class="row">
         <div class="col-xs-4 col-xs-offset-2">
-          <div dnd-droppable [className]="'panel panel-success ' + dropCheckDo" (onDropSuccess)="addTobox($event,box1)" (onDragOver)="checkDrop($event,box1)" (onDragLeave)="reset()">
+          <div dnd-droppable [className]="'panel panel-success '" (onDropSuccess)="addTobox($event,box1)"  (onDragLeave)="reset()">
             <div class="panel-heading panel-do">
               {{language?.descriptions.boxIndicatorDo}}
             </div>
@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="col-xs-4">
-          <div dnd-droppable [className]="'panel panel-danger ' + dropCheckDont" (onDropSuccess)="addTobox($event,box2)" (onDragOver)="checkDrop($event,box2)" (onDragLeave)="reset()">
+          <div dnd-droppable [className]="'panel panel-danger '" (onDropSuccess)="addTobox($event,box2)"  (onDragLeave)="reset()">
             <div class="panel-heading panel-dont">
               {{language?.descriptions.boxIndicatorDont}}
             </div>

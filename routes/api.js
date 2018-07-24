@@ -11,6 +11,7 @@ const doctor = require('./doctor');
 const localUser = models.user_account;
 const progress = models.progress;
 const infokit = models.info_kit;
+const activityProgress = models.activityProgress;
 
 const fs = require('fs');
 const multer = require('multer');
@@ -72,7 +73,7 @@ router.use(function(req, res, next) {
  * @param  {Object} (req, res)                                Anonymous function to handle request and response
  */
 router.get('/getUserInfo', authenticationHelpers.isAuthOrRedirect, (req, res) => {
-    res.status(200).json({user: req.user});
+    res.status(200).json({user: req.user.email});
 });
 
 /**
@@ -158,6 +159,151 @@ router.patch('/user/badge/update', authenticationHelpers.isAuthOrRedirect, (req,
     }
 });
 
+
+router.post('/leaderBoard', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    if (req.body) {
+        progress.findAll({
+            include: [localUser],
+            where: {badge: req.body.badge},
+            order: [
+                ['score', 'DESC'],
+            ]
+        }, {raw: true})
+            .then(data => {
+                let array = [];
+                data.forEach(function(item) {
+                    array.push({name: `${item.user_account.fname} ${item.user_account.lname}`,
+                        score: item.score, userEmail: item.user_account.email})
+                });
+                return res.status(200).json(array);
+            })
+            .catch(function() {
+                return res.status(500).json({error: errorCode.PCE019.message, code: errorCode.PCE019.code});
+            });
+    } else {
+        return res.status(400).json({error: errorCode.PCE021.message, code: errorCode.PCE021.code});
+    }
+});
+
+router.get('/user/score', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    if (!req.user.email) {
+        return res.status(400).json({error: errorCode.PCE021.message, code: errorCode.PCE021.code});
+    }
+    localUser.find({where: {
+        email: req.user.email
+    }}, {raw: true})
+        .then(data => {
+            if (!data) {
+                return res.status(200).json({info: errorCode.PCE022.message, code: errorCode.PCE022.code});
+            }
+            progress.find({where: {
+                user_id: data.id
+            }}, {raw: true})
+                .then(progressData => {
+                    if (!progressData) {
+                        return res.status(200).json({info: errorCode.PCE018.message, code: errorCode.PCE018.code});
+                    }
+                    const response = {score: progressData.score};
+                    return res.status(200).json(response);
+                })
+                .catch(function() {
+                    return res.status(500).json({error: errorCode.PCE019.message, code: errorCode.PCE019.code});
+                });
+        })
+        .catch(function() {
+            return res.status(500).json({error: errorCode.PCE020.message, code: errorCode.PCE020.code});
+        });
+});
+
+router.patch('/user/score/update', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    if (req.body.score) {
+        localUser.find({
+            where: {
+                email: req.user.email
+            },
+            include: [progress]
+        }, {raw: true})
+            .then(data => {
+                progress.update({
+                    score: req.body.score
+                }, {
+                    where: {
+                        id: data.progress.id
+                    }
+                })
+                    .then(() => {
+                        return res.status(200).json({info: successCode.PCS008.message, code: successCode.PCS008.code});
+                    })
+
+            })
+            .catch(function() {
+                return res.status(500).json({error: errorCode.PCE032.message, code: errorCode.PCE032.code});
+            });
+    } else {
+        return res.status(400).json({error: errorCode.PCE033.message, code: errorCode.PCE033.code});
+    }
+});
+
+router.post('/user/activity/score', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    if (!req.user.email) {
+        return res.status(400).json({error: errorCode.PCE021.message, code: errorCode.PCE021.code});
+    }
+    localUser.find({where: {
+        email: req.user.email
+    }}, {raw: true})
+        .then(data => {
+            if (!data) {
+                return res.status(200).json({info: errorCode.PCE022.message, code: errorCode.PCE022.code});
+            }
+            activityProgress.find({where: {
+                user_id: data.id
+            }}, {raw: true})
+                .then(activityData => {
+                    if (!activityData) {
+                        return res.status(200).json({info: errorCode.PCE034.message, code: errorCode.PCE034.code});
+                    }
+                    const activity = req.body.activity;
+                    const response = {score: activityData[activity]};
+                    return res.status(200).json(response);
+                })
+                .catch(function() {
+                    return res.status(500).json({error: errorCode.PCE035.message, code: errorCode.PCE035.code});
+                });
+        })
+        .catch(function() {
+            return res.status(500).json({error: errorCode.PCE020.message, code: errorCode.PCE020.code});
+        });
+});
+
+router.patch('/user/activity/score/update', authenticationHelpers.isAuthOrRedirect, (req, res) => {
+    if (req.body) {
+        localUser.find({
+            where: {
+                email: req.user.email
+            },
+            include: [activityProgress]
+        }, {raw: true})
+            .then(data => {
+                const column = req.body.activity;
+                activityProgress.update({
+                    [column]: req.body.score
+                }, {
+                    where: {
+                        id: data.activityProgress.id
+                    }
+                })
+                    .then(() => {
+                        return res.status(200).json({info: successCode.PCS009.message, code: successCode.PCS009.code});
+                    })
+
+            })
+            .catch(function() {
+                return res.status(500).json({error: errorCode.PCE032.message, code: errorCode.PCE032.code});
+            });
+    } else {
+        return res.status(400).json({error: errorCode.PCE033.message, code: errorCode.PCE033.code});
+    }
+});
 /**
  * GET progress status API
  * @param  {String} '/getProgressStatus'                              URI of the resource

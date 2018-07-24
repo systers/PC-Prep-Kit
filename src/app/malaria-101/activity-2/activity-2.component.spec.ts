@@ -13,6 +13,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 describe('DragdropComponent', () => {
   let component: DragdropComponent;
@@ -23,7 +24,7 @@ describe('DragdropComponent', () => {
       declarations: [DragdropComponent, ButtonNavComponent, DraggableComponent],
       providers: [LanguageService,
         SharedDataService, InfokitService, DragDropService, DashboardService,
-        HttpClient, HttpHandler, APIService, ToastrService, DragDropConfig, PerformanceDisplayService, MatDialog],
+        HttpClient, HttpHandler, APIService, ToastrService, DragDropConfig, PerformanceDisplayService, MatDialog, LeaderBoardService],
       imports: [ToastrModule.forRoot(), RouterTestingModule, OverlayModule]
     })
       .compileComponents();

@@ -10,6 +10,8 @@ import { BadgeComponent } from '../badge/badge.component';
 import { interval } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
+import { LeaderBoardService } from '../services/leaderBoard.service';
+import { NavbarService } from '../services/navbar.service';
 
 @Component({
   selector: 'app-header',
@@ -37,13 +39,14 @@ export class HeaderComponent implements OnInit {
   public language: any;
   public badge: Badge;
   public state = 'beforeAnimation';
+  public badgeNumber: number;
   @Output() toggleNavbar = new EventEmitter<any>();
   @Output() openEditProfile = new EventEmitter<any>();
   private observable;
   private subscription;
 
   constructor(private _authService: AuthService, private _router: Router, private _langService: LanguageService, private _badgeService: BadgeService,
-              private _notify: NotifyService, private _snackbar: MatSnackBar) {
+              private _notify: NotifyService, private _snackbar: MatSnackBar, private _leaderBoardService: LeaderBoardService, private _navBarService: NavbarService) {
   }
 
   navbartoggle() {
@@ -68,6 +71,9 @@ export class HeaderComponent implements OnInit {
     this._badgeService.getBadge().subscribe(response => {
       this.badge = response;
     });
+    this._badgeService.getBadgeNumber().subscribe(response => {
+      this.badgeNumber = response
+    })
   }
 
   logout() {
@@ -95,6 +101,20 @@ export class HeaderComponent implements OnInit {
       panelClass: 'badgeBackground',
       verticalPosition: 'top',
     })
+  }
+
+  loadLeaderBoard() {
+    this._leaderBoardService.getLeaderBoardData(this.badgeNumber).subscribe(res => {
+      this._navBarService.getUserInfo().subscribe( response => {
+        const data = {
+          badge: this.badge,
+          leaderBoardData: res,
+          userEmail: response.user
+        };
+        this._leaderBoardService.showLeaderBoard(data);
+      });
+
+    });
   }
 }
 

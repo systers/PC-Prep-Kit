@@ -12,6 +12,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs/Observable';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialogModule } from '@angular/material';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 const languageData = require('../../../assets/languages/english.json');
 
@@ -39,7 +40,8 @@ describe('HighlightActivityComponent', () => {
         APIService,
         LanguageService,
         ToastrService,
-        PerformanceDisplayService
+        PerformanceDisplayService,
+        LeaderBoardService
       ]
     })
       .compileComponents();

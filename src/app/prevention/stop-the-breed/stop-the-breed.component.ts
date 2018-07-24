@@ -8,6 +8,7 @@ import { LanguageService } from '../../services/language.service';
 import { DashboardService } from '../../services/dashboard.service';
 import { InfokitService } from '../../services/infokit.service';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 @Component({
   selector: 'app-stop-the-breed',
@@ -33,9 +34,14 @@ export class StopTheBreedComponent implements OnInit {
   glow: RaphaelSet;
   count = 5;
 
+  private readonly CURR_STAGE = 8;
+  private readonly ACTIVITY = 'stopBreed';
+
+
   constructor(public dialog: MatDialog, public sharedDataService: SharedDataService,
               private _langService: LanguageService, private _dashboardService: DashboardService,
-              private _infokitService: InfokitService, private _performanceService: PerformanceDisplayService) {
+              private _infokitService: InfokitService, private _performanceService: PerformanceDisplayService,
+              private _leaderBoardService: LeaderBoardService) {
   }
 
 
@@ -46,8 +52,10 @@ export class StopTheBreedComponent implements OnInit {
       this._dashboardService.updateProgressStatus({stage: 4, activity: 1})
         .subscribe(res => res);
       this.activityComplete = true;
-      if (!this.completed) { const currStage = 8;
-        this._performanceService.openDialog(currStage); }
+      if (!this.completed) {
+        this._performanceService.openDialog(this.CURR_STAGE);
+        this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, level: 'level1'});
+      }
 
       this._infokitService.activateinfokit('stop_Breed').subscribe( () => {});
     }

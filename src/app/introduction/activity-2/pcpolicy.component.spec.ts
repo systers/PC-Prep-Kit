@@ -18,6 +18,7 @@ import { InfokitService } from '../../services/infokit.service';
 import { SharedDataService } from '../../services/shared.data.service';
 import { BadgeService } from '../../services/BadgeService/badge.service';
 import { NotifyService } from '../../badge/notify';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 describe('PcpolicyComponent', () => {
   let component: PcpolicyComponent;
@@ -50,7 +51,8 @@ describe('PcpolicyComponent', () => {
         InfokitService,
         SharedDataService,
         BadgeService,
-        NotifyService
+        NotifyService,
+        LeaderBoardService
       ]
     })
       .compileComponents();

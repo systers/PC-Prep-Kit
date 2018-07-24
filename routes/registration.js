@@ -11,6 +11,7 @@ const localUser = models.user_account;
 const infokit = models.info_kit;
 const progress = models.progress;
 const verification = models.verification;
+const activityProgress = models.activityProgress;
 const validateEmail = utilityFunctions.validateEmail;
 const validateName = utilityFunctions.validateName;
 const validatePassword = utilityFunctions.validatePassword;
@@ -100,7 +101,10 @@ router.post('/', function(req, res) {
                         }).catch(error => {
                             res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
                         });
-                    });
+                        activityProgress.create({
+                            user_id: task.dataValues.user_id
+                        })
+                    })
                 });
             });
         });
