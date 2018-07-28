@@ -65,6 +65,8 @@ import { StridesAgainstModule } from './prevention/strides-against/strides-again
 import { BotService } from './services/BotService/bot.service';
 import { LeaderBoardService } from './services/leaderBoard.service';
 import { LeaderBoardComponent } from './leader-board/leader-board.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 
 @NgModule({
@@ -118,7 +120,9 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
     SharedModule,
     StopTheBreedModule,
     StridesAgainstModule,
-    RouterModule
+    RouterModule,
+
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
     BadgeComponent, UserUpdateComponent, PerformanceDisplayComponent, CertificateComponent, LeaderBoardComponent

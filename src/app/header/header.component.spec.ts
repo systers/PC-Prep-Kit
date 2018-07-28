@@ -17,6 +17,7 @@ import { Observable } from 'rxjs';
 import { Badge } from '../badge/models/badgeModel';
 import { LeaderBoardService } from '../services/leaderBoard.service';
 import { NavbarService } from '../services/navbar.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { BotService } from '../services/BotService/bot.service';
 
 const mockBadge: Badge = {
@@ -36,7 +37,8 @@ describe('HeaderComponent', () => {
         RouterTestingModule,
         HttpClientTestingModule,
         MaterialModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        ServiceWorkerModule.register('', {enabled: false})
       ],
       declarations: [HeaderComponent, InfokitComponent],
       providers: [

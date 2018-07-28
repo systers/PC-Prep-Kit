@@ -80,7 +80,7 @@ export class MenuComponent implements OnInit {
     }
 
     calculateOuterClasses(stage: number, className: string) {
-      return  (this.checkStageStatus(stage)) ? {[className]: true,[this.CLASS_OUTER_CIRCLE]: true} : {[this.CLASS_UNLOCKED_BUTTON]: true, [this.CLASS_OUTER_CIRCLE]: true};
+      return  (this.checkStageStatus(stage)) ? {[className]: true, [this.CLASS_OUTER_CIRCLE]: true} : {[this.CLASS_UNLOCKED_BUTTON]: true, [this.CLASS_OUTER_CIRCLE]: true};
     }
 
   // Method checkStageStatus
