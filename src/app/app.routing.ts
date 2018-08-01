@@ -141,7 +141,7 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'activity-1',
+                redirectTo: 'activity-1/1',
                 pathMatch: 'full'
             },
             {
