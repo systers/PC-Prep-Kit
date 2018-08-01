@@ -1,0 +1,11 @@
+@import "../styles/main";
+$left-offset: 420px;
+
+.content {
+    font-size: $font-size-med;
+}
+
+.offset-left {
+    margin-left: $left-offset;
+}
+

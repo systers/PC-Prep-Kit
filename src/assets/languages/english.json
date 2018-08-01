@@ -119,6 +119,16 @@
       "dashboardLink": "Go to Dashboard",
       "badgeLabel": "Expert"
     },
+    "disclaimer": {
+      "heading": "Disclaimer and Fair use policy",
+      "body1": "In accord with our non-profit mission, the information - text, images and everything else present on this site has been researched and gathered from various legitimate sources and is being used purely for informational purposes only.",
+      "body2": "The objective of this site is to promote malaria awareness through some exciting educational activities and games and was not intended to serve as a replacement for professional medical advice, diagnosis or treatment. Always seek the advice, diagnosis and/or treatment from qualified doctors for any malaria related help.",
+      "body3": "If the information provided on this site is incorrect, misleading, invalid or outdated, please notify us on our ",
+      "GitHub": "Github repository",
+      "body4": "or on ",
+      "Slack": "slack channel",
+      "sourceHeading": "Information was referred from here for use in various stages of the application,"
+    },
 
     "common": {
       "navbar": {
@@ -130,6 +140,7 @@
           "infokit": "Infokit",
           "doctorChat": "Doctor Chat",
           "prevention": "Prevention",
+          "disclaimer": "Disclaimer",
           "menu": "Menu"
         }
       },

@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3 text-center">
+    <h2 class="stage-header">{{language?.heading}}</h2>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-lg-7 col-lg-offset-3 offset-left">
+    <div class="well content">
+      {{language?.body1}}
+      <br><br>
+      {{language?.body2}}
+      <br><br>
+      {{language?.body3}}<a href="https://github.com/systers/PC-Prep-Kit">{{language?.GitHub}}</a>&nbsp;{{language?.body4}}<a href="http://systers.io/slack-systers-opensource/">{{language?.Slack}}</a>.
+    </div>
+    <div class="well content">
+      {{language?.sourceHeading}}
+      <ul *ngFor="let reference of Sources">
+        <li><a [href]="reference.url">{{reference.name}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
