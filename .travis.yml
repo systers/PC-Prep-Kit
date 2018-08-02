@@ -17,5 +17,5 @@ before_script:
   - npm start &
   - sleep 60
 script:
-  - ./node_modules/.bin/mocha timeout -10000
+  - ./node_modules/.bin/mocha --timeout 10000
   - ng test --watch=false

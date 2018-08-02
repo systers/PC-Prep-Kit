@@ -6,6 +6,7 @@ const mail = require('./mailService');
 const models = require('../database/models');
 const utilityFunctions = require('./utilityfunctions');
 const handlebars = require('handlebars');
+const sequelize = models.sequelize;
 
 const localUser = models.user_account;
 const infokit = models.info_kit;
@@ -79,40 +80,49 @@ router.post('/', function(req, res) {
     } else {
         const rString = randomStr(50, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
         bcrypt.hash(req.body.password, 10, function(err, hash) {
-            localUser.create({
-                fname: req.body.fname,
-                lname: req.body.lname,
-                email: req.body.email,
-                password: hash,
-                provider: 1
-            }).catch(error => {
-                res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
-            }).then(task => {
-                verification.create({
-                    verificationCode: rString,
-                    user_id: task.dataValues.id
-                }).then(task => {
-                    infokit.create({
-                        user_id: task.dataValues.user_id
-                    }).then(task => {
-                        progress.create({
+            sequelize.transaction({autocommit: true}, function(t) {
+                return localUser.create({
+                    fname: req.body.fname,
+                    lname: req.body.lname,
+                    email: req.body.email,
+                    password: hash,
+                    provider: 1}, {transaction: t})
+                    .then(function(task) {
+                        return verification.create({
+                            verificationCode: rString,
+                            user_id: task.dataValues.id
+                        }, {transaction: t})
+                    })
+                    .then(task => {
+                        return infokit.create({
                             user_id: task.dataValues.user_id
-                        }).then(task => {
-                            verificationMail(req, res, rString);
-                        }).catch(error => {
+                        }, {transaction: t})
+                    })
+                    .then(task => {
+                        return progress.create({
+                            user_id: task.dataValues.user_id
+                        }, {transaction: t}).catch(() => {
                             res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
                         });
-                        levelProgress.create({
-                            user_id: task.dataValues.user_id
-                        });
-                        activityProgress.create({
-                            user_id: task.dataValues.user_id
-                        })
                     })
-                });
-            });
-        });
+                    .then(task => {
+                        return activityProgress.create({
+                            user_id: task.dataValues.user_id
+                        }, {transaction: t})
+                    })
+                    .then(task => {
+                        return levelProgress.create({
+                            user_id: task.dataValues.user_id
+                        }, {transaction: t})
+                    })
+                    .then(() => {
+                        verificationMail(req, res, rString);
+                    })
+                    .catch(() => {res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});})
+            })
+        })
     }
-});
+}
+);
 
 module.exports = router;
