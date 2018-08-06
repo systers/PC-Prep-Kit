@@ -1,9 +1,7 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Inject } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 import { ActivitySuccessObject } from './models/SuccessMessage';
-import { EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +15,9 @@ export class PerformanceDisplayComponent implements OnInit {
   public activityName: string;
   public nextActivityURL: string;
   public nextActivity: string;
+  public currActivityURL: string;
+  public nextActivityLevels: number;
+  public nextLevels = [];
 
   @Output() infoPop = new EventEmitter<any>();
 
@@ -33,8 +34,11 @@ export class PerformanceDisplayComponent implements OnInit {
     this.activityName = this.SuccessObject.currentActivityName;
     this.nextActivityURL = this.SuccessObject.nextActivityURL;
     this.nextActivity = this.SuccessObject.nextActivity;
-    document.getElementById('message').click();
-    document.getElementById('message').focus();
+    this.currActivityURL = this.SuccessObject.currActivityURL;
+    this.nextActivityLevels = this.SuccessObject.nextActivityLevels;
+    for (let i = 2; i <= this.SuccessObject.levels; i++) {
+      this.nextLevels.push(this.currActivityURL + '/' + i);
+    }
   }
 
   close() {
@@ -45,6 +49,7 @@ export class PerformanceDisplayComponent implements OnInit {
     this.close();
   }
   goNextActivity(): void {
+    this.nextActivityURL = this.nextActivityLevels > 1 ? this.nextActivityURL + '/1' : this.nextActivityURL;
     this._router.navigateByUrl(this.nextActivityURL);
     this.close();
   }

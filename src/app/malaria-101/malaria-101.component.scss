@@ -165,14 +165,15 @@ video {
     display: table;
     margin: 8px;
     padding: 8px;
-    background: $orange;
-    color: $black;
+    background: $blue;
+    color: $white;
     width: 100%;
     cursor: pointer;
     text-align: center;
     height: 50px;
+    font-size: $font-size-small;
     &:hover {
-        background: $dark-orange;
+        background: $light-blue;
     }
     &>span {
         display: table-cell;

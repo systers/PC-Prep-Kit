@@ -12,6 +12,7 @@ module.exports = function(passport, models) {
 
     const localUser = models.user_account;
     const progress = models.progress;
+    const levelProgress = models.levelProgress;
     const activityProgress = models.activityProgress;
     let fname, lname;
 
@@ -69,35 +70,37 @@ module.exports = function(passport, models) {
                         user_id: user.id,
                         stage: 0,
                         activity: 0
-                    }})
-                        .spread((status, created) => {
-                            const response = {email: user.email, name: user.name};
-                            return done(null, response);
-                        })
-                        .catch(function(err) {
-                            return done(err);
-                        });
+                    }}).spread(() => {
+                        const response = {email: user.email, name: user.name};
+                        return done(null, response);
+                    }).catch(function(err) {
+                        return done(err);
+                    });
+                    levelProgress.findOrCreate({where: {
+                        user_id: user.id
+                    }, defaults: {
+                        user_id: user.id,
+                    }}).spread(() => {
+                        const response = {email: user.email, name: user.name};
+                        return done(null, response);
+                    }).catch(function(err) {
+                        return done(err);
+                    });
                     activityProgress.findOrCreate({where: {
                         user_id: user.id
                     }, defaults: {
                         user_id: user.id,
-                    }})
-                        .spread(() => {
-                            const response = {email: user.email, name: user.name};
-                            return done(null, response);
-                        })
-                        .catch(function(err) {
-                            return done(err);
-                        });
-                }
-
-                )
-                .catch(function(err) {
+                    }}).spread(() => {
+                        const response = {email: user.email, name: user.name};
+                        return done(null, response);
+                    }).catch(function(err) {
+                        return done(err);
+                    });
+                }).catch(function(err) {
                     return done(err);
                 });
         });
     }));
-
     passport.use('local-login', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',

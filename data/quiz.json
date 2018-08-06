@@ -1,70 +1,153 @@
 {
-    "quizlist":
-    [
-        {
-            "question":"Malaria is transmitted ______",
-            "option1":"Through mosquito bites",
-            "option2":"By eating tainted food",
-            "option3":"by physical contact",
-            "option4":"By playing in dirt",
-            "answer":"1"
-        },
-        {
-            "question":"Malaria is prevented by ______",
-            "option1":"Playing in dirt",
-            "option2":"By not maintaining hygiene",
-            "option3":"Sleeping under an insecticide-treated bednet",
-            "option4":"By eating unprotected food",
-            "answer":"3"
-        },
-        {
-            "question":"Which of the following can repel mosquitoes?",
-            "option1":"Banana",
-            "option2":"Chilli",
-            "option3":"Citronella",
-            "option4":"Garlic",
-            "answer":"3"
-        },
-        {
-            "question":"Which of these drink contains quinine, an anti-malarial property?",
-            "option1":"Lemonade",
-            "option2":"Tonic",
-            "option3":"Warm milk",
-            "option4":"Cola",
-            "answer":"2"
-        },
-        {
-            "question":"Malaria is transmitted by a mosquito bite, but what causes the disease?",
-            "option1":"Insecticide",
-            "option2":"A virus",
-            "option3":"Blood poisoning",
-            "option4":"A parasite",
-            "answer":"4"
-        },
-        {
-            "question":"Find the odd symptom of malaria",
-            "option1":"Fever",
-            "option2":"Dizziness",
-            "option3":"Fatigue",
-            "option4":"Back pain",
-            "answer":"2"
-        },
-        {
-            "question":"Find the odd statement",
-            "option1":"Malaria is a neglected tropical disease",
-            "option2":"If you get malaria once, you won't ever get it again",
-            "option3":"Malaria is quite often endemic in poorer regions of the world",
-            "option4":"Malaria is not curable",
-            "answer":"3"
-        },
-        {
-            "question":"Disease associated with malaria",
-            "option1":"Jaundice",
-            "option2":"Tuberculosis",
-            "option3":"Cholera",
-            "option4":"Typhoid",
-            "answer":"1"
-        }                            
-    ]
+  "level1": [
+    {
+      "question": "Malaria is transmitted ______",
+      "option1": "Through mosquito bites",
+      "option2": "By eating tainted food",
+      "option3": "by physical contact",
+      "option4": "By playing in dirt",
+      "answer": "1"
+    },
+    {
+      "question": "Malaria is prevented by ______",
+      "option1": "Playing in dirt",
+      "option2": "By not maintaining hygiene",
+      "option3": "Sleeping under an insecticide-treated bednet",
+      "option4": "By eating unprotected food",
+      "answer": "3"
+    },
+    {
+      "question": "Which of the following can repel mosquitoes?",
+      "option1": "Banana",
+      "option2": "Chilli",
+      "option3": "Citronella",
+      "option4": "Garlic",
+      "answer": "3"
+    },
+    {
+      "question": "Which of these drink contains quinine, an anti-malarial property?",
+      "option1": "Lemonade",
+      "option2": "Tonic",
+      "option3": "Warm milk",
+      "option4": "Cola",
+      "answer": "2"
+    }
+  ],
+  "level2": [
+    {
+      "question": "Malaria is transmitted by a mosquito bite, but what causes the disease?",
+      "option1": "Insecticide",
+      "option2": "A virus",
+      "option3": "Blood poisoning",
+      "option4": "A parasite",
+      "answer": "4"
+    },
+    {
+      "question": "Find the odd symptom of malaria",
+      "option1": "Fever",
+      "option2": "Dizziness",
+      "option3": "Fatigue",
+      "option4": "Back pain",
+      "answer": "2"
+    },
+    {
+      "question": "Find the odd statement",
+      "option1": "Malaria is a neglected tropical disease",
+      "option2": "If you get malaria once, you won't ever get it again",
+      "option3": "Malaria is quite often endemic in poorer regions of the world",
+      "option4": "Malaria is not curable",
+      "answer": "3"
+    },
+    {
+      "question": "Disease associated with malaria",
+      "option1": "Jaundice",
+      "option2": "Tuberculosis",
+      "option3": "Cholera",
+      "option4": "Typhoid",
+      "answer": "1"
+    },
+    {
+      "question": "There are four kinds of malaria that can infect humans. They are all spread by what?",
+      "option1": " a worm in the intestine",
+      "option2": " a tick bite",
+      "option3": " a mosquito bite",
+      "option4": " a tsetse fly bite",
+      "answer": "3"
+    },
+    {
+      "question": "What part of the body do these malaria parasites feed on?",
+      "option1": " intestinal lining",
+      "option2": "muscles",
+      "option3": "red blood cells",
+      "option4": "brain tissue",
+      "answer": "3"
+    }
+  ],
+  "level3": [
+    {
+      "question": "How long must a malaria parasite grow in its host before infection can be spread to a human being?",
+      "option1": " twenty four hours",
+      "option2": "a week or more",
+      "option3": "two weeks",
+      "option4": "one month",
+      "answer": "2"
+    },
+    {
+      "question": "Once malaria parasites enter a person's blood they then travel to which organ?",
+      "option1": "kidneys",
+      "option2": "liver",
+      "option3": "heart",
+      "option4": "stomach",
+      "answer": "2"
+    },
+    {
+      "question": "Of the four types of malaria, 'falciparum malaria' is the most deadly. This type of malaria is most prevalent in what place?",
+      "option1": "southeast Asia",
+      "option2": "subSaharan Africa",
+      "option3": "India",
+      "option4": "South Africa",
+      "answer": "2"
+    },
+    {
+      "question": "How many countries and territories worldwide are considered at risk for malarial infections?",
+      "option1": "around 50",
+      "option2": "more than 100",
+      "option3": "fewer than 80",
+      "option4": "exactly 65",
+      "answer": "2"
+    },
+    {
+      "question": "According to the World Health Organization's estimate in 2000, malaria kills one child how often?",
+      "option1": " every 15 minutes",
+      "option2": " every minute",
+      "option3": "every 30 seconds",
+      "option4": "every five minutes",
+      "answer": "3"
+    },
+    {
+      "question": "African children under the age of five suffer approximately how many bouts of malaria per year?",
+      "option1": "10",
+      "option2": "6",
+      "option3": "12",
+      "option4": "3",
+      "answer": "2"
+    },
+    {
+      "question": "Which type of malaria is usually fatal?",
+      "option1": " severe malaria",
+      "option2": "cerebral malaria",
+      "option3": "placental malaria",
+      "option4": " all of the above",
+      "answer": "4"
+    },
+    {
+      "question": "How soon, after infection, will a person feel usually begin to feel ill?",
+      "option1": " 6 days",
+      "option2": "2 days",
+      "option3": "4 days",
+      "option4": "none of the above",
+      "answer": "4"
+    }
+  ]
 }
 

@@ -20,6 +20,8 @@ export class DashboardService {
   private _uploadCamPic = this._baseAPIUrl + 'uploadCam';
   private _uploadPic = this._baseAPIUrl + 'upload';
   private _getJSONData = this._baseAPIUrl + 'getJSONData';
+  private _getActivityLevel = this._baseAPIUrl + 'user/activity/levelNumber';
+  private _updateActivityLevel = this._baseAPIUrl + 'user/activity/levelNumber/update';
   private _getActivityScore = this._baseAPIUrl + 'user/activity/score';
   private _updateActivityScore = this._baseAPIUrl + 'user/activity/score/update';
 
@@ -103,6 +105,18 @@ export class DashboardService {
    */
   getJSONData(jsonFile): Observable<any> {
     return this._apiservice.get(this._getJSONData + '?file=' + jsonFile).pipe(
+      map(res => res)
+    )
+  }
+
+  getActivityLevel(request): Observable<any> {
+    return this._apiservice.post(this._getActivityLevel, request).pipe(
+      map(res => res)
+    )
+  }
+
+  updateActivityLevel(request): Observable<any> {
+    return this._apiservice.patch(this._updateActivityLevel, request).pipe(
       map(res => res)
     )
   }

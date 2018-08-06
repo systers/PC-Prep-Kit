@@ -90,7 +90,7 @@ export const routes: Routes = [
                 data: ActivityRoutes['PcpolicyComponent']
             },
             {
-                path: 'activity-3',
+                path: 'activity-3/:level',
                 component: PicturePuzzleComponent,
                 canActivate: [ActivityGuard],
                 data: ActivityRoutes['PicturePuzzleComponent']
@@ -120,13 +120,13 @@ export const routes: Routes = [
                 data: ActivityRoutes['MalariaLifeCycleComponent']
             },
             {
-                path: 'activity-2',
+                path: 'activity-2/:level',
                 component: DragdropComponent,
                 canActivate: [ActivityGuard],
                 data: ActivityRoutes['DragdropComponent']
             },
             {
-                path: 'activity-3',
+                path: 'activity-3/:level',
                 component: OddOneOutComponent,
                 canActivate: [ActivityGuard],
                 data: ActivityRoutes['OddOneOutComponent']
@@ -150,7 +150,7 @@ export const routes: Routes = [
                 data: ActivityRoutes['MatchmedsComponent']
             },
             {
-                path: 'activity-2',
+                path: 'activity-2/:level',
                 component: MemoryGameComponent,
                 canActivate: [ActivityGuard],
                 data: ActivityRoutes['MemoryGameComponent']

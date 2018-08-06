@@ -13,6 +13,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LevelNavigateComponent } from '../../level-navigate/level-navigate.component';
+import { MaterialModule } from '../../material.module';
 import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 describe('DragdropComponent', () => {
@@ -21,11 +23,11 @@ describe('DragdropComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DragdropComponent, ButtonNavComponent, DraggableComponent],
+      declarations: [DragdropComponent, ButtonNavComponent, DraggableComponent, LevelNavigateComponent],
       providers: [LanguageService,
         SharedDataService, InfokitService, DragDropService, DashboardService,
         HttpClient, HttpHandler, APIService, ToastrService, DragDropConfig, PerformanceDisplayService, MatDialog, LeaderBoardService],
-      imports: [ToastrModule.forRoot(), RouterTestingModule, OverlayModule]
+      imports: [ToastrModule.forRoot(), RouterTestingModule, OverlayModule, MaterialModule]
     })
       .compileComponents();
   }));

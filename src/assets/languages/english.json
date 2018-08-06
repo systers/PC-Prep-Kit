@@ -199,7 +199,9 @@
           "Dashboard": "Dashboard",
           "Toolkit": "Infokit"
         },
-        "message": "This activity has been added to the toolkit. You may access it from there in future."
+        "message": "This activity has been added to the toolkit. You may access it from there in future.",
+        "levelsMessage": "You can also play higher levels",
+        "levelLabel": "Levels"
       },
       "leaderBoard": {
         "headings": {
@@ -208,6 +210,9 @@
           "name": "Name",
           "points": "Points"
         }
+      },
+      "levelNavigation": {
+        "levelLabel": "Level"
       }
     },
     "stages": {
@@ -294,7 +299,8 @@
           "descriptions": {
             "score": "Score!",
             "resultText1": "You got",
-            "resultText2": "out of 5 questions right."
+            "resultText2": "out of ",
+            "resultText3": "questions correct."
           },
           "messages": {
             "resetButton": "Retry"

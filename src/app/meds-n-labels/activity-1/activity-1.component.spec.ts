@@ -12,6 +12,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LevelNavigateComponent } from '../../level-navigate/level-navigate.component';
+import { MaterialModule } from '../../material.module';
 import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 describe('MatchmedsComponent', () => {
@@ -20,10 +22,10 @@ describe('MatchmedsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MatchmedsComponent, ButtonNavComponent],
+      declarations: [MatchmedsComponent, ButtonNavComponent, LevelNavigateComponent],
       providers: [LanguageService, HttpClient, HttpHandler, APIService,
         DashboardService, SharedDataService, ToastrService, InfokitService, PerformanceDisplayService, MatDialog, LeaderBoardService],
-      imports: [ToastrModule.forRoot(), RouterTestingModule, OverlayModule]
+      imports: [ToastrModule.forRoot(), RouterTestingModule, OverlayModule, MaterialModule]
     })
       .compileComponents();
   }));

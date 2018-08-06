@@ -7,8 +7,17 @@
     <br>
     <br>
   </div>
-  <div id="message">
+  <div class="message">
     <i>{{language?.message}}</i>
+  </div>
+  <div *ngIf="nextLevels.length">
+    <div class="message">
+      {{language?.levelsMessage}}
+      <div *ngFor="let nextLevelURL of nextLevels; index as i;">
+        <a [href]="nextLevelURL"> {{language?.levelLabel}}:{{ i+2 }}</a>
+      </div>
+    </div>
+
   </div>
   <br>
   <div class="row">

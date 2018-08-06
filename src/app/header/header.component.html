@@ -8,7 +8,7 @@
     <div class="col-md-8 text-center">
         <span class="header-white-1 text-center">{{language?.headings.titleLeft}}</span><span class="header-2 text-center">{{language?.headings.titleRight}}</span>
     </div>
-  <div class="col-md-1">
+  <div class="col-md-2" id="icons">
     <img  [@newBadge]="state" [src]="badge?.image" [matTooltip]="badge?.name" (@newBadge.done) = "checkInitialState($event)" onError="this.src = 'assets/img/badges/default.gif'">
     <i matTooltip="LeaderBoard" class="fa fa-trophy icons" (click)="loadLeaderBoard()"></i>
     <i matTooltip="Update Profile" class="fa fa-pencil-square-o icons" (click)="editProfile()"></i>

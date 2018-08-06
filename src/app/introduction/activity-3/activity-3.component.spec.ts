@@ -16,6 +16,8 @@ import { NotifyService } from '../../badge/notify';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LevelNavigateComponent } from '../../level-navigate/level-navigate.component';
+import { MaterialModule } from '../../material.module';
 import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 describe('PicturePuzzleComponent', () => {
@@ -33,12 +35,13 @@ describe('PicturePuzzleComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [PicturePuzzleComponent,
-        ButtonNavComponent],
+        ButtonNavComponent, LevelNavigateComponent],
       imports: [
         RouterTestingModule,
         HttpClientModule,
         ToastrModule.forRoot(),
-        OverlayModule
+        OverlayModule,
+        MaterialModule
       ],
       providers: [
         SharedDataService,
