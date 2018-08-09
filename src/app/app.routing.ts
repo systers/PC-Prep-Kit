@@ -29,6 +29,7 @@ import { HowToPlayComponent } from './unlocked-stage/how-to-play/howtoplay.compo
 import { StopTheBreedComponent } from './prevention/stop-the-breed/stop-the-breed.component';
 import { PreventionComponent } from './prevention/prevention.component';
 import { StridesAgainstComponent } from './prevention/strides-against/strides-against.component';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { ActivityGuard } from './guards/activity.guard';
 import { ActivityRoutes } from './RouteConfig';
 
@@ -195,6 +196,11 @@ export const routes: Routes = [
             },
     ]
     },
+    {
+        path: 'disclaimer',
+        component: DisclaimerComponent,
+        canActivate: [LoggedInGuard]
+    }
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
