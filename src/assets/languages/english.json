@@ -394,8 +394,11 @@
           "heading": "Prevent the mosquito from transmitting the virus to the human",
           "instructions": {
             "title": "How to play?",
-            "ins1": "Select the inventory item",
-            "ins2": "Use the item to stop the mosquito"
+            "ins1": "Select the inventory item.",
+            "ins2": "Use the item to stop the mosquito.",
+            "ins3": "Earn and use 2 stars to boost your health.",
+            "ins4": "Earn and use 1 star to increase your spray strength.",
+            "ins5": "You can earn a star for every mosquito you defeat."
           },
           "messages": {
             "nextButton": "Cool, next"
