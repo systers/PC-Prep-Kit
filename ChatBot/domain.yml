@@ -7,6 +7,10 @@ slots:
     type: text
   medicine:
     type: text
+  gender:
+    type: text
+  pregnant:
+    type: text
 #  symptoms:
 #    type: list
 #  medicines:
@@ -96,4 +100,10 @@ actions:
   - bot.CheckAge
   - bot.ActionCheckMedicineNormal
   - bot.ActionCheckMedicinePregnant
+  - bot.StoreMale
+  - bot.StoreFemale
+  - bot.StoreThird
+  - bot.HandleAge
+  - bot.StorePregnantTrue
+  - bot.StorePregnantFalse
 

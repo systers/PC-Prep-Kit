@@ -6,34 +6,34 @@
         "age"
       ]
     },
-    "utter_prevent": {
-      "slots": []
-    },
-    "action_suggest_pregnant": {
-      "slots": []
-    },
-    "action_suggest_normal": {
-      "slots": []
-    },
     "utter_place": {
-      "slots": []
-    },
-    "action_check_medicine_normal": {
       "slots": []
     },
     "action_check_medicine_pregnant": {
       "slots": []
     },
-    "utter_intro": {
+    "action_suggest_normal": {
       "slots": []
     },
-    "utter_youarewelcome": {
+    "action_check_medicine_normal": {
       "slots": []
     },
     "utter_greet": {
       "slots": []
     },
+    "utter_youarewelcome": {
+      "slots": []
+    },
+    "action_suggest_pregnant": {
+      "slots": []
+    },
+    "utter_prevent": {
+      "slots": []
+    },
     "utter_goodbye": {
+      "slots": []
+    },
+    "utter_intro": {
       "slots": []
     },
     "utter_identity": {

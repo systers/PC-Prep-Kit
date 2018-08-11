@@ -19,6 +19,10 @@ action_names:
 - check_age
 - action_check_medicine_normal
 - action_check_medicine_pregnant
+- action_store_male
+- action_store_female
+- action_store_third
+- action_handle_age
 actions:
 - utter_default
 - utter_greet
@@ -39,6 +43,10 @@ actions:
 - bot.CheckAge
 - bot.ActionCheckMedicineNormal
 - bot.ActionCheckMedicinePregnant
+- bot.StoreMale
+- bot.StoreFemale
+- bot.StoreThird
+- bot.HandleAge
 config:
   store_entities_as_slots: true
 entities:
@@ -67,6 +75,9 @@ slots:
     max_value: 1.0
     min_value: 0.0
     type: rasa_core.slots.FloatSlot
+  gender:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
   matches:
     initial_value: null
     type: rasa_core.slots.TextSlot
