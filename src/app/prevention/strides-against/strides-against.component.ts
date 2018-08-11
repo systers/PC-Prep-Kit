@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
 import { BackgroundConfig, ManConfig, ObjectsConfig, positionConfig } from './game-config';
 import { DashboardService } from '../../services/dashboard.service';
 import { PositionElement } from './models/elements';
-import { Item } from './models/Item';
+import { Item, LevelItems } from './models/Item';
 import { InfokitService } from '../../services/infokit.service';
 import { BadgeService } from '../../services/BadgeService/badge.service';
 import { CertificateService } from '../../certificate/certificate.component';
 import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { ActivatedRoute } from '@angular/router';
 import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 export class PaperConfig {
@@ -48,7 +49,7 @@ export class StridesAgainstComponent implements OnInit {
 
   // Configs:
   BackgroundConfig = BackgroundConfig;
-  ObjectsConfig = ObjectsConfig;
+  ObjectsConfig: Array<Item>;
   ManConfig = ManConfig;
   randomPosition: Array<PositionElement> = []; // After randomizing the original position config
   positionConfig = positionConfig;
@@ -58,10 +59,14 @@ export class StridesAgainstComponent implements OnInit {
   sortedPosition: Array<PositionElement>;
 
   // Changing this would change the no. of objects in the game
-  countImage = BackgroundConfig.foreObjectsCount;
+  countImage: number;
   xMoveSign = 1; // Positive for moving in positive direction and vice versa
+  levelNumber: number;
+  level: string;
+  levels = ['level1', 'level2'];
+  private readonly OBJECT_COUNT_CONFIG = [5, 7];
 
-  private readonly CURR_STAGE = 9;
+  readonly CURR_STAGE = 9;
   private readonly BADGE_NUMBER = 4;
   private readonly ACTIVITY = 'strideAgainst';
 
@@ -70,7 +75,7 @@ export class StridesAgainstComponent implements OnInit {
   constructor(public languageService: LanguageService, public dialog: MatDialog, public sharedDataService: SharedDataService,
               public router: Router, public dashboardService: DashboardService, private infokitService: InfokitService,
               private _performanceService: PerformanceDisplayService, private _badgeService: BadgeService, private _certificateService: CertificateService,
-              private _leaderBoardService: LeaderBoardService) {
+              private _leaderBoardService: LeaderBoardService, private _route: ActivatedRoute) {
   }
 
   /**
@@ -168,7 +173,7 @@ export class StridesAgainstComponent implements OnInit {
     } else {
       const x = (final - current) * (86) * this.xMoveSign;
       this.man.animate({transform: '...t' + x + ',0'}, 1000, 'linear', () => {
-        if (!(this.pos === 5)) {
+        if (!(this.pos === this.OBJECT_COUNT_CONFIG[this.levelNumber - 1])) {
           this.handleQuestion();
         } else {
           this.sharedDataService.customSuccessAlert(this.language.game.alerts.correct.finish.body, this.language.game.alerts.correct.finish.title);
@@ -176,10 +181,14 @@ export class StridesAgainstComponent implements OnInit {
             .subscribe(res => res);
           this.activityComplete = true;
           if (!this.completed) {
-            this._performanceService.openDialog(this.CURR_STAGE);
-            this._badgeService.updateBadgeNumber(this.BADGE_NUMBER).subscribe(res => res);
-            this._certificateService.openCertificate();
-            this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, level: 'level1'});
+            if (this.levelNumber === 1) {
+              this._performanceService.openDialog(this.CURR_STAGE);
+              this._badgeService.updateBadgeNumber(this.BADGE_NUMBER).subscribe(res => res);
+              this._certificateService.openCertificate();
+            }
+            this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, level: this.level});
+            this.dashboardService.updateActivityLevel({activity: 'strideAgainst', level: this.levelNumber}).subscribe(() => {});
+
           }
           this.infokitService.activateinfokit('stride_Against').subscribe( () => {});
         }
@@ -202,6 +211,13 @@ export class StridesAgainstComponent implements OnInit {
 
 
   ngOnInit() {
+    /*Extracting the level parameter from the route*/
+    this._route.params.subscribe( params => {
+      this.level = this.levels[ params.level - 1];
+      this.levelNumber =  parseInt(params.level, 10);
+      this.ObjectsConfig = ObjectsConfig[this.level];
+      this.countImage = this.OBJECT_COUNT_CONFIG[this.levelNumber - 1];
+    });
     /*
     * Here before feeding the positions defined in our config file, we'll filter them first such that when the game starts, no
     * row is completely empty
@@ -209,7 +225,11 @@ export class StridesAgainstComponent implements OnInit {
     const PositionArray = []; // filtered array from the original Position Config from config file
     for (let i = 0; i <= 3; i++) {
       let subArray = this.positionConfig.filter(position => position.positionIndex >= (1 + 8 * i) && position.positionIndex <= (8 + 8 * i));
-      subArray = (i === 1) ? this.randomArray(subArray).slice(0, 2) : this.randomArray(subArray).slice(0, 1);
+      if (this.levelNumber === 1) {
+        subArray = (i === 1) ? this.randomArray(subArray).slice(0, 2) : this.randomArray(subArray).slice(0, 1);
+      } else {
+        subArray = (i === 1 || i === 0 || i === 2) ? this.randomArray(subArray).slice(0, 2) : this.randomArray(subArray).slice(0, 1);
+      }
       PositionArray.push(...subArray);
     }
     this.randomPosition = this.randomArray(PositionArray);

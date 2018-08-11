@@ -14,16 +14,23 @@ import { PerformanceDisplayService } from '../../services/performance-display.se
 import { MatDialog } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { LeaderBoardService } from '../../services/leaderBoard.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+
 
 describe('StopTheBreedComponent', () => {
   let component: StopTheBreedComponent;
   let fixture: ComponentFixture<StopTheBreedComponent>;
+  const mockLevel = 1;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [StopTheBreedComponent],
       providers: [LanguageService, HttpClient, HttpHandler, ToastrService, APIService, DashboardService,
-        SharedDataService, InfokitService, PerformanceDisplayService, MatDialog, LeaderBoardService],
+        SharedDataService, InfokitService, PerformanceDisplayService, MatDialog, LeaderBoardService,
+        {provide: ActivatedRoute, useValue: {params: Observable.of({level: mockLevel})}}
+      ],
       imports: [RouterTestingModule, ToastrModule.forRoot(), SharedModule, MaterialModule, OverlayModule]
     })
       .compileComponents();

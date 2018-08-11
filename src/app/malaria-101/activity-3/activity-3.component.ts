@@ -86,10 +86,9 @@ export class OddOneOutComponent implements OnInit {
      */
     displayQuestion() {
         this.questionText = this._data[this._questionNumber].question;
-        this.opt.push(this._data[this._questionNumber].option1);
-        this.opt.push(this._data[this._questionNumber].option2);
-        this.opt.push(this._data[this._questionNumber].option3);
-        this.opt.push(this._data[this._questionNumber].option4);
+        for (let i = 1; i <= 4; i++) {
+          this.opt.push(this._data[this._questionNumber]['option' + i]);
+        }
         const ans = this.opt[this._data[this._questionNumber].answer - 1];
         this.solutions += '<strong>Q:</strong> ' + this.questionText + '<br>' + '<strong>Ans:</strong> ' + ans + '<br><br>';
     }

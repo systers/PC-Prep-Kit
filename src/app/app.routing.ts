@@ -145,7 +145,7 @@ export const routes: Routes = [
                 pathMatch: 'full'
             },
             {
-                path: 'activity-1',
+                path: 'activity-1/:level',
                 component: MatchmedsComponent,
                 canActivate: [ActivityGuard],
                 data: ActivityRoutes['MatchmedsComponent']
@@ -168,7 +168,7 @@ export const routes: Routes = [
         canActivate: [LoggedInGuard]
     },
     {
-        path: 'unlocked-stage/game',
+        path: 'unlocked-stage/game/:level',
         component: UnlockedStageComponent,
         canActivate: [LoggedInGuard]
     },
@@ -179,17 +179,17 @@ export const routes: Routes = [
         children: [
             {
               path: '',
-              redirectTo: 'stop-the-breed/game',
+              redirectTo: 'stop-the-breed/game/1',
               pathMatch: 'full'
             },
             {
-              path: 'stop-the-breed/game',
+              path: 'stop-the-breed/game/:level',
               component: StopTheBreedComponent,
               canActivate: [ActivityGuard],
               data: ActivityRoutes['StopTheBreedComponent']
             },
             {
-              path: 'stride-against-malaria/game',
+              path: 'stride-against-malaria/game/:level',
               component: StridesAgainstComponent,
               canActivate: [ActivityGuard],
               data: ActivityRoutes['StridesAgainstComponent']
