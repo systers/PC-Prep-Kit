@@ -72,6 +72,7 @@ describe('Testing APIs', function() {
         });
 
         after('Delete User', function(done) {
+            this.enableTimeouts(false);
             localUser.destroy({
                 where: {
                     email: testCred.email
