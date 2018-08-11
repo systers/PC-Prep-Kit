@@ -1,0 +1,53 @@
+{
+  "action_fingerprints": {
+    "action_listen": {
+      "slots": [
+        "medicine",
+        "age"
+      ]
+    },
+    "utter_goodbye": {
+      "slots": []
+    },
+    "action_check_medicine_pregnant": {
+      "slots": []
+    },
+    "utter_identity": {
+      "slots": []
+    },
+    "action_suggest_normal": {
+      "slots": []
+    },
+    "action_check_medicine_normal": {
+      "slots": []
+    },
+    "utter_youarewelcome": {
+      "slots": []
+    },
+    "utter_intro": {
+      "slots": []
+    },
+    "utter_prevent": {
+      "slots": []
+    },
+    "utter_place": {
+      "slots": []
+    },
+    "action_suggest_pregnant": {
+      "slots": []
+    },
+    "utter_greet": {
+      "slots": []
+    }
+  },
+  "rasa_core": "0.10.2",
+  "max_histories": [
+    3,
+    5
+  ],
+  "ensemble_name": "rasa_core.policies.ensemble.SimplePolicyEnsemble",
+  "policy_names": [
+    "rasa_core.policies.memoization.MemoizationPolicy",
+    "policy.CustomPolicy"
+  ]
+}

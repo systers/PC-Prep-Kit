@@ -17,6 +17,7 @@ import { Observable } from 'rxjs';
 import { Badge } from '../badge/models/badgeModel';
 import { LeaderBoardService } from '../services/leaderBoard.service';
 import { NavbarService } from '../services/navbar.service';
+import { BotService } from '../services/BotService/bot.service';
 
 const mockBadge: Badge = {
   name: 'badgeName',
@@ -46,7 +47,8 @@ describe('HeaderComponent', () => {
         BadgeService,
         NotifyService,
         LeaderBoardService,
-        NavbarService
+        NavbarService,
+        BotService
       ],
     })
       .compileComponents();

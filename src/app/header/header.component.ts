@@ -10,6 +10,7 @@ import { BadgeComponent } from '../badge/badge.component';
 import { interval } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
+import { BotService } from '../services/BotService/bot.service';
 import { LeaderBoardService } from '../services/leaderBoard.service';
 import { NavbarService } from '../services/navbar.service';
 
@@ -46,7 +47,9 @@ export class HeaderComponent implements OnInit {
   private subscription;
 
   constructor(private _authService: AuthService, private _router: Router, private _langService: LanguageService, private _badgeService: BadgeService,
-              private _notify: NotifyService, private _snackbar: MatSnackBar, private _leaderBoardService: LeaderBoardService, private _navBarService: NavbarService) {
+              private _notify: NotifyService, private _snackbar: MatSnackBar, private _test: BotService,
+              private _leaderBoardService: LeaderBoardService, private _navBarService: NavbarService
+              ) {
   }
 
   navbartoggle() {

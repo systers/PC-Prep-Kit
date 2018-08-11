@@ -62,6 +62,7 @@ import { PerformanceDisplayComponent } from './performance-display/performance-d
 import { PerformanceDisplayService } from './services/performance-display.service';
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { StridesAgainstModule } from './prevention/strides-against/strides-against.module';
+import { BotService } from './services/BotService/bot.service';
 import { LeaderBoardService } from './services/leaderBoard.service';
 import { LeaderBoardComponent } from './leader-board/leader-board.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
@@ -124,8 +125,7 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [DashboardService, AuthService, LoggedInGuard, UnauthenticatedGuard, APIService, RegService, NavbarService,
-    SharedDataService, InfokitService, LanguageService, DoctorService, CertificateService, PerformanceDisplayService, ActivityGuard,
-    BadgeService, LeaderBoardService],
+    SharedDataService, InfokitService, LanguageService, DoctorService, CertificateService, PerformanceDisplayService, ActivityGuard, BadgeService, BotService, LeaderBoardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

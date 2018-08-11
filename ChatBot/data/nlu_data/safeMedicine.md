@@ -1,0 +1,50 @@
+## intent: safeMedicine
+- Is it safe to take [atovaquone](medicine)(medicine)?
+- Should I take [Chloroquine](medicine)?
+- Healthy to take [Doxycycline](medicine)?
+- I'm taking [Mefloquine](medicine).
+- Fine to take [Primaquine](medicine)?
+- Is it alright to take [atovaquone](medicine)?
+- can i try [atovaquone](medicine)?
+- will [atovaquone](medicine) cause any side effects?
+- are there any side effects in taking [atovaquone](medicine)?
+- what can happen to me if i take [atovaquone](medicine)?
+- what is the risk in taking [atovaquone](medicine)?
+- is [atovaquone](medicine) risky?
+- problems in taking [atovaquone](medicine)?
+- problems of [atovaquone](medicine)?
+- problems in consuming [atovaquone](medicine)?
+- is it a mistake to take [atovaquone](medicine)?
+- will it be okay to take [atovaquone](medicine)?
+- is [atovaquone](medicine) risk-free?
+- is [atovaquone](medicine) riskless?
+- is [atovaquone](medicine) unsafe?
+- is [atovaquone](medicine) dangerous?
+- is [atovaquone](medicine) harmless?
+- can [atovaquone](medicine) harm me?
+- is it okay to swallow malaria pills?
+- is there a possibility of side effects in taking malaria pills?
+- what are the chances that this pill can cause side effects?
+- am i in danger of bad effects if i take this pill?
+- am i in danger of ill effects if i take this pill?
+- what can i be fearful of if i take this pill?
+- what is the likelihood that this pill is safe?
+- what are the threats of this pill?
+- is this pill vulnerable?
+- is this tablet safe to consume?   
+- is [atovaquone](medicine) risk-free?
+- is [atovaquone](medicine) riskless?
+- is [atovaquone](medicine) unsafe?
+- is [atovaquone](medicine) dangerous?
+- is [atovaquone](medicine) harmless?
+- can [atovaquone](medicine) harm me?
+- will taking [atovaquone](medicine) keep me immune from any side effects
+- am i susceptible to side effects if i take [atovaquone](medicine)
+- will i be immune from malaria if i take [atovaquone](medicine)
+- is [atovaquone](medicine) poisonous?
+- is [atovaquone](medicine) toxic?
+- is [atovaquone](medicine) non-toxic?
+- will this pill affect me in anyway?
+- can this pill be liable for any side effects?
+- is [atovaquone](medicine)  safe for me ?
+

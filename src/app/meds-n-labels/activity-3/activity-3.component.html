@@ -3,11 +3,11 @@
     <H3 class="text-center stage-header">{{language?.heading}}</H3>
     <div class="chats" #chats>
       <div [className]="chat.status" *ngFor="let chat of messages">
-        {{chat.message}}
-        <img [src]="chat.image" *ngIf="chat.image">
-        <div *ngIf="chat.link">
+        {{chat.message.text}}
+        <img [src]="chat.message.image" *ngIf="chat.message.image">
+        <div *ngIf="chat.message.link">
             {{language?.activityIndicationMessage}}
-          <div *ngFor="let link of chat.link">
+          <div *ngFor="let link of chat.message.link">
             <a [href] = "link.href"><button mat-stroked-button class="link-button">{{link.name}}</button></a>
           </div>
         </div>
