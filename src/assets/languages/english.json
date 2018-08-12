@@ -151,6 +151,13 @@
         },
         "messages": {
           "logoutButton": "Logout"
+        },
+        "alerts": {
+          "caching": {
+            "title": "New version available!",
+            "confirmButtonText": "Update",
+            "cancelButtonText": "Cancel"
+          }
         }
       },
       "splashscreen": {

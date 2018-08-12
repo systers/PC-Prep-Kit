@@ -13,6 +13,9 @@ import { MatSnackBar } from '@angular/material';
 import { BotService } from '../services/BotService/bot.service';
 import { LeaderBoardService } from '../services/leaderBoard.service';
 import { NavbarService } from '../services/navbar.service';
+import { SwUpdate } from '@angular/service-worker';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-header',
@@ -48,8 +51,20 @@ export class HeaderComponent implements OnInit {
 
   constructor(private _authService: AuthService, private _router: Router, private _langService: LanguageService, private _badgeService: BadgeService,
               private _notify: NotifyService, private _snackbar: MatSnackBar, private _test: BotService,
-              private _leaderBoardService: LeaderBoardService, private _navBarService: NavbarService
-              ) {
+              private _leaderBoardService: LeaderBoardService, private _navBarService: NavbarService, private updates: SwUpdate) {
+    updates.available.subscribe(event => {
+      swal({
+        title: this.language.alerts.caching.title,
+        type: 'info',
+        showCancelButton: true,
+        confirmButtonText: this.language.alerts.caching.confirmButtonText,
+        cancelButtonText: this.language.alerts.caching.cancelButtonText
+      }).then((result) => {
+        if (result) {
+          updates.activateUpdate().then(() => document.location.reload());
+        }
+      });
+    });
   }
 
   navbartoggle() {

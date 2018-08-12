@@ -30,7 +30,7 @@
                [formControl]="updateForm.controls['lastName']">
       </div>
       <p id="error"
-         *ngIf="updateForm.controls['firstName'].hasError('required') && (updateForm.controls['firstName'].touched && !isFocused)">
+         *ngIf="updateForm.controls['firstName'].hasError('required') && (updateForm.controls['firstName'].touched)">
         {{alerts?.error}}</p>
       <div class="form-group">
       </div>
