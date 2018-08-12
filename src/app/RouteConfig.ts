@@ -61,6 +61,11 @@ export const ActivityRoutes: Routes = {
   StridesAgainstComponent: {
     prevStage: 4,
     prevActivity: 1
+  },
+
+  MoskitoAsesinatoComponent: {
+    prevStage: 4,
+    prevActivity: 2
   }
 };
 

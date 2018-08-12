@@ -163,16 +163,6 @@ export const routes: Routes = [
         ]
     },
     {
-        path: 'unlocked-stage',
-        component: HowToPlayComponent,
-        canActivate: [LoggedInGuard]
-    },
-    {
-        path: 'unlocked-stage/game/:level',
-        component: UnlockedStageComponent,
-        canActivate: [LoggedInGuard]
-    },
-    {
         path: 'prevent',
         canActivate: [LoggedInGuard],
         component: PreventionComponent,
@@ -194,6 +184,18 @@ export const routes: Routes = [
               canActivate: [ActivityGuard],
               data: ActivityRoutes['StridesAgainstComponent']
             },
+            {
+              path: 'moskito-asesinato',
+              component: HowToPlayComponent,
+              canActivate: [ActivityGuard],
+              data: ActivityRoutes['MoskitoAsesinatoComponent'],
+            },
+            {
+              path: 'moskito-asesinato/game/1',
+              component: UnlockedStageComponent,
+              canActivate: [ActivityGuard],
+              data: ActivityRoutes['MoskitoAsesinatoComponent']
+            }
     ]
     },
     {
