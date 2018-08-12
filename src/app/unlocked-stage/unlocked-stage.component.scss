@@ -1,5 +1,7 @@
 @import "../styles/main";
 
+$gif-height: 40em;
+
 @mixin selectable($allowSelect) {
     user-select: $allowSelect;
     -moz-user-select: $allowSelect;
@@ -226,4 +228,8 @@
     left: 4%;
     top: 10%;
     font-weight: bold;
+}
+
+#tutorialImage {
+    height: $gif-height;
 }
