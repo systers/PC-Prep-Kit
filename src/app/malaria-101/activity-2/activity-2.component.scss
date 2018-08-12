@@ -1,6 +1,9 @@
 @import "../../styles/main";
 
-.available-item{
+//Constants
+$button-left-margin: 46%;
+
+.available-item {
     padding: $padding-med;
 }
 
@@ -21,3 +24,9 @@
     border-width: 2px;
     border-style: dashed;
 }
+
+#submit-reset {
+    position: absolute;
+    left: $button-left-margin;
+}
+

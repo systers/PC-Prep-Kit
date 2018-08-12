@@ -310,7 +310,14 @@
             "boxIndicatorDo": "Dos",
             "boxIndicatorDont": "Don'ts",
             "boxIndicatorAvailable": "Available to drag"
-          }
+          },
+          "buttons": {
+            "reset": "RESET",
+            "submit": "SUBMIT"
+          },
+          "MessageP1": "You earned total ",
+          "MessageP2": "points.",
+          "answerMessage": "Answers"
         },
         "oddOneOut": {
           "heading": "Complete the odd one out quiz on Malaria",
