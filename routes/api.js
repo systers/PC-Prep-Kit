@@ -233,8 +233,9 @@ router.post('/leaderBoard', authenticationHelpers.isAuthOrRedirect, (req, res) =
             .then(data => {
                 let array = [];
                 data.forEach(function(item) {
-                    array.push({name: `${item.user_account.fname} ${item.user_account.lname}`,
-                        score: item.score, userEmail: item.user_account.email})
+                    let name;
+                    name = (item.user_account.lname) ? `${item.user_account.fname} ${item.user_account.lname}` : item.user_account.fname;
+                    array.push({name: name, score: item.score, userEmail: item.user_account.email})
                 });
                 return res.status(200).json(array);
             })
