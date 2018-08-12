@@ -57,19 +57,5 @@
           </div>
         </div>
       </div>
-        <div class="row">
-            <div class="menu-button" (click)="navigateToPage('/unlocked-stage')">
-                <img class="hex" src="../../assets/img/unlocked.png">
-                <button class="but unlocked-btn" (click)="navigateToPage('/unlocked-stage')">
-                    {{language?.lockedStage.heading}}
-                </button>
-                <div class="outer-circle unlocked-outer-circle">
-                    <div class="inner-circle unlocked-inner-circle">
-                        <div *ngFor="let level of createRange(3); let idx=index" class="arc level{{idx+1}}" [ngClass]="calculateArcClass(5, idx)"></div>
-                        <div class="activity">{{calculateDisplayedActivity(5)}}/3</div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
