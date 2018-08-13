@@ -8,16 +8,21 @@ PC Prep kit helps spread awareness about Malaria. According to WHO[1], In 2015 t
 
 ## Technologies used
 The project uses 
-* Node.js, Express framework (JavaScript)
-* Angular 4 (SCSS, TypeScript, HTML)
+* Node.js 8.11.2, Express framework (JavaScript)
+* Angular 6 (SCSS, TypeScript, HTML)
 * Mocha, Supertest, Should.js (Backend Testing)
 * Jasmine, Karma (Angular Testing)
 * MySQL + Sequalize ORM 
 * ESLint and TSLint (Linting tools)
+* Python
+* Tensorflow
+* Rasa_Core and Rasa_NLU
+
+
 
 ## How can users get started with contributing to the project? 
   
-Anyone can find an issue in the application, the issue is not limited to bugs but also includes UI enhancements, efficient codes, improved structure or updating depreciated functions.  
+Anyone can find an issue in the application, the issue is not limited to bugs but also includes UI enhancements, efficient codes, improved structure, updating depreciated functions or adding more dialogues in the ChatBot Dialogue Corpus.  
   
 The following procedure must be followed in order to solve an issue.    
   
@@ -74,16 +79,11 @@ CREATE DATABASE pcprepkit;
 
 or if you are using a tool like phpMyAdmin to manage your database, you can setup it up there too.
 
-#### Setting up api.ai for doctor chat module
-* Signup on api.ai with the same google project used for gmail login. 
-* Create a new agent. 
-* On the sidebar, click on the settings icon adjacent to the agent name. 
-* Open Export and Import tab and select import from zip. 
-* upload the malariaDoctor.zip file available in the repo. 
-* get the client key from the console and replace it in settings.js file
+#### Starting up the Bot Server
 
-Once the database and the settings.json file is setup, run the following command from the project directory.
+Optional. That is, only if you want to use the ChatBot. To set up this, Detailed instructions are given [here](https://github.com/systers/PC-Prep-Kit/wiki/ChatBot-Documentation).
 
+Once the database and the bot server (optional) is setup, run the following command from the project directory.
 ```
 $ npm start
 ```
@@ -110,12 +110,12 @@ To contribute to the backend testing for PC Prep Kit, you can search for APIs fo
 
 #### Angular (Frontend) Testing
 Frontend Testing uses Karma and Jasmine, these packages are installed automatically from the package.json file and will be available after all the packages are installed by running `npm install`.
-The test files are available in the src/tests/ folder.
+All component tests are within the respective component folders and service tests are in *src/tests* folder.
 
 Steps to run the tests:
 Run `ng test` to execute the unit tests via Karma.
 
-To contribute to the frontend testing for PC Prep Kit, you can look for files for which the test cases have not been written, or fix test cases that fail. 
+To contribute to the frontend testing for PC Prep Kit, you can look for files for which the test cases have not been written, or fix test cases that fail. In some tests, we have imported similar modules and components. A new common module may be formed and imported.
 
 #### Running TSLint and ESLint
 
