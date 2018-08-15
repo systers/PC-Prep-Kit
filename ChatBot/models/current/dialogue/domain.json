@@ -19,6 +19,7 @@
     "entity_medicine",
     "entity_age",
     "slot_age_0",
+    "slot_gender_0",
     "slot_matches_0",
     "slot_medicine_0",
     "slot_requested_slot_0",
@@ -42,6 +43,10 @@
     "prev_utter_ask_age",
     "prev_check_age",
     "prev_action_check_medicine_normal",
-    "prev_action_check_medicine_pregnant"
+    "prev_action_check_medicine_pregnant",
+    "prev_action_store_male",
+    "prev_action_store_female",
+    "prev_action_store_third",
+    "prev_action_handle_age"
   ]
 }

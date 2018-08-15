@@ -114,6 +114,72 @@ class ActionCheckMedicinePregnant(Action):
         return []
 
 
+class StoreMale(Action):
+    @classmethod
+    def name(self):
+        return 'action_store_male'
+
+    @classmethod
+    def run(self, dispatcher, tracker, domain):
+        SlotSet("gender", "male")
+
+
+class StoreFemale(Action):
+    @classmethod
+    def name(self):
+        return 'action_store_female'
+
+    @classmethod
+    def run(self, dispatcher, tracker, domain):
+        SlotSet("gender", "female")
+
+
+class StoreThird(Action):
+    @classmethod
+    def name(self):
+        return 'action_store_third'
+
+    @classmethod
+    def run(self, dispatcher, tracker, domain):
+        SlotSet("gender", "other")
+
+
+class StorePregnantTrue(Action):
+    @classmethod
+    def name(self):
+        return 'action_store_pregnant_true'
+
+    @classmethod
+    def run(self, dispatcher, tracker, domain):
+        SlotSet("pregnant", "true")
+
+
+class StorePregnantFalse(Action):
+    @classmethod
+    def name(self):
+        return 'action_store_pregnant_false'
+
+    @classmethod
+    def run(self, dispatcher, tracker, domain):
+        SlotSet("pregnant", "false")
+
+
+class HandleAge(Action):
+    @classmethod
+    def name(self):
+        return 'action_handle_age'
+
+    @classmethod
+    def run(self, dispatcher, tracker, domain):
+        if not tracker.get_slot("age"):
+            dispatcher.utter_message("May I know your age please?")
+        else:
+            if tracker.get_slot("pregnant") == "true":
+                ActionSuggestPregnant.run(dispatcher, tracker, domain)
+            else:
+                ActionSuggestNormal.run(dispatcher, tracker, domain)
+
+
 class CheckAge(FormAction):
     RANDOMIZE = False
 

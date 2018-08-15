@@ -30,9 +30,11 @@
 * medicines
     - utter_ask_gender
 * Female
+    - action_store_female
     - utter_ask_pregnant
 * affirm
-    - utter_ask_age
+    - action_store_pregnant_true
+    - action_handle_age
 * safeMedicine{"age": "18"}
     - slot{"age": "18"}
     - action_suggest_pregnant
@@ -42,7 +44,8 @@
 * medicines
     - utter_ask_gender
 * Male
-    - utter_ask_age
+    - action_store_male
+    - action_handle_age
 * deny{"age": "6"}
     - slot{"age": "6"}
     - action_suggest_normal
@@ -52,9 +55,11 @@
 * medicines
     - utter_ask_gender
 * Female
+    - action_store_female
     - utter_ask_pregnant
 * deny
-    - utter_ask_age
+    - action_store_pregnant_false
+    - action_handle_age
 * safeMedicine{"age": "20"}
     - slot{"age": "20"}
     - action_suggest_normal
@@ -64,7 +69,8 @@
 * medicines
     - utter_ask_gender
 * informThird
-    - utter_ask_age
+    - action_store_third
+    - action_handle_age
 * informAge{"age": "40"}
     - slot{"age": "40"}
     - action_suggest_normal
@@ -74,9 +80,11 @@
 * medicines
     - utter_ask_gender
 * Female
+    - action_store_female
     - utter_ask_pregnant
 * affirm
-    - utter_ask_age
+    - action_store_pregnant_true
+    - action_handle_age
 * informAge{"age": "45"}
     - slot{"age": "45"}
     - action_suggest_pregnant
@@ -87,7 +95,8 @@
     - slot{"medicine": "Atovaquone"}
     - utter_ask_gender
 * Male
-    - utter_ask_age
+    - action_store_male
+    - action_handle_age
 * informAge{"age": "20"}
     - slot{"age": "20"}
     - action_check_medicine_normal
@@ -98,9 +107,11 @@
     - slot{"medicine": "Doxycycline"}
     - utter_ask_gender
 * Female
+    - action_store_female
     - utter_ask_pregnant
 * affirm
-    - utter_ask_age
+    - action_store_pregnant_true
+    - action_handle_age
 * informAge{"age": "24"}
     - slot{"age": "24"}
     - action_check_medicine_pregnant
@@ -111,9 +122,9 @@
     - slot{"medicine": "Atovaquone"}
     - utter_ask_gender
 * informThird
-    - utter_ask_age
+    - action_store_third
+    - action_handle_age
 * informAge{"age": "4"}
     - slot{"age": "4"}
     - action_check_medicine_normal
     - export
-
