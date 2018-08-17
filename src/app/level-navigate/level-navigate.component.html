@@ -1,0 +1,15 @@
+<div id="level-navigate">
+  <button mat-button [matMenuTriggerFor]="menu" id="menu-open">
+    <i class="fa fa-2x fa-angle-down"></i>&nbsp;{{language?.levelLabel}}&nbsp;{{userCurrentLevel}}
+  </button>
+  <mat-menu #menu="matMenu">
+    <div *ngIf="levelsURL.length > 1">
+      <div *ngFor="let levelURL of levelsURL; index as i;">
+        <a [href]="levelURL" [ngClass]="{'active-level': (i+1) === userCurrentLevel }">
+          <button mat-button class="levelButton">{{language?.levelLabel}}{{i+1}}</button>
+        </a>
+        <br>
+      </div>
+    </div>
+  </mat-menu>
+</div>

@@ -20,11 +20,12 @@
     <div class="row col-lg-6 col-lg-offset-3 text-center" [hidden]="!activityComplete">
         <div class="swal2-icon swal2-info">i</div>
         <div>
-            <h2 class="swal2-title text-center" id="swal2-title">{{language?.descriptions.score}}<br>{{language?.descriptions.resultText1}} {{this.score}} {{language?.descriptions.resultText2}}</h2>
+            <h2 class="swal2-title text-center" id="swal2-title">{{language?.descriptions.score}}<br>{{language?.descriptions.resultText1}} {{this.score}} {{language?.descriptions.resultText2}} {{noOfQuestions}} {{language?.descriptions.resultText3}}</h2>
         </div>
         <div class="swal2-title text-center">
             <button class="btn button-branding-blue btn-lg" (click)="reload()">{{language?.messages.resetButton}}</button>
         </div>
     </div>
 </div>
-<button-nav [complete]="activityComplete" [completed]="completed" prevurl="/malaria-101/activity-2" nexturl="/meds-n-labels/activity-1"></button-nav>
+<button-nav [complete]="activityComplete" [completed]="completed" prevurl="/malaria-101/activity-2/1" nexturl="/meds-n-labels/activity-1/1"></button-nav>
+<app-level-navigate [levelInfo]="CURR_STAGE"></app-level-navigate>

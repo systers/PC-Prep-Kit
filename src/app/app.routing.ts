@@ -9,10 +9,9 @@ import { ResetPasswordComponent } from './authentication/reset-password.componen
 import { PcpolicyComponent } from './introduction/activity-2/activity-2.component';
 import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { RegisterComponent } from './register/register.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityintroComponent } from './introduction/activityintro/activityintro.component';
 import { MenuComponent } from './menu/menu.component';
-import { DragdropComponent} from './malaria-101/activity-2/activity-2.component';
+import { DragdropComponent } from './malaria-101/activity-2/activity-2.component';
 import { MedsNLabelsComponent } from './meds-n-labels/meds-n-labels.component';
 import { MemoryGameComponent } from './meds-n-labels/activity-2/activity-2.component';
 import { IntroductionComponent } from './introduction/introduction.component';
@@ -27,6 +26,12 @@ import { StageCompleteComponent } from './stage-complete/stage-complete.componen
 import { DoctorchatComponent } from './meds-n-labels/activity-3/activity-3.component';
 import { UnlockedStageComponent } from './unlocked-stage/unlocked-stage.component';
 import { HowToPlayComponent } from './unlocked-stage/how-to-play/howtoplay.component';
+import { StopTheBreedComponent } from './prevention/stop-the-breed/stop-the-breed.component';
+import { PreventionComponent } from './prevention/prevention.component';
+import { StridesAgainstComponent } from './prevention/strides-against/strides-against.component';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+import { ActivityGuard } from './guards/activity.guard';
+import { ActivityRoutes } from './RouteConfig';
 
 export const routes: Routes = [
     {
@@ -75,15 +80,21 @@ export const routes: Routes = [
             },
             {
                 path: 'activity-1',
-                component: HighlightActivityComponent
+                component: HighlightActivityComponent,
+                canActivate: [ActivityGuard],
+                data: ActivityRoutes['HighlightActivityComponent']
             },
             {
                 path: 'activity-2',
-                component: PcpolicyComponent
+                component: PcpolicyComponent,
+                canActivate: [ActivityGuard],
+                data: ActivityRoutes['PcpolicyComponent']
             },
             {
-                path: 'activity-3',
-                component: PicturePuzzleComponent
+                path: 'activity-3/:level',
+                component: PicturePuzzleComponent,
+                canActivate: [ActivityGuard],
+                data: ActivityRoutes['PicturePuzzleComponent']
             }
         ]
     },
@@ -99,19 +110,27 @@ export const routes: Routes = [
             },
             {
                 path: 'activity-1-1',
-                component: AnimatedVideoComponent
+                component: AnimatedVideoComponent,
+                canActivate: [ActivityGuard],
+                data: ActivityRoutes['AnimatedVideoComponent']
             },
             {
                 path: 'activity-1-2',
-                component: MalariaLifeCycleComponent
+                component: MalariaLifeCycleComponent,
+                canActivate: [ActivityGuard],
+                data: ActivityRoutes['MalariaLifeCycleComponent']
             },
             {
-                path: 'activity-2',
-                component: DragdropComponent
+                path: 'activity-2/:level',
+                component: DragdropComponent,
+                canActivate: [ActivityGuard],
+                data: ActivityRoutes['DragdropComponent']
             },
             {
-                path: 'activity-3',
-                component: OddOneOutComponent
+                path: 'activity-3/:level',
+                component: OddOneOutComponent,
+                canActivate: [ActivityGuard],
+                data: ActivityRoutes['OddOneOutComponent']
             }
         ]
     },
@@ -122,16 +141,20 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'activity-1',
+                redirectTo: 'activity-1/1',
                 pathMatch: 'full'
             },
             {
-                path: 'activity-1',
-                component: MatchmedsComponent
+                path: 'activity-1/:level',
+                component: MatchmedsComponent,
+                canActivate: [ActivityGuard],
+                data: ActivityRoutes['MatchmedsComponent']
             },
             {
-                path: 'activity-2',
-                component: MemoryGameComponent
+                path: 'activity-2/:level',
+                component: MemoryGameComponent,
+                canActivate: [ActivityGuard],
+                data: ActivityRoutes['MemoryGameComponent']
             },
             {
                 path: 'activity-3',
@@ -140,13 +163,44 @@ export const routes: Routes = [
         ]
     },
     {
-        path: 'unlocked-stage',
-        component: HowToPlayComponent,
-        canActivate: [LoggedInGuard]
+        path: 'prevent',
+        canActivate: [LoggedInGuard],
+        component: PreventionComponent,
+        children: [
+            {
+              path: '',
+              redirectTo: 'stop-the-breed/game/1',
+              pathMatch: 'full'
+            },
+            {
+              path: 'stop-the-breed/game/:level',
+              component: StopTheBreedComponent,
+              canActivate: [ActivityGuard],
+              data: ActivityRoutes['StopTheBreedComponent']
+            },
+            {
+              path: 'stride-against-malaria/game/:level',
+              component: StridesAgainstComponent,
+              canActivate: [ActivityGuard],
+              data: ActivityRoutes['StridesAgainstComponent']
+            },
+            {
+              path: 'moskito-asesinato',
+              component: HowToPlayComponent,
+              canActivate: [ActivityGuard],
+              data: ActivityRoutes['MoskitoAsesinatoComponent'],
+            },
+            {
+              path: 'moskito-asesinato/game/1',
+              component: UnlockedStageComponent,
+              canActivate: [ActivityGuard],
+              data: ActivityRoutes['MoskitoAsesinatoComponent']
+            }
+    ]
     },
     {
-        path: 'unlocked-stage/game',
-        component: UnlockedStageComponent,
+        path: 'disclaimer',
+        component: DisclaimerComponent,
         canActivate: [LoggedInGuard]
     }
 ];

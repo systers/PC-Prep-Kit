@@ -11,5 +11,11 @@ export const environment = {
     apiEndpoint: 'api/',
     authEndpoint: 'auth/',
     regEndPoint: 'registration/',
-    localStorageKey: 'pcprepkitUser'
+    updateEndPoint: 'update-user/',
+    localStorageKey: 'pcprepkitUser',
+
+    /* RASA  constants */
+    rasaCoreBaseURL: 'http://localhost:5005/',
+    rasaCoreEndpoint: 'conversations/'
 };
+

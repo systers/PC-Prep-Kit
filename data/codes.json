@@ -151,9 +151,53 @@
             "code": "PCE030",
             "message": "PCE030 :Something went wrong while encrypting password",
             "reason": "Internal Server Error"
-        }        
+        },
+        "PCE031": {
+            "code": "PCE031",
+            "message": "PCE031 :E-Mail ID is not verified",
+            "reason": "User has not verified his email-address"
+        },
+        "PCE032": {
+            "code": "PCE032",
+            "message": "PCE032 Something went wrong while updating user's badge",
+            "reason": "Internal Server Error"
+        },
+        "PCE033": {
+            "code": "PCE033",
+            "message": "PCE033 Something went wrong while updating user's score",
+            "reason": "Internal Server Error"
+        },
+        "PCE034": {
+            "code": "PCE034",
+            "message": "PCE034 No activity-progress data found",
+            "reason": "The user does not exist or the progress data of the user is not logged in progress_status table"
+        },
+        "PCE035": {
+            "code": "PCE035",
+            "message": "PCE035 Something went wrong while fetching activity-progress data",
+            "reason": "Internal Server Error"
+        },
+        "PCE036": {
+            "code": "PCE036",
+            "message": "No activity-level data was found",
+            "reason": "User is not logged in or his data in not logged in levelProgress Table"
+      },
+        "PCE037": {
+            "code": "PCE037",
+            "message": "Something went wrong while fetching level-progress data",
+            "reason": "Internal Server Error"
+      },
+        "PCE038": {
+            "code": "PCE038",
+            "message": "Something went wrong while updating level-progress data",
+            "reason": "Internal Server Error"
+      },
+        "PCE039": {
+            "code": "PCE039",
+            "message": "Could not update user's activity level",
+            "reason": "Request body was empty"
+      }
     },
-
     "success": {
         "PCS001": {
             "code": "PCS001",
@@ -175,7 +219,27 @@
         "PCS005": {
             "code": "PCS005",
             "message": "PCS005 : Verification mail sent, please check your mail"
-        }        
+        },
+        "PCS006": {
+            "code": "PCS006",
+            "message": "PCS006 : User's profile was successfully updated"
+        },
+        "PCS007": {
+            "code": "PCS007",
+            "message": "PCS007 User's current badge was successfully updated"
+        },
+        "PCS008": {
+            "code": "PCS008",
+            "message": "PCS008 User's current total score was successfully updated"
+      },
+        "PCS009": {
+            "code": "PCS009",
+            "message": "PCS009 User's current score in the specific activity was updated"
+      },
+        "PCS010": {
+            "code": "PCS010",
+            "message": "User's current level in the specific activity was updated"
+        }
     }
 }
 

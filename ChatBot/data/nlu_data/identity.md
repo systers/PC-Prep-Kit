@@ -1,0 +1,23 @@
+## intent:identity
+- Who are you
+- what's your name
+- what are you called
+- how are you called
+- your name
+- who you
+- you?
+- do i know you
+- may i know who this is
+- may i know who i am talking to
+- who am i talking to?
+- am i talking to a doctor?
+- am i talking to a human?
+- are you a girl?
+- are you a female?
+- are you a lady?
+- are you a man?
+- are you a boy?
+- are you a guy?
+- what is your gender?
+- may i know your name?
+

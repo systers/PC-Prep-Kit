@@ -1,0 +1,31 @@
+## intent:thankyou
+- thanks
+- thank you
+- thank you very much
+- nice
+- appreciate the help
+- thanks for the help
+- grateful for your help
+- You’re the best
+- I'm grateful.
+- You have no idea how much your help has meant
+- You are always so helpful.
+- appreciate your support
+- thanks for your support
+- Your lessons have been very insightful and fun!
+- I have had so much fun learning with you!
+- thanks for your assistance
+- thanks a mill
+- thanks for your time
+- you are awesome
+- i am very thankful
+- I will never forget your help
+- you are very kind
+- this means a lot to me
+- i owe you for your help
+-  my sincere appreciation
+- you are always so helpful
+- thanks a lot
+- help appreciated
+- thanks for your efforts 
+

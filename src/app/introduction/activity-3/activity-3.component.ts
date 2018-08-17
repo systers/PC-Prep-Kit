@@ -1,12 +1,15 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, Renderer, ViewContainerRef } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Component, OnInit, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
 import { DashboardService } from '../../services/dashboard.service';
 import 'webrtc-adapter';
 import { webcamEnum } from './webcamEnum';
 import { SharedDataService } from '../../services/shared.data.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { LanguageService } from '../../services/language.service';
+import { BadgeService } from '../../services/BadgeService/badge.service';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { ActivatedRoute } from '@angular/router';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 @Component({
     selector: 'app-activity3',
@@ -18,7 +21,10 @@ export class PicturePuzzleComponent implements OnInit {
     // "#video" is the name of the template variable in the video element
     @ViewChild('video') video: any;
 
-    private PUZZLE_DIFFICULTY = 4;
+    private puzzleDifficulty: number;
+    private readonly DIFFICULTY_LIST = [4, 6, 8];
+    private readonly LEVELS = ['level1', 'level2', 'level3'];
+    private level: number;
     private PUZZLE_HOVER_TINT = '#009900';
 
     private _canvas;
@@ -38,9 +44,8 @@ export class PicturePuzzleComponent implements OnInit {
     private _mouseupListener: any;
     private _mousedownListener: any;
     private _width = 480;
-    private _height = 360
+    private _height = 360;
     private _status: object = {stage: 1, activity: 3};
-    private _activity: number;
 
     public webcamStates = webcamEnum;
     public webcamState: number;
@@ -56,9 +61,14 @@ export class PicturePuzzleComponent implements OnInit {
     public completed = false;
     public alerts: any;
     public userData: any;
+    public readonly CURR_STAGE = 2;
+    private readonly BADGE_NUMBER = 1;
+    private readonly ACTIVITY = 'picturePuzzle';
 
-    constructor(private _langService: LanguageService, private _http: Http, private _dashboardService: DashboardService, public toastr: ToastsManager, vcr: ViewContainerRef, private _renderer: Renderer, private _sharedData: SharedDataService) {
-        this.toastr.setRootViewContainerRef(vcr);
+
+    constructor(private _langService: LanguageService, private _http: HttpClient, private _dashboardService: DashboardService, vcr: ViewContainerRef, private _renderer: Renderer2,
+                private _sharedData: SharedDataService, private _performanceService: PerformanceDisplayService, private _badgeService: BadgeService, private _leaderBoardService: LeaderBoardService,
+                private _route: ActivatedRoute) {
     }
 
     changeWebcamState(state, btnText) {
@@ -73,7 +83,7 @@ export class PicturePuzzleComponent implements OnInit {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ video: true })
                                   .then(stream => {
-                                        this._video.src = window.URL.createObjectURL(stream);
+                                        this._video.src = stream;
                                         this.webcamStream = stream;
                                     })
         }
@@ -101,6 +111,10 @@ export class PicturePuzzleComponent implements OnInit {
         this._dashboardService.getProgressStatus().subscribe(response => {
             this.completed = this._sharedData.checkProgress(1, 3, response);
         });
+        this._route.params.subscribe( params => {
+          this.puzzleDifficulty = this.DIFFICULTY_LIST[ params.level - 1];
+          this.level =  parseInt(params.level, 10);
+        })
     }
 
     upload() {
@@ -158,10 +172,10 @@ export class PicturePuzzleComponent implements OnInit {
     }
 
     onImage() {
-        this._pieceWidth = Math.floor(this._width / this.PUZZLE_DIFFICULTY)
-        this._pieceHeight = Math.floor(this._height / this.PUZZLE_DIFFICULTY)
-        this._puzzleWidth = this._pieceWidth * this.PUZZLE_DIFFICULTY;
-        this._puzzleHeight = this._pieceHeight * this.PUZZLE_DIFFICULTY;
+        this._pieceWidth = Math.floor(this._width / this.puzzleDifficulty)
+        this._pieceHeight = Math.floor(this._height / this.puzzleDifficulty)
+        this._puzzleWidth = this._pieceWidth * this.puzzleDifficulty;
+        this._puzzleHeight = this._pieceHeight * this.puzzleDifficulty;
         this.setCanvas();
         if (this.webcamState === this.webcamStates.CAPTURED) {
             this._stage.drawImage(this._video, 0, 0, this._width, this._height);
@@ -193,7 +207,7 @@ export class PicturePuzzleComponent implements OnInit {
         let i;
         let piece;
         let posn = {x: 0, y: 0};
-        for (i = 0; i < this.PUZZLE_DIFFICULTY * this.PUZZLE_DIFFICULTY; i++) {
+        for (i = 0; i < this.puzzleDifficulty * this.puzzleDifficulty; i++) {
             piece = {};
             piece.sx = posn.x;
             piece.sy = posn.y;
@@ -362,5 +376,16 @@ export class PicturePuzzleComponent implements OnInit {
         this._mouseupListener();
         this.initPuzzle();
         this.activityComplete = true;
+        if (!this.completed) {
+          this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, level: this.LEVELS[this.level - 1]});
+
+          this._dashboardService.updateActivityLevel({activity: this.ACTIVITY, level: this.level}).subscribe(() => {});
+          if (this.level === 1) {
+            this._performanceService.openDialog(this.CURR_STAGE);
+            this._badgeService.updateBadgeNumber(this.BADGE_NUMBER).subscribe(res => res);
+          }
     }
-}
+
+        }
+    }
+

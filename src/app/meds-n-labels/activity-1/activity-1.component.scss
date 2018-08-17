@@ -1,27 +1,35 @@
 @import "../../styles/main";
+$meds-left: 33%;
+$content-left: 40%;
+$des-left: 55%;
 
 .medicine-container {
     padding: $padding-med;
 }
 
 .medicine {
-    height: 100px;
-    width: 100px;
+    height: 60px;
+    width: 60px;
 }
 
 .des {
-    height: 135px;
+    height: 80px;
+    width: 400px;
+    margin-bottom: 60px;
     overflow: hidden;
+    font-size: $font-size-small;
+    color: $white;
+    background-color: $light-blue;
 }
 
 .heading-info {
     color: $orange;
 }
 
-@include match-elements(0, 30%, 60%);
+@include match-elements($meds-left, $content-left, $des-left);
 
 @media only screen and (min-width: $screen-xsmall) {
-    @include match-elements(10%, 30%, 50%);
+    @include match-elements(10%, 30%, 40%);
 }
 
 @media only screen and (min-width: $screen-small) {
@@ -29,8 +37,17 @@
 }
 
 @media only screen and (min-width: $screen-med) {
-    @include match-elements(25%, 35%, 60%);
+    @include match-elements(33%, 40%, 55%);
     .meds-description{
         padding-right: 10%;
     }
+}
+
+.well-medicine {
+    padding: $padding-small;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: $font-size-small;
+    color: $white;
+    background-color: $light-blue;
 }

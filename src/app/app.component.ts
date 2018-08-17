@@ -1,6 +1,8 @@
+import { pairwise } from 'rxjs/operators';
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { SharedDataService } from './services/shared.data.service';
+import { LeaderBoardService } from './services/leaderBoard.service';
 
 @Component({
     selector: 'app-root',
@@ -19,7 +21,7 @@ export class AppComponent {
          * Check if route changed
          * @param {Event} e Route change event
          */
-        this._router.events.pairwise().subscribe((e) => {
+        this._router.events.pipe(pairwise()).subscribe((e) => {
             this.loggedIn = (e && localStorage.getItem(AppComponent._localStorageKey)) ? true : false;
             // Hide activity indicator if on menu page
             this.isMenuPage = window.location.pathname === '/menu';

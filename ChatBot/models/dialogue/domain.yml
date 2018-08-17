@@ -1,0 +1,139 @@
+%YAML 1.1
+---
+action_factory: null
+action_names:
+- utter_default
+- utter_greet
+- utter_goodbye
+- utter_youarewelcome
+- utter_identity
+- utter_place
+- utter_prevent
+- utter_intro
+- utter_medicines
+- utter_ask_name
+- utter_ask_gender
+- utter_ask_pregnant
+- action_patient_information
+- action_suggest_pregnant
+- action_suggest_normal
+- utter_ask_age
+- check_age
+- action_check_medicine_normal
+- action_check_medicine_pregnant
+actions:
+- utter_default
+- utter_greet
+- utter_goodbye
+- utter_youarewelcome
+- utter_identity
+- utter_place
+- utter_prevent
+- utter_intro
+- utter_medicines
+- utter_ask_name
+- utter_ask_gender
+- utter_ask_pregnant
+- bot.ActionPatientInformation
+- bot.ActionSuggestPregnant
+- bot.ActionSuggestNormal
+- utter_ask_age
+- bot.CheckAge
+- bot.ActionCheckMedicineNormal
+- bot.ActionCheckMedicinePregnant
+config:
+  store_entities_as_slots: true
+entities:
+- medicine
+- age
+intents:
+- greet:
+    use_entities: true
+- thankyou:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- identity:
+    use_entities: true
+- botPlace:
+    use_entities: true
+- prevent:
+    use_entities: true
+- intro:
+    use_entities: true
+- medicines:
+    use_entities: true
+- safeMedicine:
+    use_entities: true
+- gender:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- informThird:
+    use_entities: true
+- Male:
+    use_entities: true
+- Female:
+    use_entities: true
+- informAge:
+    use_entities: true
+slots:
+  age:
+    initial_value: null
+    max_value: 1.0
+    min_value: 0.0
+    type: rasa_core.slots.FloatSlot
+  matches:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  medicine:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  requested_slot:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+templates:
+  utter_ask_age:
+  - text: May I know your age please
+  utter_ask_gender:
+  - text: May I know your gender please?
+  utter_ask_name:
+  - text: What's your name?
+  utter_ask_pregnant:
+  - text: Are you Pregnant? Please answer in yes or no
+  utter_default:
+  - text: default message
+  utter_goodbye:
+  - text: goodbye :(
+  - text: take care
+  - text: see you soon
+  - text: be healthy
+  utter_greet:
+  - text: hey there!
+  - text: hello!
+  - text: Hi what's up!
+  utter_identity:
+  - text: I am a Peace Corps assistant. I specialise in Malaria.
+  - text: I am a Malaria Specialist
+  - text: I am your friend. I'll help you in fighting malaria
+  - text: Like you, I'm also a Peace Corp Volunteer
+  utter_intro:
+  - text: Malaria is a disease of the blood that is caused by the Plasmodium parasite,
+      which is transmitted from person to person by a particular type of mosquito.
+  - text: It's a disease caused by a plasmodium parasite and transmitted by the bite
+      of infected mosquitoes.
+  utter_medicines:
+  - text: Don't worry, These are the medicines which would help.
+  - text: Cool. Take these medicines, and you'll be good.
+  utter_place:
+  - text: I live in PC-Prep-Kit
+  - text: I am always with you, my friend.
+  utter_prevent:
+  - text: There are various ways for preventing Malaria. I'll tell you one by one.
+  - text: Yes. There are ways for preventing it. I'll tell you one by one.
+  utter_youarewelcome:
+  - text: you're very welcome
+  - text: Welcome sir.
+  - text: My pleasure.

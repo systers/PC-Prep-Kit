@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { DashboardService } from './dashboard.service';
 import swal from 'sweetalert2';
 import 'rxjs/Rx';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable()
 export class SharedDataService {
@@ -17,7 +13,7 @@ export class SharedDataService {
     public navPosition: Subject<string> = new BehaviorSubject<string>('col-md-2 col-md-offset-2');
     private _togglePosition = 'col-md-10 col-md-offset-2';
     private _toggleNavPosition = 'col-md-2 col-md-offset-2';
-    constructor(private _dashboardService: DashboardService, public toastr: ToastsManager) {
+    constructor(private _dashboardService: DashboardService, public toastr: ToastrService) {
     }
 
     /**
@@ -51,9 +47,9 @@ export class SharedDataService {
     }
 
     customSuccessAlert(msg, title) {
-        this.toastr.success(msg, title);
+        this.toastr.success(msg, title, {positionClass: 'custom-toastr-class'});
     }
     customErrorAlert(msg, title) {
-        this.toastr.error(msg, title);
+        this.toastr.error(msg, title, {positionClass: 'custom-toastr-class'});
     }
 }

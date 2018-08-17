@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-3 col-md-offset-3">
         <input type="file" name="file" id="file" class="hidden" accept="image/*" (change)="handleInputChange($event)">
-        <button class="btn btn-block button-branding-red btn-lg" *ngIf='webcamState !== webcamStates.OPENED' (click)="openWebcam()">{{webcamButtonText}}</button>
+        <button class="btn btn-block button-branding-red btn-lg" *ngIf='webcamState !== webcamStates.OPENED' (click)="openWebcam()" id="webcamOpen">{{webcamButtonText}}</button>
         <button class="btn btn-block button-branding-red btn-lg" *ngIf='webcamState === webcamStates.OPENED' (click)="snapshot()">{{webcamButtonText}}</button>
         <button class="btn btn-block button-branding-blue btn-lg" (click)="fireFileButtonClick()">{{language?.messages.browseButton}}</button>
         <button class="btn btn-block button-branding-blue btn-lg" [disabled]='!imageLoaded' (click)="shufflePuzzle()">{{puzzleState}}</button>
@@ -18,3 +18,4 @@
     </div>
 </div>
 <button-nav [complete]="activityComplete" [completed]="completed" nexturl="/malaria-101/activity-1-1" prevurl="/introduction/activity-2"></button-nav>
+<app-level-navigate [levelInfo]="CURR_STAGE"></app-level-navigate>

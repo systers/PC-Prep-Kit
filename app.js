@@ -47,6 +47,8 @@ const test = require('./routes/test');
 // route for verification and registration
 const verification = require('./routes/verification');
 const registration = require('./routes/registration');
+// route for updating the user details
+const userUpdate = require('./routes/update');
 
 // uncomment after placing your favicon in /public
 //const favicon = require('serve-favicon');
@@ -83,6 +85,8 @@ const auth = express.Router();
 require('./routes/auth.js')(auth, passport, async, nodemailer, crypto, models);
 app.use('/auth', auth);
 
+// Set user update routes
+app.use('/update-user', userUpdate);
 // Set other routes
 const index = express.Router();
 require('./routes/index.js')(index, passport, path);
@@ -96,3 +100,4 @@ app.use(function(req, res, next) {
 });
 
 module.exports = app;
+

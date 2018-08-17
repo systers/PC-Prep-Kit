@@ -1,11 +1,19 @@
-<md-toolbar color="primary">
-    <div class="col-xs-1">
-        <button type="button" class="btn btn-default btn-lg toggle-button" aria-label="Left Align" (click)="navbartoggle()">
-            <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+<app-infokit #info></app-infokit>
+<mat-toolbar id="header" class="row">
+    <div class="col-md-2">
+        <button type="button" id="toggle" class="btn btn-default btn-lg toggle-button" aria-label="Left Align" (click)="navbartoggle()">
+          &#9776;
         </button>
     </div>
-    <div class="col-md-10 text-center">
+    <div class="col-md-8 text-center">
         <span class="header-white-1 text-center">{{language?.headings.titleLeft}}</span><span class="header-2 text-center">{{language?.headings.titleRight}}</span>
     </div>
-    <button type="button" class="btn btn-default logout-button" aria-label="Left Align" (click)="logout()">{{language?.messages.logoutButton}}</button>      
-</md-toolbar>
+  <div class="col-md-2" id="icons">
+    <img  [@newBadge]="state" [src]="badge?.image" [matTooltip]="badge?.name" (@newBadge.done) = "checkInitialState($event)" onError="this.src = 'assets/img/badges/default.gif'">
+    <i matTooltip="LeaderBoard" class="fa fa-trophy icons" (click)="loadLeaderBoard()"></i>
+    <i matTooltip="Update Profile" class="fa fa-pencil-square-o icons" (click)="editProfile()"></i>
+    <i matTooltip="Infokit" class="fa fa-archive icons" (click)="info.pop()"></i>
+    <i matTooltip="Logout" class="fa fa-power-off icons" (click)="logout()"></i>
+  </div>
+</mat-toolbar>
+

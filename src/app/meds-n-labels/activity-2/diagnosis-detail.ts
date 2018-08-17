@@ -38,6 +38,22 @@ export const DIAGNOSIS: Diagnosis[] = [
     {
         name: 'virus-1',
         desc: '<img src="../../assets/img/Memory-game/virus-2.png" width=80% height=auto><br>P. falciparum tends to be the species causing the most complications and has a high mortality if untreated.'
+    },
+    {
+      name: 'pcr',
+      desc: '<img src="../../assets/img/Memory-game/Polymerase_chain_reaction.png" width=80% height=auto><br><a href="https://www.cdc.gov/dpdx/diagnosticProcedures/blood/moleculardx.html">Read about PCR related tests</a>'
+    },
+    {
+      name: 'serology-1',
+      desc: '<img src="../../assets/img/Memory-game/serology-2.png" width=80% height=auto><br><a href="https://www.cdc.gov/malaria/diagnosis_treatment/serology.html">Find more about Serology</a>'
+    },
+    {
+      name: 'drug-resistance-1',
+      desc: '<img src="../../assets/img/Memory-game/drug-resistance-2.png" width=80% height=auto><br><a href="https://www.cdc.gov/malaria/diagnosis_treatment/drug_resistance.html">Drug Resistance Tests</a>'
+    },
+    {
+      name: 'malaria-parasite-1',
+      desc: '<img src="../../assets/img/Memory-game/malaria-parasite-2.png" width=80% height=auto><br><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2176047/">About Plasmodium malariae</a>'
     }
 ];
 

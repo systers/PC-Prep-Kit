@@ -1,0 +1,129 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+
+      {
+        "intent": "affirm",
+        "text": "Yes!"
+      },
+      {
+        "intent": "affirm",
+        "text": "Yes! it's true."
+      },
+      {
+        "intent": "botPlace",
+        "text": "Where you?"
+      },
+      {
+        "intent": "botPlace",
+        "text": "Where can we meet?"
+      },
+      {
+        "intent": "deny",
+        "text": "no no"
+      },
+      {
+        "intent": "deny",
+        "text": "No I am not"
+      },
+      {
+        "intent": "female",
+        "text": "I am girl"
+      },
+      {
+        "intent": "female",
+        "text": "lady"
+      },
+      {
+        "intent": "goodbye",
+        "text": "Bye bye"
+      },
+      {
+        "intent": "goodbye",
+        "text": "cya"
+      },
+      {
+        "intent": "greet",
+        "text": "yo!!"
+      },
+      {
+        "intent": "greet",
+        "text": "hullo"
+      },
+      {
+        "intent": "identity",
+        "text": "who you?"
+      },
+      {
+        "intent": "identity",
+        "text": "are you a robot?"
+      },
+      {
+        "intent": "informAge",
+        "text": "19"
+      },
+      {
+        "intent": "informAge",
+        "text": "Bot, I am 42"
+      },
+      {
+        "intent": "informThird",
+        "text": "third."
+      },
+      {
+        "intent": "informThird",
+        "text": "will not specify"
+      },
+      {
+        "intent": "intro",
+        "text": "what's this?"
+      },
+      {
+        "intent": "intro",
+        "text": "what about malaria"
+      },
+      {
+        "intent": "Male",
+        "text": "boy!"
+      },
+      {
+        "intent": "Male",
+        "text": "I'm a Man."
+      },
+      {
+        "intent": "medicines",
+        "text": " what medicines can I use to prevent malaria ?"
+      },
+      {
+        "intent": "medicines",
+        "text": "are there any medicines that can help me stay away from malaria?"
+      },
+      {
+        "intent": "prevent",
+        "text": "prevent from malaria"
+      },
+      {
+        "intent": "prevent",
+        "text": "way to protect from malaria"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "will this pill cause any bad effects"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "will taking atovaquone help me ?"
+      },
+      {
+        "intent": "thankyou",
+        "text": "thanks a million"
+      },
+      {
+        "intent": "thankyou",
+        "text": "- many thanks"
+      }
+    ]
+  }
+}
+
+

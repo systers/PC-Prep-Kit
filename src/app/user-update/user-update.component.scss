@@ -1,0 +1,50 @@
+@import "../styles/main";
+
+.upload-image {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  display: none;
+  transition: 0.5s ease;
+}
+
+#blank {
+  display: none;
+}
+
+#error {
+  color: $red;
+}
+
+#close {
+  color: $black;
+  text-align: right;
+  cursor: pointer;
+  font-size: $font-size-med;
+}
+
+.profile-bar {
+  overflow: hidden;
+  text-align: center;
+}
+
+.dialog-body {
+  text-align: center;
+}
+
+.form-container > * {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+

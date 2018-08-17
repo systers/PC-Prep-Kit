@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InfokitComponent } from './infokit.component';
+import { InfokitService } from '../services/infokit.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { APIService } from '../services/api.service';
+import { LanguageService } from '../services/language.service';
+import { BadgeService } from '../services/BadgeService/badge.service';
+import { NotifyService } from '../badge/notify';
 
 describe('InfokitComponent', () => {
   let component: InfokitComponent;
@@ -8,9 +14,10 @@ describe('InfokitComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InfokitComponent ]
+      declarations: [InfokitComponent],
+      providers: [InfokitService, HttpClient, HttpHandler, APIService, LanguageService, BadgeService, NotifyService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

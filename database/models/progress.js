@@ -9,6 +9,14 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.INTEGER,
             defaultValue: 0
         },
+        badge: {
+            type: Sequelize.INTEGER,
+            defaultValue: 0
+        },
+        score: {
+            type: Sequelize.INTEGER,
+            defaultValue: 0
+        },
         user_id: {
             type: Sequelize.INTEGER,
             unique: true

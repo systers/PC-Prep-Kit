@@ -1,0 +1,40 @@
+@import "../styles/main";
+
+#title {
+  text-align: center;
+  color: $black;
+  font-size: $font-size-med;
+
+}
+
+#trophy {
+  text-align: center;
+}
+
+.message {
+  text-align: center;
+  font-size: $font-size-small;
+  font-weight: $bold;
+  color: $grey;
+}
+
+.row {
+  color: $light-blue;
+  display: flex;
+  justify-content: space-between;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+i:focus {
+  outline: none;
+}
+
+#close {
+  text-align: right;
+  font-size: $font-size-med;
+  cursor: pointer;
+  color: $light-blue;
+}

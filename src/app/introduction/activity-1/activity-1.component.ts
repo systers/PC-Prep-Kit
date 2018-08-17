@@ -1,9 +1,11 @@
-import { Component, OnInit, Output, EventEmitter, ViewContainerRef } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { interval as observableInterval } from 'rxjs';
+import { PerformanceDisplayService } from '../../services/performance-display.service';
+import { tap } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { SharedDataService } from '../../services/shared.data.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { LanguageService } from '../../services/language.service';
+import { LeaderBoardService } from '../../services/leaderBoard.service';
 
 @Component({
     selector: 'app-highlight',
@@ -22,10 +24,12 @@ export class HighlightActivityComponent implements OnInit {
     public language: any;
     public alerts: any;
     public completed = false;
+    private readonly CURR_STAGE = 1;
+    private readonly ACTIVITY = 'highlightDefinition';
 
-    constructor(private _langService: LanguageService, private _dashboardService: DashboardService, public toastr: ToastsManager, vcr: ViewContainerRef, private _sharedData: SharedDataService) {
-        this.toastr.setRootViewContainerRef(vcr);
-    }
+
+    constructor(private _langService: LanguageService, private _dashboardService: DashboardService,
+              private _sharedData: SharedDataService, private _performanceService: PerformanceDisplayService, private _leaderBoardService: LeaderBoardService) {}
 
     /**
      * Handle activity setup (Displaying activity information, checking user's progress and checking completing of activity)
@@ -39,8 +43,8 @@ export class HighlightActivityComponent implements OnInit {
         this._dashboardService.getProgressStatus().subscribe(response => {
             this.completed = this._sharedData.checkProgress(1, 1, response);
         });
-        this._obs = Observable.interval(500)
-                       .do(i => this.select());
+        this._obs = observableInterval(500).pipe(
+                       tap(i => this.select()));
         this._subscription = this._obs.subscribe();
     }
 
@@ -68,6 +72,10 @@ export class HighlightActivityComponent implements OnInit {
                 });
                 this._sharedData.customSuccessAlert(this.alerts.activitySuccessMsg, this.alerts.activitySuccessTitle);
                 this.activityComplete = true;
+              if (!this.completed) {
+                this._performanceService.openDialog(this.CURR_STAGE);
+                this._leaderBoardService.updateLeaderBoard({activity: this.ACTIVITY, level: 'level1'})
+              }
             }
         }
     }

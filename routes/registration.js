@@ -6,12 +6,14 @@ const mail = require('./mailService');
 const models = require('../database/models');
 const utilityFunctions = require('./utilityfunctions');
 const handlebars = require('handlebars');
-const verifier = require('email-verify');
+const sequelize = models.sequelize;
 
 const localUser = models.user_account;
 const infokit = models.info_kit;
 const progress = models.progress;
 const verification = models.verification;
+const levelProgress = models.levelProgress;
+const activityProgress = models.activityProgress;
 const validateEmail = utilityFunctions.validateEmail;
 const validateName = utilityFunctions.validateName;
 const validatePassword = utilityFunctions.validatePassword;
@@ -64,55 +66,63 @@ function verificationMail(req, res, rString) {
         });
     });
 }
+
 // Receiving HTTP Post
 router.post('/', function(req, res) {
     if (!req.body.email || !validateEmail(req.body.email)) {
         return res.status(400).json({error: errorCode.PCE002.message, code: errorCode.PCE002.code});
     } else if (!req.body.fname || !validateName(req.body.fname)) {
         return res.status(400).json({error: errorCode.PCE003.message, code: errorCode.PCE003.code});
-    } else if (!req.body.lname || !validateName(req.body.lname)) {
+    } else if (req.body.lname && !validateName(req.body.lname)) {
         return res.status(400).json({error: errorCode.PCE004.message, code: errorCode.PCE004.code});
     } else if (!req.body.password || !validatePassword(req.body.password)) {
         return res.status(400).json({error: errorCode.PCE005.message, code: errorCode.PCE005.code});
     } else {
-        verifier.verify(req.body.email, function(err, info) {
-            if (err) {
-                return res.status(400).json({error: errorCode.PCE002.message, code: errorCode.PCE002.code});
-            } else if (!info.success) {
-                return res.status(400).json({error: errorCode.PCE002.message, code: errorCode.PCE002.code});
-            } else {
-                const rString = randomStr(50, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-                bcrypt.hash(req.body.password, 10, function(err, hash) {
-                    localUser.create({
-                        fname: req.body.fname,
-                        lname: req.body.lname,
-                        email: req.body.email,
-                        password: hash,
-                        provider: 1
-                    }).catch(error => {
-                        res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
-                    }).then(task => {
-                        verification.create({
+        const rString = randomStr(50, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+        bcrypt.hash(req.body.password, 10, function(err, hash) {
+            sequelize.transaction({autocommit: true}, function(t) {
+                return localUser.create({
+                    fname: req.body.fname,
+                    lname: req.body.lname,
+                    email: req.body.email,
+                    password: hash,
+                    provider: 1}, {transaction: t})
+                    .then(function(task) {
+                        return verification.create({
                             verificationCode: rString,
                             user_id: task.dataValues.id
-                        }).then(task => {
-                            infokit.create({
-                                user_id: task.dataValues.user_id
-                            }).then(task => {
-                                progress.create({
-                                    user_id: task.dataValues.user_id
-                                }).then(task => {
-                                    verificationMail(req, res, rString);
-                                }).catch(error => {
-                                    res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
-                                });
-                            });
+                        }, {transaction: t})
+                    })
+                    .then(task => {
+                        return infokit.create({
+                            user_id: task.dataValues.user_id
+                        }, {transaction: t})
+                    })
+                    .then(task => {
+                        return progress.create({
+                            user_id: task.dataValues.user_id
+                        }, {transaction: t}).catch(() => {
+                            res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});
                         });
-                    });
-                });
-            }
-        });
+                    })
+                    .then(task => {
+                        return activityProgress.create({
+                            user_id: task.dataValues.user_id
+                        }, {transaction: t})
+                    })
+                    .then(task => {
+                        return levelProgress.create({
+                            user_id: task.dataValues.user_id
+                        }, {transaction: t})
+                    })
+                    .then(() => {
+                        verificationMail(req, res, rString);
+                    })
+                    .catch(() => {res.status(500).json({error: errorCode.PCE006.message, code: errorCode.PCE006.code});})
+            })
+        })
     }
-});
+}
+);
 
 module.exports = router;

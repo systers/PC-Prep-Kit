@@ -1,0 +1,33 @@
+## intent:goodbye
+- bye
+- goodbye
+- good bye
+- stop
+- end
+- farewell
+- have a good one
+- lets close this conversation
+- have a good day
+- good night
+- talk to you later
+- ttyl
+- ciao
+- I’ve got to get going
+- I must leave now
+- I will leave now
+- I’m done
+- have a nice day
+- nice talking to you
+- until next time
+- gotta go now
+- see you
+- see ya
+- catch you later
+- later 
+- I’m out of here
+- I gotta head out
+- I gotta take off now
+- maybe tomorrow then
+- we’ll continue some other time
+- shall we continue at a later time
+
