@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+    <h2 class="sub-heading-1 text-center"> {{language?.heading}} </h2>
+  </div>
+</div>
+<div class="row" [hidden]="activityComplete">
+  <div>
+    <div class="content">
+      <div class="row">
+        <div class="col-xs-4 col-xs-offset-2">
+          <div dnd-droppable [className]="'panel panel-success '" (onDropSuccess)="addTobox($event,box1)"  (onDragLeave)="reset()">
+            <div class="panel-heading panel-do">
+              {{language?.descriptions.boxIndicatorDo}}
+            </div>
+            <div class="panel-body">
+              <div *ngFor="let item of do" class="panel panel-default" dnd-draggable [dragData]=item><div class="panel-body"> {{item.description}} </div></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div dnd-droppable [className]="'panel panel-danger '" (onDropSuccess)="addTobox($event,box2)"  (onDragLeave)="reset()">
+            <div class="panel-heading panel-dont">
+              {{language?.descriptions.boxIndicatorDont}}
+            </div>
+            <div class="panel-body">
+              <div *ngFor="let item of dont" class="panel panel-default" dnd-draggable [dragData]=item><div class="panel-body"> {{item.description}} </div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+          <div class="panel panel-primary">
+            <div class="panel-heading panel-available"> {{language?.descriptions.boxIndicatorAvailable}} </div>
+            <div class="panel-body">
+              <div *ngFor="let item of dosAndDonts" class="panel panel-default col-xs-6" dnd-draggable [dragData]=item>
+                <div class="panel-body"> {{item.description}} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" [hidden]="activityComplete">
+  <div id="submit-reset">
+    <button class="btn button-branding-green" [disabled]="!submitEnabled" (click)="onComplete()">{{language?.buttons.submit}}
+    </button>
+    &nbsp;
+    <button class="btn button-branding-blue" (click)="resetQuestions()">{{language?.buttons.reset}}</button>
+  </div>
+</div>
+
+<div class="row col-lg-6 col-lg-offset-3 text-center" [hidden]="!activityComplete">
+  <div class="swal2-icon swal2-info">i</div>
+  <div>
+    <h2 class="swal2-title text-center" id="swal2-title">{{language?.MessageP1}} {{getScore()}} {{language?.MessageP2}}</h2>
+  </div>
+  <div class="swal2-title text-center">
+    <button class="btn button-branding-blue btn-lg" (click)="resetQuestions()">{{language?.buttons.reset}}</button>
+  </div>
+</div>
+
+<button-nav nexturl="/malaria-101/activity-3/1" prevurl="/malaria-101/activity-1-2" [completed]="completed" [complete]="activityComplete"></button-nav>
+<app-level-navigate [levelInfo]="CURR_STAGE"></app-level-navigate>

@@ -1,0 +1,14 @@
+@import "../styles/main";
+
+.indicator {
+    height: 40px;
+    padding: $padding-med;
+}
+
+.indblack {
+    @include indicator-style($grey);
+}
+
+.indgreen {
+    @include indicator-style($green);
+}

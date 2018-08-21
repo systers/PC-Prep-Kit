@@ -1,0 +1,60 @@
+<div id="container" [hidden]="gameOver || success">
+    <div id="scene">
+      <div class="progress  progress-bar-vertical">
+        <div class="progress-bar progress-bar-danger" role="progressbar"  [ngStyle]="{'height': sprayValue + '%'}"></div>
+      </div>
+      <div id="progressText">{{language?.legend.spray}}</div>
+      <div id="human-health-text">{{language?.legend.human}}</div>
+      <div id="human-health">
+        <div id="human-health-bar"></div>
+      </div>
+      <div id="performance">
+      <div id="stars" *ngIf="starCount"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{starCount}}</div>
+      </div>
+    </div>
+    <div id="inventory">
+        <img id="pill-item" src="../assets/img/unlocked-stage/pill.png" (click)="healthBoost()" [matTooltip]="language?.toolTips.pill"/>
+        <img id="spray-item" src="../assets/img/unlocked-stage/spray-item.gif" (click)="sprayRefill()" [matTooltip]="language?.toolTips.spray"/>
+    </div>
+</div>
+<div class="row col-lg-6 col-lg-offset-3 text-center" id="game-loss-status" [hidden]="!gameOver">
+    <div class="swal2-icon swal2-error swal2-animate-error-icon">
+        <span class="swal2-x-mark swal2-animate-x-mark">
+            <span class="swal2-x-mark-line-left"></span>
+            <span class="swal2-x-mark-line-right"></span>
+        </span>
+    </div>
+    <div>
+        <h2 class="swal2-title text-center">{{language?.alerts.loss.title}}</h2>
+    </div>
+    <div>
+        <h2 class="swal2-title text-center">{{language?.alerts.loss.content}}</h2>
+        <img id="trans-gif" src="../assets/img/unlocked-stage/mosquito-transmission.gif"/>
+    </div>
+    <div class="swal2-title text-center restart">
+        <button class="btn btn-primary btn-lg" (click)="reload()">{{language?.messages.restartButton}}</button>
+    </div>
+</div>
+
+<div class="row col-lg-6 col-lg-offset-3 text-center" id="game-win-status" [hidden]="!success">
+    <div class="swal2-icon swal2-success swal2-animate-success-icon">
+        <div class="swal2-success-circular-line-left"></div>
+        <span class="swal2-success-line-tip swal2-animate-success-line-tip"></span>
+        <span class="swal2-success-line-long swal2-animate-success-line-long"></span>
+        <div class="swal2-success-ring"></div>
+        <div class="swal2-success-fix"></div>
+        <div class="swal2-success-circular-line-right"></div>
+    </div>
+    <div>
+        <h2 class="swal2-title text-center">{{language?.alerts.win.title}}</h2>
+    </div>
+    <div>
+        <h2 class="swal2-title text-center">{{language?.alerts.win.content}}</h2>
+        <img id="prevention" src="../assets/img/unlocked-stage/malaria-prevention.png"/>
+    </div>
+    <div class="swal2-title text-center restart">
+        <button class="btn btn-primary btn-lg" (click)="reload()">{{language?.messages.restartButton}}</button>
+    </div>
+</div>
+<button-nav prevurl="/prevent/stride-against-malaria/game/1"></button-nav>
+<app-level-navigate [levelInfo]="CURR_STAGE"></app-level-navigate>

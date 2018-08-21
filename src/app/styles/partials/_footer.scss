@@ -1,0 +1,10 @@
+@import "../modules/all";
+
+.footer {
+    position: fixed;
+    width: 100%;
+    bottom:0;
+    left:0;
+    background: $blue;
+    z-index: 999;
+}

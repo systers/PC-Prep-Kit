@@ -1,0 +1,47 @@
+@import "../../styles/main";
+
+// variables
+$button-margin: 5px;
+$button-height: 25px;
+$button-line-height: 25px;
+$box-margin-left: 340px;
+
+.chats {
+    height: 300px;
+    overflow: auto;
+}
+
+.recv-message {
+    @include message-style($grey);
+    margin-right: 25%;
+}
+
+
+.sent-message {
+    @include message-style($light-blue);
+    margin-left: 25%;
+}
+
+.chat-window {
+    border-radius: $border-radius;
+    border-style: solid;
+    border-color: $grey;
+    padding: $padding-med;
+    background: $pale-green;
+}
+
+.link-button {
+    border-radius: $border-radius;
+    margin: $button-margin;
+    height: $button-height;
+    line-height: $button-line-height;
+    color: $white;
+}
+
+#chatBox {
+    margin-left: $box-margin-left;
+}
+
+img {
+    display: block;
+}

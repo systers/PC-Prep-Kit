@@ -1,0 +1,35 @@
+@import "../styles/main";
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: $font-size-small;
+}
+
+.form-container > * {
+  width: 70%;
+}
+
+.submit {
+  font-size: $font-size-small;
+  color: $white;
+  padding: $padding-large;
+}
+
+button {
+  margin: $margin-med;
+}
+
+#header {
+  background-color: $blue;
+}
+
+#banner {
+  height: 2em;
+  margin-top: auto;
+}
+
+.toggleViewPassword:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <h2 class="sub-heading-1 text-center">{{language?.heading}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-md-offset-3" [class.adjust-left]="adjustLeft">
+        <table class="image-table">
+            <tbody>
+                <tr *ngFor="let imgRows of createRange(currentLevel.rowCount); let outerIdx = index">
+                    <td *ngFor="let imgs of createRange(currentLevel.columnCount); let innerIdx = index;" (click)="isMatchArr[currentLevel.columnCount*outerIdx+innerIdx] ? choose(currentLevel.columnCount*outerIdx+innerIdx) : null" [id]="currentLevel.columnCount*outerIdx+innerIdx">
+                        <img class="memory-imgs" src="{{backcard}}"/>
+                    </td>
+                </tr>  
+            </tbody>
+        </table>
+    </div>
+</div>
+<button-nav nexturl="/meds-n-labels/activity-3" prevurl="/meds-n-labels/activity-1/1" [completed]="completed" [complete]="activityComplete"></button-nav>
+<app-level-navigate [levelInfo]="CURR_STAGE"></app-level-navigate>

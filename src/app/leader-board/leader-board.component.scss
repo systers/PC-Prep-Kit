@@ -1,0 +1,37 @@
+@import "../styles/main";
+
+#body {
+    font-size: $font-size-med;
+    text-align: center;
+    text-transform: capitalize;
+    color: $black;
+}
+
+th {
+    text-align: center;
+}
+
+#close {
+    text-align: right;
+    font-size: $font-size-large;
+    cursor: pointer;
+}
+
+#table {
+    text-align: center;
+}
+
+tr {
+    color: black;
+}
+
+.user {
+    background-color: $white !important;
+    font-weight: $bold;
+    font-size: $font-size-large;
+}
+
+td {
+    background-color: $pale-white !important;
+}
+

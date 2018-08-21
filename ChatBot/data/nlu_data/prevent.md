@@ -1,0 +1,23 @@
+## intent:prevent
+ - how do i prevent malaria
+ - any way of preventing malaria
+ - save myself from malaria
+ - protect me from malaria
+ - keep me safe from malaria
+ - keep me safe
+ - help me protect
+ - help me prevent
+ - way to prevent
+ - way to protect
+ - prevent
+ - steps for malaria prevention
+ - steps for malaria protection
+ - avert malaria
+ - fend off malaria
+ - put a stop to malaria
+ - how to ward off malaria disease
+ - how can I stay away from Malaria
+ - how can i avert malaria risks?
+ - what can I do to prevent malaria ?
+ - what can I do to avoid malaria ?
+

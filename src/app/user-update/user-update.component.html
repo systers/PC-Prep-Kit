@@ -1,0 +1,46 @@
+<div id="close"><span (click)="close()">&times;</span>
+</div>
+<div class="dialog-body">
+  <h2><span class="header-1">{{header?.headings.titleLeft}}</span>
+    <span class="header-2">{{header?.headings.titleRight}}</span></h2>
+  <h3 mat-dialog-title>{{language?.messages.heading}}</h3>
+
+  <div class="profile">
+    <div class="upload-image">
+      <canvas id="canvas"  (click)="upload()" (mouseover)="hoverDisplay()"
+              (mouseleave)="hoverHide()"></canvas>
+      <div class="overlay" id="overlay" (mouseover)="hoverText()" (click)="upload()">
+        {{language?.messages.hoverProfile}}
+      </div>
+    </div>
+    <canvas id="blank" ></canvas>
+  </div>
+  <input type="file" name="file" id="file" class="hidden" accept="image/*" (change)="handleInputChange($event)">
+
+  <div class="form-container">
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit(updateForm.value)" id="update-form">
+      <div class="form-group input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input type="text" class="form-control" name="fname" placeholder={{language?.messages.placeHolders.firstName}}
+               [formControl]="updateForm.controls['firstName']">
+      </div>
+      <div class="form-group input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input type="text" class="form-control" name="lname" placeholder={{language?.messages.placeHolders.lastName}}
+               [formControl]="updateForm.controls['lastName']">
+      </div>
+      <p id="error"
+         *ngIf="updateForm.controls['firstName'].hasError('required') && (updateForm.controls['firstName'].touched)">
+        {{alerts?.error}}</p>
+      <div class="form-group">
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <button type="submit" form="update-form" class="btn button-branding-blue btn-lg">
+      {{language?.messages.buttonMessage}}
+    </button>
+  </div>
+</div>
+
+

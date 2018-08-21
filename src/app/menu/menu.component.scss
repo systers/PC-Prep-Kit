@@ -1,0 +1,170 @@
+@import "../styles/main";
+
+@mixin rotation($angle) {
+    -ms-transform: rotate($angle); /* IE 9 */
+    -webkit-transform: rotate($angle); /* Chrome, Safari, Opera */
+    transform: rotate($angle);
+}
+
+
+@mixin circle($diameter) {
+    display: flex;
+    height: $diameter;
+    min-height: $diameter;
+    width: $diameter;
+    min-width: $diameter;
+    border-radius: 50%;
+    border: 1px solid $pale-white;
+}
+.menu-button {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .hex {
+        z-index: 1;
+        width: auto;
+        height: 20%;
+    }
+
+    .outer-circle {
+        @include circle(85px);
+        position: relative;
+        top: 1em;
+
+        .inner-circle {
+            position: relative;
+            @include circle(52px);
+            margin: auto;
+            align-items: center;
+            div {
+                margin: auto;
+            }
+
+            .arc {
+                overflow: hidden;
+                position: absolute;
+                top: -1em;
+                right: 50%;
+                bottom: 50%;
+                left: -1em;
+                transform-origin: 100% 100%;
+                transform: rotate(0deg) skewX(-1deg);
+                &:before {
+                    content: '';
+                    transform: skewX(1deg);
+                    @include circle(200%);
+                    border-width: 8px;
+                    box-sizing: border-box;
+                    display: block;
+                }
+
+                &.level2 {
+                    transform: rotate(120deg) skewX(-1deg);
+                }
+                &.level3 {
+                    transform: rotate(240deg) skewX(-1deg);
+                }
+                &.completed:before {
+                    border-color: $light-green;
+                }
+            }
+        }
+    }
+}
+
+
+.menu {
+    margin: 20px;
+}
+
+.intro-outer-circle {
+    background: $white;
+}
+
+.intro-inner-circle {
+    background: $light-green;
+}
+
+.malaria-inner-circle {
+    background: $pale-red;
+}
+
+.med-inner-circle {
+    background: $light-teal;
+}
+
+.pc-policy-inner-circle {
+    background: $light-yellow;
+}
+
+.unlocked-inner-circle {
+    background: $white;
+}
+
+.prevent-inner-circle {
+    background: $pale-red;
+}
+
+.malaria-outer-circle {
+    background: $maroon;
+}
+
+.med-outer-circle {
+    background: $dark-teal;
+}
+
+.pc-policy-outer-circle {
+    background: $light-yellow;
+}
+.prevent-outer-circle {
+    background: $maroon
+}
+
+.unlocked-outer-circle {
+    background: $white;
+}
+
+.activity {
+    font-size: 20px;
+    font-weight: 900;
+    color: $white;
+}
+
+.but {
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 30px -30px;
+    color: $white;
+    font-size: 1.5vw;
+    font-weight: 900;
+    margin-bottom: 50px;
+}
+
+.intro-btn {
+    background-color: $light-green;
+}
+
+.malaria-btn {
+    background-color: $pale-red;
+}
+
+.med-btn {
+    background-color: $light-teal;
+}
+
+.pc-policy-btn {
+    background-color: $dark-yellow;
+}
+
+.unlocked-btn {
+    background-color: $white;
+    color: grey;
+}
+
+.prevent-btn {
+    background-color: $pale-red;
+}

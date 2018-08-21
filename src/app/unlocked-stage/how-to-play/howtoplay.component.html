@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3 text-center">
+        <h2 class="stage-header">{{language?.heading}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-7 col-lg-offset-3">
+        <h2 class="sub-heading-1 text-center">{{language?.instructions.title}}</h2>
+        <ol id="guide">
+            <li>{{language?.instructions.ins1}}</li>
+            <li>{{language?.instructions.ins2}}</li>
+            <li>{{language?.instructions.ins3}}</li>
+            <li>{{language?.instructions.ins4}}</li>
+            <li>{{language?.instructions.ins5}}</li>
+        </ol>
+        <img src="../assets/img/unlocked-stage/how-to-play.gif" id="tutorialImage" />
+        <a routerLink="game/1" class="btn btn-primary btn-lg">{{language?.messages.nextButton}}</a>
+    </div>
+</div>

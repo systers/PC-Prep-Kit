@@ -1,0 +1,14 @@
+<div class="game-container">
+    <img class="lifecycle-imgs" *ngFor="let cards of createRange(5); let idx = index" class="arrow-{{idx+1}}" src="../../../../assets/img/red-up-arrow.png">
+
+    <div *ngFor="let cards of createRange(6); let idx = index" [id]="idx + 1" class="drop-{{idx+1}}" (drop)="drop($event)" (dragover)="allowDrop($event)">
+    </div>
+    <div *ngFor="let card of labelsArr; let idx = index" class="text-{{idx+1}}">
+        <p>{{card}}</p>
+    </div>
+    <div *ngFor="let card of solnArr; let idx = index" class="drag-{{idx+1}}" (drop)="drop($event)" (dragover)="allowDrop($event)">
+        <img class="lifecycle-imgs pieces" src="../../../../assets/img/{{card}}" draggable="true" (dragstart)="drag($event)" id="drag{{idx+1}}">
+    </div>
+</div>
+<button-nav nexturl="/malaria-101/activity-2/1" prevurl="/malaria-101/activity-1-1" [completed]="completed" [complete]="activityComplete"></button-nav>
+

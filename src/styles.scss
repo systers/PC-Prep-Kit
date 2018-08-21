@@ -1,0 +1,112 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'custom-theme';
+@import "app/styles/main";
+@import "app/unlocked-stage/unlocked-stage.component.scss";
+// Variables
+$netHeight: 5em;
+$mosWidth: 25px;
+$mosHealthTop: 25px;
+
+body {
+    overflow-x: hidden;
+    background: white;
+    color: black;
+}
+
+.certificateClass {
+    .mat-dialog-container {
+      background-image: url("assets/img/certificateBackground.jpg");
+      background-size: cover;
+    }
+}
+
+.leaderBoardClass {
+  .mat-dialog-container {
+      background-color: $light-blue !important;
+  }
+}
+
+.certificateBackdrop {
+    background-image: url("assets/img/certificateBackdrop.jpg");
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+  #body {
+    visibility: visible;
+    background-image: url("assets/img/certificateBackground.jpg") !important;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  #body * {
+    visibility: visible;
+  }
+  #home, #print{
+    visibility: hidden;
+    display: none;
+  }
+}
+@page {
+    size: auto;
+    margin: 0;
+}
+
+.gameSnackBar {
+    background-color: $white;
+    color: $black;
+    font-size: $font-size-large !important;
+    top: 50%;
+}
+
+// Unlock Stage game's some styles have been defined here as JQuery elements only append classes defined globally
+
+.moz {
+    display: block;
+    width: $mosWidth;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+
+
+#spray, #net {
+    position: absolute;
+    display: none;
+    @include selectable(none);
+}
+
+#net {
+    height: $netHeight;
+}
+
+#human {
+    display: block;
+    width: 10%;
+    margin: 0;
+    padding: 0;
+    @include positioning(relative, 50%, 80%);
+    @include draggable(none);
+    @include selectable(none);
+}
+
+.mosquitoHealth{
+    position: absolute;
+    top: $mosHealthTop;
+}
+.custom-toastr-class {
+    top: $margin-top;
+    right: $margin-med;
+}
+
+.badgeBackground {
+    background-image: url("assets/img/newBadgeBackground.jpg");
+}
+

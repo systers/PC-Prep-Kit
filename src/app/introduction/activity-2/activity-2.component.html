@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <app-infokit #info > </app-infokit>
+  <div class="row">
+    <div class="pc-policy-body text-center">
+      <p class="lead"> {{language?.descriptions.bodyContent1}} <Br> {{language?.descriptions.bodyContent2}}</p>
+      <p class="lead text-primary"><strong> {{language?.descriptions.bodyContent3}} </strong></p>
+      <img src="assets/img/mailpolicy.PNG" class="img-responsive center-block mail-policy-image">
+      <button type="button" class="btn btn-lg button-branding-blue" (click)="mail()"> {{language?.messages.mailButton}} </button>
+      <p>{{language?.descriptions.bodyContent4 +' '+ email}}</p>
+    </div>
+  </div>
+  <button-nav [completed]="completed" nexturl="/introduction/activity-3/1" prevurl="/introduction/activity-1"></button-nav>
+</div>

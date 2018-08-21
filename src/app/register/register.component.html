@@ -1,0 +1,78 @@
+<mat-toolbar id="header" class="row">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <span class="header-white-1 text-center">{{header?.headings.titleLeft}}</span><span class="header-2 text-center">{{header?.headings.titleRight}}</span>
+    </div>
+    <div class="col-md-2">
+      <img src="assets/img/leftBanner.png" id="banner">
+    </div>
+</mat-toolbar>
+
+
+<div class="col-xs-8 col-xs-offset-2 text-center">
+  <h3 class="form-signin-heading">{{language?.messages.heading}}</h3>
+
+  <form [formGroup]="regForm" (ngSubmit)="onSubmit(regForm.value)" id="registration">
+    <div class="form-container">
+      <mat-form-field appearance="standard">
+        <mat-label>{{language?.labels.firstName}}</mat-label>
+        <mat-icon matSuffix>person</mat-icon>
+        <input matInput name="fname" placeholder={{language?.placeHolders.firstName}}
+               [formControl]="regForm.controls['fname']">
+        <mat-error *ngIf="regForm.controls['fname'].hasError('required')">{{authMessages?.errors.firstNameReq}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>{{language?.labels.lastName}}</mat-label>
+        <mat-icon matSuffix>person</mat-icon>
+        <input matInput name="lname" placeholder={{language?.placeHolders.lastName}}
+               [formControl]="regForm.controls['lname']">
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>{{language?.labels.email}}</mat-label>
+        <mat-icon matSuffix>mail_outline</mat-icon>
+        <input matInput name="email" placeholder={{language?.placeHolders.email}}
+               [formControl]="regForm.controls['email']">
+        <mat-error *ngIf="regForm.controls['email'].hasError('required')">{{authMessages?.errors.emailReq}}</mat-error>
+        <mat-error *ngIf="regForm.controls['email'].hasError('pattern')">{{authMessages?.errors.emailInvalid}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>{{language?.labels.password}}</mat-label>
+        <mat-icon class="toggleViewPassword" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <input matInput type="password" [type]="hide ? 'password' : 'text'" name="password" formControlName="password"
+               placeholder={{language?.placeHolders.password}} [formControl]="regForm.controls['password']">
+        <mat-error *ngIf="regForm.controls['password'].hasError('required')">{{authMessages?.errors.passwordReq}}
+        </mat-error>
+        <mat-error *ngIf="regForm.controls['password'].hasError('minlength')">{{authMessages?.errors.passwordLength}}
+        </mat-error>
+        <mat-error *ngIf="regForm.controls['password'].hasError('pattern')">{{authMessages?.errors.passwordPattern}}
+        </mat-error>
+      </mat-form-field>
+      <br
+        *ngIf="regForm.controls['password'].hasError('pattern') && regForm.controls['password'].hasError('minlength') ">
+      <mat-form-field appearance="standard">
+        <mat-label>{{language?.labels.confirmPassword}}</mat-label>
+        <mat-icon class="toggleViewPassword" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <input matInput type="password" [type]="hide ? 'password' : 'text'" name="confirmpassword" formControlName="confirmpassword"
+               placeholder={{language?.placeHolders.confirmPassword}}
+               [formControl]="regForm.controls['confirmpassword']">
+        <mat-error *ngIf="regForm.controls['confirmpassword'].hasError('required')">{{authMessages?.errors.confirmPasswordReq}}</mat-error>
+        <mat-error *ngIf="regForm.controls['confirmpassword'].hasError('MatchError')">{{authMessages?.errors.passwordMatch}}</mat-error>
+      </mat-form-field>
+
+      <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+      <div class="form-group">
+      </div>
+    </div>
+
+  </form>
+  <button type="submit" form="registration"
+          [disabled]="!(regForm.valid && regForm.controls['confirmpassword'].value==regForm.controls['password'].value && disableButton)"
+          class="button-branding-red btn submit">{{language?.messages.registerButtonMessage}}
+  </button>
+  <a href="/login">
+    <button class="button-branding-blue btn submit">{{language?.messages.loginButtonMessage}}</button>
+  </a>
+</div>
+
+

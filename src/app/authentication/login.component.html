@@ -1,0 +1,42 @@
+<div class="text-center">
+    <h1><span class="header-1">{{header?.headings.titleLeft}} </span><span class="header-2"> {{header?.headings.titleRight}} </span> </h1>
+    <h2 class="sub-heading-1">{{language?.descriptions.bodyContent1}}</h2>
+    <p class="desc">{{language?.descriptions.bodyContent2}} <br> {{language?.descriptions.bodyContent3}}</p>
+    <img class="pcprepkitlogo" [src]="pcprepkitlogo"/>
+    <p class="desc">{{language?.descriptions.bodyContent4}} <br> {{language?.descriptions.bodyContent5}}</p>
+</div>
+<div class="col-lg-4 col-lg-offset-4">
+
+    <!-- show any messages that come back with authentication -->
+    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+
+    <!-- LOGIN FORM -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+        <div class="form-group input-group" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['email'].touched}">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input type="email" class="form-control" name="email" placeholder={{language?.placeHolders.email}} [formControl]="loginForm.controls['email']">
+        </div>
+        <div class="form-control-feedback">
+            <p *ngIf="loginForm.controls['email'].hasError('required') && (loginForm.controls['email'].touched)">{{authMessages?.errors.emailReq}}</p>
+            <p *ngIf="loginForm.controls['email'].hasError('pattern') && (loginForm.controls['email'].touched)">{{authMessages?.errors.emailInvalid}}</p>
+        </div>
+        <div class="form-group input-group" [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input type="password" class="form-control" name="password" placeholder={{language?.placeHolders.password}} [formControl]="loginForm.controls['password']">
+        </div>
+        <div class="form-control-feedback">
+            <p *ngIf="loginForm.controls['password'].hasError('required') && (loginForm.controls['password'].touched)">{{authMessages?.errors.passwordReq}}</p>
+            <p *ngIf="loginForm.controls['password'].hasError('pattern') && (loginForm.controls['password'].touched)">{{authMessages?.errors.passwordInvalid}}</p>
+        </div>
+        <div class="form-group">
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-block button-branding-blue">{{language?.messages.login}}</button>
+        </div>
+    </form>
+    <div class="form-group">
+        <a href="/auth/google" class="btn btn-block btn button-branding-red"><span class="fa fa-google-plus"></span> {{language?.messages.googleSignin}}</a>
+    </div>
+    <div class="text-center">
+        <p><a href="/forgot">{{language?.messages.forgotPassword}}</a></p>
+        <p>{{language?.messages.needAccount}} <a href="/register">{{language?.messages.signUp}}</a></p>
+    </div>
+</div>

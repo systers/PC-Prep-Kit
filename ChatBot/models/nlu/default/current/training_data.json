@@ -1,0 +1,1344 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "intent": "Male",
+        "text": "male"
+      },
+      {
+        "intent": "Male",
+        "text": "man"
+      },
+      {
+        "intent": "Male",
+        "text": "Boy"
+      },
+      {
+        "intent": "Male",
+        "text": "Guy"
+      },
+      {
+        "intent": "informThird",
+        "text": "Not applicable"
+      },
+      {
+        "intent": "informThird",
+        "text": "third gender"
+      },
+      {
+        "intent": "informThird",
+        "text": "Don’t wish to specify"
+      },
+      {
+        "intent": "informThird",
+        "text": "Third gender"
+      },
+      {
+        "intent": "informThird",
+        "text": "not applicable"
+      },
+      {
+        "intent": "informThird",
+        "text": "not specifying"
+      },
+      {
+        "intent": "informThird",
+        "text": "does not apply"
+      },
+      {
+        "intent": "informThird",
+        "text": "not necessary"
+      },
+      {
+        "intent": "informThird",
+        "text": "other"
+      },
+      {
+        "intent": "goodbye",
+        "text": "bye"
+      },
+      {
+        "intent": "goodbye",
+        "text": "goodbye"
+      },
+      {
+        "intent": "goodbye",
+        "text": "good bye"
+      },
+      {
+        "intent": "goodbye",
+        "text": "stop"
+      },
+      {
+        "intent": "goodbye",
+        "text": "end"
+      },
+      {
+        "intent": "goodbye",
+        "text": "farewell"
+      },
+      {
+        "intent": "goodbye",
+        "text": "have a good one"
+      },
+      {
+        "intent": "goodbye",
+        "text": "lets close this conversation"
+      },
+      {
+        "intent": "goodbye",
+        "text": "have a good day"
+      },
+      {
+        "intent": "goodbye",
+        "text": "good night"
+      },
+      {
+        "intent": "goodbye",
+        "text": "talk to you later"
+      },
+      {
+        "intent": "goodbye",
+        "text": "ttyl"
+      },
+      {
+        "intent": "goodbye",
+        "text": "ciao"
+      },
+      {
+        "intent": "goodbye",
+        "text": "I’ve got to get going"
+      },
+      {
+        "intent": "goodbye",
+        "text": "I must leave now"
+      },
+      {
+        "intent": "goodbye",
+        "text": "I will leave now"
+      },
+      {
+        "intent": "goodbye",
+        "text": "I’m done"
+      },
+      {
+        "intent": "goodbye",
+        "text": "have a nice day"
+      },
+      {
+        "intent": "goodbye",
+        "text": "nice talking to you"
+      },
+      {
+        "intent": "goodbye",
+        "text": "until next time"
+      },
+      {
+        "intent": "goodbye",
+        "text": "gotta go now"
+      },
+      {
+        "intent": "goodbye",
+        "text": "see you"
+      },
+      {
+        "intent": "goodbye",
+        "text": "see ya"
+      },
+      {
+        "intent": "goodbye",
+        "text": "catch you later"
+      },
+      {
+        "intent": "goodbye",
+        "text": "later"
+      },
+      {
+        "intent": "goodbye",
+        "text": "I’m out of here"
+      },
+      {
+        "intent": "goodbye",
+        "text": "I gotta head out"
+      },
+      {
+        "intent": "goodbye",
+        "text": "I gotta take off now"
+      },
+      {
+        "intent": "goodbye",
+        "text": "maybe tomorrow then"
+      },
+      {
+        "intent": "goodbye",
+        "text": "we’ll continue some other time"
+      },
+      {
+        "intent": "goodbye",
+        "text": "shall we continue at a later time"
+      },
+      {
+        "intent": "intro",
+        "text": "malaria"
+      },
+      {
+        "intent": "intro",
+        "text": "what is malaria"
+      },
+      {
+        "intent": "intro",
+        "text": "teach me malaria"
+      },
+      {
+        "intent": "intro",
+        "text": "everything about malaria"
+      },
+      {
+        "intent": "intro",
+        "text": "introduce malaria"
+      },
+      {
+        "intent": "intro",
+        "text": "tell me something about malaria"
+      },
+      {
+        "intent": "intro",
+        "text": "tell me more on malaria"
+      },
+      {
+        "intent": "intro",
+        "text": "Got any idea about malaria?"
+      },
+      {
+        "intent": "intro",
+        "text": "Definition of malaria"
+      },
+      {
+        "intent": "intro",
+        "text": "What does malaria mean?"
+      },
+      {
+        "intent": "intro",
+        "text": "Need help on malaria"
+      },
+      {
+        "intent": "intro",
+        "text": "Need info on malaria"
+      },
+      {
+        "intent": "intro",
+        "text": "Need information on malaria"
+      },
+      {
+        "intent": "intro",
+        "text": "What is this?"
+      },
+      {
+        "intent": "intro",
+        "text": "Mosquito transmitted diseases"
+      },
+      {
+        "intent": "greet",
+        "text": "hey"
+      },
+      {
+        "intent": "greet",
+        "text": "howdy"
+      },
+      {
+        "intent": "greet",
+        "text": "hey there"
+      },
+      {
+        "intent": "greet",
+        "text": "hello"
+      },
+      {
+        "intent": "greet",
+        "text": "hi"
+      },
+      {
+        "intent": "greet",
+        "text": "good morning"
+      },
+      {
+        "intent": "greet",
+        "text": "good evening"
+      },
+      {
+        "intent": "greet",
+        "text": "dear sir"
+      },
+      {
+        "intent": "greet",
+        "text": "hi doctor"
+      },
+      {
+        "intent": "greet",
+        "text": "hi doc"
+      },
+      {
+        "intent": "greet",
+        "text": "how’s it going?"
+      },
+      {
+        "intent": "greet",
+        "text": "how are you doing?"
+      },
+      {
+        "intent": "greet",
+        "text": "What’s up?"
+      },
+      {
+        "intent": "greet",
+        "text": "What’s going on?"
+      },
+      {
+        "intent": "greet",
+        "text": "good afternoon"
+      },
+      {
+        "intent": "greet",
+        "text": "long time no see"
+      },
+      {
+        "intent": "greet",
+        "text": "lets chat"
+      },
+      {
+        "intent": "greet",
+        "text": "yo"
+      },
+      {
+        "intent": "greet",
+        "text": "Sup?"
+      },
+      {
+        "intent": "greet",
+        "text": "Wassup?"
+      },
+      {
+        "intent": "greet",
+        "text": "Wazzup?"
+      },
+      {
+        "intent": "greet",
+        "text": "Good day mate"
+      },
+      {
+        "intent": "greet",
+        "text": "Hiya"
+      },
+      {
+        "intent": "greet",
+        "text": "Hola"
+      },
+      {
+        "intent": "greet",
+        "text": "Ola"
+      },
+      {
+        "intent": "affirm",
+        "text": "yes"
+      },
+      {
+        "intent": "affirm",
+        "text": "ya"
+      },
+      {
+        "intent": "affirm",
+        "text": "Yes"
+      },
+      {
+        "intent": "affirm",
+        "text": "Yup"
+      },
+      {
+        "intent": "affirm",
+        "text": "Yes I am"
+      },
+      {
+        "intent": "affirm",
+        "text": "It's true"
+      },
+      {
+        "intent": "affirm",
+        "text": "Correct"
+      },
+      {
+        "intent": "affirm",
+        "text": "Right"
+      },
+      {
+        "intent": "affirm",
+        "text": "indeed"
+      },
+      {
+        "intent": "affirm",
+        "text": "affirmative"
+      },
+      {
+        "intent": "affirm",
+        "text": "agreed"
+      },
+      {
+        "intent": "Female",
+        "text": "Female"
+      },
+      {
+        "intent": "Female",
+        "text": "female"
+      },
+      {
+        "intent": "Female",
+        "text": "woman"
+      },
+      {
+        "intent": "Female",
+        "text": "Girl"
+      },
+      {
+        "intent": "Female",
+        "text": "Gal"
+      },
+      {
+        "intent": "Female",
+        "text": "Lady"
+      },
+      {
+        "intent": "identity",
+        "text": "Who are you"
+      },
+      {
+        "intent": "identity",
+        "text": "what's your name"
+      },
+      {
+        "intent": "identity",
+        "text": "what are you called"
+      },
+      {
+        "intent": "identity",
+        "text": "how are you called"
+      },
+      {
+        "intent": "identity",
+        "text": "your name"
+      },
+      {
+        "intent": "identity",
+        "text": "who you"
+      },
+      {
+        "intent": "identity",
+        "text": "you?"
+      },
+      {
+        "intent": "identity",
+        "text": "do i know you"
+      },
+      {
+        "intent": "identity",
+        "text": "may i know who this is"
+      },
+      {
+        "intent": "identity",
+        "text": "may i know who i am talking to"
+      },
+      {
+        "intent": "identity",
+        "text": "who am i talking to?"
+      },
+      {
+        "intent": "identity",
+        "text": "am i talking to a doctor?"
+      },
+      {
+        "intent": "identity",
+        "text": "am i talking to a human?"
+      },
+      {
+        "intent": "identity",
+        "text": "are you a girl?"
+      },
+      {
+        "intent": "identity",
+        "text": "are you a female?"
+      },
+      {
+        "intent": "identity",
+        "text": "are you a lady?"
+      },
+      {
+        "intent": "identity",
+        "text": "are you a man?"
+      },
+      {
+        "intent": "identity",
+        "text": "are you a boy?"
+      },
+      {
+        "intent": "identity",
+        "text": "are you a guy?"
+      },
+      {
+        "intent": "identity",
+        "text": "what is your gender?"
+      },
+      {
+        "intent": "identity",
+        "text": "may i know your name?"
+      },
+      {
+        "intent": "informAge",
+        "entities": [
+          {
+            "start": 0,
+            "end": 2,
+            "value": "18",
+            "entity": "age"
+          }
+        ],
+        "text": "18"
+      },
+      {
+        "intent": "informAge",
+        "entities": [
+          {
+            "start": 5,
+            "end": 7,
+            "value": "17",
+            "entity": "age"
+          }
+        ],
+        "text": "I am 17"
+      },
+      {
+        "intent": "informAge",
+        "entities": [
+          {
+            "start": 0,
+            "end": 2,
+            "value": "17",
+            "entity": "age"
+          }
+        ],
+        "text": "17 years old"
+      },
+      {
+        "intent": "informAge",
+        "entities": [
+          {
+            "start": 4,
+            "end": 6,
+            "value": "17",
+            "entity": "age"
+          }
+        ],
+        "text": "I’m 17"
+      },
+      {
+        "intent": "prevent",
+        "text": "how do i prevent malaria"
+      },
+      {
+        "intent": "prevent",
+        "text": "any way of preventing malaria"
+      },
+      {
+        "intent": "prevent",
+        "text": "save myself from malaria"
+      },
+      {
+        "intent": "prevent",
+        "text": "protect me from malaria"
+      },
+      {
+        "intent": "prevent",
+        "text": "keep me safe from malaria"
+      },
+      {
+        "intent": "prevent",
+        "text": "keep me safe"
+      },
+      {
+        "intent": "prevent",
+        "text": "help me protect"
+      },
+      {
+        "intent": "prevent",
+        "text": "help me prevent"
+      },
+      {
+        "intent": "prevent",
+        "text": "way to prevent"
+      },
+      {
+        "intent": "prevent",
+        "text": "way to protect"
+      },
+      {
+        "intent": "prevent",
+        "text": "prevent"
+      },
+      {
+        "intent": "prevent",
+        "text": "steps for malaria prevention"
+      },
+      {
+        "intent": "prevent",
+        "text": "steps for malaria protection"
+      },
+      {
+        "intent": "prevent",
+        "text": "avert malaria"
+      },
+      {
+        "intent": "prevent",
+        "text": "fend off malaria"
+      },
+      {
+        "intent": "prevent",
+        "text": "put a stop to malaria"
+      },
+      {
+        "intent": "prevent",
+        "text": "how to ward off malaria disease"
+      },
+      {
+        "intent": "prevent",
+        "text": "how can I stay away from Malaria"
+      },
+      {
+        "intent": "prevent",
+        "text": "how can i avert malaria risks?"
+      },
+      {
+        "intent": "prevent",
+        "text": "what can I do to prevent malaria ?"
+      },
+      {
+        "intent": "prevent",
+        "text": "what can I do to avoid malaria ?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 19,
+            "end": 29,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "Is it safe to take atovaquone(medicine)?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 14,
+            "end": 25,
+            "value": "Chloroquine",
+            "entity": "medicine"
+          }
+        ],
+        "text": "Should I take Chloroquine?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 16,
+            "end": 27,
+            "value": "Doxycycline",
+            "entity": "medicine"
+          }
+        ],
+        "text": "Healthy to take Doxycycline?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 11,
+            "end": 21,
+            "value": "Mefloquine",
+            "entity": "medicine"
+          }
+        ],
+        "text": "I'm taking Mefloquine."
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 13,
+            "end": 23,
+            "value": "Primaquine",
+            "entity": "medicine"
+          }
+        ],
+        "text": "Fine to take Primaquine?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 22,
+            "end": 32,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "Is it alright to take atovaquone?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 10,
+            "end": 20,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "can i try atovaquone?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 5,
+            "end": 15,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "will atovaquone cause any side effects?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 37,
+            "end": 47,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "are there any side effects in taking atovaquone?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 32,
+            "end": 42,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "what can happen to me if i take atovaquone?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 27,
+            "end": 37,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "what is the risk in taking atovaquone?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone risky?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 19,
+            "end": 29,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "problems in taking atovaquone?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 12,
+            "end": 22,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "problems of atovaquone?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 22,
+            "end": 32,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "problems in consuming atovaquone?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 24,
+            "end": 34,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is it a mistake to take atovaquone?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 24,
+            "end": 34,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "will it be okay to take atovaquone?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone risk-free?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone riskless?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone unsafe?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone dangerous?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone harmless?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 4,
+            "end": 14,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "can atovaquone harm me?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "is it okay to swallow malaria pills?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "is there a possibility of side effects in taking malaria pills?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "what are the chances that this pill can cause side effects?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "am i in danger of bad effects if i take this pill?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "am i in danger of ill effects if i take this pill?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "what can i be fearful of if i take this pill?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "what is the likelihood that this pill is safe?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "what are the threats of this pill?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "is this pill vulnerable?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "is this tablet safe to consume?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone risk-free?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone riskless?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone unsafe?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone dangerous?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone harmless?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 4,
+            "end": 14,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "can atovaquone harm me?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 12,
+            "end": 22,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "will taking atovaquone keep me immune from any side effects"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 43,
+            "end": 53,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "am i susceptible to side effects if i take atovaquone"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 40,
+            "end": 50,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "will i be immune from malaria if i take atovaquone"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone poisonous?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone toxic?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone non-toxic?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "will this pill affect me in anyway?"
+      },
+      {
+        "intent": "safeMedicine",
+        "text": "can this pill be liable for any side effects?"
+      },
+      {
+        "intent": "safeMedicine",
+        "entities": [
+          {
+            "start": 3,
+            "end": 13,
+            "value": "atovaquone",
+            "entity": "medicine"
+          }
+        ],
+        "text": "is atovaquone  safe for me ?"
+      },
+      {
+        "intent": "deny",
+        "text": "No"
+      },
+      {
+        "intent": "deny",
+        "text": "no"
+      },
+      {
+        "intent": "deny",
+        "text": "not"
+      },
+      {
+        "intent": "deny",
+        "text": "no!"
+      },
+      {
+        "intent": "deny",
+        "text": "What!! No!"
+      },
+      {
+        "intent": "deny",
+        "text": "Nah"
+      },
+      {
+        "intent": "deny",
+        "text": "i deny that"
+      },
+      {
+        "intent": "deny",
+        "text": "impossible"
+      },
+      {
+        "intent": "deny",
+        "text": "not possible"
+      },
+      {
+        "intent": "deny",
+        "text": "that’s not correct"
+      },
+      {
+        "intent": "deny",
+        "text": "that’s a mistake"
+      },
+      {
+        "intent": "deny",
+        "text": "that’s incorrect"
+      },
+      {
+        "intent": "deny",
+        "text": "that’s not right"
+      },
+      {
+        "intent": "deny",
+        "text": "i disagree"
+      },
+      {
+        "intent": "deny",
+        "text": "i don’t think so"
+      },
+      {
+        "intent": "botPlace",
+        "text": "Where do you live"
+      },
+      {
+        "intent": "botPlace",
+        "text": "where are you"
+      },
+      {
+        "intent": "botPlace",
+        "text": "where can I meet you?"
+      },
+      {
+        "intent": "medicines",
+        "text": "anti-malarial pills"
+      },
+      {
+        "intent": "medicines",
+        "text": "suggest me medicines to prevent malaria"
+      },
+      {
+        "intent": "medicines",
+        "text": "doctor, suggest me medicines to prevent malaria"
+      },
+      {
+        "intent": "medicines",
+        "text": "what medicines I take to prevent it"
+      },
+      {
+        "intent": "medicines",
+        "text": "medicines that I can take for malaria prevention"
+      },
+      {
+        "intent": "medicines",
+        "text": "what medicines should I take to keep me safe from Malaria"
+      },
+      {
+        "intent": "medicines",
+        "text": "are there any medicines that can keep me away from malaria?"
+      },
+      {
+        "intent": "medicines",
+        "text": "are there any malaria resistant pills?"
+      },
+      {
+        "intent": "medicines",
+        "text": "are there any pills that will keep me immune from malaria?"
+      },
+      {
+        "intent": "medicines",
+        "text": "what medicines can I take to prevent malaria ?"
+      },
+      {
+        "intent": "medicines",
+        "text": "malaria preventive pills"
+      },
+      {
+        "intent": "medicines",
+        "text": "are there any pills that will cure malaria?"
+      },
+      {
+        "intent": "thankyou",
+        "text": "thanks"
+      },
+      {
+        "intent": "thankyou",
+        "text": "thank you"
+      },
+      {
+        "intent": "thankyou",
+        "text": "thank you very much"
+      },
+      {
+        "intent": "thankyou",
+        "text": "nice"
+      },
+      {
+        "intent": "thankyou",
+        "text": "appreciate the help"
+      },
+      {
+        "intent": "thankyou",
+        "text": "thanks for the help"
+      },
+      {
+        "intent": "thankyou",
+        "text": "grateful for your help"
+      },
+      {
+        "intent": "thankyou",
+        "text": "You’re the best"
+      },
+      {
+        "intent": "thankyou",
+        "text": "I'm grateful."
+      },
+      {
+        "intent": "thankyou",
+        "text": "You have no idea how much your help has meant"
+      },
+      {
+        "intent": "thankyou",
+        "text": "You are always so helpful."
+      },
+      {
+        "intent": "thankyou",
+        "text": "appreciate your support"
+      },
+      {
+        "intent": "thankyou",
+        "text": "thanks for your support"
+      },
+      {
+        "intent": "thankyou",
+        "text": "Your lessons have been very insightful and fun!"
+      },
+      {
+        "intent": "thankyou",
+        "text": "I have had so much fun learning with you!"
+      },
+      {
+        "intent": "thankyou",
+        "text": "thanks for your assistance"
+      },
+      {
+        "intent": "thankyou",
+        "text": "thanks a mill"
+      },
+      {
+        "intent": "thankyou",
+        "text": "thanks for your time"
+      },
+      {
+        "intent": "thankyou",
+        "text": "you are awesome"
+      },
+      {
+        "intent": "thankyou",
+        "text": "i am very thankful"
+      },
+      {
+        "intent": "thankyou",
+        "text": "I will never forget your help"
+      },
+      {
+        "intent": "thankyou",
+        "text": "you are very kind"
+      },
+      {
+        "intent": "thankyou",
+        "text": "this means a lot to me"
+      },
+      {
+        "intent": "thankyou",
+        "text": "i owe you for your help"
+      },
+      {
+        "intent": "thankyou",
+        "text": "my sincere appreciation"
+      },
+      {
+        "intent": "thankyou",
+        "text": "you are always so helpful"
+      },
+      {
+        "intent": "thankyou",
+        "text": "thanks a lot"
+      },
+      {
+        "intent": "thankyou",
+        "text": "help appreciated"
+      },
+      {
+        "intent": "thankyou",
+        "text": "thanks for your efforts"
+      }
+    ],
+    "regex_features": [],
+    "entity_synonyms": []
+  }
+}

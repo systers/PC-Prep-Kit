@@ -1,0 +1,32 @@
+@import "../../styles/main";
+
+//Constants
+$button-left-margin: 46%;
+
+.available-item {
+    padding: $padding-med;
+}
+
+.panel-available {
+    @include panel-style($light-blue);
+}
+
+.panel-dont {
+    @include panel-style($red);
+}
+
+.panel-do {
+    @include panel-style($green);
+}
+
+.wrong-drop {
+    border-color: $red;
+    border-width: 2px;
+    border-style: dashed;
+}
+
+#submit-reset {
+    position: absolute;
+    left: $button-left-margin;
+}
+

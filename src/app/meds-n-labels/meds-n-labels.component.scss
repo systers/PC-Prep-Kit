@@ -1,0 +1,29 @@
+@import "../styles/main";
+$adjust-left: 200px;
+
+.memory-imgs {
+    height: 120px;
+    width: 120px;
+    cursor: pointer;
+}
+
+.content {
+    margin-bottom: 100px;
+}
+
+.image-table {
+    border: 0;
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+
+.image-table td {
+    border: 1px solid $light-grey;
+    -webkit-box-shadow: 1px 1px 1px 1px #999;
+    box-shadow: 1px 1px 1px 1px #999;
+}
+
+.adjust-left {
+    margin-left: $adjust-left;
+}

@@ -1,0 +1,182 @@
+@import "../styles/main";
+
+video {
+    border: 3px solid $dark-grey;
+    background-color: $black !important;
+}
+
+.content {
+    margin-bottom: 100px;
+}
+
+.pieces {
+    height: 125px;
+    width: 115px;
+    border-radius: 25px;
+}
+
+.game-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.lifecycle-imgs {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+
+@mixin text($topPos, $leftPos) {
+    position: absolute;
+    width: 15%;
+    top: $topPos;
+    left: $leftPos;
+}
+
+@mixin rotate($rotation) {
+    transform: rotate($rotation);
+    -moz-transform: rotate($rotation);
+    -webkit-transform: rotate($rotation);
+    -o-transform: rotate($rotation);
+    -ms-transform: rotate($rotation);
+}
+
+@mixin arrow($topPos, $leftPos, $rotation) {
+    width: 1.5%;
+    height: auto;
+    position: absolute;
+    top: $topPos;
+    left: $leftPos;
+    @include rotate($rotation);    
+}
+
+@mixin drag-drop($topPos, $leftPos) {
+    border-radius: 25px;
+    border: 2px solid $black;
+    width: 9%;
+    height: 19%;
+    position: absolute;
+    top: $topPos;     
+    left: $leftPos; 
+}
+
+.text-1 {
+    @include text(65%, 25%);
+    text-align: right;
+}
+
+.text-2 {
+    @include text(45%, 14%);
+    text-align: right;
+}
+
+.text-3 {
+    @include text(22%, 13%);
+    text-align: right;
+}
+
+.text-4 {
+    @include text(25%, 40%);
+    text-align: right;
+}
+
+.text-5 {
+    @include text(22%, 70%);
+}
+
+.text-6 {
+    @include text(45%, 70%);
+}
+
+.arrow-1 {
+    @include arrow(35%, 64%, 180deg);
+}
+
+.arrow-2 {
+    @include arrow(35%, 34%, 0deg);
+}
+
+.arrow-3 {
+    @include arrow(15%, 42%, 45deg);
+}
+
+.arrow-4 {
+    @include arrow(15%, 57%, 135deg);
+}
+
+.arrow-5 {
+    @include arrow(55%, 42%, -45deg);
+}
+
+.drop-1 {
+    @include drag-drop(5%, 45%);
+}
+
+.drop-2 {
+    @include drag-drop(15%, 30%);
+}
+
+.drop-3 {
+    @include drag-drop(15%, 60%);
+}
+
+.drop-4 {
+    @include drag-drop(40%, 30%);
+}
+
+.drop-5 {
+    @include drag-drop(40%, 60%);
+}
+
+.drop-6 {
+    @include drag-drop(50%, 45%);
+}
+
+.drag-1 {
+    @include drag-drop(75%, 25%);
+}
+
+.drag-2 {
+    @include drag-drop(75%, 35%);
+}
+
+.drag-3 {
+    @include drag-drop(75%, 45%);
+}
+
+.drag-4 {
+    @include drag-drop(75%, 55%);
+}
+
+.drag-5 {
+    @include drag-drop(75%, 65%);
+}
+
+.drag-6 {
+    @include drag-drop(75%, 75%);
+}
+
+.quiz-container {
+    margin-top: 3%;
+}
+
+.option {
+    display: table;
+    margin: 8px;
+    padding: 8px;
+    background: $blue;
+    color: $white;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    height: 50px;
+    font-size: $font-size-small;
+    &:hover {
+        background: $light-blue;
+    }
+    &>span {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}

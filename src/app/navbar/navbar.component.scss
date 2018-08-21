@@ -1,0 +1,84 @@
+@import "../styles/main";
+
+#navbar {
+    background-color: $blue;
+}
+
+.profile-pic {
+    max-height: $profile-pic-height;
+    max-width: $profile-pic-width;
+    padding: $profile-pic-padding;
+}
+
+.profile {
+    font-size: $font-size-small;
+    color: $white;
+    width: 100%;
+    background-image: url('assets/img/ProfileBackground.jpg');
+    text-transform: uppercase;
+}
+
+.nav {
+  background-color: $blue;
+
+  .menu-link {
+      cursor: pointer;
+      vertical-align: middle;
+      display: table-cell;
+      text-transform: uppercase;
+      color: $white;
+      font-size: $font-navbar-small;
+      font-weight: bold;
+
+    }
+  a:hover, a:active, a:focus{
+    color: $blue;
+  }
+}
+
+li {
+    display: table;
+    background-color: $blue;
+    height: 60px;
+    width: 100%;
+    text-align: center;
+}
+.sidebar {
+    background-color: $blue;
+}
+
+ul {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+}
+
+#banner {
+    height: $peace-corps-left-banner-height
+}
+
+.active-link {
+    background-color: white;
+    color: $blue !important;
+}
+
+.sidebar {
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#toggle {
+    font-size: $font-size-med;
+}
+
+.edit-btn {
+    text-align: right;
+}
+
+.edit-btn:hover {
+    cursor: pointer;
+}

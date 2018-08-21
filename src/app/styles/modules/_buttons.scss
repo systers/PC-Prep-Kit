@@ -1,0 +1,22 @@
+@mixin button($button-color, $button-hover-color, $button-active-color) {
+    background-color: $button-color;
+    border-width: 0;
+    &:hover {
+        background-color: $button-hover-color;
+    }
+    &:active {
+        background-color: $button-active-color;
+    }
+}
+
+@mixin branding($img){
+    background: url('/assets/img/peacecorps/'+$img);
+    background-size: cover;
+    background-position: left;
+    color: $white;
+    &:hover {
+        background-size: inherit;
+        background-position: right;
+        transition: background-position 0.3s ease 0s;
+    }
+}

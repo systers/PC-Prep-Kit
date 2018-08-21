@@ -1,0 +1,34 @@
+@import "../modules/all";
+
+.header-1 {
+    color: $header-left-color;
+    font-weight: $bold;
+    font-size: $header-font-size;
+}
+
+.header-white-1 {
+    color: $white;
+    font-weight: $bold;
+    font-size: $header-font-size;
+}
+
+.header-2 {
+    color: $header-right-color;
+    font-weight: $bold;
+    font-size: $header-font-size;
+}
+
+.sub-heading-1 {
+    color: $grey;
+    font-weight: $bold;
+}
+
+.desc {
+    color: $dull-grey;
+    font-size: $desc-font-size;
+}
+
+.stage-header {
+    color: $blue;
+    font-weight: $font-bold;
+}

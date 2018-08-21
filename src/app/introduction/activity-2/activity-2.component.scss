@@ -1,0 +1,12 @@
+@import "../../styles/main";
+
+.pc-policy-body {
+  h1 {
+    padding: $padding-large;
+    font-weight: $bold;
+  }
+}
+
+.mail-policy-image {
+  max-width: 20%;
+}

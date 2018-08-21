@@ -1,0 +1,24 @@
+@import "../styles/main";
+// constant variables
+$top: 1.5%;
+$right: 16%;
+
+#level-navigate {
+    display: inline-block;
+    position: absolute;
+    top: $top;
+    color: $white;
+    right: $right;
+}
+
+#menu-open {
+    font-size: $font-size-small;
+}
+
+.active-level {
+    color: $black;
+}
+
+.levelButton {
+    font-size: $font-size-small;
+}

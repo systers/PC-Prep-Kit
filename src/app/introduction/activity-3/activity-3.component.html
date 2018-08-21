@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <h2 class="sub-heading-1 text-center">{{language?.descriptions.bodyContent}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-md-offset-3">
+        <video #video width="480" height="360" autoplay [hidden]='webcamState !== webcamStates.OPENED'></video>
+        <canvas width="480" height="360" [hidden]='webcamState === webcamStates.OPENED' id="canvas"></canvas>
+    </div>
+    <div class="col-md-3 col-md-offset-3">
+        <input type="file" name="file" id="file" class="hidden" accept="image/*" (change)="handleInputChange($event)">
+        <button class="btn btn-block button-branding-red btn-lg" *ngIf='webcamState !== webcamStates.OPENED' (click)="openWebcam()" id="webcamOpen">{{webcamButtonText}}</button>
+        <button class="btn btn-block button-branding-red btn-lg" *ngIf='webcamState === webcamStates.OPENED' (click)="snapshot()">{{webcamButtonText}}</button>
+        <button class="btn btn-block button-branding-blue btn-lg" (click)="fireFileButtonClick()">{{language?.messages.browseButton}}</button>
+        <button class="btn btn-block button-branding-blue btn-lg" [disabled]='!imageLoaded' (click)="shufflePuzzle()">{{puzzleState}}</button>
+        <button class="btn btn-block button-branding-green btn-lg" [disabled]='!(webcamState === webcamStates.CAPTURED || imageLoaded)' (click)="upload()">{{language?.messages.setProPicButton}}</button>
+    </div>
+</div>
+<button-nav [complete]="activityComplete" [completed]="completed" nexturl="/malaria-101/activity-1-1" prevurl="/introduction/activity-2"></button-nav>
+<app-level-navigate [levelInfo]="CURR_STAGE"></app-level-navigate>

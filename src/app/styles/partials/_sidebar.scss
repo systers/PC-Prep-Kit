@@ -1,0 +1,24 @@
+@import "../modules/all";
+
+.sidebar-header {
+    background: $header-background;
+    padding: $side-bar-header-padding;
+}
+
+.sidebar {
+    background: $sidebar-background;
+    color: $sidebar-font-color;
+    font-weight: $font-bold;     
+    box-shadow: 0 0 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: $sidebar-width;
+    overflow: hidden;
+    display: block;
+    z-index: $z-index-middle;
+    a {
+        color: $sidebar-font-color;
+    }
+}

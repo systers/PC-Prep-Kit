@@ -1,0 +1,9 @@
+<div class="header" [hidden]='!loggedIn'>
+    <app-header (toggleNavbar)="nav.toggle()" (openEditProfile)="nav.editUser()"> </app-header>
+</div>
+<app-infokit #info > </app-infokit>
+<app-navbar #nav (togglePosition)="toggle();" (infoPop)="info.pop()" [hidden]='!loggedIn'> </app-navbar>
+<router-outlet></router-outlet>
+<div class="footer" [hidden]='!loggedIn || isMenuPage'>
+    <app-activityindicator #ind></app-activityindicator>
+</div>

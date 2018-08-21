@@ -1,0 +1,36 @@
+<div class="infokit-background" (infopop)="pop()" [hidden]="!infokitState">
+  <div class="container infokit-body">
+    <div class="infokit-header text-center row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <H2>{{heading}}</H2>
+      </div >
+      <div class="col-xs-3">
+        <button class="btn btn-default btn-sm pull-right close-button" (click)="pop()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+      </div>
+    </div >
+    <div class="infokit-components row">
+      <h4 [hidden]="!infokitAvailable || showInfo"> {{language?.headings.heading_info}} </h4>
+      <div class="infokit-selector row" [hidden]="showInfo">
+        <div class="col-xs-12" [hidden]="infokitAvailable">
+          <p> {{language?.messages.defaultMessage}} </p>
+        </div>
+        <div class="col-xs-4" *ngFor="let infoBool of infokitActive" [hidden]="!infoBool.value">
+          <button class="btn btn-default btn-group-justified info-button" (click)="info(infoBool.def,infoBool.key)"><img class="infokit-icons" [src]="'assets/img/infokit/' + infoBool.img"></button>
+        </div>
+      </div>
+      <h4 [hidden]="!badgesAvailable || showInfo"> {{language?.headings.heading_badges}} </h4>
+      <div class="infokit-selector row" [hidden]="!badgesAvailable || showInfo">
+        <div class="col-xs-4" *ngFor="let item of activeBadges">
+          <button class="btn btn-default btn-group-justified info-button" (click)="badgeInfo(item.name, item.message)"><img class="infokit-icons" [src]="item.image"></button>
+        </div>
+      </div>
+      <div class="infokit-content" [hidden]="!showInfo">
+        <div [innerHtml]="infoContent">
+        </div>
+      </div>
+    </div>
+    <div class="infokit-footer text-center row">
+      <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    </div>
+  </div>
+</div>

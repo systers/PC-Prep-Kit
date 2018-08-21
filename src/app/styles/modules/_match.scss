@@ -1,0 +1,33 @@
+$screen-xsmall: 576px;
+$screen-small: 768px;
+$screen-med: 992px;
+
+@mixin match-elements($meds-left, $content-left, $des-left) {
+    .meds {
+        position: fixed;
+        top: 160px;
+        left: $meds-left;
+        margin-top: $margin-med;
+    }
+
+    .content {
+        position: fixed;
+        top: 210px;
+        left: $content-left;
+    }
+
+    .meds-description {
+        position: fixed;
+        top: 180px;
+        left: $des-left;
+    }
+
+    .match-button {
+        position: fixed;
+        top: 830px;
+        left: ($meds-left + $des-left)/2;
+        font-size: $font-size-small;
+        color: $white;
+        background-color: $orange;
+    }
+}

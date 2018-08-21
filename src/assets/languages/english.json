@@ -1,0 +1,464 @@
+{
+  "pcprepkit": {
+    "registration": {
+      "messages": {
+        "heading": "Sign Up",
+        "registerButtonMessage": "Register",
+        "loginButtonMessage": "Back to Login",
+        "successMessage": "We have a sent you a verification mail. Please verify to login."
+      },
+      "placeHolders": {
+        "firstName": "Your first name",
+        "lastName": "Your last name",
+        "email": "Your personal email id",
+        "password": "Type a strong and secure password",
+        "confirmPassword": "Retype the above password"
+      },
+      "labels": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "E-Mail",
+        "password": "Password",
+        "confirmPassword": "Confirm Password"
+      }
+    },
+
+    "forgotPassword": {
+      "messages": {
+        "heading": "Reset Your Password",
+        "resetButtonMessage": "Reset",
+        "loginButtonMessage": "Back to Login"
+      },
+      "placeHolders": {
+        "email": "Email"
+      }
+    },
+
+    "resetPassword": {
+      "messages": {
+        "heading": "Reset Password",
+        "buttonMessage": "Reset Password"
+      },
+      "placeHolders": {
+        "password": "New password",
+        "confirmPassword": "Confirm password"
+      }
+    },
+
+    "login": {
+      "descriptions": {
+        "bodyContent1": "Be a prepared volunteer.",
+        "bodyContent2": "Build your knowledge of personal malaria",
+        "bodyContent3": "prevention for when you are out in the field.",
+        "bodyContent4": "Built by Peace Corps Volunteers for",
+        "bodyContent5": "Peace Corps Volunteers."
+       },
+      "placeHolders": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "messages": {
+        "login": "Login",
+        "googleSignin": "Sign in with Google",
+        "needAccount": "Need an account?",
+        "forgotPassword": "Forgot password?",
+        "signUp": "Signup"
+      }
+    },
+
+    "authMessages": {
+      "errors": {
+        "emailReq": "Email is required",
+        "emailInvalid": "The email address is invalid",
+        "passwordReq": "Password is required",
+        "passwordInvalid": "Password is invalid",
+        "passwordMatch": "Passwords must match",
+        "confirmPasswordReq": "Confirm password is required",
+        "loginError": "Incorrect username and password, please try again",
+        "registrationFail": "Registration unsuccessful",
+        "passwordLength": "Password must be at least 8 characters long",
+        "passwordPattern": "Password must have at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character (!@#$%^&*)",
+        "firstNameReq": "First Name is required"
+
+      }
+    },
+    "activityAccess": {
+      "alert": "Please complete previous activities before accessing this activity."
+    },
+    "userUpdate": {
+      "messages": {
+        "heading": "Update your profile!",
+        "buttonMessage": "UPDATE",
+        "hoverProfile": "Click to upload",
+        "placeHolders": {
+          "firstName": "First Name",
+          "lastName": "Last Name"
+        }
+      },
+      "alerts": {
+        "success": {
+          "title": "Success!",
+          "body": "Profile Updated"
+        },
+        "fail": {
+          "title": "Failure",
+          "body": "Profile not updated"
+        },
+        "error": "First Name is required"
+      }
+    },
+    "certificate": {
+      "header": "CERTIFICATE",
+      "congratsMessage": {
+        "messagePart1": "Certificate of Achievement",
+        "messagePart2": "presented to ",
+        "messagePart3": "for completing all activities in ",
+        "brandPart1": "PC Prep",
+        "brandPart2": "Kit"
+      },
+      "dashboardLink": "Go to Dashboard",
+      "badgeLabel": "Expert"
+    },
+    "disclaimer": {
+      "heading": "Disclaimer and Fair use policy",
+      "body1": "In accord with our non-profit mission, the information - text, images and everything else present on this site has been researched and gathered from various legitimate sources and is being used purely for informational purposes only.",
+      "body2": "The objective of this site is to promote malaria awareness through some exciting educational activities and games and was not intended to serve as a replacement for professional medical advice, diagnosis or treatment. Always seek the advice, diagnosis and/or treatment from qualified doctors for any malaria related help.",
+      "body3": "If the information provided on this site is incorrect, misleading, invalid or outdated, please notify us on our ",
+      "GitHub": "Github repository",
+      "body4": "or on ",
+      "Slack": "slack channel",
+      "sourceHeading": "Information was referred from here for use in various stages of the application,"
+    },
+
+    "common": {
+      "navbar": {
+        "links": {
+          "introduction": "Introduction",
+          "malaria101": "Malaria 101",
+          "medsAndLabels": "Medication And Labels",
+          "pcpolicy": "Peace Corps Policy",
+          "infokit": "Infokit",
+          "doctorChat": "Doctor Chat",
+          "prevention": "Prevention",
+          "disclaimer": "Disclaimer",
+          "menu": "Menu"
+        }
+      },
+      "header": {
+        "headings": {
+          "titleLeft": "PC Prep",
+          "titleRight": "Kit"
+        },
+        "messages": {
+          "logoutButton": "Logout"
+        },
+        "alerts": {
+          "caching": {
+            "title": "New version available!",
+            "confirmButtonText": "Update",
+            "cancelButtonText": "Cancel"
+          }
+        }
+      },
+      "splashscreen": {
+        "headings": {
+          "titleLeft": "PC Prep",
+          "titleRight": "Kit"
+        },
+        "descriptions": {
+          "bodyContent": "Brought to you by"
+        }
+      },
+      "stageComplete": {
+        "message1": "Congratulations! You have succesfully completed the",
+        "message2": "Stage.",
+        "buttoninfo": "Go to menu"
+      },
+      "infokit": {
+        "headings": {
+           "heading_main": "Info Kit",
+           "heading_info": "Info-tiles",
+           "heading_badges": "Badges"
+        },
+        "info_tiles": {
+          "malaria_def": "An intermittent and remittent fever caused by a protozoan parasite that invades the red blood cells. The parasite is transmitted by mosquitoes in many tropical and subtropical regions.",
+          "pc_policy": "This contains Peace Corps Policy",
+          "animation": "The malaria parasite life cycle involves two hosts. During a blood meal, a malaria-infected female Anopheles mosquito inoculates sporozoites into the human host . Sporozoites infect liver cells and mature into schizonts , which rupture and release merozoites.",
+          "do_dont": "Dos <br> Contaminated water around should be disposed. <br> Use Mosquito repellent. <br> Body Should be covered as much as possible <br> <br> Don'ts <br> Don't keep unscreened doors and windows open. <br> Don't play outside in shorts and half/without sleeves clothes",
+          "odd_one_out": "Citronella can replel mosquitos. <br> Malaria is transmitted through mosquito bites. <br> Malaria is transmitted by a mosquito but parasite causes the disease.",
+          "match_meds": "Mefloquine can be used to treat mild or moderate malaria but should not be used to treat severe malaria. <br> Doxycycline is an antibiotic that fights bacteria in the body <br> Malarone works by interfering with the growth of parasites in the red blood cells of the human body.",
+          "side_effects": "Mefloquine, taken every week, may cause upset stomach, dizziness, nausea, headache,vivd dreams, neuropsychiatric side effects. <br> Malarone taken once every day, may cause nausea, vomiting, stomach pain, headache, diarrhea. <br> Doxycycline is an antibiotic which when taken every day, may cause sensitivity to sunlight , and upset stomach.",
+          "doctor_info": "Consult a doctor before you take any medication. Wrong medication can prove to be fatal.",
+          "stop_Breed": "Be always alert about your surroundings. Keep a close check on the probable mosquito breeding places. These may include: <br> Old-tyres, <br>open-bottles,<br>drums,<br>open-containers etc.",
+          "stride_Against": "For a long time, there have been many myths and misconceptions prevalent about prevention. Myths: <br> Homeopathy medicines work in Malaria.<br> Garlic helps prevent Malaria.<br> Yeast Extract helps prevent Malaria.<br> However, some things like Mosquito spray, Air conditioned surroundings, full sleeved clothes are indeed helpful in preventing Malaria."
+        },
+        "messages": {
+          "loadingMessage": "loading ...",
+          "defaultMessage": "No infokit available"
+        }
+      },
+      "badges": {
+        "headingLeft": "Congratulations!! You have earned the ",
+        "headingRight": "badge.",
+        "infokitMessage": "You can see your badges in Infokit"
+      },
+      "alerts": {
+        "activitySuccessTitle": "Good job!",
+        "activitySuccessMsg": "You completed this activity!",
+        "activityFailTitle": "Oops!",
+        "activityFailMsg": "That is incorrect, please try again!"
+      },
+      "performanceDisplay": {
+        "Heading": {
+          "start": "Congratulations on Completing the ",
+          "end": " activity!"
+        },
+        "tooltip": {
+          "Dashboard": "Dashboard",
+          "Toolkit": "Infokit"
+        },
+        "message": "This activity has been added to the toolkit. You may access it from there in future.",
+        "levelsMessage": "You can also play higher levels",
+        "levelLabel": "Levels"
+      },
+      "leaderBoard": {
+        "headings": {
+          "badge": "Badge: ",
+          "rank": "Rank",
+          "name": "Name",
+          "points": "Points"
+        }
+      },
+      "levelNavigation": {
+        "levelLabel": "Level"
+      }
+    },
+    "stages": {
+      "menu": {
+        "heading": "Main Menu"
+      },
+      "introduction": {
+        "heading": "Introduction",
+        "activityintro": {
+          "headings": {
+            "welcome": "Welcome"
+          },
+          "descriptions": {
+            "bodyContent": "The next few activites will help us get started with learning about malaria, your responsibilities as a Peace Corps Volunteer, and the way you can protect yourself."
+          },
+          "messages": {
+            "nextButton": "Cool, next"
+          }
+        },
+        "highlightActivity": {
+          "headings": {
+            "question": "Q: What is Malaria?"
+          },
+          "descriptions": {
+            "bodyContent1": "ma.lar.i.a",
+            "bodyContent2": "noun",
+            "bodyContent3": "An intermittent and remittent fever caused by a protozoan parasite that invades the red blood cells. The parasite is transmitted by mosquitoes in many tropical and subtropical regions."
+          },
+          "alerts": {
+            "info": "Highlight the definition of malaria to complete this activity"
+          }
+        },
+        "picturePuzzle": {
+          "descriptions": {
+            "bodyContent": "Take a picture of yourself, someone or something important to you"
+           },
+          "messages": {
+            "capture": "Capture",
+            "afterCapture": "Take another photo",
+            "takePhoto": "Take Photo",
+            "shuffle": "Shuffle",
+            "browseButton": "Choose Existing",
+            "setProPicButton": "Set as profile picture"
+          }
+        },
+        "pcpolicy": {
+          "descriptions": {
+            "bodyContent1": "So this is Kind of important.",
+            "bodyContent2": "Lets make sure you have it on hand.",
+            "bodyContent3": "Email the official Peace Corps policy to yourself.",
+            "bodyContent4": "Email will be sent to"
+          },
+          "messages": {
+            "mailButton": "Email to Self"
+          }
+        }
+      },
+      "malaria101": {
+        "heading": "Malaria 101",
+        "lifecycle": {
+          "heading": "Watch the malaria transmission lifecycle & complete the follow up activity",
+          "labels": [
+                      "Plasmodium / Virus",
+                      "First infected mosquito",
+                      "First infected person",
+                      "Infected red blood cells",
+                      "Second infected mosquito",
+                      "Second infected person"
+                    ],
+          "alerts": {
+            "info": "Drag and drop the images in the container to complete the life cycle"
+          }
+        },
+        "dragdrop": {
+          "heading": "Drag and drop the dos and don'ts of Malaria",
+          "descriptions": {
+            "boxIndicatorDo": "Dos",
+            "boxIndicatorDont": "Don'ts",
+            "boxIndicatorAvailable": "Available to drag"
+          },
+          "buttons": {
+            "reset": "RESET",
+            "submit": "SUBMIT"
+          },
+          "MessageP1": "You earned total ",
+          "MessageP2": "points.",
+          "answerMessage": "Answers"
+        },
+        "oddOneOut": {
+          "heading": "Complete the odd one out quiz on Malaria",
+          "descriptions": {
+            "score": "Score!",
+            "resultText1": "You got",
+            "resultText2": "out of ",
+            "resultText3": "questions correct."
+          },
+          "messages": {
+            "resetButton": "Retry"
+          },
+          "alerts": {
+            "title": "Answers"
+          }
+        }
+      },
+      "medsNLabels": {
+        "heading": "Medication & Labels",
+        "matchMeds": {
+          "headingBase": "Match the medicines with their",
+          "headingsLevel": {
+            "level1": "right side-effects",
+            "level2": "right description"
+          }
+        },
+        "memoryGame": {
+          "heading": "Complete the memory game to unlock tips on diagnosis of malaria",
+          "alerts": {
+            "title": "Congratulations!<br>You matched a pair"
+          }
+        },
+        "doctorChat": {
+          "heading": "Chat With Doctor",
+          "introMessage": "Hi, I am a doctor, if you need any help related to malaria, feel free to talk to me",
+          "activityIndicationMessage": "You can play these games in PC-Prep-Kit to know more about it."
+        }
+      },
+      "peaceCorps": {
+        "heading": "Peace Corps Policy"
+      },
+      "prevention": {
+        "heading": "Prevention",
+        "stopTheBreed": {
+          "heading": "Eliminate all the mosquito breeding places by clicking over them ",
+          "alerts": {
+            "title": "Congratulations!! <br> You eliminated "
+          }
+        },
+        "stridesAgainst": {
+          "heading": "Stride Against Malaria",
+          "howtoplay": {
+            "instructions": {
+              "title": "How to play?",
+              "ins1": "Click on the person to move and reach the objects placed on the board",
+              "ins2": "Answer the questions that come up. Goal is to reach finishing point."
+            }
+          },
+          "game": {
+            "alerts": {
+              "correct": {
+                "title": "That's correct.",
+                "finish": {
+                  "body": "You saved the community.",
+                  "title": "Congratulations!!"
+                }
+              },
+              "incorrect": {
+                "title": "Incorrect."
+              },
+              "question": {
+                "response": {
+                  "true": "TRUE",
+                  "false": "FALSE"
+                }
+              }
+            },
+            "messages": {
+              "confirmButton": "Try Again",
+              "dashboardLink": "Go to Dashboard"
+            }
+          }
+        }
+      },
+      "lockedStage": {
+        "heading": "Locked Stage",
+        "howtoplay": {
+          "heading": "Prevent the mosquito from transmitting the virus to the human",
+          "instructions": {
+            "title": "How to play?",
+            "ins1": "Select the inventory item.",
+            "ins2": "Use the item to stop the mosquito.",
+            "ins3": "Earn and use 2 stars to boost your health.",
+            "ins4": "Earn and use 1 star to increase your spray strength.",
+            "ins5": "You can earn a star for every mosquito you defeat."
+          },
+          "messages": {
+            "nextButton": "Cool, next"
+          }
+        },
+        "game": {
+          "legend": {
+            "human": "Human",
+            "mosquito": "Mosquito",
+            "inventory": "Inventory",
+            "spray": "spray"
+          },
+          "toolTips": {
+            "pill": "Boost your health",
+            "spray": "Refill your spray"
+          },
+          "alerts": {
+            "level": {
+              "nextLevel": "You reached Level ",
+              "finalLevel": "Final level reached."
+            },
+            "buy": {
+              "success": {
+                "spray": "Spray refilled!",
+                "health": "Health boosted!"
+              },
+              "fail": {
+                "spray": "Not enough stars. 1 star needed for refill.",
+                "health": "Not enough stars. 2 stars needed for health boost."
+              }
+            },
+            "loss": {
+              "title": "Game over!",
+              "content": "The mosquito has transmitted malaria virus!"
+            },
+            "win": {
+              "title": "Good job!",
+              "content": "You completed this activity!"
+            }
+          },
+          "messages": {
+            "restartButton": "Restart"
+          }
+        }
+      }
+    }
+  }
+}
+

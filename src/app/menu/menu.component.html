@@ -1,0 +1,61 @@
+<div class="col-md-12 text-center"><h2 class="stage-header">{{language?.menu.heading}}</h2></div>
+<div class="menu">
+    <div class="col-lg-6 col-xs-offset-3">
+        <div class="row">
+            <div class="menu-button">
+                <img class="hex" src="../../assets/img/intro.png" (click)="navigateToPage('/introduction')">
+                <button class="but intro-btn" (click)="navigateToPage('/introduction')">
+                    {{language?.introduction.heading}}
+                </button>
+                <div class="outer-circle intro-outer-circle">
+                    <div class="inner-circle intro-inner-circle">
+                        <div *ngFor="let level of createRange(3); let idx=index;" class="arc level{{idx+1}}" [ngClass]="calculateArcClass(1, idx)"></div>
+                        <div class="activity">{{calculateDisplayedActivity(1)}}/3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-button">
+                <img class="hex" [src]="calculateButtonBackground(2, 'malaria-101')" (click)="navigateToPage('/malaria-101')">
+                <button [ngClass]="calculateButtonClasses(2, 'malaria-btn')" (click)="navigateToPage('/malaria-101')" [disabled]="!checkStageStatus(2)">
+                    {{language?.malaria101.heading}}
+                </button>
+                <div [ngClass]="calculateOuterClasses(2, 'malaria-outer-circle')">
+                    <div [ngClass]="calculateInnerClasses(2, 'malaria-inner-circle')">
+                        <div *ngFor="let level of createRange(3); let idx=index" class="arc level{{idx+1}}" [ngClass]="calculateArcClass(2, idx)"></div>
+                        <div class="activity">{{calculateDisplayedActivity(2)}}/3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-button">
+                <img class="hex" [src]="calculateButtonBackground(3, 'meds')" (click)="navigateToPage('/meds-n-labels')" >
+                <button [ngClass]="calculateButtonClasses(3, 'med-btn')" (click)="navigateToPage('/meds-n-labels')" [disabled]="!checkStageStatus(3)">
+                    {{language?.medsNLabels.heading}}
+                </button>
+                <div [ngClass]="calculateOuterClasses(3, 'med-outer-circle')">
+                    <div [ngClass]="calculateInnerClasses(3, 'med-inner-circle')">
+                        <div *ngFor="let level of createRange(3); let idx=index" class="arc level{{idx+1}}" [ngClass]="calculateArcClass(3, idx)"></div>
+                        <div class="activity">{{calculateDisplayedActivity(3)}}/3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <div class="row">
+        <div class="menu-button" (click)="navigateToPage('/prevent')">
+          <img class="hex" [src]="calculateButtonBackground(4, 'prevent')">
+          <button [ngClass]="calculateButtonClasses(4, 'malaria-btn')" (click)="navigateToPage('/prevent')" [disabled]="!checkStageStatus(4)">
+            {{language?.prevention.heading}}
+          </button>
+          <div [ngClass]="calculateOuterClasses(4, 'prevent-outer-circle')">
+            <div [ngClass]="calculateInnerClasses(4, 'prevent-inner-circle')">
+              <div *ngFor="let level of createRange(3); let idx=index" class="arc level{{idx+1}}" [ngClass]="calculateArcClass(4, idx)"></div>
+              <div class="activity">{{calculateDisplayedActivity(4)}}/3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
